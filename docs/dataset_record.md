@@ -3,10 +3,10 @@
 ## Source
 - Name: CERT Insider Threat Test Dataset, release r4.2
 - Producer: CERT Division, Software Engineering Institute, Carnegie Mellon University; data generated with ExactData's Dynamic Data Generator
-- Downloaded from: TODO (URL of the download page)
+- Downloaded from: https://kilthub.cmu.edu/articles/dataset/Insider_Threat_Test_Dataset/12841247
 - Date downloaded: 2026-11-04
 - Archive files: r4.2.tar.bz2 (4.5 GB), answers.tar.bz2 (1.2 MB)
-- Citation: TODO (copy the exact citation requested on the download page or in readme.txt)
+- Citation: Lindauer, Brian (2020). Insider Threat Test Dataset. Carnegie Mellon University. Dataset. https://doi.org/10.1184/R1/12841247.v1
 
 ## Licence
 - ExactData end-user agreement (data/raw/r4.2/license.txt)
@@ -34,3 +34,9 @@ Content columns (file, email, http) are stored separately in *_content.parquet w
 - Malicious insiders in r4.2: 70 (from insiders.csv, dataset 4.2)
 - Insiders per scenario: Scenario 1: 30, Scenario 2: 30, Scenario 3: 10
 - Scenarios: 3 (answers folders r4.2-1, r4.2-2, r4.2-3); descriptions in data/raw/answers/scenarios.txt
+
+## Known limitations
+- Synthetic data; not bank data; not UAE-specific
+- Content fields are generated keyword strings, not natural text
+- No removable-media field in file.csv (proxy used; see decisions log)
+- No hire date in LDAP (tenure derived from first LDAP appearance)
