@@ -1,9 +1,13 @@
 """Pipeline entry point. Run from the repo root: python -m src.run <stage>"""
 import argparse
 
-from src import features, sessions
+from src import features, features_text, sessions
 
-STAGES = {"features": features.run, "sessions": sessions.run}
+STAGES = {
+    "features": features.run,
+    "features_text": features_text.run,
+    "sessions": sessions.run,
+}
 
 
 def main():

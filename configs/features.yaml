@@ -86,6 +86,13 @@ burn_in:
   anchor: first_event
   tables: [logon, device, file, email, http]
 
+text_rules:
+  strip_file_header: true   # drop the leading hex-encoded header token from file content
+
+text_build:
+  memory_limit: 10GB        # this Mac has 18 GB
+  row_group_size: 32768     # small groups let session_id filters skip more of the file
+
 fairness:
   proxies: [role, department, functional_unit]
   missing_value: unknown
