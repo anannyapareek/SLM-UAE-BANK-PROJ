@@ -30,24 +30,21 @@ Malicious dropped events by table: kind, table, distinct ids
 Malicious dropped events by scenario: kind, scenario, distinct ids
   (none)
 
-Malicious dropped events by user: kind, user, distinct ids
-  (none)
-
-Malicious dropped events: id, type, time, user, scenario, kind
+Malicious dropped events by user: kind, distinct users
   (none)
 
 Insiders with orphan events: insiders of total
   2 | 70
 
-Per insider: user, scenario, orphan events, inside start-end window
-  LJR0523 | 1 | 32 | 0
-  VSS0154 | 2 | 131 | 0
+Insider orphan events by scenario: scenario, insiders, events, inside start-end window
+  1 | 1 | 32 | 0
+  2 | 1 | 131 | 0
 
-Dropped Logoffs of insiders: user, scenario, logoffs, inside start-end window
-  LJR0523 | 1 | 1 | 0
-  VSS0154 | 2 | 1 | 0
+Insider dropped Logoffs by scenario: scenario, insiders, logoffs, inside start-end window
+  1 | 1 | 1 | 0
+  2 | 1 | 1 | 0
 
-Answer ids missing from processed tables: id, type, file
+Answer ids missing from processed tables: id, type
   (none)
 
 Answer rows found but with a different user or time: id, type

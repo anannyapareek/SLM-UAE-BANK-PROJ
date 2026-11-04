@@ -1,5 +1,7 @@
 """Check whether dropped orphan events and Logoffs include malicious activity.
 
+Output is counts only, with no user IDs, because it is published with the repo.
+
 Run from the repo root: python src/check_orphans.py
 """
 import csv
@@ -96,26 +98,26 @@ def main():
     """)
     total = show(con, "Malicious events among dropped rows: kind, distinct ids", """
         SELECT kind, count(DISTINCT id) FROM hits GROUP BY 1 ORDER BY 1""")
-    for label, column in [("table", "source"), ("scenario", "scenario"), ("user", '"user"')]:
+    for label, column in [("table", "source"), ("scenario", "scenario")]:
         show(con, f"Malicious dropped events by {label}: kind, {label}, distinct ids", f"""
             SELECT kind, {column}, count(DISTINCT id) FROM hits GROUP BY 1, 2 ORDER BY 1, 2""")
-    show(con, "Malicious dropped events: id, type, time, user, scenario, kind", """
-        SELECT DISTINCT id, event_type, ts, "user", scenario, kind FROM hits ORDER BY ts""")
+    show(con, "Malicious dropped events by user: kind, distinct users", """
+        SELECT kind, count(DISTINCT "user") FROM hits GROUP BY 1 ORDER BY 1""")
 
     # (e) insiders with any orphan events, and orphans inside their activity windows
     show(con, "Insiders with orphan events: insiders of total", """
         SELECT count(DISTINCT i."user") FILTER (d.id IS NOT NULL), count(DISTINCT i."user")
         FROM insiders i LEFT JOIN dropped d ON i."user" = d."user" AND d.kind = 'orphan_event'""")
-    show(con, "Per insider: user, scenario, orphan events, inside start-end window", """
-        SELECT i."user", i.scenario, count(*),
+    show(con, "Insider orphan events by scenario: scenario, insiders, events, inside start-end window", """
+        SELECT i.scenario, count(DISTINCT i."user"), count(*),
                count(*) FILTER (d.ts BETWEEN i.start AND i."end")
         FROM insiders i JOIN dropped d ON i."user" = d."user" AND d.kind = 'orphan_event'
-        GROUP BY 1, 2 ORDER BY 1""")
-    show(con, "Dropped Logoffs of insiders: user, scenario, logoffs, inside start-end window", """
-        SELECT i."user", i.scenario, count(*),
+        GROUP BY 1 ORDER BY 1""")
+    show(con, "Insider dropped Logoffs by scenario: scenario, insiders, logoffs, inside start-end window", """
+        SELECT i.scenario, count(DISTINCT i."user"), count(*),
                count(*) FILTER (d.ts BETWEEN i.start AND i."end")
         FROM insiders i JOIN dropped d ON i."user" = d."user" AND d.kind = 'unused_logon_row'
-        GROUP BY 1, 2 ORDER BY 1""")
+        GROUP BY 1 ORDER BY 1""")
 
     # (f) every malicious event id must exist in its processed table
     tables = {t: f"{t}_sessioned" for t in EVENT_TABLES} | {"logon": "logon"}
@@ -123,8 +125,8 @@ def main():
         f"""SELECT id, '{t}' AS event_type, "user", ts FROM '{P}/{name}.parquet'"""
         for t, name in tables.items())
     con.execute(f"CREATE TABLE processed AS {processed}")
-    missing = show(con, "Answer ids missing from processed tables: id, type, file", """
-        SELECT DISTINCT a.id, a.event_type, a.source_file FROM answers a
+    missing = show(con, "Answer ids missing from processed tables: id, type", """
+        SELECT DISTINCT a.id, a.event_type FROM answers a
         ANTI JOIN processed p ON a.id = p.id AND a.event_type = p.event_type ORDER BY 2, 1""")
     show(con, "Answer rows found but with a different user or time: id, type", """
         SELECT DISTINCT a.id, a.event_type FROM answers a
