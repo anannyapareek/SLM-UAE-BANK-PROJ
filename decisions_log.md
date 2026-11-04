@@ -15,3 +15,10 @@
 | 2026-11-04 | LDAP user key is user_id; event tables use user | Join on user = user_id |
 | 2026-11-04 | All DuckDB scripts run single-threaded (threads=1) | Multi-threaded builds corrupted id data in http_content.parquet twice; single-threaded builds were clean. Cause suspected, not confirmed |
 | 2026-11-04 | check_processed.py reads every id and content value, not just row counts | Footer row counts did not detect the corruption |
+| 2026-11-04 | Session = Logon to next Logoff (same user, PC); with no Logoff before the next Logon, end at the earlier of next Logon and start + session_cap_hours (12) | Logon has 86,340 sessions with no Logoff. A real Logoff is kept even past 12h: 7,350 sessions (1.56%), max 13.72h. The cap never fired on r4.2 (longest Logon-to-Logon gap is 6h) |
+| 2026-11-04 | Orphan Logoffs are counted and dropped | 17 of 384,268 Logoffs have no open session; each follows another Logoff by about 1 to 5 days, which suggests a missing Logon record |
+| 2026-11-04 | Orphan events (session_id NULL) are dropped from session features but kept in *_sessioned.parquet for the per-user behavioural baseline | 1,916 events: device 26 (0.0064%), file 31 (0.0070%), email 154 (0.0059%), http 1,705 (0.0060%). 1,776 of them fall just before an orphan Logoff, so most belong to sessions with a missing Logon |
+| 2026-11-04 | Session `end` and `end_type` must never become features | They use future information; they may only define the session and the final scoring point |
+| 2026-11-04 | 0 of 7,323 malicious events are among the 1,916 dropped orphan events and 17 dropped orphan Logoffs; the drop rule is safe | Checked by event id against all r4.2 answer files (docs/orphan_check.txt); every answer id was found in the processed tables |
+| 2026-11-04 | Sessions with a real Logoff are not capped; 7,350 (1.56%) exceed 12 h, max 13.72 h | Cap applies only to missing Logoffs; real end times kept |
+| 2026-11-04 | 12 h cap never triggers in r4.2 (max Logon-to-Logon gap 6 h; every user/PC ends with a Logoff) | Rule kept for robustness; noted for methods |

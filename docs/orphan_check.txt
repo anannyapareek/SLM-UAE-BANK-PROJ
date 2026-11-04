@@ -1,0 +1,56 @@
+
+Answer files: event lines, distinct ids, users (by scenario)
+  r4.2-1 | 345 | 345 | 30
+  r4.2-2 | 6,765 | 6,765 | 30
+  r4.2-3 | 213 | 213 | 12
+
+Answer files: event lines by type
+  device | 2,785 | 2,785
+  email | 470 | 470
+  file | 10 | 10
+  http | 3,860 | 3,860
+  logon | 198 | 198
+
+Insiders: rows, distinct users
+  70 | 70
+
+Dropped rows: kind, source, rows, distinct ids, users
+  orphan_event | device | 26 | 26 | 3
+  orphan_event | email | 154 | 154 | 19
+  orphan_event | file | 31 | 31 | 2
+  orphan_event | http | 1,705 | 1,705 | 19
+  unused_logon_row | logon | 17 | 17 | 17
+
+Malicious events among dropped rows: kind, distinct ids
+  (none)
+
+Malicious dropped events by table: kind, table, distinct ids
+  (none)
+
+Malicious dropped events by scenario: kind, scenario, distinct ids
+  (none)
+
+Malicious dropped events by user: kind, user, distinct ids
+  (none)
+
+Malicious dropped events: id, type, time, user, scenario, kind
+  (none)
+
+Insiders with orphan events: insiders of total
+  2 | 70
+
+Per insider: user, scenario, orphan events, inside start-end window
+  LJR0523 | 1 | 32 | 0
+  VSS0154 | 2 | 131 | 0
+
+Dropped Logoffs of insiders: user, scenario, logoffs, inside start-end window
+  LJR0523 | 1 | 1 | 0
+  VSS0154 | 2 | 1 | 0
+
+Answer ids missing from processed tables: id, type, file
+  (none)
+
+Answer rows found but with a different user or time: id, type
+  (none)
+
+RESULT: 0 malicious events among dropped rows; 0 answer ids missing from processed tables
