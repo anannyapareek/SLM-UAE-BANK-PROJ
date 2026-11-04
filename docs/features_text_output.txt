@@ -1,0 +1,4 @@
+source | rows | median tokens | empty content
+email | 2,467,177 | 50 | 0
+file | 416,673 | 49 | 20,934
+http | 26,667,373 | 49 | 0
