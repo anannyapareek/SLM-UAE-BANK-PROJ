@@ -1,2 +1,129 @@
-# Feature definitions.
+# Single source of truth for features. Read by src/sessions.py and the feature code.
+# Leakage rule: session `end` and `end_type` may define the session and the final
+# scoring point, but must never be feature inputs (see decisions_log.md).
+
 session_cap_hours: 12
+
+off_hours:
+  work_start: "07:00"   # inclusive
+  work_end: "19:00"     # exclusive
+  weekend_days: [Sat, Sun]
+
+# Most common recipient domain: 58.18% of 6,096,606 to/cc/bcc recipients.
+# All 1,000 LDAP users also have an address on this domain.
+internal_email_domain: dtaa.com
+
+# These are the only extensions in r4.2.
+file_extensions: [doc, pdf, zip, exe, jpg, txt]
+
+# Exact match on the URL host. Built from all 475 hosts in http.parquet, classified by
+# name alone without using insider URLs or labels (see decisions_log.md).
+http_keyword_lists:
+  job_search:
+    - careerbuilder.com
+    - indeed.com
+    - job-hunt.org
+    - jobhuntersbible.com
+    - monster.com
+    - simplyhired.com
+    - taleo.net
+  cloud_storage:
+    - 4shared.com
+    - dropbox.com
+    - fileserve.com
+    - filesonic.com
+    - mediafire.com
+    - megaupload.com
+    - yousendit.com
+  filesharing_leak:
+    - btjunkie.org
+    - demonoid.me
+    - filestube.com
+    - thepiratebay.org
+    - torrentz.eu
+    - wikileaks.org
+  # Kept separate so models can be run without it (see decisions_log.md).
+  hacking_tools:
+    - blackhatworld.com
+    - www.actualkeylogger.com
+    - www.best-spy-soft.com
+    - www.dailykeylogger.com
+    - www.keylogpc.com
+
+windows:
+  rolling_window_minutes: 60  # rolling_1h: same session, ts in (score_time - 60 min, score_time]
+  baseline_days: 30
+  baseline_min_sessions: 5   # fewer earlier sessions: the z-score is NULL
+  std_floor: 1.0             # z = (value - mean) / max(std, std_floor)
+
+scoring:
+  interval_minutes: 60       # hourly, counted from session start
+  anchor: session_start
+  final_point: session_end
+
+fairness:
+  proxies: [role, department, functional_unit]
+  missing_value: unknown
+
+# All counts use only events with ts <= score_time.
+# window: session_cumulative | rolling_1h | day_cumulative | static | baseline
+features:
+  # Session, logon and device
+  - {name: session_minutes_so_far, source: sessions, window: session_cumulative, description: "Minutes from session start to the scoring point"}
+  - {name: off_hours, source: sessions, window: static, description: "Session started outside off_hours.work_start to off_hours.work_end"}
+  - {name: weekend, source: sessions, window: static, description: "Session started on a weekend day"}
+  - {name: new_pc, source: logon, window: static, description: "No earlier logon by this user on this PC before session start"}
+  - {name: usb_connects, source: device_sessioned, window: session_cumulative, description: "USB Connect events so far in the session"}
+  - {name: unlocks_so_far, source: logon_sessioned, window: session_cumulative, description: "Screen unlocks so far in the session (is_unlock, ts <= score_time)"}
+  - {name: logon_events_today_so_far, source: logon, window: day_cumulative, description: "Logon events by this user today up to the scoring point; includes unlocks"}
+  - {name: usb_connects_today_so_far, source: device_sessioned, window: day_cumulative, description: "USB Connect events by this user today up to the scoring point"}
+
+  # File
+  - {name: file_events, source: file_sessioned, window: session_cumulative, description: "File events so far in the session"}
+  - {name: file_events_removable_proxy, source: file_sessioned, window: session_cumulative, description: "File events while a USB device is connected, using only events up to the scoring point"}
+  - {name: file_ext_doc, source: file_sessioned, window: session_cumulative, description: "File events with extension doc"}
+  - {name: file_ext_pdf, source: file_sessioned, window: session_cumulative, description: "File events with extension pdf"}
+  - {name: file_ext_zip, source: file_sessioned, window: session_cumulative, description: "File events with extension zip"}
+  - {name: file_ext_exe, source: file_sessioned, window: session_cumulative, description: "File events with extension exe"}
+  - {name: file_ext_jpg, source: file_sessioned, window: session_cumulative, description: "File events with extension jpg"}
+  - {name: file_ext_txt, source: file_sessioned, window: session_cumulative, description: "File events with extension txt"}
+
+  # Email
+  - {name: emails_sent, source: email_sessioned, window: session_cumulative, description: "Emails sent so far in the session"}
+  - {name: external_recipients, source: email_sessioned, window: session_cumulative, description: "to, cc and bcc recipients outside internal_email_domain"}
+  - {name: attachments_count, source: email_sessioned, window: session_cumulative, description: "Sum of the attachments column, which is a count per email"}
+  - {name: email_bytes, source: email_sessioned, window: session_cumulative, description: "Sum of the size column: message bytes, excluding attachments"}
+  - {name: after_hours_emails, source: email_sessioned, window: session_cumulative, description: "Emails sent outside off_hours.work_start to off_hours.work_end (same keys as off_hours)"}
+
+  # HTTP
+  - {name: http_visits, source: http_sessioned, window: session_cumulative, description: "HTTP visits so far in the session"}
+  - {name: http_job_search, source: http_sessioned, window: session_cumulative, description: "Visits to job_search domains"}
+  - {name: http_cloud_storage, source: http_sessioned, window: session_cumulative, description: "Visits to cloud_storage domains"}
+  - {name: http_filesharing_leak, source: http_sessioned, window: session_cumulative, description: "Visits to filesharing_leak domains"}
+  - {name: http_hacking_tools, source: http_sessioned, window: session_cumulative, description: "Visits to hacking_tools domains; no rolling or baseline version"}
+
+  # Rolling 1 hour
+  - {name: usb_connects_1h, source: device_sessioned, window: rolling_1h, description: "USB Connect events in the last rolling_window_minutes of the session"}
+  - {name: file_events_1h, source: file_sessioned, window: rolling_1h, description: "File events in the last rolling_window_minutes of the session"}
+  - {name: file_events_removable_proxy_1h, source: file_sessioned, window: rolling_1h, description: "File events while a USB device is connected in the last rolling_window_minutes of the session"}
+  - {name: emails_sent_1h, source: email_sessioned, window: rolling_1h, description: "Emails sent in the last rolling_window_minutes of the session"}
+  - {name: external_recipients_1h, source: email_sessioned, window: rolling_1h, description: "External recipients in the last rolling_window_minutes of the session"}
+  - {name: attachments_count_1h, source: email_sessioned, window: rolling_1h, description: "Attachments in the last rolling_window_minutes of the session"}
+  - {name: http_job_search_1h, source: http_sessioned, window: rolling_1h, description: "Visits to job_search domains in the last rolling_window_minutes of the session"}
+  - {name: http_cloud_storage_1h, source: http_sessioned, window: rolling_1h, description: "Visits to cloud_storage domains in the last rolling_window_minutes of the session"}
+  - {name: http_filesharing_leak_1h, source: http_sessioned, window: rolling_1h, description: "Visits to filesharing_leak domains in the last rolling_window_minutes of the session"}
+
+  # LDAP
+  - {name: role, source: ldap, window: static, description: "Job role (42 values)"}
+  - {name: department, source: ldap, window: static, description: "Department (22 values); missing is 'unknown'"}
+  - {name: functional_unit, source: ldap, window: static, description: "Functional unit (6 values); missing is 'unknown'"}
+
+  # Baseline: z-score against the same user's sessions that ended before this session's
+  # start, within the last baseline_days. Each earlier session contributes its final total.
+  - {name: usb_connects_z, source: device_sessioned, window: baseline, description: "z-score of usb_connects"}
+  - {name: file_events_z, source: file_sessioned, window: baseline, description: "z-score of file_events"}
+  - {name: emails_sent_z, source: email_sessioned, window: baseline, description: "z-score of emails_sent"}
+  - {name: external_recipients_z, source: email_sessioned, window: baseline, description: "z-score of external_recipients"}
+  - {name: http_job_search_z, source: http_sessioned, window: baseline, description: "z-score of http_job_search"}
+  - {name: http_cloud_storage_z, source: http_sessioned, window: baseline, description: "z-score of http_cloud_storage"}
+  - {name: http_filesharing_leak_z, source: http_sessioned, window: baseline, description: "z-score of http_filesharing_leak"}

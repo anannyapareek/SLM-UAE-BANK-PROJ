@@ -39,4 +39,4 @@ Content columns (file, email, http) are stored separately in *_content.parquet w
 - Synthetic data; not bank data; not UAE-specific
 - Content fields are generated keyword strings, not natural text
 - No removable-media field in file.csv (proxy used; see decisions log)
-- No hire date in LDAP (tenure derived from first LDAP appearance)
+- No hire date in LDAP; tenure is left-censored at the 2009-12 snapshot, so it is not used

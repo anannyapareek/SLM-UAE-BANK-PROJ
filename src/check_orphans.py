@@ -49,8 +49,8 @@ def load_dropped(con):
         f"""SELECT id, '{t}' AS source, 'orphan_event' AS kind, "user", ts
             FROM '{P}/{t}_sessioned.parquet' WHERE session_id IS NULL"""
         for t in EVENT_TABLES)
-    # Every Logon starts a session, and a Logoff is used only if it directly follows a
-    # Logon for that user and PC. Same ordering as src/sessions.py.
+    # Every Logon starts or continues a session, and a Logoff is used only if it directly
+    # follows a Logon for that user and PC. Same ordering as src/sessions.py.
     logon = f"""
         SELECT id, 'logon' AS source, 'unused_logon_row' AS kind, "user", ts
         FROM (SELECT id, "user", ts, activity,
