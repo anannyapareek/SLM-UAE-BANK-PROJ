@@ -188,11 +188,19 @@ def write_features(con, path, names, sql, joins):
 def build_part1(con, cfg, features, running):
     """Session, logon, device and file features."""
     device = f"'{P}/device_sessioned.parquet'"
+    # The header is the first token of file_content, before any text_rules strip.
+    header_rules = cfg["file_header_extensions"]
+    con.execute("CREATE TEMP TABLE file_headers (header VARCHAR PRIMARY KEY, extension VARCHAR)")
+    con.executemany("INSERT INTO file_headers VALUES (?, ?)", list(header_rules["headers"].items()))
     file_events = f"""(
-        SELECT *, lower(regexp_extract(filename, '\\.([A-Za-z0-9]+)$', 1)) AS extension
-        FROM '{P}/file_sessioned.parquet'
+        SELECT f.*, lower(regexp_extract(f.filename, '\\.([A-Za-z0-9]+)$', 1)) AS extension,
+               coalesce(h.extension, '{header_rules['default']}') AS header_extension
+        FROM '{P}/file_sessioned.parquet' f
+        JOIN '{P}/file_content.parquet' c USING (id)
+        LEFT JOIN file_headers h ON split_part(c.content, ' ', 1) = h.header
     )"""
-    file_metrics = {"file_events": "1"}
+    file_metrics = {"file_events": "1",
+                    "file_header_mismatch": "(e.extension <> e.header_extension)::INTEGER"}
     file_metrics |= {f"file_ext_{x}": f"(e.extension = '{x}')::INTEGER"
                      for x in cfg["file_extensions"]}
 

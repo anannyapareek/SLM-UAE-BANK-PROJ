@@ -16,6 +16,17 @@ internal_email_domain: dtaa.com
 # These are the only extensions in r4.2.
 file_extensions: [doc, pdf, zip, exe, jpg, txt]
 
+# Extension each file header implies. The first token of file_content is the header;
+# any other header is plain text, which has no fixed signature.
+file_header_extensions:
+  headers:
+    D0-CF-11-E0-A1-B1-1A-E1: doc
+    25-50-44-46-2D: pdf
+    50-4B-03-04-14: zip
+    FF-D8: jpg
+    4D-5A-90-00-03-00-00-00-04-00-00-00-FF-FF-00-00-B8-00-00-00-00-00-00-00-40-00: exe
+  default: txt
+
 # Which http_keyword_lists set to use: full | top300.
 # top300 is the label-blind ablation (see decisions_log.md).
 http_lists: full
@@ -118,6 +129,7 @@ features:
   - {name: file_ext_exe, source: file_sessioned, window: session_cumulative, description: "File events with extension exe"}
   - {name: file_ext_jpg, source: file_sessioned, window: session_cumulative, description: "File events with extension jpg"}
   - {name: file_ext_txt, source: file_sessioned, window: session_cumulative, description: "File events with extension txt"}
+  - {name: file_header_mismatch, source: file_sessioned, window: session_cumulative, description: "File events whose header type does not match the filename extension (file_header_extensions)"}
 
   # Email
   - {name: emails_sent, source: email_sessioned, window: session_cumulative, description: "Emails sent so far in the session; the user column is the sender"}

@@ -21,6 +21,7 @@ file_ext_zip | 0.00% | 0 | 0.0365 | 6
 file_ext_exe | 0.00% | 0 | 0.0047 | 3
 file_ext_jpg | 0.00% | 0 | 0.0364 | 7
 file_ext_txt | 0.00% | 0 | 0.0365 | 7
+file_header_mismatch | 0.00% | 0 | 0.0071 | 3
 emails_sent | 0.00% | 0 | 4.4044 | 36
 external_recipients | 0.00% | 0 | 4.2823 | 84
 attachments_count | 0.00% | 0 | 1.7581 | 50
