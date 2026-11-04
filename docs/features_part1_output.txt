@@ -1,0 +1,24 @@
+grid: 3,359,255 rows for 384,251 sessions
+rows per session: p0 1, p25 9, p50 10, p75 11, p90 12, p99 13, p100 14
+burn-in: 2010-01-02 06:49:00 to 2010-02-01 06:49:00 (30 days)
+burn-in removed: 210,346 rows (6.26%), 24,401 sessions (6.35%)
+scoring rows left: 3,148,909 rows, 359,850 sessions
+features_part1: 3,148,909 rows, row_id unique
+feature | null rate | min | mean | max
+session_minutes_so_far | 0.00% | 60 | 323.6169 | 780
+off_hours | 0.00% | 0 | 0.0172 | 1
+weekend | 0.00% | 0 | 0.0197 | 1
+new_pc | 0.00% | 0 | 0.0065 | 1
+usb_connects | 0.00% | 0 | 0.3364 | 10
+unlocks_so_far | 0.00% | 0 | 0.1491 | 1
+logon_events_today_so_far | 0.00% | 0 | 1.2538 | 9
+usb_connects_today_so_far | 0.00% | 0 | 0.3583 | 14
+file_events | 0.00% | 0 | 0.7142 | 27
+file_ext_doc | 0.00% | 0 | 0.4594 | 25
+file_ext_pdf | 0.00% | 0 | 0.1406 | 14
+file_ext_zip | 0.00% | 0 | 0.0365 | 6
+file_ext_exe | 0.00% | 0 | 0.0047 | 3
+file_ext_jpg | 0.00% | 0 | 0.0364 | 7
+file_ext_txt | 0.00% | 0 | 0.0365 | 7
+usb_connects_1h | 0.00% | 0 | 0.0632 | 9
+file_events_1h | 0.00% | 0 | 0.1393 | 27

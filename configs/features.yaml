@@ -79,6 +79,13 @@ scoring:
   anchor: session_start
   final_point: session_end
 
+# Scoring rows with score_time in this period are removed: new_pc and baselines are
+# unreliable before enough history exists. Events in it still count as history.
+burn_in:
+  days: 30
+  anchor: first_event
+  tables: [logon, device, file, email, http]
+
 fairness:
   proxies: [role, department, functional_unit]
   missing_value: unknown
@@ -87,7 +94,7 @@ fairness:
 # window: session_cumulative | rolling_1h | day_cumulative | static | baseline
 features:
   # Session, logon and device
-  - {name: session_minutes_so_far, source: sessions, window: session_cumulative, description: "Minutes from session start to the scoring point"}
+  - {name: session_minutes_so_far, source: sessions, window: session_cumulative, description: "Minutes from session start to the scoring point, rounded down to scoring.interval_minutes (minimum one interval) so the final row is not revealed"}
   - {name: off_hours, source: sessions, window: static, description: "Session started outside off_hours.work_start to off_hours.work_end"}
   - {name: weekend, source: sessions, window: static, description: "Session started on a weekend day"}
   - {name: new_pc, source: logon, window: static, description: "No earlier logon by this user on this PC before session start"}
@@ -98,7 +105,6 @@ features:
 
   # File
   - {name: file_events, source: file_sessioned, window: session_cumulative, description: "File events so far in the session"}
-  - {name: file_events_removable_proxy, source: file_sessioned, window: session_cumulative, description: "File events while a USB device is connected, using only events up to the scoring point"}
   - {name: file_ext_doc, source: file_sessioned, window: session_cumulative, description: "File events with extension doc"}
   - {name: file_ext_pdf, source: file_sessioned, window: session_cumulative, description: "File events with extension pdf"}
   - {name: file_ext_zip, source: file_sessioned, window: session_cumulative, description: "File events with extension zip"}
@@ -123,7 +129,6 @@ features:
   # Rolling 1 hour
   - {name: usb_connects_1h, source: device_sessioned, window: rolling_1h, description: "USB Connect events in the last rolling_window_minutes of the session"}
   - {name: file_events_1h, source: file_sessioned, window: rolling_1h, description: "File events in the last rolling_window_minutes of the session"}
-  - {name: file_events_removable_proxy_1h, source: file_sessioned, window: rolling_1h, description: "File events while a USB device is connected in the last rolling_window_minutes of the session"}
   - {name: emails_sent_1h, source: email_sessioned, window: rolling_1h, description: "Emails sent in the last rolling_window_minutes of the session"}
   - {name: external_recipients_1h, source: email_sessioned, window: rolling_1h, description: "External recipients in the last rolling_window_minutes of the session"}
   - {name: attachments_count_1h, source: email_sessioned, window: rolling_1h, description: "Attachments in the last rolling_window_minutes of the session"}

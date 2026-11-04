@@ -38,5 +38,5 @@ Content columns (file, email, http) are stored separately in *_content.parquet w
 ## Known limitations
 - Synthetic data; not bank data; not UAE-specific
 - Content fields are generated keyword strings, not natural text
-- No removable-media field in file.csv (proxy used; see decisions log)
+- No removable-media flag in file.csv; the readme says every entry is a copy to a removable media device, so file_events is used directly
 - No hire date in LDAP; tenure is left-censored at the 2009-12 snapshot, so it is not used
