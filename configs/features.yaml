@@ -113,8 +113,8 @@ features:
   - {name: file_ext_txt, source: file_sessioned, window: session_cumulative, description: "File events with extension txt"}
 
   # Email
-  - {name: emails_sent, source: email_sessioned, window: session_cumulative, description: "Emails sent so far in the session"}
-  - {name: external_recipients, source: email_sessioned, window: session_cumulative, description: "to, cc and bcc recipients outside internal_email_domain"}
+  - {name: emails_sent, source: email_sessioned, window: session_cumulative, description: "Emails sent so far in the session; the user column is the sender"}
+  - {name: external_recipients, source: email_sessioned, window: session_cumulative, description: "Distinct to, cc and bcc recipients per email outside internal_email_domain"}
   - {name: attachments_count, source: email_sessioned, window: session_cumulative, description: "Sum of the attachments column, which is a count per email"}
   - {name: email_bytes, source: email_sessioned, window: session_cumulative, description: "Sum of the size column: message bytes, excluding attachments"}
   - {name: after_hours_emails, source: email_sessioned, window: session_cumulative, description: "Emails sent outside off_hours.work_start to off_hours.work_end (same keys as off_hours)"}
@@ -137,12 +137,13 @@ features:
   - {name: http_filesharing_leak_1h, source: http_sessioned, window: rolling_1h, description: "Visits to filesharing_leak domains in the last rolling_window_minutes of the session"}
 
   # LDAP
-  - {name: role, source: ldap, window: static, description: "Job role (42 values)"}
-  - {name: department, source: ldap, window: static, description: "Department (22 values); missing is 'unknown'"}
-  - {name: functional_unit, source: ldap, window: static, description: "Functional unit (6 values); missing is 'unknown'"}
+  - {name: role, source: ldap, window: static, description: "Job role (42 values), from the latest LDAP snapshot before the month of score_time"}
+  - {name: department, source: ldap, window: static, description: "Department (22 values), same snapshot rule; missing is 'unknown'"}
+  - {name: functional_unit, source: ldap, window: static, description: "Functional unit (6 values), same snapshot rule; missing is 'unknown'"}
 
   # Baseline: z-score against the same user's sessions that ended before this session's
-  # start, within the last baseline_days. Each earlier session contributes its final total.
+  # start, within the last baseline_days, at the same elapsed hour (session_minutes_so_far
+  # / 60). An earlier session shorter than that hour contributes its final value.
   - {name: usb_connects_z, source: device_sessioned, window: baseline, description: "z-score of usb_connects"}
   - {name: file_events_z, source: file_sessioned, window: baseline, description: "z-score of file_events"}
   - {name: emails_sent_z, source: email_sessioned, window: baseline, description: "z-score of emails_sent"}
