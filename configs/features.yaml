@@ -16,39 +16,57 @@ internal_email_domain: dtaa.com
 # These are the only extensions in r4.2.
 file_extensions: [doc, pdf, zip, exe, jpg, txt]
 
-# Exact match on the URL host. Built from all 475 hosts in http.parquet, classified by
-# name alone without using insider URLs or labels (see decisions_log.md).
+# Which http_keyword_lists set to use: full | top300.
+# top300 is the label-blind ablation (see decisions_log.md).
+http_lists: full
+
+# Exact match on the URL host, classified by name alone without using insider URLs or
+# labels. full: all 475 hosts in http.parquet. top300: the original top-300 lists; its
+# hacking_tools list is empty so both sets produce the same feature columns.
 http_keyword_lists:
-  job_search:
-    - careerbuilder.com
-    - indeed.com
-    - job-hunt.org
-    - jobhuntersbible.com
-    - monster.com
-    - simplyhired.com
-    - taleo.net
-  cloud_storage:
-    - 4shared.com
-    - dropbox.com
-    - fileserve.com
-    - filesonic.com
-    - mediafire.com
-    - megaupload.com
-    - yousendit.com
-  filesharing_leak:
-    - btjunkie.org
-    - demonoid.me
-    - filestube.com
-    - thepiratebay.org
-    - torrentz.eu
-    - wikileaks.org
-  # Kept separate so models can be run without it (see decisions_log.md).
-  hacking_tools:
-    - blackhatworld.com
-    - www.actualkeylogger.com
-    - www.best-spy-soft.com
-    - www.dailykeylogger.com
-    - www.keylogpc.com
+  full:
+    job_search: &job_search
+      - careerbuilder.com
+      - indeed.com
+      - job-hunt.org
+      - jobhuntersbible.com
+      - monster.com
+      - simplyhired.com
+      - taleo.net
+    cloud_storage:
+      - 4shared.com
+      - dropbox.com
+      - fileserve.com
+      - filesonic.com
+      - mediafire.com
+      - megaupload.com
+      - yousendit.com
+    filesharing_leak:
+      - btjunkie.org
+      - demonoid.me
+      - filestube.com
+      - thepiratebay.org
+      - torrentz.eu
+      - wikileaks.org
+    # Kept separate from filesharing_leak because the hosts are rare (see decisions_log.md).
+    hacking_tools:
+      - blackhatworld.com
+      - www.actualkeylogger.com
+      - www.best-spy-soft.com
+      - www.dailykeylogger.com
+      - www.keylogpc.com
+  top300:
+    job_search: *job_search
+    cloud_storage:
+      - dropbox.com
+      - mediafire.com
+      - megaupload.com
+      - yousendit.com
+    filesharing_leak:
+      - btjunkie.org
+      - demonoid.me
+      - thepiratebay.org
+    hacking_tools: []
 
 windows:
   rolling_window_minutes: 60  # rolling_1h: same session, ts in (score_time - 60 min, score_time]
