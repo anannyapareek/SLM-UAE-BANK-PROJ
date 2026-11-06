@@ -31,7 +31,7 @@ file_header_extensions:
 # top300 is the label-blind ablation (see decisions_log.md).
 http_lists: full
 
-# Exact match on the URL host, classified by name alone without using insider URLs or
+# Exact match on the URL host, classified by name alone without using per-user URLs or
 # labels. full: all 475 hosts in http.parquet. top300: the original top-300 lists; its
 # hacking_tools list is empty so both sets produce the same feature columns.
 http_keyword_lists:

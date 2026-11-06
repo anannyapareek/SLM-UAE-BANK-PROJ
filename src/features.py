@@ -9,16 +9,19 @@ session_minutes_so_far is rounded down to the scoring interval, with a minimum o
 interval: exact elapsed time would be off the hour only on final rows, and this way
 every value also occurs on hourly rows.
 """
+import os
 import pathlib
 
 import duckdb
 import yaml
 
-P = pathlib.Path("data/processed")
-CONFIG = pathlib.Path("configs/features.yaml")
-OUT_PART1 = P / "features_part1.parquet"
-OUT_PART2 = P / "features_part2.parquet"
-OUT = P / "features.parquet"
+# The environment overrides let tests build from a sample or with another config.
+P = pathlib.Path(os.environ.get("PROCESSED_DIR", "data/processed"))
+CONFIG = pathlib.Path(os.environ.get("FEATURES_CONFIG", "configs/features.yaml"))
+OUT_DIR = pathlib.Path(os.environ.get("FEATURES_OUT_DIR", P))
+OUT_PART1 = OUT_DIR / "features_part1.parquet"
+OUT_PART2 = OUT_DIR / "features_part2.parquet"
+OUT = OUT_DIR / "features.parquet"
 META_COLUMNS = ["row_id", "session_id", "user", "pc", "score_time", "is_final"]
 FORBIDDEN_FEATURES = {"end", "end_type", "is_final", "session_length"}
 PART1_SOURCES = {"sessions", "logon", "logon_sessioned", "device_sessioned", "file_sessioned"}

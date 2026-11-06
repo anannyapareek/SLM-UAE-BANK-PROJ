@@ -4,12 +4,13 @@ Kept at event level so later steps can join on session_id and filter ts <= score
 without leakage. Nothing here is aggregated per scoring row. Rows are sorted by session
 and time, so a session_id filter can skip row groups.
 """
+import os
 import pathlib
 
 import duckdb
 import yaml
 
-P = pathlib.Path("data/processed")
+P = pathlib.Path(os.environ.get("PROCESSED_DIR", "data/processed"))
 CONFIG = pathlib.Path("configs/features.yaml")
 OUT = P / "features_text.parquet"
 UNSORTED = P / "features_text_unsorted.parquet"
