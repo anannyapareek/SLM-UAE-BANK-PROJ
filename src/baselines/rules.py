@@ -64,6 +64,8 @@ def methods_paragraph(rules, tie_break):
         "attachments by requiring an external recipient and an attachment in the same "
         "session, as no feature links the two on a single email. R4 targets a published CERT "
         "threat pattern that does not occur in release r4.2 and is kept as a general rule. The rules "
+        "carry prior knowledge: they were written by authors who knew the public CERT scenario "
+        "descriptions, so the baseline is not blind to the threats it is scored on. The rules "
         "are deterministic, so we report a single run.\n")
 
 

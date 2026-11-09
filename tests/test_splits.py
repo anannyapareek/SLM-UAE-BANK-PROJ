@@ -83,3 +83,49 @@ def test_freeze_refuses_to_overwrite(tmp_path, monkeypatch):
         splits.verify_test_checksum()
     assert splits.freeze(con, force=True) == digest
     assert log.read_text().count("Frozen test_ids.csv") == 1   # same hash: no second line
+
+
+# Stages that run before the freeze can exist, the freeze stages themselves, and the driver.
+# Every other stage in run.py, including any added later, counts as post-freeze.
+PRE_FREEZE = {"data", "sessions", "features", "features_text", "labels", "explore_positives",
+              "prep_report"}
+FREEZE = {"splits", "leakage"}
+DRIVER = {"all"}
+
+
+class Verified(Exception):
+    pass
+
+
+class ReadData(Exception):
+    pass
+
+
+def test_post_freeze_stages_verify_checksum_first(monkeypatch):
+    """Each post-freeze stage reaches verify_test_checksum() before it opens any data."""
+    import sys
+
+    import pandas as pd
+    import pyarrow.parquet as pq
+
+    from src import run, splits
+
+    post_freeze = sorted(set(run.STAGES) - PRE_FREEZE - FREEZE - DRIVER)
+    assert {"xgb", "rules", "eval", "eval-baselines"} <= set(post_freeze)
+
+    def verified():
+        raise Verified
+
+    def read_data(*args, **kwargs):
+        raise ReadData
+
+    # verify_test_checksum() looks up logged_checksum() in src.splits at call time, so this
+    # catches the call however a stage imported it.
+    monkeypatch.setattr(splits, "logged_checksum", verified)
+    monkeypatch.setattr(duckdb, "connect", read_data)
+    monkeypatch.setattr(pd, "read_parquet", read_data)
+    monkeypatch.setattr(pq, "read_table", read_data)
+    for stage in post_freeze:
+        monkeypatch.setattr(sys, "argv", ["run.py", stage])
+        with pytest.raises(Verified):
+            run.main()
