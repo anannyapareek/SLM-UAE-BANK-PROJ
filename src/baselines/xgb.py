@@ -199,4 +199,5 @@ def run():
     for seed in SEEDS:
         m = train_seed(seed, budget["params"], parts, X, y, names, scale_pos_weight, checksum)
         print(f"seed {seed}: valid PR-AUC {m['pr_auc']:.4f}, ROC-AUC {m['roc_auc']:.4f}, "
-              f"{m['best_iteration']} trees; valid positive rate {m['positive_rate']:.4%}")
+              f"best iteration {m['best_iteration']} ({m['best_iteration'] + 1} trees); "
+              f"valid positive rate {m['positive_rate']:.4%}")
