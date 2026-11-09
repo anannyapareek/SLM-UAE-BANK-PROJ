@@ -1,7 +1,11 @@
-"""XGBoost on the structured features: Optuna tuning, then three seeds.
+"""XGBoost on the structured features.
+
+    python run.py xgb --tune   50-trial Optuna search; writes configs/xgb_tuned_<run>.yaml
+                               (and configs/xgb_best.yaml only with --overwrite-config)
+    python run.py xgb [--fit]  fit seeds 1-3 from configs/xgb_best.yaml (the default)
 
 Loads train and valid rows only. Test labels are never read here, and calibration and
-test are not scored. Run with: python run.py xgb
+test are not scored.
 """
 import datetime
 import json
@@ -86,7 +90,7 @@ def suggest(trial):
     }
 
 
-def tune(X, y, scale_pos_weight):
+def search(X, y, scale_pos_weight):
     def objective(trial):
         model = classifier(suggest(trial), TUNING_SEED, scale_pos_weight,
                            [XGBoostPruningCallback(trial, "validation_0-aucpr")])
@@ -115,17 +119,20 @@ def tune(X, y, scale_pos_weight):
 
 
 def append_run(row):
+    """Add a run; an earlier current row with the same run_id is marked as replaced."""
     RESULTS.mkdir(exist_ok=True)
-    new = not RUN_LOG.exists()
-    pd.DataFrame([row], columns=RUN_COLUMNS).to_csv(RUN_LOG, mode="a", header=new, index=False)
+    runs = pd.read_csv(RUN_LOG) if RUN_LOG.exists() else pd.DataFrame(columns=RUN_COLUMNS)
+    replaced = (runs["run_id"] == row["run_id"]) & (runs["status"] == "current")
+    runs.loc[replaced, "status"] = f"replaced by rerun at {row['timestamp']}"
+    pd.concat([runs, pd.DataFrame([row], columns=RUN_COLUMNS)]).to_csv(RUN_LOG, index=False)
 
 
-def train_seed(seed, params, parts, X, y, names, scale_pos_weight, checksum):
+def train_seed(seed, params, parts, X, y, names, scale_pos_weight, checksum, run_prefix):
     model = classifier(params, seed, scale_pos_weight)
     model.fit(X["train"], y["train"], eval_set=[(X["valid"], y["valid"])], verbose=False)
     score = model.predict_proba(X["valid"])[:, 1]
     margin = model.predict(X["valid"], output_margin=True)
-    out = RESULTS / f"{RUN_PREFIX}_s{seed}"
+    out = RESULTS / f"{run_prefix}_s{seed}"
     out.mkdir(parents=True, exist_ok=True)
     pd.DataFrame({"row_id": parts["valid"]["row_id"], "user": parts["valid"]["user"],
                   "y_true": y["valid"], "score": score, "margin": margin}
@@ -174,7 +181,28 @@ def log_budget(budget, scale_pos_weight):
                    f"compared with it in the methods; scale_pos_weight {scale_pos_weight:.1f} |\n")
 
 
-def run():
+def check_against_config(best, scale_pos_weight, categories):
+    """The data must match what the configured parameters were tuned on."""
+    expected = best["fixed"]["scale_pos_weight"]
+    if abs(scale_pos_weight - expected) > 1e-9 * expected:
+        raise RuntimeError(f"scale_pos_weight {scale_pos_weight} differs from {BEST_CONFIG}: {expected}")
+    if {k: list(v) for k, v in categories.items()} != best["categories"]:
+        raise RuntimeError(f"LDAP categories differ from {BEST_CONFIG}")
+
+
+def config(budget, scale_pos_weight, categories):
+    return {
+        "model": "xgboost", "features": "structured (configs/features.yaml)",
+        "fixed": {"tree_method": "hist", "objective": "binary:logistic", "eval_metric": "aucpr",
+                  "n_estimators": MAX_TREES, "early_stopping_rounds": EARLY_STOPPING,
+                  "enable_categorical": True, "scale_pos_weight": scale_pos_weight},
+        "params": budget["params"], "tuning": {k: v for k, v in budget.items() if k != "params"},
+        "categories": categories, "seeds": SEEDS, "run_prefix": RUN_PREFIX,
+        "search_space": {"max_depth": list(MAX_DEPTH)}, "pruner": PRUNER,
+    }
+
+
+def run(tune=False, overwrite_config=False):
     checksum = verify_test_checksum()
     names = [f["name"] for f in yaml.safe_load(FEATURES_CONFIG.read_text())["features"]]
     con = duckdb.connect(config={"threads": 1})
@@ -186,21 +214,25 @@ def run():
           f"valid {len(y['valid']):,} rows ({y['valid'].mean():.4%} positive); "
           f"scale_pos_weight {scale_pos_weight:.1f}")
 
-    budget = tune(X, y, scale_pos_weight)
-    print(f"tuning: {budget}")
-    BEST_CONFIG.write_text(yaml.safe_dump({
-        "model": "xgboost", "features": "structured (configs/features.yaml)",
-        "fixed": {"tree_method": "hist", "objective": "binary:logistic", "eval_metric": "aucpr",
-                  "n_estimators": MAX_TREES, "early_stopping_rounds": EARLY_STOPPING,
-                  "enable_categorical": True, "scale_pos_weight": scale_pos_weight},
-        "params": budget["params"], "tuning": {k: v for k, v in budget.items() if k != "params"},
-        "categories": categories, "seeds": SEEDS, "run_prefix": RUN_PREFIX,
-        "search_space": {"max_depth": list(MAX_DEPTH)}, "pruner": PRUNER,
-    }, sort_keys=False))
-    log_budget(budget, scale_pos_weight)
+    if tune:
+        budget = search(X, y, scale_pos_weight)
+        print(f"tuning: {budget}")
+        text = yaml.safe_dump(config(budget, scale_pos_weight, categories), sort_keys=False)
+        tuned = BEST_CONFIG.with_name(f"xgb_tuned_{RUN_PREFIX}.yaml")
+        tuned.write_text(text)
+        print(f"wrote {tuned}")
+        if overwrite_config:
+            BEST_CONFIG.write_text(text)
+            print(f"replaced {BEST_CONFIG}")
+        log_budget(budget, scale_pos_weight)
+        return
 
-    for seed in SEEDS:
-        m = train_seed(seed, budget["params"], parts, X, y, names, scale_pos_weight, checksum)
+    best = yaml.safe_load(BEST_CONFIG.read_text())
+    check_against_config(best, scale_pos_weight, categories)
+    print(f"fitting seeds {best['seeds']} from {BEST_CONFIG} ({best['run_prefix']})")
+    for seed in best["seeds"]:
+        m = train_seed(seed, best["params"], parts, X, y, names, scale_pos_weight, checksum,
+                       best["run_prefix"])
         print(f"seed {seed}: valid PR-AUC {m['pr_auc']:.4f}, ROC-AUC {m['roc_auc']:.4f}, "
               f"best iteration {m['best_iteration']} ({m['best_iteration'] + 1} trees); "
               f"valid positive rate {m['positive_rate']:.4%}")

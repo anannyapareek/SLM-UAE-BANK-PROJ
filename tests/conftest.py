@@ -9,6 +9,21 @@ import yaml
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 
+def processed_dir():
+    path = pathlib.Path(os.environ.get("PROCESSED_DIR", "data/processed"))
+    return path if path.is_absolute() else ROOT / path
+
+
+def pytest_collection_modifyitems(config, items):
+    """Skip `data` tests when the text table has not been built (e.g. a fresh clone)."""
+    if (processed_dir() / "features_text.parquet").exists():
+        return
+    skip = pytest.mark.skip(reason="data/processed/features_text.parquet is absent")
+    for item in items:
+        if "data" in item.keywords:
+            item.add_marker(skip)
+
+
 @pytest.fixture(scope="session")
 def processed():
     path = pathlib.Path(os.environ.get("PROCESSED_DIR", "data/processed"))

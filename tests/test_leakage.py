@@ -411,6 +411,7 @@ def test_every_row_has_a_baseline(con, table, cfg):
 
 # 5. Text table
 
+@pytest.mark.data
 def test_text_events_fall_inside_their_session(con, table):
     outside = con.execute(f"""
         SELECT count(*)
@@ -421,6 +422,7 @@ def test_text_events_fall_inside_their_session(con, table):
     assert outside == 0
 
 
+@pytest.mark.data
 def test_text_sessions_are_in_features(con, table):
     extra = con.execute(f"""
         SELECT count(*) FROM (SELECT DISTINCT session_id FROM {table('features_text')})
@@ -429,6 +431,7 @@ def test_text_sessions_are_in_features(con, table):
     assert extra == 0
 
 
+@pytest.mark.data
 def test_text_sort_order(con, processed):
     out_of_order = con.execute(f"""
         SELECT count(*) FROM (
@@ -442,6 +445,7 @@ def test_text_sort_order(con, processed):
     assert out_of_order == 0
 
 
+@pytest.mark.data
 def test_file_headers_are_stripped(con, table, cfg):
     if not cfg["text_rules"]["strip_file_header"]:
         pytest.skip("strip_file_header is off")

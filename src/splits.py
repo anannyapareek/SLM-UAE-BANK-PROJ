@@ -239,6 +239,8 @@ def freeze(con, force=False):
         f"SELECT row_id FROM '{P}/splits.parquet' WHERE split = 'test' ORDER BY row_id").fetchall()]
     TEST_IDS.write_text("row_id\n" + "\n".join(ids) + "\n")
     digest = sha256(TEST_IDS)
+    if digest == logged_checksum():
+        return digest
     text = LOG.read_text()
     LOG.write_text(text + ("" if text.endswith("\n") else "\n") +
                    f"| {datetime.date.today()} | Frozen test_ids.csv: {len(ids):,} rows, "

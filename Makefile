@@ -6,7 +6,7 @@ PROCESSED_DIR ?= data/processed
 # Run a stage into a temp file and replace the doc only if the stage succeeds.
 report = $(PY) run.py $(1) > $(2).tmp && mv $(2).tmp $(2) || { rm -f $(2).tmp; exit 1; }
 
-.PHONY: test-fast test test-mutation sample features report-prep report-sessions report-features report-text labels stage2
+.PHONY: test-fast test test-mutation sample features report-prep report-sessions report-features report-text labels stage2 all
 
 test-fast:
 	PROCESSED_DIR=$(PROCESSED_DIR) $(PY) -m pytest -m "not slow"
@@ -43,9 +43,12 @@ report-text:
 	$(call report,features_text,docs/features_text_output.txt)
 
 stage2:
-	$(PY) src/prep.py
+	$(PY) run.py data
 	$(MAKE) report-sessions
 	$(MAKE) features
 	$(MAKE) report-prep
 	$(MAKE) test
 	$(MAKE) test-mutation
+
+all:
+	$(PY) run.py all

@@ -5,6 +5,18 @@ scenario_fpr: 0.05       # per-scenario recall is reported at this FPR's thresho
 alerts_per_day: 20       # TODO: justify (N analysts x M alerts per day)
 tie_break_seed: 0        # seeds the random key that breaks score ties in per-day top-k
 ece_bins: 15
+baselines:                # python run.py eval-baselines
+  split: valid
+  out_dir: results/eval
+  models:
+    xgb_struct_v3:
+      - results/xgb_struct_v3_s1/preds_valid.parquet
+      - results/xgb_struct_v3_s2/preds_valid.parquet
+      - results/xgb_struct_v3_s3/preds_valid.parquet
+    rules:
+      - results/rules/preds_valid.parquet
+  paired:
+    - [xgb_struct_v3, rules]
 bootstrap:
   resamples: 1000
   seed: 0

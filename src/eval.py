@@ -384,12 +384,25 @@ def to_json(value):
     return value
 
 
+def run_baselines():
+    """The validation evals for the baselines, with names and paths from configs/eval.yaml."""
+    cfg = yaml.safe_load(CONFIG.read_text())["baselines"]
+    split, out = cfg["split"], pathlib.Path(cfg["out_dir"])
+    for name, preds in cfg["models"].items():
+        main(["single", "--name", name, "--split", split, "--preds", *preds,
+              "--out", str(out / f"{name}_{split}.json")])
+    for a, b in cfg["paired"]:
+        main(["paired", "--split", split, "--name-a", a, "--a", *cfg["models"][a],
+              "--name-b", b, "--b", *cfg["models"][b], "--out", str(out / f"{a}_vs_{b}_{split}.json")])
+
+
 def main(argv):
     checksum = verify_test_checksum()
     args = parse(argv)
     if args.split == "test" and not args.allow_test:
         raise RuntimeError("refusing to evaluate on test without --allow-test")
-    cfg = yaml.safe_load(CONFIG.read_text())
+    # The baselines list names runs, not metric settings, so it is not recorded per eval.
+    cfg = {k: v for k, v in yaml.safe_load(CONFIG.read_text()).items() if k != "baselines"}
     con = duckdb.connect(config={"threads": 1})
     meta = load_meta(con, args.split)
     out = single(args, cfg, meta) if args.mode == "single" else paired(args, cfg, meta)

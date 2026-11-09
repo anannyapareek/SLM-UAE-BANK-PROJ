@@ -82,3 +82,4 @@ def test_freeze_refuses_to_overwrite(tmp_path, monkeypatch):
     with pytest.raises(RuntimeError, match="does not match"):
         splits.verify_test_checksum()
     assert splits.freeze(con, force=True) == digest
+    assert log.read_text().count("Frozen test_ids.csv") == 1   # same hash: no second line
