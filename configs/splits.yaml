@@ -1,0 +1,21 @@
+# Four-way split (see decisions_log.md). Each session goes to the split containing its
+# start; a session whose end falls in another split is dropped. Days are inclusive.
+boundaries:
+  train: ["2010-02-01", "2010-08-31"]
+  valid: ["2010-09-01", "2010-10-31"]
+  calib: ["2010-11-01", "2010-12-31"]
+  test: ["2011-01-01", "2011-05-17"]
+
+holdout:
+  fraction: 0.175   # of users, per stratum: scenario 1, 2 and 3 insiders, and other users
+  seed: 1
+  rule: >-
+    Held-out insiders are drawn only from incidents with positives in the test period.
+    Every user in a held-out incident (incl. scenario 3 supervisors) is held out with it.
+    Held-out users appear in test only; their rows in other splits are dropped.
+
+purge:
+  rule: >-
+    For every incident with positive rows in test, drop that incident's positive sessions
+    (all rows, incl. pre-malicious rows) from train, valid and calib. Keep those users'
+    negative sessions.

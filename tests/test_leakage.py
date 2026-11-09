@@ -23,7 +23,11 @@ LDAP_FEATURES = ["role", "department", "functional_unit"]
 SAMPLE_USERS = 15
 SAMPLE_ROWS = 600
 LATE_HOUR = 8
-ANSWERS_ALLOWED = {"src/check_orphans.py", "src/labels.py"}
+# Label-side code: may name the answers and read label outputs; feature code may not.
+ANSWERS_ALLOWED = {"src/check_orphans.py", "src/labels.py", "src/explore_positives.py",
+                   "src/splits.py", "configs/splits.yaml"}
+# The frozen test row ids: row_id hashes only, no CERT data.
+TRACKED_DATA_ALLOWED = {"data/processed/test_ids.csv"}
 LABEL_OUTPUTS = re.compile(r"labels\.parquet|malicious_events|labels\.run|from src import labels|src\.labels")
 # Aggregate counts only, checked below for user IDs.
 ANSWER_DERIVED_ALLOWED = {"docs/orphan_check.txt"}
@@ -363,7 +367,8 @@ def test_features_never_read_labels():
 
 def test_no_answer_derived_file_is_tracked():
     tracked = tracked_files()
-    assert not [f for f in tracked if f.startswith("data/") or f.endswith(".parquet")]
+    assert not [f for f in tracked if (f.startswith("data/") or f.endswith(".parquet"))
+                and f not in TRACKED_DATA_ALLOWED]
     named = [f for f in tracked if re.search(r"insider|answers|r4\.2-\d", f, re.IGNORECASE)]
     assert not named
     with_ids = [f for f in tracked if (ROOT / f).is_file()
