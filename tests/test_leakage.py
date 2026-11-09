@@ -23,7 +23,8 @@ LDAP_FEATURES = ["role", "department", "functional_unit"]
 SAMPLE_USERS = 15
 SAMPLE_ROWS = 600
 LATE_HOUR = 8
-ANSWERS_ALLOWED = {"src/check_orphans.py"}
+ANSWERS_ALLOWED = {"src/check_orphans.py", "src/labels.py"}
+LABEL_OUTPUTS = re.compile(r"labels\.parquet|malicious_events|labels\.run|from src import labels|src\.labels")
 # Aggregate counts only, checked below for user IDs.
 ANSWER_DERIVED_ALLOWED = {"docs/orphan_check.txt"}
 USER_ID = re.compile(r"\b[A-Z]{3}[0-9]{4}\b")
@@ -345,11 +346,19 @@ def tracked_files():
                           check=True).stdout.splitlines()
 
 
-def test_only_check_orphans_mentions_the_answer_files():
+def test_only_label_code_mentions_the_answer_files():
     mentions = sorted(
         str(path.relative_to(ROOT)) for path in text_files("src", "configs")
         if ANSWER_WORDS.search(path.read_text(errors="ignore")))
     assert set(mentions) <= ANSWERS_ALLOWED, mentions
+
+
+def test_features_never_read_labels():
+    readers = sorted(
+        str(path.relative_to(ROOT)) for path in text_files("src", "configs")
+        if str(path.relative_to(ROOT)) not in ANSWERS_ALLOWED | {"src/run.py"}
+        and LABEL_OUTPUTS.search(path.read_text(errors="ignore")))
+    assert not readers, readers
 
 
 def test_no_answer_derived_file_is_tracked():

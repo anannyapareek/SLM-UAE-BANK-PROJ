@@ -1,9 +1,9 @@
-"""Pipeline entry point. Run from the repo root: python -m src.run <stage>"""
+"""Pipeline stages. Run from the repo root: python run.py <stage> (python -m src.run also works)."""
 import argparse
 import importlib
 import os
 
-STAGES = ["features", "features_text", "prep_report", "sessions"]
+STAGES = ["features", "features_text", "labels", "prep_report", "sessions"]
 SAMPLE_STAGES = ["features", "features_text"]
 
 
