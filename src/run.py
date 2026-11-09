@@ -4,7 +4,8 @@ import importlib
 import os
 
 STAGES = ["explore_positives", "features", "features_text", "labels", "leakage", "prep_report",
-          "sessions", "splits"]
+          "rules", "sessions", "splits", "xgb"]
+MODULES = {"xgb": "src.baselines.xgb", "rules": "src.baselines.rules"}
 FORCE_STAGES = ["splits", "leakage"]
 SAMPLE_STAGES = ["features", "features_text"]
 
@@ -33,7 +34,7 @@ def main():
         from src import splits
         splits.run(force=args.force_i_know)
     else:
-        importlib.import_module(f"src.{args.stage}").run()
+        importlib.import_module(MODULES.get(args.stage, f"src.{args.stage}")).run()
 
 
 if __name__ == "__main__":

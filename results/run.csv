@@ -1,0 +1,4 @@
+timestamp,run_id,model,features,seed,n_train,n_valid,valid_positive_rate,best_iteration,valid_pr_auc,valid_roc_auc,params,test_ids_sha256,git_commit
+2026-11-09T17:35:06,xgb_struct_s1,xgboost,structured,1,1246038,336737,0.005277,540,0.348866,0.772259,configs/xgb_best.yaml,5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51,a895a14 plus uncommitted changes
+2026-11-09T17:35:32,xgb_struct_s2,xgboost,structured,2,1246038,336737,0.005277,395,0.337136,0.766398,configs/xgb_best.yaml,5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51,a895a14 plus uncommitted changes
+2026-11-09T17:35:59,xgb_struct_s3,xgboost,structured,3,1246038,336737,0.005277,410,0.346173,0.77424,configs/xgb_best.yaml,5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51,a895a14 plus uncommitted changes

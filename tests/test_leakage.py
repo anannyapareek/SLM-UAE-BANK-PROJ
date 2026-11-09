@@ -25,7 +25,9 @@ SAMPLE_ROWS = 600
 LATE_HOUR = 8
 # Label-side code: may name the answers and read label outputs; feature code may not.
 ANSWERS_ALLOWED = {"src/check_orphans.py", "src/labels.py", "src/explore_positives.py",
-                   "src/splits.py", "configs/splits.yaml"}
+                   "src/splits.py", "configs/splits.yaml", "configs/rules.yaml"}
+# Model stages read labels to train and score; they are not feature code.
+MODEL_STAGES = {"src/baselines/xgb.py", "src/baselines/rules.py"}
 # The frozen test row ids: row_id hashes only, no CERT data.
 TRACKED_DATA_ALLOWED = {"data/processed/test_ids.csv"}
 LABEL_OUTPUTS = re.compile(r"labels\.parquet|malicious_events|labels\.run|from src import labels|src\.labels")
@@ -360,7 +362,7 @@ def test_only_label_code_mentions_the_answer_files():
 def test_features_never_read_labels():
     readers = sorted(
         str(path.relative_to(ROOT)) for path in text_files("src", "configs")
-        if str(path.relative_to(ROOT)) not in ANSWERS_ALLOWED | {"src/run.py"}
+        if str(path.relative_to(ROOT)) not in ANSWERS_ALLOWED | MODEL_STAGES | {"src/run.py"}
         and LABEL_OUTPUTS.search(path.read_text(errors="ignore")))
     assert not readers, readers
 

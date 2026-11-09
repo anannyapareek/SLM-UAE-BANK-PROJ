@@ -1,1 +1,53 @@
-# Rule definitions.
+# Hand-written rules baseline. Thresholds and weights are set by hand from domain
+# reasoning, not tuned. Each condition uses only features from configs/features.yaml,
+# read at the scoring row (so only events with ts <= score_time).
+# A rule fires when all of its conditions hold; `any` holds when one of its items does.
+# Score = sum of the weights of the rules that fire.
+rules:
+  - id: R1
+    description: Off-hours session with a USB connect and file copies
+    conditions:
+      - {feature: off_hours, op: "==", value: 1}
+      - {feature: usb_connects, op: ">", value: 0}
+      - {feature: file_events, op: ">", value: 0}
+    weight: 1
+    targets: "CERT scenario 1: after-hours removable-drive use and data exfiltration"
+    note: >-
+      file.csv records only file copies to removable media (r4.2 readme), so
+      file_events > 0 means files were copied to a USB device.
+  - id: R2
+    description: Leak, file-sharing or hacking site visited, with a USB connect in the same session
+    conditions:
+      - any:
+          - {feature: http_filesharing_leak, op: ">", value: 0}
+          - {feature: http_hacking_tools, op: ">", value: 0}
+      - {feature: usb_connects, op: ">", value: 0}
+    weight: 1
+    targets: "CERT scenarios 1 and 3: leak-site upload; keylogger moved on a thumb drive"
+  - id: R3
+    description: Job-search visits, with external email and attachments in the same session
+    conditions:
+      - {feature: http_job_search, op: ">", value: 0}
+      - {feature: external_recipients, op: ">", value: 0}
+      - {feature: attachments_count, op: ">", value: 0}
+    weight: 1
+    targets: "CERT scenario 2: job search and soliciting a competitor before leaving"
+    note: >-
+      Approximation: no feature counts emails that are both external and carry an
+      attachment, so this needs an external recipient and an attachment anywhere in the
+      session, not necessarily on the same email.
+  - id: R4
+    description: First logon by this user on this PC, outside working hours
+    conditions:
+      - {feature: new_pc, op: "==", value: 1}
+      - {feature: off_hours, op: "==", value: 1}
+    weight: 1
+    targets: "CERT scenario 4: logging into another user's machine (not in r4.2)"
+  - id: R5
+    description: USB connects or file copies more than 3 standard deviations above the user's 30-day norm
+    conditions:
+      - any:
+          - {feature: usb_connects_z, op: ">", value: 3}
+          - {feature: file_events_z, op: ">", value: 3}
+    weight: 1
+    targets: "CERT scenario 2: thumb drive used at markedly higher rates than before"
