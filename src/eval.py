@@ -188,6 +188,13 @@ def build_units(meta, scores, unit, cfg):
             "day": day}
 
 
+def precision_ceiling(u, k):
+    """Best possible precision at k: mean over days of min(1, positives that day / k)."""
+    positives = np.bincount(np.unique(u["day"], return_inverse=True)[1],
+                            weights=u["units"]["y"].to_numpy())
+    return float(np.mean(np.minimum(1.0, positives / k)))
+
+
 def counts(u):
     units, y = u["units"], u["units"]["y"].to_numpy()
     positive_users = units.loc[y == 1, "user"].nunique()
@@ -310,6 +317,7 @@ def single(args, cfg, meta):
             ci[k], skipped[k] = interval([r[args.name][k] for r in resamples], cfg["bootstrap"]["ci"])
         skipped_total += max(skipped.values())
         out[unit] = {"counts": counts(u), "mean": mean, "std": std, "ci": ci,
+                     "precision_at_k_ceiling": precision_ceiling(u, cfg["alerts_per_day"]),
                      "recall_by_scenario": by_scenario, "boot_skipped": skipped,
                      "per_seed": per_seed}
     out["boot_skipped"] = skipped_total
@@ -336,6 +344,7 @@ def paired(args, cfg, meta):
             result[k] = {"a": point["a"][k], "b": point["b"][k],
                          "difference": point["a"][k] - point["b"][k], "ci": ci,
                          "significant": bool(ci[0] > 0 or ci[1] < 0), "boot_skipped": skipped}
+        result["precision_at_k_ceiling"] = precision_ceiling(a, cfg["alerts_per_day"])
         out[unit] = result
     out["boot_skipped"] = skipped_total
     out["runtime_seconds"] = round(time.perf_counter() - started, 1)

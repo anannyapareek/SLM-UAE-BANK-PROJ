@@ -56,3 +56,9 @@ rules:
     weight: 1
     targets: "CERT scenario 2: thumb drive used at markedly higher rates than before"
     target_scenarios: [2]
+
+# Planned tie-break, uses no labels: score += weight x percentile rank (within the split)
+# of the row's total session events so far, the sum of these session-cumulative counts.
+tie_break:
+  weight: 0.01
+  features: [unlocks_so_far, usb_connects, file_events, emails_sent, http_visits]

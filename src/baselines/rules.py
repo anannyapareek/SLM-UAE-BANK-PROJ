@@ -43,7 +43,7 @@ def text(condition):
     return f"{condition['feature']} {condition['op']} {condition['value']}"
 
 
-def methods_paragraph(rules):
+def methods_paragraph(rules, tie_break):
     lower_first = lambda t: t if t[:2].isupper() else t[0].lower() + t[1:]
     parts = [f"{r['id']} ({lower_first(r['description'])}: "
              f"{' and '.join(text(c) for c in r['conditions'])})" for r in rules]
@@ -55,8 +55,10 @@ def methods_paragraph(rules):
         "the scoring time, so a rule only sees events up to that point in the session: "
         + "; ".join(parts) + ". "
         "Every rule has weight 1, and a row's score is the sum of the weights of the rules "
-        f"that fire, which gives a rankable score from 0 to {sum(r['weight'] for r in rules)}; "
-        "the fired rule identifiers are "
+        "that fire. Ties are broken by a planned tie-break that uses no labels: "
+        f"{tie_break['weight']} times the percentile rank, within the split, of the row's total "
+        f"session events so far ({', '.join(tie_break['features'])}). The fired rule "
+        "identifiers are "
         "kept as the explanation. Because the dataset records only file copies to removable "
         "media, R1 treats any file event as a USB copy. R3 approximates external email with "
         "attachments by requiring an external recipient and an attachment in the same "
@@ -82,9 +84,11 @@ def per_rule_table(rules, per_rule, scenarios):
 
 def run():
     verify_test_checksum()
-    rules = yaml.safe_load(RULES_CONFIG.read_text())["rules"]
+    config = yaml.safe_load(RULES_CONFIG.read_text())
+    rules, tie_break = config["rules"], config["tie_break"]
     known = {f["name"] for f in yaml.safe_load(FEATURES_CONFIG.read_text())["features"]}
-    needed = sorted(set().union(*(features_used(c) for r in rules for c in r["conditions"])))
+    needed = sorted(set().union(*(features_used(c) for r in rules for c in r["conditions"]))
+                    | set(tie_break["features"]))
     missing = sorted(set(needed) - known)
     if missing:
         raise RuntimeError(f"rules use features not in features.yaml: {missing}")
@@ -101,7 +105,10 @@ def run():
 
     fired = {r["id"]: np.logical_and.reduce([holds(c, frame) for c in r["conditions"]])
              for r in rules}
-    score = sum(r["weight"] * fired[r["id"]] for r in rules).astype(float)
+    # Planned tie-break, uses no labels: rank of total session events so far in this split.
+    events = frame[tie_break["features"]].sum(axis=1)
+    score = (sum(r["weight"] * fired[r["id"]] for r in rules).astype(float)
+             + tie_break["weight"] * events.rank(pct=True, method="average").to_numpy())
     names = np.array([",".join(r["id"] for r in rules if fired[r["id"]][i])
                       for i in range(len(frame))])
     y = frame["y"].to_numpy()
@@ -139,7 +146,7 @@ def run():
                 print("  share of positives where each condition holds: " + ", ".join(
                     f"{text(c)}: {holds(c, frame)[(y == 1) & (scenario == target)].mean():.2%}"
                     for c in r["conditions"]))
-    any_rule = score > 0
+    any_rule = names != ""
     metrics = {
         "split": SPLIT, "rows": int(len(y)), "positives": int(y.sum()),
         "positive_rate": float(y.mean()), "pr_auc": float(average_precision_score(y, score)),
@@ -151,7 +158,7 @@ def run():
     }
     (OUT / "metrics.json").write_text(json.dumps(metrics, indent=2) + "\n")
     (OUT / "rules_methods.md").write_text(
-        methods_paragraph(rules) + "\n" + "\n".join(per_rule_table(rules, per_rule, scenarios))
+        methods_paragraph(rules, tie_break) + "\n" + "\n".join(per_rule_table(rules, per_rule, scenarios))
         + "\n\nThe rules fire at reasonable rates but with low precision, because normal CERT "
         "users also show these patterns.\n")
     print(f"any rule | {metrics['any_rule']['fire_rate']:.4%} | precision "
