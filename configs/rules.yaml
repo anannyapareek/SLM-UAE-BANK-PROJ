@@ -12,6 +12,7 @@ rules:
       - {feature: file_events, op: ">", value: 0}
     weight: 1
     targets: "CERT scenario 1: after-hours removable-drive use and data exfiltration"
+    target_scenarios: [1]
     note: >-
       file.csv records only file copies to removable media (r4.2 readme), so
       file_events > 0 means files were copied to a USB device.
@@ -24,6 +25,7 @@ rules:
       - {feature: usb_connects, op: ">", value: 0}
     weight: 1
     targets: "CERT scenarios 1 and 3: leak-site upload; keylogger moved on a thumb drive"
+    target_scenarios: [1, 3]
   - id: R3
     description: Job-search visits, with external email and attachments in the same session
     conditions:
@@ -32,6 +34,7 @@ rules:
       - {feature: attachments_count, op: ">", value: 0}
     weight: 1
     targets: "CERT scenario 2: job search and soliciting a competitor before leaving"
+    target_scenarios: [2]
     note: >-
       Approximation: no feature counts emails that are both external and carry an
       attachment, so this needs an external recipient and an attachment anywhere in the
@@ -43,6 +46,7 @@ rules:
       - {feature: off_hours, op: "==", value: 1}
     weight: 1
     targets: "CERT scenario 4: logging into another user's machine (not in r4.2)"
+    target_scenarios: []   # scenario 4 does not occur in r4.2
   - id: R5
     description: USB connects or file copies more than 3 standard deviations above the user's 30-day norm
     conditions:
@@ -51,3 +55,4 @@ rules:
           - {feature: file_events_z, op: ">", value: 3}
     weight: 1
     targets: "CERT scenario 2: thumb drive used at markedly higher rates than before"
+    target_scenarios: [2]

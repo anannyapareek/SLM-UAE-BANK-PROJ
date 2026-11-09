@@ -44,7 +44,7 @@ def text(condition):
 
 
 def methods_paragraph(rules):
-    lower_first = lambda t: t[0].lower() + t[1:]
+    lower_first = lambda t: t if t[:2].isupper() else t[0].lower() + t[1:]
     parts = [f"{r['id']} ({lower_first(r['description'])}: "
              f"{' and '.join(text(c) for c in r['conditions'])})" for r in rules]
     count = {4: "four", 5: "five", 6: "six"}.get(len(rules), str(len(rules)))
@@ -65,6 +65,21 @@ def methods_paragraph(rules):
         "are deterministic, so we report a single run.\n")
 
 
+def per_rule_table(rules, per_rule, scenarios):
+    header = (["Rule", "Description", "Fire rate", "Rows fired", "Precision when fired",
+               "Recall"] + [f"Recall, scenario {s}" for s in scenarios] + ["Target scenarios"])
+    lines = ["| " + " | ".join(header) + " |", "|" + "---|" * len(header)]
+    for r in rules:
+        s = per_rule[r["id"]]
+        precision = "n/a" if s["precision"] is None else f"{s['precision']:.4f}"
+        lines.append("| " + " | ".join(
+            [r["id"], r["description"], f"{s['fire_rate']:.2%}", f"{s['rows_fired']:,}", precision,
+             f"{s['recall']:.4f}"]
+            + [f"{s['recall_by_scenario'][str(x)]:.4f}" for x in scenarios]
+            + [", ".join(map(str, r["target_scenarios"])) or "none in r4.2"]) + " |")
+    return lines
+
+
 def run():
     verify_test_checksum()
     rules = yaml.safe_load(RULES_CONFIG.read_text())["rules"]
@@ -77,7 +92,7 @@ def run():
     con = duckdb.connect(config={"threads": 1})
     columns = ", ".join(f'f."{n}"' for n in needed)
     frame = con.execute(f"""
-        SELECT f.row_id, f."user", l.y, {columns}
+        SELECT f.row_id, f."user", l.y, l.scenario, {columns}
         FROM '{P}/features.parquet' f
         JOIN '{P}/splits.parquet' x USING (row_id)
         JOIN '{P}/labels.parquet' l USING (row_id)
@@ -90,6 +105,8 @@ def run():
     names = np.array([",".join(r["id"] for r in rules if fired[r["id"]][i])
                       for i in range(len(frame))])
     y = frame["y"].to_numpy()
+    scenario = frame["scenario"].to_numpy()
+    scenarios = sorted(int(x) for x in pd.unique(scenario[y == 1]))
 
     OUT.mkdir(parents=True, exist_ok=True)
     pd.DataFrame({"row_id": frame["row_id"], "user": frame["user"], "y_true": y,
@@ -97,16 +114,31 @@ def run():
                                                                     index=False)
     per_rule = {}
     print(f"{SPLIT}: {len(y):,} rows, {int(y.sum()):,} positive ({y.mean():.4%})")
-    print("rule | fire rate | rows fired | precision when fired | recall")
+    print("rule | fire rate | rows fired | precision when fired | recall | "
+          + " | ".join(f"recall s{s}" for s in scenarios))
     for r in rules:
         f = fired[r["id"]]
         stats = {"fire_rate": float(f.mean()), "rows_fired": int(f.sum()),
                  "precision": float(y[f].mean()) if f.any() else None,
-                 "recall": float(f[y == 1].mean())}
+                 "recall": float(f[y == 1].mean()),
+                 "recall_by_scenario": {str(s): float(f[(y == 1) & (scenario == s)].mean())
+                                        for s in scenarios}}
         per_rule[r["id"]] = stats
         precision = "n/a" if stats["precision"] is None else f"{stats['precision']:.4f}"
         print(f"{r['id']} | {stats['fire_rate']:.4%} | {stats['rows_fired']:,} | {precision} | "
-              f"{stats['recall']:.4f}")
+              f"{stats['recall']:.4f} | "
+              + " | ".join(f"{stats['recall_by_scenario'][str(s)]:.4f}" for s in scenarios))
+        for target in r["target_scenarios"]:
+            if stats["recall_by_scenario"].get(str(target), 0) == 0:
+                cols = sorted(set().union(*(features_used(c) for c in r["conditions"])))
+                hits = frame[(y == 1) & (scenario == target)][cols]
+                print(f"  ZERO RECALL: {r['id']} on its target scenario {target} "
+                      f"({len(hits):,} validation positives); feature values:")
+                print("  " + hits.describe().T[["mean", "min", "50%", "max"]]
+                      .to_string().replace("\n", "\n  "))
+                print("  share of positives where each condition holds: " + ", ".join(
+                    f"{text(c)}: {holds(c, frame)[(y == 1) & (scenario == target)].mean():.2%}"
+                    for c in r["conditions"]))
     any_rule = score > 0
     metrics = {
         "split": SPLIT, "rows": int(len(y)), "positives": int(y.sum()),
@@ -118,7 +150,10 @@ def run():
         "rules": per_rule,
     }
     (OUT / "metrics.json").write_text(json.dumps(metrics, indent=2) + "\n")
-    (OUT / "rules_methods.md").write_text(methods_paragraph(rules))
+    (OUT / "rules_methods.md").write_text(
+        methods_paragraph(rules) + "\n" + "\n".join(per_rule_table(rules, per_rule, scenarios))
+        + "\n\nThe rules fire at reasonable rates but with low precision, because normal CERT "
+        "users also show these patterns.\n")
     print(f"any rule | {metrics['any_rule']['fire_rate']:.4%} | precision "
           f"{metrics['any_rule']['precision']:.4f} | recall {metrics['any_rule']['recall']:.4f}")
     print(f"overall PR-AUC {metrics['pr_auc']:.4f}, ROC-AUC {metrics['roc_auc']:.4f}")

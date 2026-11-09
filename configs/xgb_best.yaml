@@ -5,29 +5,29 @@ fixed:
   objective: binary:logistic
   eval_metric: aucpr
   n_estimators: 2000
-  early_stopping_rounds: 50
+  early_stopping_rounds: 200
   enable_categorical: true
   scale_pos_weight: 440.38788522848034
 params:
-  max_depth: 12
-  learning_rate: 0.04792942921266485
-  min_child_weight: 3
-  subsample: 0.6802316094485247
-  colsample_bytree: 0.5010158807423056
-  gamma: 0.7788445855735728
-  reg_lambda: 0.007482151199404727
-  reg_alpha: 0.03832760619404
+  max_depth: 14
+  learning_rate: 0.1315806851268165
+  min_child_weight: 6
+  subsample: 0.8910142008733299
+  colsample_bytree: 0.5326739505479684
+  gamma: 0.5205948086814713
+  reg_lambda: 7.080637771442413
+  reg_alpha: 0.07981037131087973
 tuning:
   trials: 50
-  completed: 8
-  pruned: 42
+  completed: 27
+  pruned: 23
   failed: 0
-  wall_clock_seconds: 455.2
-  best_trial: 13
-  best_valid_pr_auc: 0.354249
-  best_iteration: 633
+  wall_clock_seconds: 1440.9
+  best_trial: 34
+  best_valid_pr_auc: 0.364879
+  best_iteration: 356
   n_jobs: -1
-  average_busy_cores: 3.8
+  average_busy_cores: 3.5
   logical_cores: 11
   performance_cores: 5
   efficiency_cores: 6
@@ -111,8 +111,11 @@ seeds:
 - 1
 - 2
 - 3
-run_prefix: xgb_struct_v2
+run_prefix: xgb_struct_v3
 search_space:
   max_depth:
   - 3
   - 14
+pruner:
+  n_startup_trials: 5
+  n_warmup_steps: 100

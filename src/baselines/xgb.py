@@ -31,13 +31,15 @@ CATEGORICAL = ["role", "department", "functional_unit"]
 N_TRIALS = 50
 TUNING_SEED = 1
 # v2: max_depth widened to 3-14 (v1 found its best at the old upper bound, 10).
-RUN_PREFIX = "xgb_struct_v2"
+# v3: early stopping patience 200 and no pruning before 100 boosting rounds.
+RUN_PREFIX = "xgb_struct_v3"
 TUNING_RUN = f"{RUN_PREFIX}_tuning"
 MAX_DEPTH = (3, 14)
 N_JOBS = -1  # XGBoost: -1 means one thread per logical core
 SEEDS = [1, 2, 3]
 MAX_TREES = 2000
-EARLY_STOPPING = 50
+EARLY_STOPPING = 200
+PRUNER = {"n_startup_trials": 5, "n_warmup_steps": 100}
 RUN_COLUMNS = ["timestamp", "run_id", "model", "features", "seed", "n_train", "n_valid",
                "valid_positive_rate", "best_iteration", "valid_pr_auc", "valid_roc_auc",
                "params", "test_ids_sha256", "git_commit", "status"]
@@ -93,7 +95,7 @@ def tune(X, y, scale_pos_weight):
         trial.set_user_attr("n_trees", int(model.best_iteration) + 1)
         return average_precision_score(y["valid"], model.predict_proba(X["valid"])[:, 1])
 
-    study = tuning.create_study(RESULTS / TUNING_RUN, TUNING_SEED)
+    study = tuning.create_study(RESULTS / TUNING_RUN, TUNING_SEED, **PRUNER)
     print(f"optuna study: {RESULTS / TUNING_RUN / 'optuna.db'}", flush=True)
     with tuning.Usage() as usage:
         study.optimize(objective, n_trials=tuning.remaining(study, N_TRIALS),
@@ -162,12 +164,13 @@ def log_budget(budget, scale_pos_weight):
                        for k, v in budget["params"].items())
     LOG.write_text(text + ("" if text.endswith("\n") else "\n") +
                    f"| {datetime.date.today()} | XGBoost tuning budget: {budget['trials']} Optuna "
-                   f"trials (TPE seed {TUNING_SEED}, median pruning), {budget['pruned']} pruned, "
+                   f"trials (TPE seed {TUNING_SEED}, median pruning after {PRUNER['n_warmup_steps']} "
+                   f"rounds, early stopping {EARLY_STOPPING}), {budget['pruned']} pruned, "
                    f"{budget['wall_clock_seconds'] / 60:.1f} min of trial time on this Mac "
                    f"(n_jobs {budget['n_jobs']}, {budget['logical_cores']} logical cores, "
                    f"{budget['average_busy_cores'] or 'n/a'} busy on average); best trial "
                    f"{budget['best_trial']} (valid PR-AUC {budget['best_valid_pr_auc']:.4f}, "
-                   f"{budget['best_iteration']} trees): {params} | Recorded so the SLM's grid can be "
+                   f"{budget['best_iteration'] + 1} trees): {params} | Recorded so the SLM's grid can be "
                    f"compared with it in the methods; scale_pos_weight {scale_pos_weight:.1f} |\n")
 
 
@@ -192,7 +195,7 @@ def run():
                   "enable_categorical": True, "scale_pos_weight": scale_pos_weight},
         "params": budget["params"], "tuning": {k: v for k, v in budget.items() if k != "params"},
         "categories": categories, "seeds": SEEDS, "run_prefix": RUN_PREFIX,
-        "search_space": {"max_depth": list(MAX_DEPTH)},
+        "search_space": {"max_depth": list(MAX_DEPTH)}, "pruner": PRUNER,
     }, sort_keys=False))
     log_budget(budget, scale_pos_weight)
 

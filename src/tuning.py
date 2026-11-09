@@ -11,14 +11,16 @@ import time
 import optuna
 
 
-def create_study(run_dir, seed):
+def create_study(run_dir, seed, n_startup_trials=5, n_warmup_steps=0):
     run_dir = pathlib.Path(run_dir)
     run_dir.mkdir(parents=True, exist_ok=True)
     optuna.logging.set_verbosity(optuna.logging.WARNING)
     return optuna.create_study(
         study_name=run_dir.name, storage=f"sqlite:///{run_dir / 'optuna.db'}",
         load_if_exists=True, direction="maximize",
-        sampler=optuna.samplers.TPESampler(seed=seed), pruner=optuna.pruners.MedianPruner())
+        sampler=optuna.samplers.TPESampler(seed=seed),
+        pruner=optuna.pruners.MedianPruner(n_startup_trials=n_startup_trials,
+                                           n_warmup_steps=n_warmup_steps))
 
 
 def trial_seconds(study):
