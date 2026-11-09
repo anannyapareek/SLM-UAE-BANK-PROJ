@@ -1,0 +1,47 @@
+# SLM settings (Step 4-5). Model record: docs/model_record.md. Decisions: decisions_log.md.
+models:
+  primary:
+    id: Qwen/Qwen2.5-1.5B-Instruct
+    revision: 989aa7980e4cf806f80c7fef2b1adb7bc71aa306
+  second:
+    id: HuggingFaceTB/SmolLM2-1.7B-Instruct
+    revision: 31b70e2e869a7173562077fd711b654946d38674
+  fallback:            # Gate 2 "smaller model"
+    id: Qwen/Qwen2.5-0.5B-Instruct
+    revision: 7ae557604adf67be50417f59c2c2f167def9a775
+
+prompt:
+  chat_template: false        # plain text for training and scoring
+  suffix: "\nLabel:"          # scoring_prompt() ends with this (src/slm/serialise.py)
+  label_words: [" yes", " no"]  # scored as the next token after the suffix
+  text_budget_tokens: 256     # Comparison 2 (runbook 6.2): appended text per session
+
+training:                      # runbook 5.1
+  split: train
+  neg_per_pos: 10              # negatives downsampled to this many per positive (runbook 1:5 to 1:10), training only
+  valid_loss_rows: 2000        # small validation set for the training loss, natural positive rate
+  seed: 1
+
+lora:                          # runbook 5.2-5.3
+  grid:
+    learning_rate: [1.0e-4, 2.0e-4]
+    rank: [8, 16]
+  alpha_per_rank: 2            # alpha = 2 x rank
+  dropout: 0.05
+  epochs: 1
+  max_length: 512
+  dtype: bf16
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+  seed: 1
+  qlora_below_gb: 12           # use 4-bit QLoRA when total VRAM is below this
+  selection: row-level validation PR-AUC
+
+scoring:                       # runbook 5.4
+  batch_size: 32
+  padding_side: left
+
+timing:
+  rows: 1000
+  batch_sizes: [8, 16, 32, 64]
+  seeds: 3
+  comparisons: 2

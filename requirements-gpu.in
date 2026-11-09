@@ -1,0 +1,19 @@
+# GPU machine (lab). Unpinned on purpose: install, then record the exact set with
+#   pip freeze > requirements-gpu.txt
+# torch is NOT listed: install it first with the command matching the lab's CUDA
+# (docs/gpu_setup.md), so pip does not pull a CPU or mismatched build.
+transformers
+peft
+accelerate
+trl
+bitsandbytes
+huggingface_hub
+pandas
+pyarrow
+duckdb
+scikit-learn
+pyyaml
+tqdm
+psutil
+pytest
+gdown

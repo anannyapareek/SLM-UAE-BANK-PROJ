@@ -1,0 +1,90 @@
+{
+  "rows": 5000,
+  "text_budget": 256,
+  "max_length": 512,
+  "models": {
+    "primary": {
+      "id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "answer_ids": {
+        "yes": [
+          9693
+        ],
+        "no": [
+          2152
+        ],
+        " yes": [
+          9834
+        ],
+        " no": [
+          902
+        ]
+      },
+      "boundary_mismatches": 0,
+      "prompt_tokens": {
+        "median": 197.0,
+        "p95": 202.0,
+        "max": 209
+      },
+      "target_tokens_max_incl_eos": 30,
+      "p95_plus_budget_plus_target": 488.0,
+      "passes_budget": true
+    },
+    "second": {
+      "id": "HuggingFaceTB/SmolLM2-1.7B-Instruct",
+      "revision": "31b70e2e869a7173562077fd711b654946d38674",
+      "answer_ids": {
+        "yes": [
+          10407
+        ],
+        "no": [
+          4607
+        ],
+        " yes": [
+          9805
+        ],
+        " no": [
+          787
+        ]
+      },
+      "boundary_mismatches": 0,
+      "prompt_tokens": {
+        "median": 205.0,
+        "p95": 209.0,
+        "max": 217
+      },
+      "target_tokens_max_incl_eos": 33,
+      "p95_plus_budget_plus_target": 498.0,
+      "passes_budget": true
+    },
+    "fallback": {
+      "id": "Qwen/Qwen2.5-0.5B-Instruct",
+      "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+      "answer_ids": {
+        "yes": [
+          9693
+        ],
+        "no": [
+          2152
+        ],
+        " yes": [
+          9834
+        ],
+        " no": [
+          902
+        ]
+      },
+      "boundary_mismatches": 0,
+      "prompt_tokens": {
+        "median": 197.0,
+        "p95": 202.0,
+        "max": 209
+      },
+      "target_tokens_max_incl_eos": 30,
+      "p95_plus_budget_plus_target": 488.0,
+      "passes_budget": true
+    }
+  },
+  "passed": true,
+  "failures": []
+}
