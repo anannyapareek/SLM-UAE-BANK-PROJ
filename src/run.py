@@ -3,7 +3,7 @@ import argparse
 import importlib
 import os
 
-STAGES = ["explore_positives", "features", "features_text", "labels", "leakage", "prep_report",
+STAGES = ["eval", "explore_positives", "features", "features_text", "labels", "leakage", "prep_report",
           "rules", "sessions", "splits", "xgb"]
 MODULES = {"xgb": "src.baselines.xgb", "rules": "src.baselines.rules"}
 FORCE_STAGES = ["splits", "leakage"]
@@ -17,7 +17,13 @@ def main():
                         help="build from a small copy of the data with this many users")
     parser.add_argument("--force-i-know", action="store_true",
                         help="allow replacing a frozen test_ids.csv")
-    args = parser.parse_args()
+    args, extra = parser.parse_known_args()
+    if args.stage == "eval":
+        from src import eval as evaluation
+        evaluation.main(extra)
+        return
+    if extra:
+        parser.error(f"unrecognised arguments: {' '.join(extra)}")
     if args.force_i_know and args.stage not in FORCE_STAGES:
         parser.error(f"--force-i-know only applies to: {', '.join(FORCE_STAGES)}")
 

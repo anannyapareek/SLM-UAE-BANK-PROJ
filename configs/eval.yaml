@@ -1,0 +1,11 @@
+# Evaluation settings, shared by every model (src/eval.py).
+unit: session            # primary unit; row-level metrics are always computed too
+fpr_levels: [0.01, 0.05]
+scenario_fpr: 0.05       # per-scenario recall is reported at this FPR's threshold
+alerts_per_day: 20       # TODO: justify (N analysts x M alerts per day)
+tie_break_seed: 0        # seeds the random key that breaks score ties in per-day top-k
+ece_bins: 15
+bootstrap:
+  resamples: 1000
+  seed: 0
+  ci: 0.95

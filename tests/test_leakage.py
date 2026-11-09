@@ -26,9 +26,9 @@ LATE_HOUR = 8
 # Label-side code: may name the answers and read label outputs; feature code may not.
 ANSWERS_ALLOWED = {"src/check_orphans.py", "src/labels.py", "src/explore_positives.py",
                    "src/splits.py", "configs/splits.yaml", "configs/rules.yaml",
-                   "src/baselines/rules.py"}
+                   "src/baselines/rules.py", "src/eval.py", "configs/eval.yaml"}
 # Model stages read labels to train and score; they are not feature code.
-MODEL_STAGES = {"src/baselines/xgb.py", "src/baselines/rules.py"}
+MODEL_STAGES = {"src/baselines/xgb.py", "src/baselines/rules.py", "src/eval.py"}
 # The frozen test row ids: row_id hashes only, no CERT data.
 TRACKED_DATA_ALLOWED = {"data/processed/test_ids.csv"}
 LABEL_OUTPUTS = re.compile(r"labels\.parquet|malicious_events|labels\.run|from src import labels|src\.labels")
