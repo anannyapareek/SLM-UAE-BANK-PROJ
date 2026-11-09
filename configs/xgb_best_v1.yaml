@@ -1,0 +1,108 @@
+model: xgboost
+features: structured (configs/features.yaml)
+fixed:
+  tree_method: hist
+  objective: binary:logistic
+  eval_metric: aucpr
+  n_estimators: 2000
+  early_stopping_rounds: 50
+  enable_categorical: true
+  scale_pos_weight: 440.38788522848034
+params:
+  max_depth: 10
+  learning_rate: 0.07650801905402134
+  min_child_weight: 6
+  subsample: 0.586035119591137
+  colsample_bytree: 0.7646128386323287
+  gamma: 3.9515010449640506
+  reg_lambda: 0.025495813283447695
+  reg_alpha: 0.007037180957618994
+tuning:
+  trials: 50
+  completed: 9
+  pruned: 41
+  failed: 0
+  wall_clock_seconds: 487.9
+  best_trial: 34
+  best_valid_pr_auc: 0.348866
+  best_iteration: 540
+categories:
+  role:
+  - Accountant
+  - AdministrativeAssistant
+  - AdministrativeStaff
+  - AssemblySupervisor
+  - Attorney
+  - ChiefEngineer
+  - ComputerProgrammer
+  - ComputerScientist
+  - ComputerTrainer
+  - Director
+  - ElectricalEngineer
+  - Engineer
+  - FieldServiceEngineer
+  - FinancialAnalyst
+  - HardwareEngineer
+  - HealthSafetyEngineer
+  - HumanResourceSpecialist
+  - ITAdmin
+  - IndustrialEngineer
+  - InstructionalCoordinator
+  - LabManager
+  - ManagementTrainer
+  - Manager
+  - MaterialsEngineer
+  - Mathematician
+  - MechanicalEngineer
+  - Nurse
+  - NursePractitioner
+  - Physicist
+  - President
+  - ProductionLineWorker
+  - PurchasingClerk
+  - Salesman
+  - Scientist
+  - SecurityGuard
+  - SoftwareEngineer
+  - Statistician
+  - SystemsEngineer
+  - TechnicalTrainer
+  - Technician
+  - TestEngineer
+  - VicePresident
+  department:
+  - 1 - Accounting
+  - 1 - IndustrialEngineering
+  - 1 - MarketAnalysis
+  - 1 - Personnel
+  - 1 - Purchasing
+  - 1 - Research
+  - 2 - EmployeeRelations
+  - 2 - ManufacturingEngineering
+  - 2 - Payroll
+  - 2 - Pricing
+  - 2 - Sales
+  - 2 - SoftwareManagement
+  - 3 - Assembly
+  - 3 - Contracts
+  - 3 - Engineering
+  - 3 - FieldService
+  - 3 - FinancialPlanning
+  - 3 - Training
+  - 4 - QualityControl
+  - 4 - Safety
+  - 5 - Medical
+  - 6 - Security
+  - unknown
+  functional_unit:
+  - 1 - Adminstration
+  - 2 - ResearchAndEngineering
+  - 3 - Manufacturing
+  - 4 - Finance
+  - 5 - SalesAndMarketing
+  - 6 - PurchasingAndContracts
+  - unknown
+seeds:
+- 1
+- 2
+- 3

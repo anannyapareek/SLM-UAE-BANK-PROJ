@@ -30,14 +30,17 @@ SPLITS_USED = ("train", "valid")
 CATEGORICAL = ["role", "department", "functional_unit"]
 N_TRIALS = 50
 TUNING_SEED = 1
-TUNING_RUN = "xgb_struct_tuning"
+# v2: max_depth widened to 3-14 (v1 found its best at the old upper bound, 10).
+RUN_PREFIX = "xgb_struct_v2"
+TUNING_RUN = f"{RUN_PREFIX}_tuning"
+MAX_DEPTH = (3, 14)
 N_JOBS = -1  # XGBoost: -1 means one thread per logical core
 SEEDS = [1, 2, 3]
 MAX_TREES = 2000
 EARLY_STOPPING = 50
 RUN_COLUMNS = ["timestamp", "run_id", "model", "features", "seed", "n_train", "n_valid",
                "valid_positive_rate", "best_iteration", "valid_pr_auc", "valid_roc_auc",
-               "params", "test_ids_sha256", "git_commit"]
+               "params", "test_ids_sha256", "git_commit", "status"]
 
 
 def load(con, names):
@@ -70,7 +73,7 @@ def classifier(params, seed, scale_pos_weight, callbacks=None):
 
 def suggest(trial):
     return {
-        "max_depth": trial.suggest_int("max_depth", 3, 10),
+        "max_depth": trial.suggest_int("max_depth", *MAX_DEPTH),
         "learning_rate": trial.suggest_float("learning_rate", 1e-3, 0.3, log=True),
         "min_child_weight": trial.suggest_int("min_child_weight", 1, 20),
         "subsample": trial.suggest_float("subsample", 0.5, 1.0),
@@ -120,7 +123,7 @@ def train_seed(seed, params, parts, X, y, names, scale_pos_weight, checksum):
     model.fit(X["train"], y["train"], eval_set=[(X["valid"], y["valid"])], verbose=False)
     score = model.predict_proba(X["valid"])[:, 1]
     margin = model.predict(X["valid"], output_margin=True)
-    out = RESULTS / f"xgb_struct_s{seed}"
+    out = RESULTS / f"{RUN_PREFIX}_s{seed}"
     out.mkdir(parents=True, exist_ok=True)
     pd.DataFrame({"row_id": parts["valid"]["row_id"], "user": parts["valid"]["user"],
                   "y_true": y["valid"], "score": score, "margin": margin}
@@ -141,7 +144,7 @@ def train_seed(seed, params, parts, X, y, names, scale_pos_weight, checksum):
         "valid_positive_rate": round(metrics["positive_rate"], 6),
         "best_iteration": metrics["best_iteration"], "valid_pr_auc": round(metrics["pr_auc"], 6),
         "valid_roc_auc": round(metrics["roc_auc"], 6), "params": str(BEST_CONFIG),
-        "test_ids_sha256": checksum, "git_commit": git_commit()})
+        "test_ids_sha256": checksum, "git_commit": git_commit(), "status": "current"})
     if seed == SEEDS[0]:
         booster = model.get_booster()
         gain = booster.get_score(importance_type="gain")
@@ -188,7 +191,8 @@ def run():
                   "n_estimators": MAX_TREES, "early_stopping_rounds": EARLY_STOPPING,
                   "enable_categorical": True, "scale_pos_weight": scale_pos_weight},
         "params": budget["params"], "tuning": {k: v for k, v in budget.items() if k != "params"},
-        "categories": categories, "seeds": SEEDS,
+        "categories": categories, "seeds": SEEDS, "run_prefix": RUN_PREFIX,
+        "search_space": {"max_depth": list(MAX_DEPTH)},
     }, sort_keys=False))
     log_budget(budget, scale_pos_weight)
 
