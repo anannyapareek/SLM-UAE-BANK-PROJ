@@ -4,6 +4,9 @@ data/*
 data/processed/*
 !data/processed/test_ids.csv
 results/*/
+!results/rules/
+results/rules/*
+!results/rules/rules_methods.md
 __pycache__/
 .DS_Store
 .pytest_cache/
