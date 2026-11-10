@@ -62,6 +62,7 @@ def load_for_scoring(args, log):
     if args.adapter:
         from peft import PeftModel
         model = PeftModel.from_pretrained(model, args.adapter).to(args.device)
+        model = model.merge_and_unload().eval()  # merge LoRA for scoring speed; same model
         log.info("adapter %s", args.adapter)
     yes_id, no_id = common.answer_ids(tok)
     log.info("model %s; answer ids yes=%d no=%d; dtype %s", args.model, yes_id, no_id,
