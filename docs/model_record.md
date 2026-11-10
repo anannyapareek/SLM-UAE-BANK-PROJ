@@ -11,3 +11,5 @@ The models are pinned by revision in `configs/slm.yaml`. Every script loads exac
 - **Parameter counts:** the bf16 safetensors totals reported by Hugging Face. The weight size is the parameter count × 2 bytes.
 - **Weights download date:** `scripts/download_models.py` writes `models/download_record.json` with the revision, download date and file hashes. Copy the dates here after the lab download.
 - **QLoRA:** quantisation stays "none". QLoRA (4-bit) is a fallback in `train_lora.py`, used only when VRAM is below `lora.qlora_below_gb`. If it is used, record it here.
+
+**Weights download (GPU lab, 2026-11-10):** all three models downloaded from Hugging Face on 2026-11-10 at the revisions in the table above (checked: identical); per-file SHA-256 in `models/download_record.json` on the GPU machine. Machine: RTX 4500 Ada 24 GB. QLoRA not used (bf16 LoRA; VRAM 24 GB is above `lora.qlora_below_gb`).
