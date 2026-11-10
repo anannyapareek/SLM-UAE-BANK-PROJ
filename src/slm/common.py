@@ -98,6 +98,9 @@ def dtype(device_name):
     """bf16 where the device supports it; otherwise fp32 (reported, never assumed)."""
     import torch
     if device_name == "cuda":
+        import os
+        if os.environ.get("SLM_SCORE_DTYPE") == "fp16":
+            return torch.float16
         return torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float32
     if device_name == "mps":
         return torch.bfloat16 if mps_supports_bf16() else torch.float32
