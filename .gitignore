@@ -16,3 +16,11 @@ bundle/
 models/
 logs/
 runs/
+
+models/
+
+data/
+
+*.tar
+
+*.sha256
