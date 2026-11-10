@@ -135,3 +135,18 @@
 | 2026-11-09 | Every SLM script probes --device with a small matmul in a child process before use; env_check reports the result | On this Mac (macOS 14.4) torch 2.15's MPS backend aborts the process on any matmul; a probe turns that into a clear error instead of an assumed device |
 | 2026-11-09 | SLM pipeline tested end to end on the Mac with --device cpu (MPS unusable here) on HuggingFaceTB/SmolLM2-135M-Instruct and 50 rows: bundle check and install, make_train, scoring (base and with adapter), smoke test, timing, 5-step LoRA interrupted after checkpoint 4 and resumed to step 5 | Runbook Step 4 dry run before the lab |
 | 2026-11-10 | SLM training set: all train positives + 10 random negatives per positive (seed 1), train split only; val/calib/test never rebalanced; probability shift corrected by temperature scaling in Step 7. | Runbook 5.1 upper bound (1:5 to 1:10); confirmed |
+
+2026-11-10 | GPU lab machine: RTX 4500 Ada 24 GB, driver 581.80 (CUDA 13.0), torch 2.11.0+cu128, Python 3.12.16 (uv venv; lab 3.11/3.12 are Store installs), Windows 11, 274 GB RAM | compute record; results/gpu_env.json
+2026-11-10 | All work on D: (C: had 2 GB free); caches redirected to D:\slm_cache | disk
+2026-11-10 | Models downloaded: Qwen2.5-1.5B-Instruct 989aa79, SmolLM2-1.7B-Instruct 31b70e2, Qwen2.5-0.5B-Instruct 7ae5576 | models/download_record.json
+2026-11-10 | Bundle verified (14/14 files, test SHA-256 matches); bundle slm.yaml and serialisation.md older than repo, repo copy used; test_serialise passes | verify_bundle rule 4
+2026-11-10 | Token ids confirmed on GPU machine: Qwen 9834/902, SmolLM2 9805/787; prompt+text+target fits 512 (488/498) | results/token_check.json
+2026-11-10 | Padding correct (fp32 batch 1 vs 8: 1.8e-6). bf16 batch noise 8.3e-3 (Spearman 0.985) -> SLM scoring in fp16 (1.25e-3, 0.9993, same speed); training stays bf16 | scripts/padding_check.py, dtype_check2.py
+2026-11-10 | Scoring merges LoRA adapter before scoring: 51 -> 116 rows/s; merged vs unmerged max 1.0e-2, Spearman 0.99979 | src/slm/score.py
+2026-11-10 | Bug: smoke_test ignores --batch-size; verify_bundle warns on Windows path separators (harmless) | bug log
+2026-11-10 | Timing: base scoring 134 rows/s structured (batch 16), 59 rows/s text (batch 8); training ~1.0 s/step, 1,941 steps/epoch, ~33 min per fine-tune; adapter 46 MB | results/gpu_timing.json
+2026-11-10 | Provisional: Comparison 1 hourly, Comparison 2 logoff-only (fully hourly ~43-45 GPU-h > 40). Decide 11 Nov after parallel-scoring test | checklist C4
+2026-11-10 | Gate 1: PASS (GPU side); one-day slip from runbook date 9 Nov | C5
+2026-11-10 | Short run (100 steps, lr 1e-4 r8): loss falls, 10/10 outputs parse, scores move from base | D2-D3
+2026-11-10 | Overnight grid started 18:02 (2e-4 r16, 2e-4 r8, 1e-4 r16, 1e-4 r8; seed 1; hourly valid scoring, fp16); scripts/run_queue.ps1 checks test SHA before each job | E1-E5
+2026-11-10 | Training set: 31,053 rows (2,823 pos, 1:10 neg, seed 1) | D1

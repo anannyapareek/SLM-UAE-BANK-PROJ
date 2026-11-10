@@ -1,0 +1,117 @@
+{
+  "model": [
+    "Qwen/Qwen2.5-1.5B-Instruct",
+    "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+  ],
+  "device": "cuda",
+  "dtype": "torch.bfloat16",
+  "rows_timed": 1000,
+  "gpu_name": "NVIDIA RTX 4500 Ada Generation",
+  "timings": {
+    "comparison_1": {
+      "mean_prompt_tokens": 197.713,
+      "batch": {
+        "8": {
+          "seconds": 7.665,
+          "rows_per_second": 130.47,
+          "peak_memory_gb": 3.26
+        },
+        "16": {
+          "seconds": 7.442,
+          "rows_per_second": 134.37,
+          "peak_memory_gb": 3.43
+        },
+        "32": {
+          "seconds": 8.015,
+          "rows_per_second": 124.77,
+          "peak_memory_gb": 3.76
+        },
+        "64": {
+          "seconds": 8.531,
+          "rows_per_second": 117.22,
+          "peak_memory_gb": 4.42
+        }
+      }
+    },
+    "comparison_2": {
+      "mean_prompt_tokens": 453.713,
+      "batch": {
+        "8": {
+          "seconds": 16.821,
+          "rows_per_second": 59.45,
+          "peak_memory_gb": 3.47
+        },
+        "16": {
+          "seconds": 18.973,
+          "rows_per_second": 52.71,
+          "peak_memory_gb": 3.83
+        },
+        "32": {
+          "seconds": 19.965,
+          "rows_per_second": 50.09,
+          "peak_memory_gb": 4.57
+        },
+        "64": {
+          "seconds": 19.871,
+          "rows_per_second": 50.32,
+          "peak_memory_gb": 6.04
+        }
+      }
+    }
+  },
+  "row_counts": {
+    "train": {
+      "hourly": 1246038,
+      "logoff_only": 144431
+    },
+    "valid": {
+      "hourly": 336737,
+      "logoff_only": 38504
+    },
+    "calib": {
+      "hourly": 309413,
+      "logoff_only": 35249
+    },
+    "test": {
+      "hourly": 848137,
+      "logoff_only": 95570
+    }
+  },
+  "workload": {
+    "hourly": {
+      "rows_valid_calib_test": 1494287,
+      "seeds": 3,
+      "per_comparison": {
+        "comparison_1": {
+          "best_batch_size": 16,
+          "rows_per_second": 134.37,
+          "gpu_hours": 9.27
+        },
+        "comparison_2": {
+          "best_batch_size": 8,
+          "rows_per_second": 59.45,
+          "gpu_hours": 20.95
+        }
+      },
+      "gpu_hours_total": 30.21
+    },
+    "logoff_only": {
+      "rows_valid_calib_test": 169323,
+      "seeds": 3,
+      "per_comparison": {
+        "comparison_1": {
+          "best_batch_size": 16,
+          "rows_per_second": 134.37,
+          "gpu_hours": 1.05
+        },
+        "comparison_2": {
+          "best_batch_size": 8,
+          "rows_per_second": 59.45,
+          "gpu_hours": 2.37
+        }
+      },
+      "gpu_hours_total": 3.42
+    }
+  },
+  "note": "Scoring only, base model; LoRA adapters add little. Comparison 2 uses a synthetic 256-token text block. LoRA grid validation scoring and training time are not included."
+}

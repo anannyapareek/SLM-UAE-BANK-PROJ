@@ -1,0 +1,54 @@
+{
+  "python": "3.12.16",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "requested_device": "cuda",
+  "packages": {
+    "torch": "2.11.0+cu128",
+    "transformers": "5.22.2",
+    "peft": "0.21.2",
+    "accelerate": "1.15.0",
+    "trl": "1.17.1",
+    "bitsandbytes": "0.50.2",
+    "pandas": "3.1.1",
+    "pyarrow": "26.0.1",
+    "sklearn": "1.9.1",
+    "yaml": "6.0.3",
+    "duckdb": "2.0.0"
+  },
+  "nvidia_smi": {
+    "available": true,
+    "gpus": [
+      "NVIDIA RTX 4500 Ada Generation, 581.80, 24570 MiB, 23568 MiB, 8.9"
+    ],
+    "driver_cuda_line": "NVIDIA-SMI 581.80                 Driver Version: 581.80         CUDA Version: 13.0",
+    "error": null
+  },
+  "disk": {
+    "path": "D:\\slm_project\\SLM-UAE-BANK-PROJ",
+    "free_gb": 106.5,
+    "total_gb": 242.9
+  },
+  "ram_gb": 274.1,
+  "cpu_logical_cores": 192,
+  "torch_cuda_build": "12.8",
+  "cuda_available": true,
+  "mps_available": false,
+  "cudnn": 91900,
+  "gpus": [
+    {
+      "index": 0,
+      "name": "NVIDIA RTX 4500 Ada Generation",
+      "vram_total_gb": 25.76,
+      "vram_free_gb": 24.36,
+      "compute_capability": "8.9"
+    }
+  ],
+  "bf16_supported": true,
+  "cuda_probe": "ok",
+  "bitsandbytes": {
+    "importable": true,
+    "version": "0.50.2"
+  },
+  "training_mode": "lora (bf16)",
+  "device_usable": true
+}
