@@ -24,3 +24,5 @@ data/
 *.tar
 
 *.sha256
+
+runs/
