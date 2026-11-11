@@ -150,3 +150,6 @@
 2026-11-10 | Short run (100 steps, lr 1e-4 r8): loss falls, 10/10 outputs parse, scores move from base | D2-D3
 2026-11-10 | Overnight grid started 18:02 (2e-4 r16, 2e-4 r8, 1e-4 r16, 1e-4 r8; seed 1; hourly valid scoring, fp16); scripts/run_queue.ps1 checks test SHA before each job | E1-E5
 2026-11-10 | Training set: 31,053 rows (2,823 pos, 1:10 neg, seed 1) | D1
+2026-11-11 | BUG: Windows Git (autocrlf) checks out data/processed/test_ids.csv with CRLF; bundle copy (LF) installed and matches SHA 5ace66c2; content identical (git diff --ignore-cr-at-eol empty). Do not git checkout/restore/stash this file on the GPU PC. Fix: .gitattributes "data/processed/test_ids.csv -text" (from Mac) | queue checks SHA before every job
+2026-11-11 | BUG: Start-Transcript on Windows PowerShell does not capture python output; queue NaN checks verified separately (4 x 336,737 rows, 0 NaN) | logs/queue_20261110_180234.log
+2026-11-11 | Grid finished 23:55 (r16 2e-4 19:31, r8 2e-4 20:59, r16 1e-4 22:27, r8 1e-4 23:55); results + adapters backed up to Drive (grid_backup_10nov.zip) | E
