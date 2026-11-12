@@ -1,0 +1,12 @@
+# Checksummed files must reach every machine byte for byte (Windows Git with autocrlf
+# converted test_ids.csv to CRLF, which changes its frozen SHA-256; decisions log 2026-11-11).
+# The frozen test set: never convert line endings.
+data/processed/test_ids.csv -text
+# Bundled files that verify_bundle compares with the repo copies by SHA-256: always LF.
+configs/*.yaml text eol=lf
+docs/serialisation.md text eol=lf
+# Data and bundle artefacts are binary.
+*.parquet binary
+*.tar binary
+MANIFEST.sha256 -text
+*.sha256 -text
