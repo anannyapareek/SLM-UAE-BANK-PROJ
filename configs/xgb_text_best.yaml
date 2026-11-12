@@ -1,0 +1,121 @@
+model: xgboost
+features: structured + text (configs/features.yaml, configs/features_text.yaml; features_with_text.parquet)
+fixed:
+  tree_method: hist
+  objective: binary:logistic
+  eval_metric: aucpr
+  n_estimators: 2000
+  early_stopping_rounds: 200
+  enable_categorical: true
+  scale_pos_weight: 440.38788522848034
+params:
+  max_depth: 13
+  learning_rate: 0.17623136811532256
+  min_child_weight: 1
+  subsample: 0.9516092874774816
+  colsample_bytree: 0.6314871658163445
+  gamma: 0.15912336763261808
+  reg_lambda: 4.27695549852846
+  reg_alpha: 0.001174111599223674
+tuning:
+  trials: 50
+  completed: 34
+  pruned: 16
+  failed: 0
+  wall_clock_seconds: 4572.7
+  best_trial: 38
+  best_valid_pr_auc: 0.343737
+  best_iteration: 158
+  n_jobs: -1
+  average_busy_cores: 7.4
+  logical_cores: 11
+  performance_cores: 5
+  efficiency_cores: 6
+categories:
+  role:
+  - Accountant
+  - AdministrativeAssistant
+  - AdministrativeStaff
+  - AssemblySupervisor
+  - Attorney
+  - ChiefEngineer
+  - ComputerProgrammer
+  - ComputerScientist
+  - ComputerTrainer
+  - Director
+  - ElectricalEngineer
+  - Engineer
+  - FieldServiceEngineer
+  - FinancialAnalyst
+  - HardwareEngineer
+  - HealthSafetyEngineer
+  - HumanResourceSpecialist
+  - ITAdmin
+  - IndustrialEngineer
+  - InstructionalCoordinator
+  - LabManager
+  - ManagementTrainer
+  - Manager
+  - MaterialsEngineer
+  - Mathematician
+  - MechanicalEngineer
+  - Nurse
+  - NursePractitioner
+  - Physicist
+  - President
+  - ProductionLineWorker
+  - PurchasingClerk
+  - Salesman
+  - Scientist
+  - SecurityGuard
+  - SoftwareEngineer
+  - Statistician
+  - SystemsEngineer
+  - TechnicalTrainer
+  - Technician
+  - TestEngineer
+  - VicePresident
+  department:
+  - 1 - Accounting
+  - 1 - IndustrialEngineering
+  - 1 - MarketAnalysis
+  - 1 - Personnel
+  - 1 - Purchasing
+  - 1 - Research
+  - 2 - EmployeeRelations
+  - 2 - ManufacturingEngineering
+  - 2 - Payroll
+  - 2 - Pricing
+  - 2 - Sales
+  - 2 - SoftwareManagement
+  - 3 - Assembly
+  - 3 - Contracts
+  - 3 - Engineering
+  - 3 - FieldService
+  - 3 - FinancialPlanning
+  - 3 - Training
+  - 4 - QualityControl
+  - 4 - Safety
+  - 5 - Medical
+  - 6 - Security
+  - unknown
+  functional_unit:
+  - 1 - Adminstration
+  - 2 - ResearchAndEngineering
+  - 3 - Manufacturing
+  - 4 - Finance
+  - 5 - SalesAndMarketing
+  - 6 - PurchasingAndContracts
+  - unknown
+seeds:
+- 1
+- 2
+- 3
+run_prefix: xgb_text
+search_space:
+  max_depth:
+  - 3
+  - 14
+pruner:
+  n_startup_trials: 5
+  n_warmup_steps: 100

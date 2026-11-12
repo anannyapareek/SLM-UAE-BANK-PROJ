@@ -1,0 +1,29 @@
+# Text features for the XGBoost side of Comparison 2 (runbook 6.2). Built by
+# src/text_features.py (python run.py text_features) from data/processed/features_text.parquet.
+# Rule: for each scoring point and source, the mean over the session's events of that source
+# with ts <= score_time of the event's TF-IDF vector projected by TruncatedSVD; NaN when the
+# session has no such event yet. TF-IDF and SVD are fitted on train-split sessions only.
+sources:
+  http:  {svd_dims: 50}
+  email: {svd_dims: 30}
+  file:  {svd_dims: 20}
+tfidf:
+  max_features: 5000           # per source, by term frequency in the fitting sample
+  token_pattern: "(?u)\\b\\w\\w+\\b"
+  lowercase: true
+  sublinear_tf: true
+  norm: l2                     # per event; the per-row mean keeps the projection linear
+  min_df: 5
+fit:
+  split: train                 # fit on events of train-split sessions only
+  max_events_per_source: 1000000
+  seed: 1
+svd:
+  algorithm: randomized
+  n_iter: 7
+  seed: 1
+build:
+  chunk_sessions: 20000
+out:
+  features: data/processed/features_with_text.parquet
+  model: data/processed/text_features_model.joblib

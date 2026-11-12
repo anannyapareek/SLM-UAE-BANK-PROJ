@@ -10,12 +10,13 @@ import subprocess
 import sys
 
 STAGES = ["all", "data", "eval", "eval-baselines", "explore_positives", "features",
-          "features_text", "labels", "leakage", "prep_report", "rules", "sessions", "splits", "xgb"]
+          "features_text", "labels", "leakage", "prep_report", "rules", "sessions", "splits",
+          "text_features", "xgb"]
 MODULES = {"data": "src.prep", "xgb": "src.baselines.xgb", "rules": "src.baselines.rules"}
 FORCE_STAGES = ["splits", "leakage"]
 SAMPLE_STAGES = ["features", "features_text"]
 PIPELINE = [["data"], ["sessions"], ["features"], ["features_text"], ["labels"], ["splits"],
-            ["leakage"], ["xgb", "--fit"], ["rules"], ["eval-baselines"]]
+            ["leakage"], ["text_features"], ["xgb", "--fit"], ["rules"], ["eval-baselines"]]
 
 
 def run_all(dry_run):
@@ -27,7 +28,8 @@ def run_all(dry_run):
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+    # allow_abbrev=False: "--split" (eval) must not be read as an abbreviation of "--splits"
+    parser = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
     parser.add_argument("stage", choices=STAGES)
     parser.add_argument("--sample-users", type=int,
                         help="build from a small copy of the data with this many users")
@@ -41,6 +43,8 @@ def main():
     parser.add_argument("--splits", nargs="+", choices=["valid", "calib", "test"],
                         help="--score: the splits to score")
     parser.add_argument("--allow-test", action="store_true", help="--score: permit the test split")
+    parser.add_argument("--variant", choices=["structured", "text"], default="structured",
+                        help="xgb: feature set (text = structured + text features)")
     parser.add_argument("--overwrite-config", action="store_true",
                         help="xgb --tune: also replace configs/xgb_best.yaml")
     parser.add_argument("--dry-run", action="store_true", help="all: list the steps only")
@@ -63,6 +67,8 @@ def main():
         parser.error("--score needs --splits")
     if (args.splits or args.allow_test) and not args.score:
         parser.error("--splits and --allow-test need --score")
+    if args.variant != "structured" and args.stage != "xgb":
+        parser.error("--variant only applies to xgb")
     if args.dry_run and args.stage != "all":
         parser.error("--dry-run only applies to all")
 
@@ -85,9 +91,11 @@ def main():
         splits.run(force=args.force_i_know)
     elif args.stage == "xgb" and args.score:
         from src.baselines import xgb
+        xgb.use_variant(args.variant)
         xgb.score_saved(args.splits, allow_test=args.allow_test)
     elif args.stage == "xgb":
         from src.baselines import xgb
+        xgb.use_variant(args.variant)
         xgb.run(tune=args.tune, overwrite_config=args.overwrite_config)
     elif args.stage == "rules" and args.score:
         from src.baselines import rules

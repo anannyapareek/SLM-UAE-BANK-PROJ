@@ -3,6 +3,10 @@
     python run.py xgb --tune   50-trial Optuna search; writes configs/xgb_tuned_<run>.yaml
                                (and configs/xgb_best.yaml only with --overwrite-config)
     python run.py xgb [--fit]  fit seeds 1-3 from configs/xgb_best.yaml (the default)
+    python run.py xgb ... --variant text
+                               the same on features_with_text.parquet (structured + text
+                               columns, configs/features_text.yaml): config
+                               configs/xgb_text_best.yaml, runs results/xgb_text_*
     python run.py xgb --score --splits valid calib test --allow-test
                                score the saved seed models (results/<run_prefix>_s<seed>/
                                model.json) on these splits; predictions only
@@ -44,6 +48,34 @@ TUNING_SEED = 1
 # v3: early stopping patience 200 and no pruning before 100 boosting rounds.
 RUN_PREFIX = "xgb_struct_v3"
 TUNING_RUN = f"{RUN_PREFIX}_tuning"
+FEATURES_FILE = "features.parquet"
+VARIANT = "structured"
+# Everything else (search space, objective, seeds, pruner, early stopping) is shared.
+VARIANTS = {
+    "structured": {"features_file": "features.parquet", "best_config": "configs/xgb_best.yaml",
+                   "run_prefix": "xgb_struct_v3", "tuning_run": "xgb_struct_v3_tuning"},
+    "text": {"features_file": "features_with_text.parquet",
+             "best_config": "configs/xgb_text_best.yaml",
+             "run_prefix": "xgb_text", "tuning_run": "xgb_text_tuning"},
+}
+
+
+def use_variant(name):
+    """Point the module at one feature set; "structured" is the default and unchanged."""
+    global FEATURES_FILE, BEST_CONFIG, RUN_PREFIX, TUNING_RUN, VARIANT
+    v = VARIANTS[name]
+    VARIANT = name
+    FEATURES_FILE = v["features_file"]
+    BEST_CONFIG = pathlib.Path(v["best_config"])
+    RUN_PREFIX, TUNING_RUN = v["run_prefix"], v["tuning_run"]
+
+
+def feature_names():
+    names = [f["name"] for f in yaml.safe_load(FEATURES_CONFIG.read_text())["features"]]
+    if VARIANT == "text":
+        from src.text_features import column_names, config as text_config
+        names += column_names(text_config())
+    return names
 MAX_DEPTH = (3, 14)
 N_JOBS = -1  # XGBoost: -1 means one thread per logical core
 SEEDS = [1, 2, 3]
@@ -60,7 +92,7 @@ def load(con, names):
     columns = ", ".join(f'f."{n}"' for n in names)
     frame = con.execute(f"""
         SELECT f.row_id, f."user", x.split, l.y, {columns}
-        FROM '{P}/features.parquet' f
+        FROM '{P}/{FEATURES_FILE}' f
         JOIN '{P}/splits.parquet' x USING (row_id)
         JOIN '{P}/labels.parquet' l USING (row_id)
         WHERE x.split IN {SPLITS_USED}
@@ -80,7 +112,7 @@ def load_split(con, names, split, categories):
     columns = ", ".join(f'f."{n}"' for n in names)
     frame = con.execute(f"""
         SELECT f.row_id, f."user", l.y, {columns}
-        FROM '{P}/features.parquet' f
+        FROM '{P}/{FEATURES_FILE}' f
         JOIN '{P}/splits.parquet' x USING (row_id)
         JOIN '{P}/labels.parquet' l USING (row_id)
         WHERE x.split = '{split}'
@@ -114,7 +146,7 @@ def score_saved(splits, allow_test=False):
     checksum = verify_test_checksum()
     print(f"test_ids.csv SHA-256 {checksum}")
     best = yaml.safe_load(BEST_CONFIG.read_text())
-    names = [f["name"] for f in yaml.safe_load(FEATURES_CONFIG.read_text())["features"]]
+    names = feature_names()
     categories = {c: list(v) for c, v in best["categories"].items()}
     con = duckdb.connect(config={"threads": 1})
     for split in splits:
@@ -212,7 +244,7 @@ def train_seed(seed, params, parts, X, y, names, scale_pos_weight, checksum, run
     model.save_model(out / "model.json")
     append_run({
         "timestamp": datetime.datetime.now().isoformat(timespec="seconds"),
-        "run_id": out.name, "model": "xgboost", "features": "structured", "seed": seed,
+        "run_id": out.name, "model": "xgboost", "features": VARIANT, "seed": seed,
         "n_train": len(y["train"]), "n_valid": len(y["valid"]),
         "valid_positive_rate": round(metrics["positive_rate"], 6),
         "best_iteration": metrics["best_iteration"], "valid_pr_auc": round(metrics["pr_auc"], 6),
@@ -234,7 +266,7 @@ def log_budget(budget, scale_pos_weight):
     params = ", ".join(f"{k} {v:.4g}" if isinstance(v, float) else f"{k} {v}"
                        for k, v in budget["params"].items())
     LOG.write_text(text + ("" if text.endswith("\n") else "\n") +
-                   f"| {datetime.date.today()} | XGBoost tuning budget: {budget['trials']} Optuna "
+                   f"| {datetime.date.today()} | XGBoost{'' if VARIANT == 'structured' else f' ({VARIANT} features, run {RUN_PREFIX})'} tuning budget: {budget['trials']} Optuna "
                    f"trials (TPE seed {TUNING_SEED}, median pruning after {PRUNER['n_warmup_steps']} "
                    f"rounds, early stopping {EARLY_STOPPING}), {budget['pruned']} pruned, "
                    f"{budget['wall_clock_seconds'] / 60:.1f} min of trial time on this Mac "
@@ -256,7 +288,10 @@ def check_against_config(best, scale_pos_weight, categories):
 
 def config(budget, scale_pos_weight, categories):
     return {
-        "model": "xgboost", "features": "structured (configs/features.yaml)",
+        "model": "xgboost",
+        "features": ("structured (configs/features.yaml)" if VARIANT == "structured" else
+                     "structured + text (configs/features.yaml, configs/features_text.yaml; "
+                     f"{FEATURES_FILE})"),
         "fixed": {"tree_method": "hist", "objective": "binary:logistic", "eval_metric": "aucpr",
                   "n_estimators": MAX_TREES, "early_stopping_rounds": EARLY_STOPPING,
                   "enable_categorical": True, "scale_pos_weight": scale_pos_weight},
@@ -268,7 +303,7 @@ def config(budget, scale_pos_weight, categories):
 
 def run(tune=False, overwrite_config=False):
     checksum = verify_test_checksum()
-    names = [f["name"] for f in yaml.safe_load(FEATURES_CONFIG.read_text())["features"]]
+    names = feature_names()
     con = duckdb.connect(config={"threads": 1})
     parts, categories = load(con, names)
     X = {s: parts[s][names] for s in SPLITS_USED}

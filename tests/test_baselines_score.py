@@ -43,3 +43,15 @@ def test_existing_predictions_are_matched_never_overwritten(tmp_path):
     with pytest.raises(RuntimeError, match="differs"):
         write_or_match(changed, path)
     assert pd.read_parquet(path).equals(preds)          # untouched
+
+
+def test_eval_split_is_passed_through(monkeypatch):
+    """run.py eval must forward --split to eval.py, not read it as an abbreviation of --splits."""
+    from src import eval as evaluation
+    seen = {}
+    monkeypatch.setattr(evaluation, "main", lambda argv: seen.setdefault("argv", argv))
+    monkeypatch.setattr(sys, "argv", ["run.py", "eval", "single", "--name", "m", "--split", "valid",
+                                      "--preds", "p.parquet", "--out", "o.json"])
+    run.main()
+    assert seen["argv"] == ["single", "--name", "m", "--split", "valid", "--preds", "p.parquet",
+                            "--out", "o.json"]
