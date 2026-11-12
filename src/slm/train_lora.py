@@ -1,8 +1,12 @@
 """LoRA fine-tuning (runbook 5.2-5.3), with checkpoints and automatic resume.
 
 Fixed by configs/slm.yaml: alpha = 2 x rank, dropout 0.05, 1 epoch, max length 512, LoRA on
-the attention and MLP projections, seed 1. Chosen per run: --lr and --rank (the grid is
-lr {1e-4, 2e-4} x rank {8, 16}). The loss is on the completion only ("<yes|no>\\nReason: ...
+the attention and MLP projections. Chosen per run: --lr and --rank (the grid is
+lr {1e-4, 2e-4} x rank {8, 16}) and --seed (default lora.seed = 1). The seed sets
+transformers.set_seed (before the LoRA weights are created, so it sets their initialisation)
+and TrainingArguments seed/data_seed (data order and dropout). It does not change the
+training data: data/slm/train.jsonl is the fixed seed-1 sample from make_train.py.
+The loss is on the completion only ("<yes|no>\\nReason: ...
 <eos>"); prompt tokens are masked.
 
 Precision: bf16 on a CUDA GPU that supports it, else fp32 (reported). QLoRA: 4-bit weights
@@ -12,8 +16,8 @@ bitsandbytes imports. MPS and CPU train in fp32 (for testing the pipeline).
 Resume: checkpoints go to <out>/checkpoint-<step> every --save-steps; rerunning the same
 command resumes from the latest one. The adapter is saved to <out>/adapter.
 
-Run: python -m src.slm.train_lora --device cuda --model primary --lr 2e-4 --rank 16 \\
-         --data-dir data/slm --out runs/qwen15_r16_lr2e-4 [--max-steps 100]
+Run: python -m src.slm.train_lora --device cuda --model primary --lr 1e-4 --rank 8 \\
+         --seed 2 --data-dir data/slm --out runs/qwen15_r8_lr1e-4_s2 [--max-steps 100]
 """
 import json
 import math
@@ -99,6 +103,38 @@ def training_kwargs(**kwargs):
     return kwargs
 
 
+def seed_everything(seed):
+    """transformers.set_seed: Python, NumPy and torch RNGs (LoRA init, dropout)."""
+    from transformers import set_seed
+    set_seed(seed)
+
+
+def load_base_model(name, models_dir, device_name, bf16):
+    import torch
+    from transformers import AutoModelForCausalLM
+    source, revision = common.model_source(name, models_dir)
+    model = AutoModelForCausalLM.from_pretrained(
+        source, revision=revision, dtype=torch.bfloat16 if bf16 else torch.float32)
+    return model.to(device_name)
+
+
+def make_trainer(**kwargs):
+    from transformers import Trainer
+    return Trainer(**kwargs)
+
+
+def check_run_args(out, run_args, resuming):
+    """Record the run's identity in <out>/run_args.json; refuse to resume a checkpoint that
+    was trained with a different model, lr, rank or seed."""
+    path = out / "run_args.json"
+    if resuming and path.exists():
+        before = json.loads(path.read_text())
+        if before != run_args:
+            raise SystemExit(f"{out} has checkpoints from a different run {before}; "
+                             f"this run is {run_args}. Use another --out or --no-resume.")
+    path.write_text(json.dumps(run_args, indent=2) + "\n")
+
+
 def latest_checkpoint(out):
     points = sorted(out.glob("checkpoint-*"), key=lambda p: int(p.name.split("-")[1]))
     return str(points[-1]) if points else None
@@ -114,6 +150,9 @@ def main():
     p.add_argument("--out", required=True, help="output folder (checkpoints, adapter, record)")
     p.add_argument("--lr", type=float, required=True)
     p.add_argument("--rank", type=int, required=True)
+    p.add_argument("--seed", type=int, default=lora["seed"],
+                   help=f"LoRA init, data order and dropout (default {lora['seed']}); "
+                        "the training data stay the fixed seed-1 sample")
     p.add_argument("--max-steps", type=int, default=-1, help="stop after this many steps")
     p.add_argument("--batch-size", type=int, default=8)
     p.add_argument("--grad-accum", type=int, default=2)
@@ -132,9 +171,13 @@ def main():
 
     import torch
     from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
-    from transformers import Trainer, TrainingArguments, set_seed
+    from transformers import TrainingArguments
 
-    set_seed(lora["seed"])
+    seed = args.seed
+    check_run_args(out, {"model": args.model, "lr": args.lr, "rank": args.rank, "seed": seed},
+                   resuming=not args.no_resume and latest_checkpoint(out) is not None)
+    seed_everything(seed)
+    log.info("seed %d (set_seed before LoRA init; TrainingArguments seed and data_seed)", seed)
     tok = common.load_tokenizer(args.model, args.models_dir)
     tok.padding_side = "right"
     data = pathlib.Path(args.data_dir)
@@ -149,11 +192,7 @@ def main():
         model = common.load_model(args.model, args.device, args.models_dir, quantize_4bit=True)
         model = prepare_model_for_kbit_training(model)
     else:
-        from transformers import AutoModelForCausalLM
-        source, revision = common.model_source(args.model, args.models_dir)
-        model = AutoModelForCausalLM.from_pretrained(
-            source, revision=revision, dtype=torch.bfloat16 if bf16 else torch.float32)
-        model.to(args.device)
+        model = load_base_model(args.model, args.models_dir, args.device, bf16)
     if args.device == "cuda":
         model.gradient_checkpointing_enable()
         model.enable_input_require_grads()
@@ -162,6 +201,7 @@ def main():
     missing = sorted(set(lora["target_modules"]) - set(targets))
     if missing:
         log.warning("target modules not in this model: %s", missing)
+    seed_everything(seed)  # again: model loading must not change the LoRA initialisation
     model = get_peft_model(model, LoraConfig(
         r=args.rank, lora_alpha=lora["alpha_per_rank"] * args.rank,
         lora_dropout=lora["dropout"], target_modules=targets, bias="none",
@@ -179,8 +219,8 @@ def main():
         lr_scheduler_type="cosine", weight_decay=0.0,
         bf16=bf16, logging_steps=max(1, min(10, args.save_steps)),
         eval_steps=args.eval_steps, save_strategy="steps",
-        save_steps=args.save_steps, save_total_limit=2, seed=lora["seed"],
-        data_seed=lora["seed"], report_to=[], dataloader_num_workers=0,
+        save_steps=args.save_steps, save_total_limit=2, seed=seed,
+        data_seed=seed, report_to=[], dataloader_num_workers=0,
         remove_unused_columns=False, use_cpu=args.device == "cpu"))
     resume = None if args.no_resume else latest_checkpoint(out)
     log.info("%d train examples, %d steps per epoch, max_steps %d; resume from %s",
@@ -192,14 +232,15 @@ def main():
         def on_log(self, _args, state, _control, logs=None, **_):
             log.info("step %d: %s", state.global_step, logs)
 
-    trainer = Trainer(model=model, args=targs, train_dataset=train, eval_dataset=valid,
-                      data_collator=Collator(tok.pad_token_id), callbacks=[ToLog()])
+    trainer = make_trainer(model=model, args=targs, train_dataset=train, eval_dataset=valid,
+                           data_collator=Collator(tok.pad_token_id), callbacks=[ToLog()])
     start = time.time()
     result = trainer.train(resume_from_checkpoint=resume)
     metrics = trainer.evaluate()
     model.save_pretrained(out / "adapter")
     tok.save_pretrained(out / "adapter")
     record = {"model": common.model_entry(args.model), "lr": args.lr, "rank": args.rank,
+              "seed": seed, "train_data": str(data / "train.jsonl"),
               "alpha": lora["alpha_per_rank"] * args.rank, "dropout": lora["dropout"],
               "target_modules": targets, "max_length": lora["max_length"],
               "precision": "bf16" if bf16 else "fp32", "qlora": qlora,

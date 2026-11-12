@@ -92,3 +92,13 @@ def test_verify_bundle_fails_on_wrong_test_ids(bundle):
                                            "data/processed/test_ids.csv"]) + "\n")
     result = run_verify(bundle)
     assert result.returncode == 1 and "does not match the logged" in result.stdout
+
+
+def test_resume_refuses_a_different_seed(tmp_path):
+    from src.slm.train_lora import check_run_args
+    run = {"model": "primary", "lr": 1e-4, "rank": 8, "seed": 2}
+    check_run_args(tmp_path, run, resuming=False)
+    check_run_args(tmp_path, run, resuming=True)                     # same run: resumes
+    with pytest.raises(SystemExit, match="different run"):
+        check_run_args(tmp_path, dict(run, seed=3), resuming=True)
+    check_run_args(tmp_path, dict(run, seed=3), resuming=False)      # fresh start is allowed
