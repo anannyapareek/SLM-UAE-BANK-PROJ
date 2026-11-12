@@ -172,3 +172,19 @@ If the run is interrupted, rerun the same command: it resumes from the latest ch
 - `models/download_record.json`
 - `runs/*/train_record.json`
 - `logs/`
+
+## Comparison 2 (text) data
+
+The text blocks are built on the Mac, which has `features_text.parquet`, with `python -m src.slm.text_blocks --allow-test`, and uploaded to Drive with the bundle:
+- `data/processed/slm_text_blocks.parquet`, 146 MB;
+- its summary, `slm_text_blocks.summary.json`.
+
+On the GPU PC:
+
+```bash
+copy <download>\slm_text_blocks.parquet data\processed\
+python -m src.slm.check_tokens --text --rows 1000000        # expected: max prompt + target 496 <= 512, PASS
+python -m src.slm.make_train --text                          # data\slm_text\train.jsonl (31,053) and valid.jsonl (2,000)
+```
+
+`score.py --text` and `make_train --text` stop with a clear message if the blocks file is missing or lacks a row. Without `--text`, everything is unchanged.

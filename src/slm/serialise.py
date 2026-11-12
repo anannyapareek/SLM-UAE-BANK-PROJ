@@ -131,3 +131,91 @@ def target(row, label):
 def training_text(row, label):
     """The full training example: scoring prompt followed by its completion."""
     return scoring_prompt(row) + target(row, label)
+
+
+# ---------- Comparison 2: text block (runbook 6.2) ----------
+#
+# A block of the session's own email, http and file events is placed between the structured
+# prompt and "\nLabel:", so scoring still reads the answer token after "Label:" and the
+# target is unchanged. Only events with ts <= score_time are eligible (the feature rule).
+# Truncation: events are taken in priority order (TEXT_TIERS, then newest first, then
+# event_id), whole events only; an event that does not fit the remaining budget is skipped
+# and the next one tried. The selected events are shown oldest first. The budget is in
+# model tokens of the whole block, header included, measured by the caller's tokenizer.
+
+TEXT_HEADER = "\nText:"
+TEXT_NONE = " none"
+TEXT_BUDGET = 256
+# 0: http to a job-search, cloud-storage, leak or hacking host (the feature keyword lists);
+# 1: email; 2: file; 3: any other http.
+TEXT_TIERS = {"http_flagged": 0, "email": 1, "file": 2, "http": 3}
+
+
+def event_tier(event):
+    if event["source"] == "http" and event.get("flagged"):
+        return TEXT_TIERS["http_flagged"]
+    return TEXT_TIERS[event["source"]]
+
+
+def event_line(event):
+    """One event as one line: '<source> <HH:MM> <meta>: <content>'."""
+    head = f"{event['source']} {event['ts']:%H:%M}"
+    if event.get("meta"):
+        head += f" {event['meta']}"
+    content = " ".join(str(event.get("content") or "").split())
+    return f"\n{head}: {content}" if content else f"\n{head}:"
+
+
+def eligible(events, score_time):
+    """Leakage rule: only events at or before the scoring time."""
+    return [e for e in events if e["ts"] <= score_time]
+
+
+def priority_order(events):
+    """Tier, then newest first, then event_id: a total, deterministic order."""
+    by_id = sorted(events, key=lambda e: str(e["event_id"]))
+    by_time = sorted(by_id, key=lambda e: e["ts"], reverse=True)
+    return sorted(by_time, key=event_tier)
+
+
+def text_block(events, score_time, count_tokens, budget=TEXT_BUDGET, line_tokens=None):
+    """The text block for one scoring row and a summary of the truncation.
+
+    count_tokens(str) -> int is the model tokenizer (no special tokens). line_tokens, if
+    given, maps event_id to count_tokens(event_line(e)), to avoid re-tokenizing.
+    Returns (block, info): block starts with TEXT_HEADER and fits the budget.
+    """
+    pool = eligible(events, score_time)
+    lines = {e["event_id"]: event_line(e) for e in pool}
+    cost = {i: (line_tokens[i] if line_tokens and i in line_tokens else count_tokens(lines[i]))
+            for i in lines}
+    header = count_tokens(TEXT_HEADER)
+    full = header + sum(cost.values())
+    remaining = budget - header
+    chosen = []
+    for e in priority_order(pool):
+        if cost[e["event_id"]] <= remaining:
+            chosen.append(e)
+            remaining -= cost[e["event_id"]]
+
+    def assemble(selected):
+        if not selected:
+            return TEXT_HEADER + TEXT_NONE
+        shown = sorted(selected, key=lambda e: (e["ts"], str(e["event_id"])))
+        return TEXT_HEADER + "".join(lines[e["event_id"]] for e in shown)
+
+    block = assemble(chosen)
+    # Line costs are measured separately; drop the lowest-priority event if joining them
+    # changes the count enough to break the budget (rare).
+    while chosen and count_tokens(block) > budget:
+        chosen.pop()
+        block = assemble(chosen)
+    info = {"eligible_events": len(pool), "selected_events": len(chosen),
+            "tokens_untruncated": full, "tokens": count_tokens(block),
+            "truncated": len(chosen) < len(pool)}
+    return block, info
+
+
+def text_scoring_prompt(row, block):
+    """Structured prompt + text block, still ending in "\\nLabel:"."""
+    return prompt(row) + block + SUFFIX

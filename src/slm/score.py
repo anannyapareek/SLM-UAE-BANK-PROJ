@@ -85,6 +85,9 @@ def main():
     p.add_argument("--rows", type=int, help="random sample of this many rows (seed 1)")
     p.add_argument("--only-final", action="store_true", help="logoff (final) rows only")
     p.add_argument("--allow-test", action="store_true")
+    p.add_argument("--text", action="store_true",
+                   help="Comparison 2: add each row's text block (from --text-blocks)")
+    p.add_argument("--text-blocks", default=str(common.ROOT / common.config()["text"]["blocks"]))
     p.add_argument("--out", required=True)
     args = p.parse_args()
     log = common.setup_logging("score", args.log)
@@ -94,8 +97,16 @@ def main():
     rows = common.load_rows(args.split, n=args.rows, allow_test=args.allow_test,
                             only_final=args.only_final)
     log.info("%d %s rows", len(rows), args.split)
+    if args.text:                    # check the blocks before loading the model
+        from src.slm.make_train import load_blocks
+        blocks = load_blocks(args.text_blocks, list(rows["row_id"]))
     model, tok, yes_id, no_id = load_for_scoring(args, log)
-    texts = [serialise.scoring_prompt(r) for r in rows.to_dict("records")]
+    if args.text:
+        texts = [serialise.text_scoring_prompt(r, blocks[r["row_id"]])
+                 for r in rows.to_dict("records")]
+        log.info("text prompts: blocks from %s", args.text_blocks)
+    else:
+        texts = [serialise.scoring_prompt(r) for r in rows.to_dict("records")]
     start = time.time()
     p_yes, margin = score_texts(model, tok, texts, args.device, args.batch_size, yes_id, no_id,
                                 log)

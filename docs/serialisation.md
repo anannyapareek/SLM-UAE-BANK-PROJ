@@ -107,4 +107,56 @@ The first wording failed the budget (SmolLM2: 258 + 256 + 42 = 556). The wording
 - no `+` or commas in the z line;
 - a shorter reason.
 
-The truncation rule for the appended text (runbook 6.2) is set with Comparison 2.
+## Comparison 2: text block (runbook 6.2)
+
+For Comparison 2 the prompt carries a block of the session's own email, http and file content (`features_text.parquet`). The block sits between the structured prompt and `\nLabel:`, so the answer token is read at the same position. The target (`Label: <yes|no>` / `Reason: …`) is unchanged.
+
+```
+<structured prompt, unchanged>
+Text:
+email 09:12 to 3, 1 external, 2 attachments: <content words>
+http 10:40 wikileaks.org: <content words>
+Label:
+```
+
+**Leakage rule:** only events with `ts <= score_time` are eligible, the same rule as the features. For the logoff rows that Comparison 2 scores, that is every event in the session.
+
+**Event line:** `<source> <HH:MM> <meta>: <content>`, with the content's whitespace collapsed. Metadata never names a user:
+- **http:** the URL's host.
+- **email:** recipient, external-recipient and attachment counts. External uses the same `internal_email_domain` rule as the features.
+- **file:** the filename extension.
+
+**Truncation rule** (`serialise.text_block`):
+1. **Budget:** 256 tokens for the whole block, its `Text:` header included. It's measured with the Qwen/Qwen2.5-1.5B-Instruct tokenizer at the revision pinned in `configs/slm.yaml` (`text.tokenizer`, `text.budget_tokens`).
+2. **Priority order:**
+   1. http to a job-search, cloud-storage, file-sharing/leak or hacking host. These are the full keyword lists in `configs/features.yaml`, with the host matched exactly as for the `http_*` features.
+   2. email.
+   3. file.
+   4. any other http.
+
+   Within a tier, newest first, then event_id.
+3. **Whole events only.** Events are added in that order. An event that does not fit the remaining budget is skipped and the next one is tried; no event is ever cut.
+4. **Display order:** the selected events are shown oldest first. With no eligible event, or none that fits, the block is `Text: none`.
+5. **Final check:** line costs are measured separately. If the assembled block still exceeds 256 tokens, the lowest-priority selected event is dropped until it fits. Every built block is checked against 256.
+
+**Where the blocks are built.** `python -m src.slm.text_blocks --allow-test` runs on the data machine, which has `features_text.parquet`. It writes `data/processed/slm_text_blocks.parquet`: one block per row, for the training rows (`train.jsonl` and `valid.jsonl`: same rows, seed and 1:10 negatives as the structured set) and for the final row of every valid, calib and test session. For test rows only inputs are built; no labels are read. The file is copied to the GPU machine, never committed to git. On the GPU machine:
+- `make_train --text` writes `data/slm_text/{train,valid}.jsonl` from it.
+- `score.py --text` scores with the text prompts.
+- `check_tokens --text` checks that every text prompt plus the longest target fits in 512 tokens.
+
+**Built on 2026-11-12** (`data/processed/slm_text_blocks.parquet`, 146 MB, 202,143 rows):
+
+| Rows | Count | Over 256 tokens before truncation | Median eligible events | Median selected | Median block tokens |
+|---|---|---|---|---|---|
+| train.jsonl | 31,053 | 29,019 (93.5%) | 37 | 3 | 239 |
+| valid.jsonl | 2,000 | 1,872 (93.6%) | 39 | 3 | 239 |
+| final rows, valid | 38,504 | 33,320 (86.5%) | 104 | 3 | 239 |
+| final rows, calib | 35,249 | 30,641 (86.9%) | 104 | 3 | 240 |
+| final rows, test | 95,570 | 84,670 (88.6%) | 104 | 3 | 240 |
+| **all (unique rows)** | **202,143** | **179,319 (88.7%)** | | | max 255 |
+
+- **Why so few events fit:** each event's content is a generated keyword string of about 50 words, roughly 80 tokens, so a block holds about three events. The median untruncated text of a final row is about 7,800 tokens.
+- **Empty blocks:** 20,749 rows have no eligible text event and get `Text: none`.
+- **Full-prompt check** (`check_tokens --text`, every one of the 202,143 prompts): median 438, p95 455, max 465 tokens. With the longest target (31) the maximum is 496, within 512. No answer-token boundary mismatches.
+
+Without `--text`, structured prompts, training files and scores are byte-for-byte what they were before the text change. `tests/test_serialise_text.py` compares them with output frozen from commit 03b1641.

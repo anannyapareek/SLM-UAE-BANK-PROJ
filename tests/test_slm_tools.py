@@ -117,3 +117,15 @@ def test_checksummed_files_are_never_line_ending_converted():
     assert attrs["data/processed/test_ids.csv"]["text"] == "unset"     # -text: never converted
     for f in files[1:]:
         assert attrs[f]["eol"] == "lf"                                  # bundled copies are LF
+
+
+def test_text_blocks_missing_file_or_rows_stop_clearly(tmp_path):
+    import pandas as pd
+    from src.slm.make_train import load_blocks
+    with pytest.raises(SystemExit, match="text blocks file not found"):
+        load_blocks(tmp_path / "none.parquet", ["a"])
+    path = tmp_path / "blocks.parquet"
+    pd.DataFrame({"row_id": ["a"], "block": ["\nText: none"]}).to_parquet(path)
+    assert load_blocks(path, ["a"]) == {"a": "\nText: none"}
+    with pytest.raises(SystemExit, match="1 rows have no text block"):
+        load_blocks(path, ["a", "b"])

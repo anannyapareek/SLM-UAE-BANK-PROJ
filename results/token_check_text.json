@@ -1,0 +1,22 @@
+{
+  "rows": 202143,
+  "max_length": 512,
+  "models": {
+    "primary": {
+      "id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "boundary_mismatches": 0,
+      "prompt_tokens": {
+        "median": 438.0,
+        "p95": 455.0,
+        "max": 465
+      },
+      "target_tokens_max_incl_eos": 31,
+      "max_prompt_plus_target": 496,
+      "prompts_over_limit_with_longest_target": 0,
+      "passes": true
+    }
+  },
+  "passed": true,
+  "failures": []
+}

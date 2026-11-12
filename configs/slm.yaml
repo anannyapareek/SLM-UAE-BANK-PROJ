@@ -16,6 +16,12 @@ prompt:
   label_words: [" yes", " no"]  # scored as the next token after the suffix
   text_budget_tokens: 256     # Comparison 2 (runbook 6.2): appended text per session
 
+text:                          # Comparison 2 (runbook 6.2), rule in docs/serialisation.md
+  budget_tokens: 256           # whole text block incl. its header, Qwen2.5 tokenizer
+  tokenizer: primary           # the budget is measured with this model's tokenizer
+  blocks: data/processed/slm_text_blocks.parquet   # built by src.slm.text_blocks
+  out_dir: data/slm_text       # make_train --text
+
 training:                      # runbook 5.1
   split: train
   neg_per_pos: 10              # negatives downsampled to this many per positive (runbook 1:5 to 1:10), training only
