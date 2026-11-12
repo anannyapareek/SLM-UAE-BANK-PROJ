@@ -134,8 +134,77 @@ def test_session_aggregation():
     assert units["scenario"].tolist()[0] == 1
 
 
+def test_session_aggregation_final_row():
+    """final = the score at each session's last scoring point, whatever the row order."""
+    meta = pd.DataFrame({
+        "row_id": ["a", "b", "c", "d", "e"], "session_id": [1, 2, 1, 2, 1],
+        "user": ["u", "v", "u", "v", "u"], "heldout_user": False,
+        "score_time": pd.to_datetime(["2010-09-01 10:00", "2010-09-02 09:00",
+                                      "2010-09-01 09:00", "2010-09-02 11:00",
+                                      "2010-09-01 09:30"]),
+        "scenario": [1, np.nan, np.nan, np.nan, np.nan], "y": [1, 0, 0, 0, 0]})
+    s = np.array([0.2, 0.9, 0.8, 0.1, 0.5])
+    units, final = ev.aggregate_sessions(meta, [s], "final")
+    _, hourly = ev.aggregate_sessions(meta, [s], "max")
+    assert units["session_id"].tolist() == [1, 2]
+    assert final[0].tolist() == [0.2, 0.1]          # last points: 10:00 and 11:00
+    assert hourly[0].tolist() == [0.8, 0.9]
+    assert units["y"].tolist() == [1, 0]            # label: any positive row, either way
+    assert units["last_time"].tolist() == list(pd.to_datetime(["2010-09-01 10:00",
+                                                               "2010-09-02 11:00"]))
+    with pytest.raises(ValueError):
+        ev.aggregate_sessions(meta, [s], "mean")
+
+
+def test_session_agg_flag_defaults_to_max():
+    base = ["single", "--name", "m", "--split", "valid", "--preds", "p", "--out", "o"]
+    assert ev.parse(base).session_agg == "max"
+    assert ev.parse(base + ["--session-agg", "final"]).session_agg == "final"
+
+
 def test_test_split_needs_allow_test(monkeypatch):
     monkeypatch.setattr(ev, "verify_test_checksum", lambda: "x")
     with pytest.raises(RuntimeError, match="allow-test"):
         ev.main(["single", "--name", "m", "--split", "test", "--preds", "p.parquet",
                  "--out", "o.json"])
+
+
+def test_paired_follows_session_agg(tmp_path):
+    """eval paired aggregates both models the same way, as --session-agg says."""
+    from types import SimpleNamespace
+    rng = np.random.default_rng(5)
+    rows = []
+    for session in range(40):
+        user = f"u{session % 10}"
+        positive = session % 5 == 0
+        for hour in range(3):
+            rows.append({"row_id": f"r{session}_{hour}", "session_id": session, "user": user,
+                         "heldout_user": False,
+                         "score_time": pd.Timestamp("2010-09-01") + pd.Timedelta(days=session % 4,
+                                                                                 hours=hour),
+                         "scenario": 1.0 if positive else np.nan,
+                         "y": int(positive and hour == 2)})
+    meta = pd.DataFrame(rows)
+    paths = {}
+    for model in ("a", "b"):
+        frame = pd.DataFrame({"row_id": meta["row_id"], "y_true": meta["y"],
+                              "score": rng.random(len(meta)) + 0.5 * meta["y"]})
+        paths[model] = str(tmp_path / f"{model}.parquet")
+        frame.to_parquet(paths[model])
+    args = SimpleNamespace(name_a="a", a=[paths["a"]], name_b="b", b=[paths["b"]], split="valid")
+    cfg = dict(CFG, unit="session")
+    results = {}
+    for agg in ("max", "final"):
+        cfg_agg = dict(cfg, session_agg=agg)
+        out = ev.paired(args, cfg_agg, meta)
+        for model in ("a", "b"):
+            s = pd.read_parquet(paths[model])["score"].to_numpy()
+            units, scores = ev.aggregate_sessions(meta, [s], agg)
+            day = units["last_time"].dt.normalize().to_numpy().astype("datetime64[D]").astype(np.int64)
+            key = pd.util.hash_array(units["session_id"].astype(str).to_numpy(),
+                                     hash_key=f"{cfg['tie_break_seed']:016d}")
+            direct = ev.core_metrics(ev.Scored(scores[0], units["y"].to_numpy(), day, key),
+                                     np.ones(len(units)), cfg)
+            assert out["session"]["pr_auc"][model] == pytest.approx(direct["pr_auc"])
+        results[agg] = out["session"]["pr_auc"]["a"]
+    assert results["max"] != results["final"]

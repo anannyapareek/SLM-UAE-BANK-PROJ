@@ -8,6 +8,10 @@ score_time, scenario and heldout_user are joined from splits.parquet and labels.
 Metrics are computed per seed and averaged; 95% CIs come from a user-level bootstrap,
 stratified into users with and without a positive unit, using integer weights rather
 than copied rows. --split test is refused unless --allow-test is passed.
+
+--session-agg sets the session score: max (default) = the maximum over all of the session's
+scoring points (hourly scoring); final = the score at its last scoring point only
+(logoff-only scoring). The session label is "any positive row" either way.
 """
 import argparse
 import json
@@ -159,15 +163,26 @@ def load_preds(paths, meta):
     return scores
 
 
-def aggregate_sessions(meta, scores):
-    """Session units: max score over the session's rows, positive if any row is."""
+SESSION_AGG = {"max": "max", "final": "last"}
+
+
+def aggregate_sessions(meta, scores, how="max"):
+    """Session units, positive if any row is. Score: max over the session's rows (how="max",
+    hourly scoring) or the score at its last scoring point (how="final", logoff-only)."""
+    if how not in SESSION_AGG:
+        raise ValueError(f"session aggregation {how!r}: use one of {sorted(SESSION_AGG)}")
     frame = meta[["session_id", "user", "heldout_user", "score_time", "scenario", "y"]].copy()
     for i, s in enumerate(scores):
         frame[f"s{i}"] = s
+    if how == "final":
+        if frame.duplicated(["session_id", "score_time"]).any():
+            raise RuntimeError("two scoring points share a session and score_time")
+        frame = frame.sort_values(["session_id", "score_time"], kind="stable")
     grouped = frame.groupby("session_id", sort=True)
     units = grouped.agg(user=("user", "first"), heldout_user=("heldout_user", "first"),
                         last_time=("score_time", "max"), scenario=("scenario", "max"),
-                        y=("y", "max"), **{f"s{i}": (f"s{i}", "max") for i in range(len(scores))})
+                        y=("y", "max"),
+                        **{f"s{i}": (f"s{i}", SESSION_AGG[how]) for i in range(len(scores))})
     units = units.reset_index()
     return units, [units[f"s{i}"].to_numpy() for i in range(len(scores))]
 
@@ -177,7 +192,7 @@ def build_units(meta, scores, unit, cfg):
         units = meta.rename(columns={"score_time": "last_time"})
         ids, unit_scores = units["row_id"].astype(str), scores
     else:
-        units, unit_scores = aggregate_sessions(meta, scores)
+        units, unit_scores = aggregate_sessions(meta, scores, cfg.get("session_agg", "max"))
         ids = units["session_id"].astype(str)
     # A unit is dated by its last scoring point, when its final score is known.
     day = units["last_time"].dt.normalize().to_numpy().astype("datetime64[D]").astype(np.int64)
@@ -361,6 +376,9 @@ def parse(argv):
         p.add_argument("--out", required=True)
         p.add_argument("--allow-test", action="store_true",
                        help="permit --split test (Comparison 1 onwards only)")
+        p.add_argument("--session-agg", choices=sorted(SESSION_AGG), default="max",
+                       help="session score: max over scoring points (hourly, default) or "
+                            "the final scoring point only (logoff-only)")
         if mode == "single":
             p.add_argument("--name", required=True)
             p.add_argument("--preds", required=True, nargs="+")
@@ -403,6 +421,8 @@ def main(argv):
         raise RuntimeError("refusing to evaluate on test without --allow-test")
     # The baselines list names runs, not metric settings, so it is not recorded per eval.
     cfg = {k: v for k, v in yaml.safe_load(CONFIG.read_text()).items() if k != "baselines"}
+    if args.session_agg != "max":            # recorded only when not the default
+        cfg["session_agg"] = args.session_agg
     con = duckdb.connect(config={"threads": 1})
     meta = load_meta(con, args.split)
     out = single(args, cfg, meta) if args.mode == "single" else paired(args, cfg, meta)
