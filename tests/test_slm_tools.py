@@ -102,3 +102,18 @@ def test_resume_refuses_a_different_seed(tmp_path):
     with pytest.raises(SystemExit, match="different run"):
         check_run_args(tmp_path, dict(run, seed=3), resuming=True)
     check_run_args(tmp_path, dict(run, seed=3), resuming=False)      # fresh start is allowed
+
+
+def test_checksummed_files_are_never_line_ending_converted():
+    """Windows Git (core.autocrlf) turned test_ids.csv into CRLF, changing its frozen SHA-256."""
+    files = ["data/processed/test_ids.csv", "configs/slm.yaml", "configs/features.yaml",
+             "docs/serialisation.md"]
+    out = subprocess.run(["git", "check-attr", "text", "eol", "--", *files], cwd=ROOT,
+                         capture_output=True, text=True, check=True).stdout
+    attrs = {}
+    for line in out.splitlines():
+        path, attr, value = (p.strip() for p in line.split(":"))
+        attrs.setdefault(path, {})[attr] = value
+    assert attrs["data/processed/test_ids.csv"]["text"] == "unset"     # -text: never converted
+    for f in files[1:]:
+        assert attrs[f]["eol"] == "lf"                                  # bundled copies are LF
