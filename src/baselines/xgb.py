@@ -3,9 +3,15 @@
     python run.py xgb --tune   50-trial Optuna search; writes configs/xgb_tuned_<run>.yaml
                                (and configs/xgb_best.yaml only with --overwrite-config)
     python run.py xgb [--fit]  fit seeds 1-3 from configs/xgb_best.yaml (the default)
+    python run.py xgb --score --splits valid calib test --allow-test
+                               score the saved seed models (results/<run_prefix>_s<seed>/
+                               model.json) on these splits; predictions only
 
-Loads train and valid rows only. Test labels are never read here, and calibration and
-test are not scored.
+Tuning and fitting load train and valid rows only. --score loads one split at a time, with
+its labels only to write y_true into the predictions file (eval.py's input); nothing is
+computed from them here. Test needs --allow-test. Every scoring point (hourly row) is scored,
+so either session aggregation can be computed later. A predictions file that already exists
+must be reproduced exactly; it is never overwritten.
 """
 import datetime
 import json
@@ -67,6 +73,64 @@ def load(con, names):
         frame[column] = pd.Categorical(frame[column], categories=values)
     parts = {s: frame[frame["split"] == s].reset_index(drop=True) for s in SPLITS_USED}
     return parts, categories
+
+
+def load_split(con, names, split, categories):
+    """One split's rows, sorted by row_id, with the training categorical encoding."""
+    columns = ", ".join(f'f."{n}"' for n in names)
+    frame = con.execute(f"""
+        SELECT f.row_id, f."user", l.y, {columns}
+        FROM '{P}/features.parquet' f
+        JOIN '{P}/splits.parquet' x USING (row_id)
+        JOIN '{P}/labels.parquet' l USING (row_id)
+        WHERE x.split = '{split}'
+        ORDER BY f.row_id
+    """).df()
+    for column, values in categories.items():
+        unseen = sorted(set(frame[column]) - set(values))
+        if unseen:
+            raise RuntimeError(f"{split}: {column} values not seen in training: {unseen}")
+        frame[column] = pd.Categorical(frame[column], categories=values)
+    return frame
+
+
+def write_or_match(frame, path):
+    """Write predictions, or check that an existing file holds exactly the same."""
+    if path.exists():
+        existing = pd.read_parquet(path)
+        if not existing.equals(frame):
+            diff = (existing["score"] - frame["score"]).abs().max() if len(existing) == len(frame) else "n/a"
+            raise RuntimeError(f"{path} exists and differs from the new predictions "
+                               f"(max |score diff| {diff}); not overwritten")
+        return "identical to the existing file (kept)"
+    frame.to_parquet(path, index=False)
+    return "written"
+
+
+def score_saved(splits, allow_test=False):
+    """Predictions of the saved seed models on the given splits (Comparison 1)."""
+    if "test" in splits and not allow_test:
+        raise SystemExit("scoring the test split needs --allow-test")
+    checksum = verify_test_checksum()
+    print(f"test_ids.csv SHA-256 {checksum}")
+    best = yaml.safe_load(BEST_CONFIG.read_text())
+    names = [f["name"] for f in yaml.safe_load(FEATURES_CONFIG.read_text())["features"]]
+    categories = {c: list(v) for c, v in best["categories"].items()}
+    con = duckdb.connect(config={"threads": 1})
+    for split in splits:
+        frame = load_split(con, names, split, categories)
+        for seed in best["seeds"]:
+            folder = RESULTS / f"{best['run_prefix']}_s{seed}"
+            model = xgb.XGBClassifier()
+            model.load_model(folder / "model.json")
+            X = frame[names]
+            preds = pd.DataFrame({"row_id": frame["row_id"], "user": frame["user"],
+                                  "y_true": frame["y"].to_numpy(),
+                                  "score": model.predict_proba(X)[:, 1],
+                                  "margin": model.predict(X, output_margin=True)})
+            status = write_or_match(preds, folder / f"preds_{split}.parquet")
+            print(f"{split} seed {seed}: {len(preds):,} rows, best iteration "
+                  f"{model.best_iteration}; {folder / f'preds_{split}.parquet'} {status}")
 
 
 def classifier(params, seed, scale_pos_weight, callbacks=None):

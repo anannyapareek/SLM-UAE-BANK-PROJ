@@ -36,6 +36,11 @@ def main():
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--tune", action="store_true", help="xgb: run the Optuna search")
     mode.add_argument("--fit", action="store_true", help="xgb: fit seeds from xgb_best.yaml (default)")
+    mode.add_argument("--score", action="store_true",
+                      help="xgb, rules: predictions only on --splits (saved xgb seed models)")
+    parser.add_argument("--splits", nargs="+", choices=["valid", "calib", "test"],
+                        help="--score: the splits to score")
+    parser.add_argument("--allow-test", action="store_true", help="--score: permit the test split")
     parser.add_argument("--overwrite-config", action="store_true",
                         help="xgb --tune: also replace configs/xgb_best.yaml")
     parser.add_argument("--dry-run", action="store_true", help="all: list the steps only")
@@ -52,6 +57,12 @@ def main():
         parser.error("--tune, --fit and --overwrite-config only apply to xgb")
     if args.overwrite_config and not args.tune:
         parser.error("--overwrite-config needs --tune")
+    if args.score and args.stage not in ("xgb", "rules"):
+        parser.error("--score only applies to xgb and rules")
+    if args.score and not args.splits:
+        parser.error("--score needs --splits")
+    if (args.splits or args.allow_test) and not args.score:
+        parser.error("--splits and --allow-test need --score")
     if args.dry_run and args.stage != "all":
         parser.error("--dry-run only applies to all")
 
@@ -72,9 +83,15 @@ def main():
     elif args.stage == "splits":
         from src import splits
         splits.run(force=args.force_i_know)
+    elif args.stage == "xgb" and args.score:
+        from src.baselines import xgb
+        xgb.score_saved(args.splits, allow_test=args.allow_test)
     elif args.stage == "xgb":
         from src.baselines import xgb
         xgb.run(tune=args.tune, overwrite_config=args.overwrite_config)
+    elif args.stage == "rules" and args.score:
+        from src.baselines import rules
+        rules.score_splits(args.splits, allow_test=args.allow_test)
     else:
         importlib.import_module(MODULES.get(args.stage, f"src.{args.stage}")).run()
 

@@ -1,8 +1,14 @@
-"""Hand-written rules baseline, scored on validation only.
+"""Hand-written rules baseline.
 
 The rules are deterministic, so there is one run and no tuning. Rules live in
 configs/rules.yaml and use only features from configs/features.yaml.
-Run with: python run.py rules
+Run with: python run.py rules          validation predictions, metrics and methods text
+          python run.py rules --score --splits valid calib test --allow-test
+                                       predictions only, on these splits (Comparison 1)
+
+The tie-break rank is computed within each split. --score reads each split's labels only
+to write y_true into the predictions file; nothing is computed from them. Every scoring
+point is scored. A predictions file that already exists must be reproduced exactly.
 """
 import json
 import operator
@@ -84,8 +90,20 @@ def per_rule_table(rules, per_rule, scenarios):
     return lines
 
 
-def run():
-    verify_test_checksum()
+def rule_scores(frame, rules, tie_break):
+    """Which rules fire on each row, the score and the fired-rule names. No labels."""
+    fired = {r["id"]: np.logical_and.reduce([holds(c, frame) for c in r["conditions"]])
+             for r in rules}
+    # Planned tie-break, uses no labels: rank of total session events so far in this split.
+    events = frame[tie_break["features"]].sum(axis=1)
+    score = (sum(r["weight"] * fired[r["id"]] for r in rules).astype(float)
+             + tie_break["weight"] * events.rank(pct=True, method="average").to_numpy())
+    names = np.array([",".join(r["id"] for r in rules if fired[r["id"]][i])
+                      for i in range(len(frame))])
+    return fired, score, names
+
+
+def setup():
     config = yaml.safe_load(RULES_CONFIG.read_text())
     rules, tie_break = config["rules"], config["tie_break"]
     known = {f["name"] for f in yaml.safe_load(FEATURES_CONFIG.read_text())["features"]}
@@ -94,6 +112,45 @@ def run():
     missing = sorted(set(needed) - known)
     if missing:
         raise RuntimeError(f"rules use features not in features.yaml: {missing}")
+    return rules, tie_break, needed
+
+
+def score_splits(splits, allow_test=False):
+    """Predictions only, on the given splits (Comparison 1)."""
+    if "test" in splits and not allow_test:
+        raise SystemExit("scoring the test split needs --allow-test")
+    print(f"test_ids.csv SHA-256 {verify_test_checksum()}")
+    rules, tie_break, needed = setup()
+    con = duckdb.connect(config={"threads": 1})
+    columns = ", ".join(f'f."{n}"' for n in needed)
+    OUT.mkdir(parents=True, exist_ok=True)
+    for split in splits:
+        frame = con.execute(f"""
+            SELECT f.row_id, f."user", l.y, {columns}
+            FROM '{P}/features.parquet' f
+            JOIN '{P}/splits.parquet' x USING (row_id)
+            JOIN '{P}/labels.parquet' l USING (row_id)
+            WHERE x.split = '{split}' ORDER BY f.row_id
+        """).df()
+        _, score, names = rule_scores(frame, rules, tie_break)
+        preds = pd.DataFrame({"row_id": frame["row_id"], "user": frame["user"],
+                              "y_true": frame["y"].to_numpy(), "score": score,
+                              "rules_fired": names})
+        path = OUT / f"preds_{split}.parquet"
+        if path.exists():
+            if not pd.read_parquet(path).equals(preds):
+                raise RuntimeError(f"{path} exists and differs from the new predictions; "
+                                   "not overwritten")
+            status = "identical to the existing file (kept)"
+        else:
+            preds.to_parquet(path, index=False)
+            status = "written"
+        print(f"{split}: {len(preds):,} rows; {path} {status}")
+
+
+def run():
+    verify_test_checksum()
+    rules, tie_break, needed = setup()
 
     con = duckdb.connect(config={"threads": 1})
     columns = ", ".join(f'f."{n}"' for n in needed)
@@ -105,14 +162,7 @@ def run():
         WHERE x.split = '{SPLIT}' ORDER BY f.row_id
     """).df()
 
-    fired = {r["id"]: np.logical_and.reduce([holds(c, frame) for c in r["conditions"]])
-             for r in rules}
-    # Planned tie-break, uses no labels: rank of total session events so far in this split.
-    events = frame[tie_break["features"]].sum(axis=1)
-    score = (sum(r["weight"] * fired[r["id"]] for r in rules).astype(float)
-             + tie_break["weight"] * events.rank(pct=True, method="average").to_numpy())
-    names = np.array([",".join(r["id"] for r in rules if fired[r["id"]][i])
-                      for i in range(len(frame))])
+    fired, score, names = rule_scores(frame, rules, tie_break)
     y = frame["y"].to_numpy()
     scenario = frame["scenario"].to_numpy()
     scenarios = sorted(int(x) for x in pd.unique(scenario[y == 1]))
