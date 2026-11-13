@@ -1,4 +1,6 @@
 """Evaluation metrics: weighting, agreement with sklearn, edge cases, CLI guard."""
+import json
+
 import numpy as np
 import pandas as pd
 import pytest
@@ -208,3 +210,64 @@ def test_paired_follows_session_agg(tmp_path):
             assert out["session"]["pr_auc"][model] == pytest.approx(direct["pr_auc"])
         results[agg] = out["session"]["pr_auc"]["a"]
     assert results["max"] != results["final"]
+
+
+@pytest.fixture
+def tiny_split(tmp_path, monkeypatch):
+    """A small processed folder: 12 users x 2 sessions x 3 hourly rows, last row final."""
+    rng = np.random.default_rng(11)
+    rows = []
+    for u in range(12):
+        for k in range(2):
+            session = u * 10 + k
+            positive = (u % 3 == 0) and k == 1
+            for h in range(3):
+                rows.append({"row_id": f"r{session}_{h}", "session_id": session, "user": f"u{u}",
+                             "heldout_user": False, "split": "valid",
+                             "score_time": pd.Timestamp("2010-09-01") + pd.Timedelta(days=k, hours=h),
+                             "scenario": 1.0 if positive else np.nan,
+                             "y": int(positive and h >= 1), "is_final": h == 2})
+    frame = pd.DataFrame(rows)
+    frame[["row_id", "session_id", "user", "heldout_user", "split"]].to_parquet(tmp_path / "splits.parquet")
+    frame[["row_id", "score_time", "scenario", "y"]].to_parquet(tmp_path / "labels.parquet")
+    frame[["row_id", "is_final"]].to_parquet(tmp_path / "features.parquet")
+    monkeypatch.setattr(ev, "P", tmp_path)
+    monkeypatch.setattr(ev, "verify_test_checksum", lambda: "frozen-hash")
+    preds = frame.assign(y_true=frame["y"], score=rng.random(len(frame)) + 0.5 * frame["y"])
+    full, final = tmp_path / "preds_valid.parquet", tmp_path / "preds_valid_final.parquet"
+    preds[["row_id", "y_true", "score"]].to_parquet(full)
+    preds.loc[preds["is_final"], ["row_id", "y_true", "score"]].to_parquet(final)
+    return tmp_path, full, final
+
+
+def test_rows_final_accepts_logoff_only_preds(tiny_split):
+    tmp, _, final = tiny_split
+    args = ["single", "--name", "m", "--split", "valid", "--preds", str(final), "--out",
+            str(tmp / "final.json")]
+    with pytest.raises(RuntimeError, match="rows do not match the split"):
+        ev.main(args + ["--rows", "all"])
+    out = ev.main(args + ["--rows", "final"])
+    saved = json.loads((tmp / "final.json").read_text())
+    assert saved["rows"] == "final" and saved["n_units"] == {"row": 24, "session": 24}
+    assert saved["session"]["counts"]["n_units"] == 24 and saved["row"]["counts"]["n_units"] == 24
+    assert saved["test_ids_sha256"] == "frozen-hash"
+    assert out["session"]["counts"]["n_pos"] == 4
+
+
+def test_rows_final_refuses_hourly_preds_and_default_is_unchanged(tiny_split):
+    tmp, full, _ = tiny_split
+    args = ["single", "--name", "m", "--split", "valid", "--preds", str(full), "--out",
+            str(tmp / "all.json")]
+    with pytest.raises(RuntimeError, match="rows do not match the split"):
+        ev.main(args + ["--rows", "final"])
+    ev.main(args)                                       # default: all rows
+    saved = json.loads((tmp / "all.json").read_text())
+    assert "rows" not in saved and "n_units" not in saved
+    assert saved["row"]["counts"]["n_units"] == 72
+
+
+def test_rows_final_in_paired(tiny_split):
+    tmp, _, final = tiny_split
+    out = ev.main(["paired", "--split", "valid", "--rows", "final", "--name-a", "a", "--a",
+                   str(final), "--name-b", "b", "--b", str(final), "--out", str(tmp / "p.json")])
+    assert out["rows"] == "final" and out["session"]["pr_auc"]["difference"] == 0.0

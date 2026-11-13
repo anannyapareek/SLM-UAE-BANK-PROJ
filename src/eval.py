@@ -12,6 +12,11 @@ than copied rows. --split test is refused unless --allow-test is passed.
 --session-agg sets the session score: max (default) = the maximum over all of the session's
 scoring points (hourly scoring); final = the score at its last scoring point only
 (logoff-only scoring). The session label is "any positive row" either way.
+
+--rows sets which scoring rows a preds file must cover: all (default) = every row of the
+split; final = only the split's final (logoff) rows, is_final in features.parquet, for
+models scored logoff-only (Comparison 2). The coverage check, units and metrics then use
+those rows; test_ids.csv is still verified in full.
 """
 import argparse
 import json
@@ -133,11 +138,19 @@ def core_metrics(s, w, cfg):
 
 # Units
 
-def load_meta(con, split):
+ROWS = ("all", "final")
+
+
+def load_meta(con, split, rows="all"):
+    """The split's scoring rows the predictions must cover: all, or final (logoff) rows only."""
+    if rows not in ROWS:
+        raise ValueError(f"rows {rows!r}: use one of {ROWS}")
+    final = (f"JOIN '{P}/features.parquet' f USING (row_id)" if rows == "final" else "")
+    where = " AND f.is_final" if rows == "final" else ""
     return con.execute(f"""
         SELECT x.row_id, x.session_id, x."user", x.heldout_user, l.score_time, l.scenario, l.y
-        FROM '{P}/splits.parquet' x JOIN '{P}/labels.parquet' l USING (row_id)
-        WHERE x.split = '{split}'
+        FROM '{P}/splits.parquet' x JOIN '{P}/labels.parquet' l USING (row_id) {final}
+        WHERE x.split = '{split}'{where}
     """).df()
 
 
@@ -379,6 +392,8 @@ def parse(argv):
         p.add_argument("--session-agg", choices=sorted(SESSION_AGG), default="max",
                        help="session score: max over scoring points (hourly, default) or "
                             "the final scoring point only (logoff-only)")
+        p.add_argument("--rows", choices=ROWS, default="all",
+                       help="rows the preds must cover: all (default) or final (logoff) rows only")
         if mode == "single":
             p.add_argument("--name", required=True)
             p.add_argument("--preds", required=True, nargs="+")
@@ -424,9 +439,12 @@ def main(argv):
     if args.session_agg != "max":            # recorded only when not the default
         cfg["session_agg"] = args.session_agg
     con = duckdb.connect(config={"threads": 1})
-    meta = load_meta(con, args.split)
+    meta = load_meta(con, args.split, args.rows)
     out = single(args, cfg, meta) if args.mode == "single" else paired(args, cfg, meta)
-    out["test_ids_sha256"] = checksum
+    out["test_ids_sha256"] = checksum        # always the full frozen test_ids.csv
+    if args.rows != "all":                   # recorded only when not the default
+        out["rows"] = args.rows
+        out["n_units"] = {"row": int(len(meta)), "session": int(meta["session_id"].nunique())}
     path = pathlib.Path(args.out)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(to_json(out), indent=2) + "\n")
