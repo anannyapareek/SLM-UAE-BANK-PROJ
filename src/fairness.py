@@ -7,6 +7,9 @@ attribute (the fairness proxies in configs/features.yaml: role, department, func
 FPR among negative sessions and recall among positive sessions, mean and std over seeds.
 Groups with fewer than --min-sessions sessions are not reported; recall is reported only for
 groups with at least --min-positives positive sessions.
+--rows final: for logoff-only predictions (Comparison 2). Only the split's final (logoff)
+rows are expected and used (is_final in features.parquet), and the thresholds must come from
+a validation eval run with --rows final. Default --rows all is unchanged.
 
 Run: python -m src.fairness --name slm_c1 --split test --allow-test \\
          --eval-json results/comparison1/eval/slm_valid_max.json --preds p_s1 p_s2 p_s3 \\
@@ -27,13 +30,14 @@ P = pathlib.Path("data/processed")
 FPR = "fpr_0.05"
 
 
-def session_frame(con, split, attributes):
+def session_frame(con, split, attributes, rows="all"):
     cols = ", ".join(f'any_value(f."{a}") AS "{a}"' for a in attributes)
+    final = " AND f.is_final" if rows == "final" else ""
     return con.execute(f"""
         SELECT f.session_id, {cols}, max(l.y) AS y
         FROM '{P}/features.parquet' f JOIN '{P}/splits.parquet' x USING (row_id)
         JOIN '{P}/labels.parquet' l USING (row_id)
-        WHERE x.split = '{split}' GROUP BY f.session_id""").df()
+        WHERE x.split = '{split}'{final} GROUP BY f.session_id""").df()
 
 
 def group_rates(sessions, alerts, attribute, min_sessions, min_positives):
@@ -57,6 +61,8 @@ def main(argv=None):
     p.add_argument("--preds", nargs="+", required=True, help="one preds file per seed, of --split")
     p.add_argument("--split", choices=["valid", "calib", "test"], default="valid")
     p.add_argument("--allow-test", action="store_true")
+    p.add_argument("--rows", choices=["all", "final"], default="all",
+                   help="final: logoff-only predictions (only the split's final rows)")
     p.add_argument("--min-sessions", type=int, default=200)
     p.add_argument("--min-positives", type=int, default=5)
     p.add_argument("--out", required=True)
@@ -67,15 +73,20 @@ def main(argv=None):
     ev = json.loads(pathlib.Path(args.eval_json).read_text())
     if ev["split"] != "valid" or ev.get("config", {}).get("session_agg", "max") != "max":
         raise SystemExit("--eval-json must be an hourly (session_agg max) validation evaluation")
+    if ev.get("rows", "all") != args.rows:
+        raise SystemExit(f"--eval-json was run with rows {ev.get('rows', 'all')}, this with {args.rows}")
     seeds = ev["session"]["per_seed"]
     if len(seeds) != len(args.preds):
         raise SystemExit(f"{len(args.preds)} preds files but {len(seeds)} seeds in the eval")
     attributes = yaml.safe_load(pathlib.Path("configs/features.yaml").read_text())["fairness"]["proxies"]
 
     con = duckdb.connect(config={"threads": 1})
-    sessions = session_frame(con, args.split, attributes).sort_values("session_id").reset_index(drop=True)
-    rows = con.execute(f"""SELECT x.row_id, x.session_id FROM '{P}/splits.parquet' x
-                           WHERE x.split = '{args.split}'""").df()
+    sessions = (session_frame(con, args.split, attributes, args.rows)
+                .sort_values("session_id").reset_index(drop=True))
+    final = (f"JOIN '{P}/features.parquet' f USING (row_id)" if args.rows == "final" else "")
+    rows = con.execute(f"""SELECT x.row_id, x.session_id FROM '{P}/splits.parquet' x {final}
+                           WHERE x.split = '{args.split}'
+                           {'AND f.is_final' if args.rows == 'final' else ''}""").df()
     per_seed = []
     for seed_eval, path in zip(seeds, args.preds):
         preds = pd.read_parquet(path, columns=["row_id", "score"]).merge(rows, on="row_id")

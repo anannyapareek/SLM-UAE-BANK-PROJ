@@ -4,12 +4,14 @@ Reads results/comparison2/*.json (no data, no labels) and writes:
   table2.md, table2.csv        SLM text, XGBoost text, rules
   text_gain.md, text_gain.csv  per model C1-final -> C2 change (paired) and the DiD
   run.csv                      one row per eval run
+  fairness.md                  from fairness_{slm_text,xgb_text}_test.csv (src/fairness.py)
 Run from the repo root: python scripts/comparison2_tables.py
 """
 import datetime
 import json
 import pathlib
 import subprocess
+import sys
 
 import pandas as pd
 
@@ -107,7 +109,8 @@ def run_log():
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True,
                             text=True).stdout.strip()
     rows = []
-    files = [f"{k}_test_final.json" for k in SINGLES] + [f"paired_{p}.json" for p in PAIRED] + ["text_gain_did.json"]
+    files = ([f"{k}_test_final.json" for k in SINGLES] + [f"paired_{p}.json" for p in PAIRED]
+             + ["text_gain_did.json", "slm_text_valid_final.json", "xgb_text_valid_final.json"])
     for name in files:
         d = load(name)
         mode = "did" if name.startswith("text_gain") else ("paired" if name.startswith("paired") else "single")
@@ -125,8 +128,19 @@ def run_log():
     pd.DataFrame(rows).to_csv(D / "run.csv", index=False)
 
 
+def fairness():
+    sys.path.insert(0, str(pathlib.Path(__file__).parent))
+    from comparison1_tables import fairness as report
+    report(D, models=[("slm_text", "SLM, text (Qwen2.5-1.5B LoRA)"), ("xgb_text", "XGBoost, text")],
+           title="# Fairness, Comparison 2 (text) on the test split (runbook 6.4)",
+           intro=("Logoff-only (one row per session, --rows final); alert at each seed's 5%-FPR "
+                  "threshold from the validation final-row eval. "),
+           csv="fairness_{key}_test.csv")
+
+
 if __name__ == "__main__":
     table2()
     text_gain()
     run_log()
+    fairness()
     print("wrote", ", ".join(sorted(p.name for p in D.glob("*.md")) + ["table2.csv", "text_gain.csv", "run.csv"]))

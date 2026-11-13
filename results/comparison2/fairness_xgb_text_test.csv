@@ -1,0 +1,66 @@
+model,split,attribute,group,sessions,negatives,positives,fpr_mean,fpr_std,recall_mean,recall_std
+xgb_text,test,role,Accountant,292,292,0,0.0000,0.0000,,
+xgb_text,test,role,AdministrativeAssistant,3207,3206,1,0.0020,0.0005,,
+xgb_text,test,role,AssemblySupervisor,596,596,0,0.0000,0.0000,,
+xgb_text,test,role,Attorney,330,330,0,0.0313,0.0070,,
+xgb_text,test,role,ChiefEngineer,727,727,0,0.0083,0.0060,,
+xgb_text,test,role,ComputerProgrammer,2136,2136,0,0.0757,0.0143,,
+xgb_text,test,role,ComputerScientist,2708,2682,26,0.0055,0.0021,0.5000,0.0385
+xgb_text,test,role,ComputerTrainer,230,230,0,0.0072,0.0066,,
+xgb_text,test,role,Director,1262,1262,0,0.0005,0.0005,,
+xgb_text,test,role,ElectricalEngineer,2590,2590,0,0.1106,0.0040,,
+xgb_text,test,role,Engineer,213,213,0,0.0000,0.0000,,
+xgb_text,test,role,FieldServiceEngineer,669,669,0,0.0055,0.0023,,
+xgb_text,test,role,HardwareEngineer,675,646,29,0.0330,0.0103,0.2644,0.0796
+xgb_text,test,role,HealthSafetyEngineer,322,322,0,0.0000,0.0000,,
+xgb_text,test,role,HumanResourceSpecialist,1192,1192,0,0.0025,0.0008,,
+xgb_text,test,role,ITAdmin,9651,9646,5,0.2431,0.0106,1.0000,0.0000
+xgb_text,test,role,IndustrialEngineer,596,596,0,0.1091,0.0191,,
+xgb_text,test,role,LabManager,570,570,0,0.0000,0.0000,,
+xgb_text,test,role,Manager,2491,2489,2,0.0832,0.0011,,
+xgb_text,test,role,MaterialsEngineer,582,582,0,0.0023,0.0040,,
+xgb_text,test,role,Mathematician,2462,2462,0,0.1060,0.0134,,
+xgb_text,test,role,MechanicalEngineer,2453,2453,0,0.0117,0.0017,,
+xgb_text,test,role,NursePractitioner,305,305,0,0.0011,0.0019,,
+xgb_text,test,role,Physicist,1784,1784,0,0.0125,0.0044,,
+xgb_text,test,role,ProductionLineWorker,15966,15932,34,0.0648,0.0036,1.0000,0.0000
+xgb_text,test,role,PurchasingClerk,481,481,0,0.0014,0.0012,,
+xgb_text,test,role,Salesman,13307,13274,33,0.0255,0.0035,0.6970,0.0802
+xgb_text,test,role,Scientist,3761,3761,0,0.0256,0.0078,,
+xgb_text,test,role,SecurityGuard,1558,1556,2,0.0216,0.0035,,
+xgb_text,test,role,SoftwareEngineer,3717,3693,24,0.0009,0.0007,0.7222,0.2512
+xgb_text,test,role,Statistician,372,372,0,0.0197,0.0138,,
+xgb_text,test,role,SystemsEngineer,1776,1748,28,0.0114,0.0015,0.6786,0.0357
+xgb_text,test,role,Technician,13619,13589,30,0.0510,0.0026,1.0000,0.0000
+xgb_text,test,role,TestEngineer,1644,1615,29,0.0194,0.0068,0.8391,0.0527
+xgb_text,test,role,VicePresident,627,627,0,0.0165,0.0056,,
+xgb_text,test,department,1 - Accounting,380,380,0,0.0009,0.0015,,
+xgb_text,test,department,1 - IndustrialEngineering,702,702,0,0.0926,0.0162,,
+xgb_text,test,department,1 - MarketAnalysis,280,279,1,0.0072,0.0072,,
+xgb_text,test,department,1 - Personnel,992,992,0,0.0030,0.0010,,
+xgb_text,test,department,1 - Purchasing,584,584,0,0.0023,0.0010,,
+xgb_text,test,department,1 - Research,8767,8767,0,0.0433,0.0074,,
+xgb_text,test,department,2 - EmployeeRelations,595,595,0,0.0006,0.0010,,
+xgb_text,test,department,2 - ManufacturingEngineering,952,952,0,0.0875,0.0082,,
+xgb_text,test,department,2 - Payroll,292,292,0,0.0000,0.0000,,
+xgb_text,test,department,2 - Pricing,381,381,0,0.0219,0.0084,,
+xgb_text,test,department,2 - Sales,14084,14051,33,0.0260,0.0036,0.6970,0.0802
+xgb_text,test,department,2 - SoftwareManagement,8868,8818,50,0.0276,0.0029,0.6067,0.1405
+xgb_text,test,department,3 - Assembly,16785,16751,34,0.0650,0.0041,1.0000,0.0000
+xgb_text,test,department,3 - Contracts,540,540,0,0.0278,0.0111,,
+xgb_text,test,department,3 - Engineering,11706,11620,86,0.0337,0.0015,0.5930,0.0116
+xgb_text,test,department,3 - FieldService,13904,13874,30,0.0447,0.0027,1.0000,0.0000
+xgb_text,test,department,3 - FinancialPlanning,489,489,0,0.0136,0.0031,,
+xgb_text,test,department,3 - Training,805,805,0,0.0112,0.0022,,
+xgb_text,test,department,4 - QualityControl,422,422,0,0.0000,0.0000,,
+xgb_text,test,department,4 - Safety,432,432,0,0.0000,0.0000,,
+xgb_text,test,department,5 - Medical,495,495,0,0.0007,0.0012,,
+xgb_text,test,department,6 - Security,11728,11719,9,0.2074,0.0083,0.6667,0.0000
+xgb_text,test,department,unknown,1387,1387,0,0.0075,0.0025,,
+xgb_text,test,functional_unit,1 - Adminstration,15237,15228,9,0.1611,0.0065,0.6667,0.0000
+xgb_text,test,functional_unit,2 - ResearchAndEngineering,29531,29395,136,0.0345,0.0016,0.5980,0.0478
+xgb_text,test,functional_unit,3 - Manufacturing,19075,19041,34,0.0649,0.0039,1.0000,0.0000
+xgb_text,test,functional_unit,4 - Finance,1357,1357,0,0.0052,0.0007,,
+xgb_text,test,functional_unit,5 - SalesAndMarketing,28459,28395,64,0.0348,0.0025,0.8438,0.0413
+xgb_text,test,functional_unit,6 - PurchasingAndContracts,1721,1721,0,0.0143,0.0048,,
+xgb_text,test,all,all,95570,95327,243,0.0600,0.0017,0.7215,0.0265

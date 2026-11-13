@@ -114,16 +114,23 @@ def extremes(g, column):
             set(g.loc[g[column] == g[column].max(), "group"]))
 
 
-def fairness():
-    md = ["# Fairness on the test split (runbook 6.4)", "",
-          "Session units, max aggregation; alert at each seed's validation 5%-FPR threshold. "
+FAIRNESS_INTRO = ("Session units, max aggregation; alert at each seed's validation 5%-FPR "
+                  "threshold. ")
+
+
+def fairness(directory=D, models=None, title="# Fairness on the test split (runbook 6.4)",
+             intro=FAIRNESS_INTRO, csv="fairness_{key}_test.csv"):
+    """Fairness report from src/fairness.py CSVs; also used for Comparison 2."""
+    models = models or MODELS[:2]
+    md = [title, "",
+          intro +
           "Mean ± std over 3 seeds. Groups: the pre-declared fairness proxies role, department "
           "and functional_unit (tenure was dropped on 2026-11-04 and is not available). Shown "
           "only for groups with >= 200 sessions; recall only where a group has >= 5 positive "
           "sessions. Flags: the lowest and highest FPR (and recall) in each attribute; "
           f"**small sample** marks such an extreme from a group with fewer than {SMALL} sessions.", ""]
-    for key, label in MODELS[:2]:
-        f = pd.read_csv(D / f"fairness_{key}_test.csv")
+    for key, label in models:
+        f = pd.read_csv(directory / csv.format(key=key))
         md += [f"## {label}", ""]
         for attribute in ["all", "role", "department", "functional_unit"]:
             g = f[f["attribute"] == attribute].sort_values("sessions", ascending=False)
@@ -155,7 +162,7 @@ def fairness():
                 md.append(f"| {r.group} | {r.sessions:,} | {r.positives} | "
                           f"{r.fpr_mean:.4f} ± {r.fpr_std:.4f} | {recall} | {', '.join(flags)} |")
             md.append("")
-    (D / "fairness.md").write_text("\n".join(md))
+    (directory / "fairness.md").write_text("\n".join(md))
 
 
 if __name__ == "__main__":
