@@ -55,3 +55,11 @@ def test_eval_split_is_passed_through(monkeypatch):
     monkeypatch.setattr(sys, "argv", ["run.py", "eval", *argv])
     run.main()
     assert seen["argv"] == argv          # every eval option reaches eval.py, incl. --allow-test
+
+
+def test_text_gain_did_arithmetic():
+    import numpy as np
+    from src.text_gain import did
+    r = {"slm_text": np.array([0.5, 0.3]), "slm_struct": np.array([0.2, 0.3]),
+         "xgb_text": np.array([0.4, 0.1]), "xgb_struct": np.array([0.4, 0.2])}
+    assert did(r).tolist() == pytest.approx([0.3, 0.1])     # (0.3 - 0.0), (0.0 - (-0.1))

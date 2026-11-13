@@ -1,0 +1,13 @@
+metric,comparison,text,structured_final,change,ci_low,ci_high,significant
+pr_auc,slm_text_vs_slm_struct,0.093273,0.105448,-0.012174,-0.112474,0.045320,False
+pr_auc,xgb_text_vs_xgb_struct,0.203446,0.264153,-0.060707,-0.152635,-0.007086,True
+pr_auc,difference_in_differences,-0.012174,-0.060707,0.048533,-0.059151,0.145414,False
+recall_at_fpr_0.01,slm_text_vs_slm_struct,0.349794,0.237311,0.112483,-0.023832,0.253641,False
+recall_at_fpr_0.01,xgb_text_vs_xgb_struct,0.345679,0.412894,-0.067215,-0.147733,0.013637,False
+recall_at_fpr_0.01,difference_in_differences,0.112483,-0.067215,0.179698,0.004024,0.355419,True
+recall_at_fpr_0.05,slm_text_vs_slm_struct,0.794239,0.478738,0.315501,0.113338,0.524587,True
+recall_at_fpr_0.05,xgb_text_vs_xgb_struct,0.670782,0.735254,-0.064472,-0.175368,0.038170,False
+recall_at_fpr_0.05,difference_in_differences,0.315501,-0.064472,0.379973,0.103584,0.661158,True
+precision_at_k,slm_text_vs_slm_struct,0.048336,0.026309,0.022026,0.005014,0.036738,True
+precision_at_k,xgb_text_vs_xgb_struct,0.039770,0.046378,-0.006608,-0.015902,0.000857,False
+precision_at_k,difference_in_differences,0.022026,-0.006608,0.028634,0.007339,0.049279,True

@@ -5,6 +5,13 @@ decisions_log.md.
 
 - **XGBoost search space:** max_depth is capped at 14 by design. The v3 best trial chose
   14, the bound, and the range was not widened further.
+- **XGBoost search space (struct v3 and text): as stored in the Optuna DBs; supersedes
+  Stage 4 guide ranges.** Both searches used the same space (checked 2026-11-13 from
+  `results/xgb_struct_v3_tuning/optuna.db` and `results/xgb_text_tuning/optuna.db`):
+  max_depth int [3, 14]; learning_rate [0.001, 0.3] log; min_child_weight int [1, 20];
+  subsample [0.5, 1]; colsample_bytree [0.5, 1]; gamma [0, 5]; reg_lambda [0.001, 10] log;
+  reg_alpha [0.001, 10] log. 50 trials, TPE seed 1, median pruning after 100 rounds,
+  early stopping 200, at most 2,000 trees, objective row-level validation PR-AUC.
 - **Model selection and reporting:** model selection for both XGBoost and the SLM uses
   row-level validation PR-AUC. Reported metrics are session-level (primary) and
   row-level (secondary).

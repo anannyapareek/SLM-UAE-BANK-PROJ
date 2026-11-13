@@ -1,0 +1,13 @@
+model,metric,mean,std,ci_low,ci_high,boot_skipped
+slm_text,pr_auc,0.093273,0.008809,0.037133,0.247361,0
+slm_text,recall_at_fpr_0.01,0.349794,0.041765,0.195265,0.555601,0
+slm_text,recall_at_fpr_0.05,0.794239,0.004115,0.670176,0.915662,0
+slm_text,precision_at_k,0.048336,0.001484,0.025220,0.072661,0
+xgb_text,pr_auc,0.203446,0.004561,0.030469,0.485615,0
+xgb_text,recall_at_fpr_0.01,0.345679,0.049894,0.119140,0.662629,0
+xgb_text,recall_at_fpr_0.05,0.670782,0.010888,0.486587,0.850310,0
+xgb_text,precision_at_k,0.039770,0.006036,0.016537,0.066866,0
+rules,pr_auc,0.007546,,0.002869,0.019761,0
+rules,recall_at_fpr_0.01,0.086420,,0.011905,0.179695,0
+rules,recall_at_fpr_0.05,0.172840,,0.035481,0.333502,0
+rules,precision_at_k,0.008443,,0.001835,0.018384,0
