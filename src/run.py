@@ -28,6 +28,12 @@ def run_all(dry_run):
 
 
 def main():
+    # eval has its own options (--split, --allow-test, --session-agg, ...): hand them to
+    # src/eval.py untouched, before run.py's own options can claim any of them.
+    if len(sys.argv) > 1 and sys.argv[1] == "eval":
+        from src import eval as evaluation
+        evaluation.main(sys.argv[2:])
+        return
     # allow_abbrev=False: "--split" (eval) must not be read as an abbreviation of "--splits"
     parser = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
     parser.add_argument("stage", choices=STAGES)

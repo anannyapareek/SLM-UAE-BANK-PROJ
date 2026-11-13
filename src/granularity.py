@@ -1,12 +1,13 @@
-"""Scoring granularity on validation: time to detection under hourly scoring.
+"""Scoring granularity: time to detection under hourly scoring.
 
-For each seed of a model's validation predictions, take the session-level threshold at
-5% FPR that src/eval.py saved for hourly scoring (session score = max over scoring points).
-For every positive validation session, find the first scoring point whose score reaches
-that threshold (score >= threshold, eval.py's rule), and compare it with the session start,
-the first malicious event and the logoff (final scoring point).
-
-Validation only: no other split can be passed.
+For each seed, take the session-level threshold at 5% FPR that src/eval.py saved for hourly
+scoring (session score = max over scoring points) on VALIDATION (--eval-json). Thresholds
+always come from validation, whatever split is scored. For every positive session of
+--split (default valid), find the first scoring point whose score reaches that threshold
+(score >= threshold, eval.py's rule), and compare it with the session start, the first
+malicious event and the logoff (final scoring point). Also reported: the share of negative
+sessions of --split whose max score reaches the threshold (the FPR the validation threshold
+gives there). --split test needs --allow-test (Comparison 1 onwards).
 
 Run: python -m src.granularity --name xgb_struct_v3 \\
          --eval-json results/granularity/xgb_struct_v3_hourly_valid.json \\
@@ -27,7 +28,7 @@ P = pathlib.Path("data/processed")
 FPR = "fpr_0.05"
 
 
-def positive_sessions(con):
+def positive_sessions(con, split):
     """Positive validation sessions: start, logoff (final scoring point), first malicious
     event time, first positive scoring point."""
     return con.execute(f"""
@@ -36,7 +37,7 @@ def positive_sessions(con):
             FROM '{P}/features.parquet' f
             JOIN '{P}/splits.parquet' x USING (row_id)
             JOIN '{P}/labels.parquet' l USING (row_id)
-            WHERE x.split = 'valid'),
+            WHERE x.split = '{split}'),
         pos AS (SELECT session_id FROM v GROUP BY 1 HAVING max(y) = 1),
         first_event AS (
             SELECT s.session_id, min(m.ts) AS first_event
@@ -97,10 +98,14 @@ def main(argv=None):
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--name", required=True)
     p.add_argument("--eval-json", required=True, help="eval.py single output, hourly, valid")
-    p.add_argument("--preds", nargs="+", required=True, help="one validation preds file per seed")
+    p.add_argument("--preds", nargs="+", required=True, help="one preds file per seed, of --split")
+    p.add_argument("--split", choices=["valid", "calib", "test"], default="valid")
+    p.add_argument("--allow-test", action="store_true")
     p.add_argument("--out", required=True)
     args = p.parse_args(argv)
     checksum = verify_test_checksum()
+    if args.split == "test" and not args.allow_test:
+        raise SystemExit("refusing to score test without --allow-test")
     ev = json.loads(pathlib.Path(args.eval_json).read_text())
     if ev["split"] != "valid" or ev.get("config", {}).get("session_agg", "max") != "max":
         raise SystemExit("--eval-json must be an hourly (session_agg max) validation evaluation")
@@ -109,24 +114,28 @@ def main(argv=None):
         raise SystemExit(f"{len(args.preds)} preds files but {len(seeds)} seeds in the eval")
 
     con = duckdb.connect(config={"threads": 1})
-    sessions = positive_sessions(con)
+    sessions = positive_sessions(con, args.split)
     if sessions["first_event"].isna().any():
         raise RuntimeError("a positive session has no malicious event inside it")
     sessions["hours_start_to_first_event"] = hours(sessions["first_event"] - sessions["start"])
     times = con.execute(f"""
         SELECT x.row_id, x.session_id, f.score_time FROM '{P}/splits.parquet' x
-        JOIN '{P}/features.parquet' f USING (row_id) WHERE x.split = 'valid'""").df()
+        JOIN '{P}/features.parquet' f USING (row_id) WHERE x.split = '{args.split}'""").df()
 
     results, pooled = [], []
     for seed_eval, path in zip(seeds, args.preds):
         preds = pd.read_parquet(path, columns=["row_id", "y_true", "score"]).merge(times, on="row_id")
         if len(preds) != len(times):
-            raise RuntimeError(f"{path}: rows do not match the validation split")
+            raise RuntimeError(f"{path}: rows do not match the {args.split} split")
         threshold = seed_eval["thresholds"][FPR]
         out, summary = per_seed(sessions, preds, threshold)
-        # The threshold must reproduce eval.py's recall at 5% FPR for this seed.
+        # FPR the validation threshold gives on this split (negative sessions, max score).
+        session_max = preds.groupby("session_id").agg(score=("score", "max"), y=("y_true", "max"))
+        negatives = session_max[session_max["y"] == 0]
+        summary["session_fpr_at_threshold"] = round(float((negatives["score"] >= threshold).mean()), 4)
+        # On validation the threshold must reproduce eval.py's recall at 5% FPR for this seed.
         summary["recall_at_fpr_0.05_eval"] = round(seed_eval["recall_at_fpr_0.05"], 4)
-        if abs(out["first_alert"].notna().mean() - seed_eval["recall_at_fpr_0.05"]) > 1e-9:
+        if args.split == "valid" and abs(out["first_alert"].notna().mean() - seed_eval["recall_at_fpr_0.05"]) > 1e-9:
             raise RuntimeError(f"{path}: detection rate {summary['detection_rate']} differs from "
                                f"eval.py recall {seed_eval['recall_at_fpr_0.05']}")
         summary["preds"] = path
@@ -136,7 +145,8 @@ def main(argv=None):
     allo = pd.concat(pooled)
     det = allo[allo["first_alert"].notna()]
     report = {
-        "name": args.name, "split": "valid", "fpr_level": 0.05, "test_ids_sha256": checksum,
+        "name": args.name, "split": args.split, "thresholds_from": "valid", "fpr_level": 0.05,
+        "test_ids_sha256": checksum,
         "rule": "alert at the first scoring point with score >= the seed's session-level "
                 "threshold at 5% FPR (hourly, from eval.py); compared with the session start, "
                 "the first malicious event and the logoff (final scoring point)",

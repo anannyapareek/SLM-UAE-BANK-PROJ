@@ -1,0 +1,66 @@
+model,split,attribute,group,sessions,negatives,positives,fpr_mean,fpr_std,recall_mean,recall_std
+xgb_struct_v3,test,role,Accountant,292,292,0,0.0000,0.0000,,
+xgb_struct_v3,test,role,AdministrativeAssistant,3207,3206,1,0.0001,0.0002,,
+xgb_struct_v3,test,role,AssemblySupervisor,596,596,0,0.0028,0.0010,,
+xgb_struct_v3,test,role,Attorney,330,330,0,0.0010,0.0017,,
+xgb_struct_v3,test,role,ChiefEngineer,727,727,0,0.0005,0.0008,,
+xgb_struct_v3,test,role,ComputerProgrammer,2136,2136,0,0.1261,0.0019,,
+xgb_struct_v3,test,role,ComputerScientist,2708,2682,26,0.0092,0.0008,0.8333,0.0222
+xgb_struct_v3,test,role,ComputerTrainer,230,230,0,0.0000,0.0000,,
+xgb_struct_v3,test,role,Director,1262,1262,0,0.0013,0.0005,,
+xgb_struct_v3,test,role,ElectricalEngineer,2590,2590,0,0.0936,0.0016,,
+xgb_struct_v3,test,role,Engineer,213,213,0,0.0000,0.0000,,
+xgb_struct_v3,test,role,FieldServiceEngineer,669,669,0,0.0015,0.0015,,
+xgb_struct_v3,test,role,HardwareEngineer,675,646,29,0.0093,0.0056,0.0345,0.0345
+xgb_struct_v3,test,role,HealthSafetyEngineer,322,322,0,0.0000,0.0000,,
+xgb_struct_v3,test,role,HumanResourceSpecialist,1192,1192,0,0.0000,0.0000,,
+xgb_struct_v3,test,role,ITAdmin,9651,9646,5,0.1330,0.0142,1.0000,0.0000
+xgb_struct_v3,test,role,IndustrialEngineer,596,596,0,0.1488,0.0079,,
+xgb_struct_v3,test,role,LabManager,570,570,0,0.0000,0.0000,,
+xgb_struct_v3,test,role,Manager,2491,2489,2,0.0992,0.0022,,
+xgb_struct_v3,test,role,MaterialsEngineer,582,582,0,0.0006,0.0010,,
+xgb_struct_v3,test,role,Mathematician,2462,2462,0,0.1118,0.0022,,
+xgb_struct_v3,test,role,MechanicalEngineer,2453,2453,0,0.0035,0.0012,,
+xgb_struct_v3,test,role,NursePractitioner,305,305,0,0.0000,0.0000,,
+xgb_struct_v3,test,role,Physicist,1784,1784,0,0.0062,0.0015,,
+xgb_struct_v3,test,role,ProductionLineWorker,15966,15932,34,0.0684,0.0022,0.9706,0.0000
+xgb_struct_v3,test,role,PurchasingClerk,481,481,0,0.0007,0.0012,,
+xgb_struct_v3,test,role,Salesman,13307,13274,33,0.0480,0.0026,0.4343,0.0463
+xgb_struct_v3,test,role,Scientist,3761,3761,0,0.0195,0.0047,,
+xgb_struct_v3,test,role,SecurityGuard,1558,1556,2,0.0062,0.0021,,
+xgb_struct_v3,test,role,SoftwareEngineer,3717,3693,24,0.0029,0.0018,0.5694,0.0636
+xgb_struct_v3,test,role,Statistician,372,372,0,0.0000,0.0000,,
+xgb_struct_v3,test,role,SystemsEngineer,1776,1748,28,0.0008,0.0009,0.2857,0.0619
+xgb_struct_v3,test,role,Technician,13619,13589,30,0.0736,0.0010,1.0000,0.0000
+xgb_struct_v3,test,role,TestEngineer,1644,1615,29,0.0275,0.0029,0.9425,0.0199
+xgb_struct_v3,test,role,VicePresident,627,627,0,0.0011,0.0018,,
+xgb_struct_v3,test,department,1 - Accounting,380,380,0,0.0000,0.0000,,
+xgb_struct_v3,test,department,1 - IndustrialEngineering,702,702,0,0.1263,0.0067,,
+xgb_struct_v3,test,department,1 - MarketAnalysis,280,279,1,0.0000,0.0000,,
+xgb_struct_v3,test,department,1 - Personnel,992,992,0,0.0000,0.0000,,
+xgb_struct_v3,test,department,1 - Purchasing,584,584,0,0.0017,0.0000,,
+xgb_struct_v3,test,department,1 - Research,8767,8767,0,0.0410,0.0018,,
+xgb_struct_v3,test,department,2 - EmployeeRelations,595,595,0,0.0000,0.0000,,
+xgb_struct_v3,test,department,2 - ManufacturingEngineering,952,952,0,0.1001,0.0034,,
+xgb_struct_v3,test,department,2 - Payroll,292,292,0,0.0000,0.0000,,
+xgb_struct_v3,test,department,2 - Pricing,381,381,0,0.0026,0.0045,,
+xgb_struct_v3,test,department,2 - Sales,14084,14051,33,0.0477,0.0025,0.4343,0.0463
+xgb_struct_v3,test,department,2 - SoftwareManagement,8868,8818,50,0.0442,0.0002,0.7067,0.0416
+xgb_struct_v3,test,department,3 - Assembly,16785,16751,34,0.0692,0.0019,0.9706,0.0000
+xgb_struct_v3,test,department,3 - Contracts,540,540,0,0.0006,0.0011,,
+xgb_struct_v3,test,department,3 - Engineering,11706,11620,86,0.0218,0.0021,0.4225,0.0269
+xgb_struct_v3,test,department,3 - FieldService,13904,13874,30,0.0692,0.0010,1.0000,0.0000
+xgb_struct_v3,test,department,3 - FinancialPlanning,489,489,0,0.0041,0.0020,,
+xgb_struct_v3,test,department,3 - Training,805,805,0,0.0000,0.0000,,
+xgb_struct_v3,test,department,4 - QualityControl,422,422,0,0.0000,0.0000,,
+xgb_struct_v3,test,department,4 - Safety,432,432,0,0.0000,0.0000,,
+xgb_struct_v3,test,department,5 - Medical,495,495,0,0.0000,0.0000,,
+xgb_struct_v3,test,department,6 - Security,11728,11719,9,0.1150,0.0115,0.7037,0.0642
+xgb_struct_v3,test,department,unknown,1387,1387,0,0.0005,0.0008,,
+xgb_struct_v3,test,functional_unit,1 - Adminstration,15237,15228,9,0.0886,0.0088,0.7037,0.0642
+xgb_struct_v3,test,functional_unit,2 - ResearchAndEngineering,29531,29395,136,0.0341,0.0014,0.5270,0.0258
+xgb_struct_v3,test,functional_unit,3 - Manufacturing,19075,19041,34,0.0706,0.0018,0.9706,0.0000
+xgb_struct_v3,test,functional_unit,4 - Finance,1357,1357,0,0.0015,0.0007,,
+xgb_struct_v3,test,functional_unit,5 - SalesAndMarketing,28459,28395,64,0.0574,0.0017,0.6927,0.0239
+xgb_struct_v3,test,functional_unit,6 - PurchasingAndContracts,1721,1721,0,0.0014,0.0009,,
+xgb_struct_v3,test,all,all,95570,95327,243,0.0559,0.0017,0.6392,0.0063

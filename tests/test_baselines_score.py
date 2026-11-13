@@ -50,8 +50,8 @@ def test_eval_split_is_passed_through(monkeypatch):
     from src import eval as evaluation
     seen = {}
     monkeypatch.setattr(evaluation, "main", lambda argv: seen.setdefault("argv", argv))
-    monkeypatch.setattr(sys, "argv", ["run.py", "eval", "single", "--name", "m", "--split", "valid",
-                                      "--preds", "p.parquet", "--out", "o.json"])
+    argv = ["single", "--name", "m", "--split", "test", "--allow-test", "--session-agg", "final",
+            "--preds", "p.parquet", "--out", "o.json"]
+    monkeypatch.setattr(sys, "argv", ["run.py", "eval", *argv])
     run.main()
-    assert seen["argv"] == ["single", "--name", "m", "--split", "valid", "--preds", "p.parquet",
-                            "--out", "o.json"]
+    assert seen["argv"] == argv          # every eval option reaches eval.py, incl. --allow-test

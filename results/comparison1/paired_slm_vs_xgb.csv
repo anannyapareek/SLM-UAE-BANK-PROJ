@@ -1,0 +1,13 @@
+unit,session_agg,metric,slm,xgb,difference,ci_low,ci_high,significant
+session,max,pr_auc,0.081547,0.183478,-0.101931,-0.213509,-0.006726,True
+session,max,recall_at_fpr_0.01,0.215364,0.275720,-0.060357,-0.139665,-0.013886,True
+session,max,recall_at_fpr_0.05,0.396433,0.602195,-0.205761,-0.467877,0.026820,False
+session,max,precision_at_k,0.021782,0.030225,-0.008443,-0.016517,-0.002081,True
+session,final,pr_auc,0.105448,0.264153,-0.158706,-0.310809,-0.030952,True
+session,final,recall_at_fpr_0.01,0.237311,0.412894,-0.175583,-0.331667,-0.064137,True
+session,final,recall_at_fpr_0.05,0.478738,0.735254,-0.256516,-0.519713,-0.016129,True
+session,final,precision_at_k,0.026309,0.046378,-0.020069,-0.038060,-0.004769,True
+row,n/a,pr_auc,0.090833,0.171760,-0.080927,-0.159086,-0.001433,True
+row,n/a,recall_at_fpr_0.01,0.241125,0.306747,-0.065622,-0.131983,-0.021485,True
+row,n/a,recall_at_fpr_0.05,0.465191,0.624866,-0.159674,-0.381256,0.042088,False
+row,n/a,precision_at_k,0.111559,0.155377,-0.043818,-0.078535,-0.005502,True

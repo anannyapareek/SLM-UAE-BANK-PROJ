@@ -1,0 +1,66 @@
+model,split,attribute,group,sessions,negatives,positives,fpr_mean,fpr_std,recall_mean,recall_std
+slm_c1,test,role,Accountant,292,292,0,0.0000,0.0000,,
+slm_c1,test,role,AdministrativeAssistant,3207,3206,1,0.0045,0.0042,,
+slm_c1,test,role,AssemblySupervisor,596,596,0,0.0280,0.0010,,
+slm_c1,test,role,Attorney,330,330,0,0.0697,0.0259,,
+slm_c1,test,role,ChiefEngineer,727,727,0,0.0000,0.0000,,
+slm_c1,test,role,ComputerProgrammer,2136,2136,0,0.1573,0.0089,,
+slm_c1,test,role,ComputerScientist,2708,2682,26,0.0111,0.0192,0.2051,0.3553
+slm_c1,test,role,ComputerTrainer,230,230,0,0.0594,0.0955,,
+slm_c1,test,role,Director,1262,1262,0,0.0127,0.0114,,
+slm_c1,test,role,ElectricalEngineer,2590,2590,0,0.1254,0.0076,,
+slm_c1,test,role,Engineer,213,213,0,0.0000,0.0000,,
+slm_c1,test,role,FieldServiceEngineer,669,669,0,0.0309,0.0199,,
+slm_c1,test,role,HardwareEngineer,675,646,29,0.0330,0.0572,0.1609,0.2787
+slm_c1,test,role,HealthSafetyEngineer,322,322,0,0.0000,0.0000,,
+slm_c1,test,role,HumanResourceSpecialist,1192,1192,0,0.0006,0.0010,,
+slm_c1,test,role,ITAdmin,9651,9646,5,0.0923,0.0055,0.4000,0.0000
+slm_c1,test,role,IndustrialEngineer,596,596,0,0.1980,0.0501,,
+slm_c1,test,role,LabManager,570,570,0,0.0000,0.0000,,
+slm_c1,test,role,Manager,2491,2489,2,0.0524,0.0103,,
+slm_c1,test,role,MaterialsEngineer,582,582,0,0.0172,0.0241,,
+slm_c1,test,role,Mathematician,2462,2462,0,0.1010,0.0121,,
+slm_c1,test,role,MechanicalEngineer,2453,2453,0,0.0276,0.0264,,
+slm_c1,test,role,NursePractitioner,305,305,0,0.0000,0.0000,,
+slm_c1,test,role,Physicist,1784,1784,0,0.0817,0.0122,,
+slm_c1,test,role,ProductionLineWorker,15966,15932,34,0.0603,0.0018,0.9118,0.0509
+slm_c1,test,role,PurchasingClerk,481,481,0,0.0922,0.0428,,
+slm_c1,test,role,Salesman,13307,13274,33,0.0508,0.0157,0.7778,0.0350
+slm_c1,test,role,Scientist,3761,3761,0,0.0176,0.0105,,
+slm_c1,test,role,SecurityGuard,1558,1556,2,0.0163,0.0127,,
+slm_c1,test,role,SoftwareEngineer,3717,3693,24,0.0000,0.0000,0.0000,0.0000
+slm_c1,test,role,Statistician,372,372,0,0.0896,0.0056,,
+slm_c1,test,role,SystemsEngineer,1776,1748,28,0.0019,0.0033,0.1429,0.2474
+slm_c1,test,role,Technician,13619,13589,30,0.0691,0.0018,0.9333,0.0333
+slm_c1,test,role,TestEngineer,1644,1615,29,0.0023,0.0029,0.0345,0.0597
+slm_c1,test,role,VicePresident,627,627,0,0.0048,0.0058,,
+slm_c1,test,department,1 - Accounting,380,380,0,0.0000,0.0000,,
+slm_c1,test,department,1 - IndustrialEngineering,702,702,0,0.1681,0.0425,,
+slm_c1,test,department,1 - MarketAnalysis,280,279,1,0.0084,0.0075,,
+slm_c1,test,department,1 - Personnel,992,992,0,0.0017,0.0029,,
+slm_c1,test,department,1 - Purchasing,584,584,0,0.0759,0.0353,,
+slm_c1,test,department,1 - Research,8767,8767,0,0.0525,0.0021,,
+slm_c1,test,department,2 - EmployeeRelations,595,595,0,0.0095,0.0093,,
+slm_c1,test,department,2 - ManufacturingEngineering,952,952,0,0.1019,0.0000,,
+slm_c1,test,department,2 - Payroll,292,292,0,0.0000,0.0000,,
+slm_c1,test,department,2 - Pricing,381,381,0,0.0875,0.0055,,
+slm_c1,test,department,2 - Sales,14084,14051,33,0.0511,0.0136,0.7778,0.0350
+slm_c1,test,department,2 - SoftwareManagement,8868,8818,50,0.0407,0.0034,0.1067,0.1848
+slm_c1,test,department,3 - Assembly,16785,16751,34,0.0626,0.0018,0.9118,0.0509
+slm_c1,test,department,3 - Contracts,540,540,0,0.0494,0.0204,,
+slm_c1,test,department,3 - Engineering,11706,11620,86,0.0351,0.0106,0.1124,0.1947
+slm_c1,test,department,3 - FieldService,13904,13874,30,0.0661,0.0024,0.9333,0.0333
+slm_c1,test,department,3 - FinancialPlanning,489,489,0,0.0368,0.0106,,
+slm_c1,test,department,3 - Training,805,805,0,0.0327,0.0253,,
+slm_c1,test,department,4 - QualityControl,422,422,0,0.0000,0.0000,,
+slm_c1,test,department,4 - Safety,432,432,0,0.0000,0.0000,,
+slm_c1,test,department,5 - Medical,495,495,0,0.0000,0.0000,,
+slm_c1,test,department,6 - Security,11728,11719,9,0.0786,0.0047,0.2222,0.0000
+slm_c1,test,department,unknown,1387,1387,0,0.0022,0.0026,,
+slm_c1,test,functional_unit,1 - Adminstration,15237,15228,9,0.0629,0.0053,0.2222,0.0000
+slm_c1,test,functional_unit,2 - ResearchAndEngineering,29531,29395,136,0.0417,0.0050,0.1103,0.1910
+slm_c1,test,functional_unit,3 - Manufacturing,19075,19041,34,0.0663,0.0014,0.9118,0.0509
+slm_c1,test,functional_unit,4 - Finance,1357,1357,0,0.0133,0.0038,,
+slm_c1,test,functional_unit,5 - SalesAndMarketing,28459,28395,64,0.0577,0.0058,0.8385,0.0239
+slm_c1,test,functional_unit,6 - PurchasingAndContracts,1721,1721,0,0.0606,0.0092,,
+slm_c1,test,all,all,95570,95327,243,0.0546,0.0005,0.4184,0.1012
