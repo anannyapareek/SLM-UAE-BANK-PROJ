@@ -1,0 +1,22 @@
+{
+  "run_id": "xgb_struct_sessionfit_platt",
+  "model": "xgb_struct",
+  "comparison": "C1",
+  "fit_unit": "session",
+  "method": "platt",
+  "seed": 3,
+  "fit_split": "calib",
+  "fit_units_n": 35249,
+  "fit_positives": 102,
+  "params": {
+    "a": 0.4848474747121767,
+    "b": -2.0452009427029347,
+    "nll": 0.010562910650178678,
+    "converged": true
+  },
+  "source": "results/xgb_struct_v3_s3",
+  "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
+  "fit_seconds": 0.32,
+  "date": "2026-11-14T11:16:03",
+  "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+}

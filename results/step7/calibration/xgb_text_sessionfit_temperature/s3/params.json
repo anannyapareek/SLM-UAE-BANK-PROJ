@@ -1,0 +1,22 @@
+{
+  "run_id": "xgb_text_sessionfit_temperature",
+  "model": "xgb_text",
+  "comparison": "C2",
+  "fit_unit": "session",
+  "method": "temperature",
+  "seed": 3,
+  "fit_split": "calib",
+  "fit_units_n": 35249,
+  "fit_positives": 102,
+  "params": {
+    "T": 1.7303306455922003,
+    "nll": 0.012236471294387666,
+    "converged": true,
+    "at_bound": false
+  },
+  "source": "results/xgb_text_s3",
+  "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
+  "fit_seconds": 0.06,
+  "date": "2026-11-14T11:16:08",
+  "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+}

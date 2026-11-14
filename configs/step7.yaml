@@ -1,0 +1,28 @@
+# Step 7 (runbook 7.x; decisions log 2026-11-14). Everything here is fitted on validation or
+# calibration only, never on test.
+calibration:
+  fit_split: calib
+  temperature_bounds: [0.05, 20]     # runbook 7.1: minimize_scalar, method "bounded"
+  methods: [temperature, platt]      # temperature = primary; platt = sensitivity row
+  out: results/step7/calibration
+  models:
+    # fit_units: session = fit on each calib session's max margin (C1 primary);
+    #            row = fit on calib rows (secondary view; the hybrid's scale).
+    # C2 files hold one logoff row per session, so their single fit is both.
+    - {key: xgb_struct, comparison: C1, folder: "results/xgb_struct_v3_s{seed}", suffix: "", fit_units: [session, row]}
+    - {key: slm_struct, comparison: C1, folder: "results/c1_qwen15_r8_lr1e-4_s{seed}", suffix: "", fit_units: [session, row]}
+    - {key: xgb_text, comparison: C2, folder: "results/xgb_text_s{seed}", suffix: "_final", fit_units: [session]}
+    - {key: slm_text, comparison: C2, folder: "results/c2_qwen15_r8_lr1e-4_s{seed}", suffix: "_final", fit_units: [session]}
+  seeds: [1, 2, 3]
+  splits: [valid, calib, test]
+
+hybrid:                              # runbook 7.2 (decisions log 2026-11-14)
+  # Platt row-level calibrated scores for both models (common probability scale)
+  xgb: results/step7/calibration/xgb_struct_rowfit_platt/s{seed}
+  slm: results/step7/calibration/slm_struct_rowfit_platt/s{seed}
+  seeds: [1, 2, 3]                   # seed i pairs with seed i; one band for all seeds
+  select_split: valid                # band chosen on validation only
+  max_share: 0.20                    # X: at most 20% of rows sent to the SLM (every seed)
+  level_step: 0.01                   # candidate a, b = quantiles of pooled calibrated XGBoost valid scores
+  top: 10
+  out: results/step7/hybrid

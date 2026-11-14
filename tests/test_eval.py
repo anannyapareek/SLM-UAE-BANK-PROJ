@@ -271,3 +271,77 @@ def test_rows_final_in_paired(tiny_split):
     out = ev.main(["paired", "--split", "valid", "--rows", "final", "--name-a", "a", "--a",
                    str(final), "--name-b", "b", "--b", str(final), "--out", str(tmp / "p.json")])
     assert out["rows"] == "final" and out["session"]["pr_auc"]["difference"] == 0.0
+
+
+def test_calibration_metrics_weights_equal_duplication(small):
+    score, y, day, key = small
+    w = np.array([2, 0, 1, 3] * 15, dtype=float)
+    keep = np.repeat(np.arange(len(score)), w.astype(int))
+    a = ev.calibration_metrics(scored(score, y, day, key), w, CFG)
+    b = ev.calibration_metrics(scored(score[keep], y[keep], day[keep], key[keep]),
+                               np.ones(len(keep)), CFG)
+    assert a == pytest.approx(b)
+
+
+def test_calibration_flag(tiny_split):
+    tmp, full, _ = tiny_split
+    d = pd.read_parquet(full)
+    prob = tmp / "prob.parquet"
+    d.assign(score=d["score"] / d["score"].max()).to_parquet(prob)      # scores in [0, 1]
+    base = ["single", "--name", "m", "--split", "valid", "--preds", str(prob), "--out"]
+    ev.main(base + [str(tmp / "plain.json")])
+    ev.main(base + [str(tmp / "cal.json"), "--calibration"])
+    plain, cal = (json.loads((tmp / f).read_text()) for f in ("plain.json", "cal.json"))
+    for unit in ("session", "row"):
+        assert set(plain[unit]["ci"]) == set(ev.CI_METRICS)
+        assert set(cal[unit]["ci"]) == set(ev.CI_METRICS + ev.CALIBRATION_METRICS)
+        for k in ev.CI_METRICS:                       # ranking metrics untouched by the flag
+            assert cal[unit]["ci"][k] == plain[unit]["ci"][k]
+            assert cal[unit]["mean"][k] == plain[unit]["mean"][k]
+        seed = cal[unit]["per_seed"][0]
+        assert "mean_predicted" in seed and "observed_rate" in seed
+        assert "mean_predicted" not in plain[unit]["per_seed"][0]
+        lo, hi = cal[unit]["ci"]["brier"]
+        assert lo <= cal[unit]["mean"]["brier"] <= hi
+    assert cal["config"]["calibration"] is True and "calibration" not in plain["config"]
+
+
+def test_calibration_flag_skips_non_probability_scores(tiny_split):
+    tmp, full, _ = tiny_split
+    d = pd.read_parquet(full)
+    d.assign(score=d["score"] * 4).to_parquet(tmp / "counts.parquet")     # rules-like scale
+    out = ev.main(["single", "--name", "m", "--split", "valid", "--preds", str(tmp / "counts.parquet"),
+                   "--out", str(tmp / "c.json"), "--calibration"])
+    assert set(out["session"]["ci"]) == set(ev.CI_METRICS)
+    assert "brier" not in out["session"]["mean"]
+
+
+def test_brier_skill_score(tiny_split):
+    tmp, full, _ = tiny_split
+    d = pd.read_parquet(full)
+    p_row = float(d["y_true"].mean())
+    clim = tmp / "climatology.parquet"
+    d.assign(score=p_row).to_parquet(clim)                    # constant forecast = base rate
+    out = ev.main(["single", "--name", "m", "--split", "valid", "--preds", str(clim), "--out",
+                   str(tmp / "b.json"), "--calibration", "--bss-ref-split", "valid"])
+    row = out["row"]
+    assert row["mean"]["bss_own"] == pytest.approx(0.0, abs=1e-12)   # climatology has no skill
+    ref = out["config"]["bss_reference"]
+    assert ref["split"] == "valid" and ref["rates"]["row"] == pytest.approx(p_row)
+    sess = out["session"]
+    p_sess = ref["rates"]["session"]
+    assert sess["mean"]["bss_reference"] == pytest.approx(1 - sess["mean"]["brier"] / (p_sess * (1 - p_sess)))
+    lo, hi = sess["ci"]["bss_reference"]
+    assert lo <= sess["mean"]["bss_reference"] <= hi
+    with pytest.raises(RuntimeError, match="needs --calibration"):
+        ev.main(["single", "--name", "m", "--split", "valid", "--preds", str(clim), "--out",
+                 str(tmp / "x.json"), "--bss-ref-split", "valid"])
+    plain = ev.main(["single", "--name", "m", "--split", "valid", "--preds", str(clim), "--out",
+                     str(tmp / "p.json"), "--calibration"])
+    assert "bss_reference" not in plain["row"]["mean"] and "bss_reference" not in plain["config"]
+
+
+def test_pr_auc_shortcut_equals_scored_path(small):
+    score, y, day, key = small
+    full = ev.average_precision(scored(score, y, day, key), np.ones(len(score)))
+    assert ev.pr_auc(score, y) == full                       # identical, ties included

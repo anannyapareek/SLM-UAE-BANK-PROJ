@@ -17,6 +17,15 @@ scoring points (hourly scoring); final = the score at its last scoring point onl
 split; final = only the split's final (logoff) rows, is_final in features.parquet, for
 models scored logoff-only (Comparison 2). The coverage check, units and metrics then use
 those rows; test_ids.csv is still verified in full.
+
+--calibration (Step 7.1): for scores in [0, 1], also bootstrap Brier, ECE (equal-mass and
+equal-width) and the mean predicted probability, with the same user draws, and record per
+seed the mean predicted probability and the observed positive rate (prior-shift
+diagnostic). Off by default; default outputs are unchanged.
+--bss-ref-split SPLIT (with --calibration): also the Brier skill score
+BSS = 1 - Brier / (p (1 - p)), with p = that split's positive rate at the same unit
+(bss_reference; e.g. calib, known at deployment) and p = the evaluated split's own positive
+rate (bss_own). Both references are fixed, so BSS uses the same user draws as Brier.
 """
 import argparse
 import json
@@ -36,6 +45,7 @@ P = pathlib.Path(os.environ.get("PROCESSED_DIR", "data/processed"))
 CONFIG = pathlib.Path("configs/eval.yaml")
 UNITS = ["session", "row"]
 CI_METRICS = ["pr_auc", "recall_at_fpr_0.01", "recall_at_fpr_0.05", "precision_at_k", "recall_at_k"]
+CALIBRATION_METRICS = ["brier", "ece_equal_mass", "ece_equal_width", "mean_predicted"]
 
 
 # Weighted metrics. Integer weights act exactly like copying units that many times.
@@ -70,6 +80,24 @@ def average_precision(s, w):
         return np.nan
     recall = tp / tp[-1]
     return float(np.sum(np.diff(np.r_[0.0, recall]) * tp / (tp + fp)))
+
+
+class Ranked:
+    """Only the ranking fields of Scored (what curve() and average_precision() read)."""
+
+    def __init__(self, score, y):
+        self.score = np.asarray(score, dtype=float)
+        self.y = np.asarray(y, dtype=float)
+        self.desc = np.argsort(-self.score, kind="stable")
+        sorted_scores = self.score[self.desc]
+        self.group_end = np.r_[sorted_scores[1:] != sorted_scores[:-1], True]
+
+
+def pr_auc(score, y):
+    """Unweighted PR-AUC, the same average_precision() as everywhere, without the day/top-k
+    sorting Scored also does (for searches that evaluate many candidate scores)."""
+    s = Ranked(score, y)
+    return average_precision(s, np.ones(len(s.score)))
 
 
 def recall_at_fpr(s, w, level):
@@ -125,6 +153,37 @@ def ece(s, w, bins, equal_mass):
     weight, confidence, accuracy = calibration_bins(s, w, bins, equal_mass)
     used = weight > 0
     return float(np.sum(weight[used] * np.abs(accuracy[used] - confidence[used])) / weight.sum())
+
+
+BSS_METRICS = ["bss_reference", "bss_own"]
+
+
+def calibration_metrics(s, w, cfg, refs=None):
+    """Brier, ECE and mean predicted probability (scores in [0, 1] only); with refs
+    {"reference": p, "own": p}, also the Brier skill score against each fixed base rate."""
+    out = {"brier": brier(s, w),
+           "ece_equal_mass": ece(s, w, cfg["ece_bins"], True),
+           "ece_equal_width": ece(s, w, cfg["ece_bins"], False),
+           "mean_predicted": float(np.sum(w * s.score) / w.sum())}
+    if refs:
+        for name, p in refs.items():
+            out[f"bss_{name}"] = 1.0 - out["brier"] / (p * (1.0 - p))
+    return out
+
+
+def bss_refs(cfg, u):
+    """Fixed base rates for the Brier skill score of these units, or None."""
+    ref = cfg.get("bss_reference")
+    if not ref:
+        return None
+    return {"reference": ref["rates"][u["unit_key"]], "own": u["positive_rate"]}
+
+
+def ci_metrics(cfg, u):
+    """The metrics that get bootstrap CIs for these units."""
+    if cfg.get("calibration") and all(s.probabilities for s in u["scored"]):
+        return CI_METRICS + CALIBRATION_METRICS + (BSS_METRICS if cfg.get("bss_reference") else [])
+    return CI_METRICS
 
 
 def core_metrics(s, w, cfg):
@@ -247,6 +306,13 @@ def per_seed_detail(u, cfg, split):
             for sc in scenarios}
         if s.probabilities:
             m["brier"] = brier(s, w)
+            if cfg.get("calibration"):
+                m["mean_predicted"] = float(s.score.mean())
+                m["observed_rate"] = float(s.y.mean())
+                refs = bss_refs(cfg, u)
+                if refs:
+                    m.update({k: v for k, v in calibration_metrics(s, w, cfg, refs).items()
+                              if k in BSS_METRICS})
             for name, mass in (("equal_mass", True), ("equal_width", False)):
                 weight, confidence, accuracy = calibration_bins(s, w, cfg["ece_bins"], mass)
                 m[f"ece_{name}"] = ece(s, w, cfg["ece_bins"], mass)
@@ -298,8 +364,12 @@ def resample_batch(seeds, models, cfg):
             if u["unit_key"] not in weights:
                 weights[u["unit_key"]] = draw_weights(rng, u["strata"], u)
             w = weights[u["unit_key"]]
-            per_seed = [core_metrics(s, w, cfg) for s in u["scored"]]
-            result[name] = {k: float(np.mean([m[k] for m in per_seed])) for k in CI_METRICS}
+            keys = ci_metrics(cfg, u)
+            calibrated = len(keys) > len(CI_METRICS)
+            per_seed = [core_metrics(s, w, cfg) | (calibration_metrics(s, w, cfg, bss_refs(cfg, u))
+                                                   if calibrated else {})
+                        for s in u["scored"]]
+            result[name] = {k: float(np.mean([m[k] for m in per_seed])) for k in keys}
         out.append(result)
     return out
 
@@ -327,6 +397,7 @@ def prepare(meta, paths, unit, cfg):
     u = build_units(meta, load_preds(paths, meta), unit, cfg)
     u["strata"] = user_strata(u)
     u["unit_key"] = unit
+    u["positive_rate"] = float(u["units"]["y"].mean())
     return u
 
 
@@ -341,7 +412,7 @@ def single(args, cfg, meta):
         mean, std, by_scenario = summarise(per_seed)
         resamples = bootstrap({args.name: u}, cfg)
         ci, skipped = {}, {}
-        for k in CI_METRICS:
+        for k in ci_metrics(cfg, u):
             ci[k], skipped[k] = interval([r[args.name][k] for r in resamples], cfg["bootstrap"]["ci"])
         skipped_total += max(skipped.values())
         out[unit] = {"counts": counts(u), "mean": mean, "std": std, "ci": ci,
@@ -392,6 +463,10 @@ def parse(argv):
         p.add_argument("--session-agg", choices=sorted(SESSION_AGG), default="max",
                        help="session score: max over scoring points (hourly, default) or "
                             "the final scoring point only (logoff-only)")
+        p.add_argument("--calibration", action="store_true",
+                       help="also bootstrap Brier, ECE and mean predicted probability (Step 7.1)")
+        p.add_argument("--bss-ref-split", choices=["valid", "calib"],
+                       help="with --calibration: Brier skill score against this split's positive rate")
         p.add_argument("--rows", choices=ROWS, default="all",
                        help="rows the preds must cover: all (default) or final (logoff) rows only")
         if mode == "single":
@@ -438,7 +513,16 @@ def main(argv):
     cfg = {k: v for k, v in yaml.safe_load(CONFIG.read_text()).items() if k != "baselines"}
     if args.session_agg != "max":            # recorded only when not the default
         cfg["session_agg"] = args.session_agg
+    if args.calibration:                     # recorded only when set
+        cfg["calibration"] = True
     con = duckdb.connect(config={"threads": 1})
+    if args.bss_ref_split:
+        if not args.calibration:
+            raise RuntimeError("--bss-ref-split needs --calibration")
+        ref = load_meta(con, args.bss_ref_split, args.rows)
+        cfg["bss_reference"] = {"split": args.bss_ref_split, "rows": args.rows, "rates": {
+            "row": float(ref["y"].mean()),
+            "session": float(ref.groupby("session_id")["y"].max().mean())}}
     meta = load_meta(con, args.split, args.rows)
     out = single(args, cfg, meta) if args.mode == "single" else paired(args, cfg, meta)
     out["test_ids_sha256"] = checksum        # always the full frozen test_ids.csv

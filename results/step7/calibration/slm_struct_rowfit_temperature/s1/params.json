@@ -1,0 +1,22 @@
+{
+  "run_id": "slm_struct_rowfit_temperature",
+  "model": "slm_struct",
+  "comparison": "C1",
+  "fit_unit": "row",
+  "method": "temperature",
+  "seed": 1,
+  "fit_split": "calib",
+  "fit_units_n": 309413,
+  "fit_positives": 768,
+  "params": {
+    "T": 0.8803619538458305,
+    "nll": 0.04389269781834435,
+    "converged": true,
+    "at_bound": false
+  },
+  "source": "results/c1_qwen15_r8_lr1e-4_s1",
+  "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
+  "fit_seconds": 0.35,
+  "date": "2026-11-14T11:16:05",
+  "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+}
