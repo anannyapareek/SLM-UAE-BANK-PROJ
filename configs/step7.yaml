@@ -25,4 +25,7 @@ hybrid:                              # runbook 7.2 (decisions log 2026-11-14)
   max_share: 0.20                    # X: at most 20% of rows sent to the SLM (every seed)
   level_step: 0.01                   # candidate a, b = quantiles of pooled calibrated XGBoost valid scores
   top: 10
+  sensitivity_caps: [0.05, 0.10, 0.20, 0.30]   # secondary, validation only; 0.20 = primary
+  build_splits: [valid, calib, test]   # valid needed later for 7.5 validation thresholds
   out: results/step7/hybrid
+
