@@ -206,3 +206,5 @@
 | 2026-11-14 | Temperature-based hybrid sensitivity not run | not run: Platt chosen a priori for common scale; temperature leaves SLM prior shift (T≈1), so a temperature hybrid would mix scores on different scales |
 | 2026-11-14 | Rules+SLM kept as pre-declared (rules-first ranking) | result on validation: rules gate is the bottleneck (33.6% of positive sessions fire no rule); no redesign, cut order item 3 |
 | 2026-11-14 | Hybrid test routing share 21.3–21.7% (> 20% cap set on validation) | val→test shift in XGBoost score distribution; reported as-is, band not changed; monitoring point for deployment |
+| 2026-11-14 | Comparison 3 result: hybrid − XGBoost n.s. at session max (PR-AUC −0.0022 [−0.0068, +0.0015]); significantly worse at final point; validation gain (+0.006) did not transfer | reported as pre-declared; no re-selection |
+| 2026-11-14 | XGBoost throughput timed on Mac CPU (results/step7/xgb_timing.json) because none was recorded; hybrid compute line mixes machines; XGBoost share negligible | to be re-timed on lab PC in Step 8.1 |
