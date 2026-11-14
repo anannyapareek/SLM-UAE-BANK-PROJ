@@ -1,0 +1,37 @@
+{
+  "split": "valid",
+  "zero_rule_positives": {
+    "rows": {
+      "positives": 1777,
+      "no_rule_fired": 991,
+      "share": 0.5576814856499719
+    },
+    "sessions": {
+      "positives": 244,
+      "no_rule_fired": 82,
+      "share": 0.3360655737704918
+    }
+  },
+  "rows_with_a_rule_fired_share": 0.12990256490970697,
+  "pr_auc": {
+    "rules_slm": {
+      "row_mean": 0.052169790193668714,
+      "row_std": 0.0038045030909034014,
+      "session_mean": 0.06108195277323573,
+      "session_std": 0.0046543234963462524
+    },
+    "rules_alone": {
+      "row_mean": 0.015239487493207884,
+      "row_std": null,
+      "session_mean": 0.022648547087469342,
+      "session_std": null
+    },
+    "slm_alone": {
+      "row_mean": 0.22923390794589335,
+      "row_std": 0.0041654817761294,
+      "session_mean": 0.241829159727163,
+      "session_std": 0.014228571660940019
+    }
+  },
+  "runtime_seconds": 4.2
+}

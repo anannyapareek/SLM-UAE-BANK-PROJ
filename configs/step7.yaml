@@ -29,3 +29,8 @@ hybrid:                              # runbook 7.2 (decisions log 2026-11-14)
   build_splits: [valid, calib, test]   # valid needed later for 7.5 validation thresholds
   out: results/step7/hybrid
 
+rules_slm:                           # runbook 7.3 (decisions log 2026-11-14)
+  rules: results/rules               # rules_fired per row; weights from configs/rules.yaml
+  slm: results/step7/calibration/slm_struct_rowfit_platt/s{seed}   # same scale as the hybrid
+  seeds: [1, 2, 3]
+  out: results/step7/rules_slm
