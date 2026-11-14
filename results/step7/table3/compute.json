@@ -1,0 +1,58 @@
+{
+  "routing": {
+    "row_share": [
+      0.2147125601956602,
+      0.0019473346777405022
+    ],
+    "session_share": [
+      0.52676920930557,
+      0.008727154493213467
+    ],
+    "rows": 848137,
+    "rows_to_slm_mean": 182105.66666666666,
+    "per_seed": [
+      {
+        "split": "test",
+        "seed": 1,
+        "rows": 848137,
+        "rows_to_slm": 180909,
+        "row_share": 0.21330162461960744,
+        "sessions": 95570,
+        "sessions_with_a_row_to_slm": 49386,
+        "session_share": 0.5167521188657529
+      },
+      {
+        "split": "test",
+        "seed": 2,
+        "rows": 848137,
+        "rows_to_slm": 181418,
+        "row_share": 0.21390176351226275,
+        "sessions": 95570,
+        "sessions_with_a_row_to_slm": 50731,
+        "session_share": 0.5308255728785184
+      },
+      {
+        "split": "test",
+        "seed": 3,
+        "rows": 848137,
+        "rows_to_slm": 183990,
+        "row_share": 0.21693429245511042,
+        "sessions": 95570,
+        "sessions_with_a_row_to_slm": 50913,
+        "session_share": 0.532729936172439
+      }
+    ]
+  },
+  "compute": {
+    "slm_rows_per_second": 116.8,
+    "xgb_rows_per_second": 685822.0547321289,
+    "xgb_machine": "Mac (arm64, Darwin), CPU",
+    "test_rows": 848137,
+    "share": 0.2147125601956602,
+    "slm_seconds": 1559.1238584474886,
+    "xgb_seconds": 1.2366720990494666,
+    "implied_rows_per_second": 543.5519441798033,
+    "slm_only_seconds": 7261.446917808219,
+    "speedup_vs_slm_on_all_rows": 4.653698152224344
+  }
+}

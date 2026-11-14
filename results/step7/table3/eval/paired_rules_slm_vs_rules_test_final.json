@@ -1,0 +1,150 @@
+{
+  "name_a": "rules_slm",
+  "name_b": "rules",
+  "split": "test",
+  "primary_unit": "session",
+  "preds_a": [
+    "results/step7/rules_slm/s1/preds_test.parquet",
+    "results/step7/rules_slm/s2/preds_test.parquet",
+    "results/step7/rules_slm/s3/preds_test.parquet"
+  ],
+  "preds_b": [
+    "results/rules/preds_test.parquet"
+  ],
+  "config": {
+    "unit": "session",
+    "fpr_levels": [
+      0.01,
+      0.05
+    ],
+    "scenario_fpr": 0.05,
+    "alerts_per_day": 20,
+    "tie_break_seed": 0,
+    "ece_bins": 15,
+    "bootstrap": {
+      "resamples": 1000,
+      "seed": 0,
+      "ci": 0.95
+    },
+    "session_agg": "final"
+  },
+  "session": {
+    "pr_auc": {
+      "a": 0.023645414809836795,
+      "b": 0.007545723134609852,
+      "difference": 0.016099691675226943,
+      "ci": [
+        0.003436521026004349,
+        0.05353400121026892
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "recall_at_fpr_0.01": {
+      "a": 0.08641975308641975,
+      "b": 0.08641975308641975,
+      "difference": 0.0,
+      "ci": [
+        -0.003664365374402542,
+        0.15506391455787924
+      ],
+      "significant": false,
+      "boot_skipped": 0
+    },
+    "recall_at_fpr_0.05": {
+      "a": 0.3978052126200274,
+      "b": 0.1728395061728395,
+      "difference": 0.22496570644718789,
+      "ci": [
+        0.11198276361319838,
+        0.3670317911924789
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "precision_at_k": {
+      "a": 0.01908957415565345,
+      "b": 0.008443465491923641,
+      "difference": 0.010646108663729809,
+      "ci": [
+        0.0014689545682263934,
+        0.02518052673450275
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "recall_at_k": {
+      "a": 0.2139917695473251,
+      "b": 0.09465020576131687,
+      "difference": 0.11934156378600823,
+      "ci": [
+        0.018369948589191776,
+        0.27234550070028013
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "precision_at_k_ceiling": 0.08868613138686134
+  },
+  "row": {
+    "pr_auc": {
+      "a": 0.01668901004512895,
+      "b": 0.005077383298136849,
+      "difference": 0.0116116267469921,
+      "ci": [
+        0.003754757385512996,
+        0.03269368233568262
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "recall_at_fpr_0.01": {
+      "a": 0.12694021822652526,
+      "b": 0.053480866758875055,
+      "difference": 0.0734593514676502,
+      "ci": [
+        0.0027173545885438525,
+        0.17991060102428996
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "recall_at_fpr_0.05": {
+      "a": 0.3336406946365453,
+      "b": 0.12586445366528354,
+      "difference": 0.20777624097126174,
+      "ci": [
+        0.12311549686467212,
+        0.2996170325857977
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "precision_at_k": {
+      "a": 0.024411082631514706,
+      "b": 0.012449652142072502,
+      "difference": 0.011961430489442204,
+      "ci": [
+        -0.0004876948556988739,
+        0.030387580019450466
+      ],
+      "significant": false,
+      "boot_skipped": 0
+    },
+    "recall_at_k": {
+      "a": 0.030736130321192563,
+      "b": 0.015675426463808206,
+      "difference": 0.015060703857384356,
+      "ci": [
+        -0.0007351294694966516,
+        0.03633781883720078
+      ],
+      "significant": false,
+      "boot_skipped": 0
+    },
+    "precision_at_k_ceiling": 0.4726277372262774
+  },
+  "boot_skipped": 0,
+  "runtime_seconds": 86.7,
+  "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51"
+}

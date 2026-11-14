@@ -1,0 +1,100 @@
+{
+  "band": {
+    "a": 0.0008355428326211671,
+    "b": 0.003070856774936132
+  },
+  "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
+  "shares": [
+    {
+      "split": "valid",
+      "seed": 1,
+      "rows": 336737,
+      "rows_to_slm": 63205,
+      "row_share": 0.18769841151996958,
+      "sessions": 38504,
+      "sessions_with_a_row_to_slm": 18376,
+      "session_share": 0.4772491169748598
+    },
+    {
+      "split": "valid",
+      "seed": 2,
+      "rows": 336737,
+      "rows_to_slm": 64709,
+      "row_share": 0.19216480517436457,
+      "sessions": 38504,
+      "sessions_with_a_row_to_slm": 19208,
+      "session_share": 0.49885726158321214
+    },
+    {
+      "split": "valid",
+      "seed": 3,
+      "rows": 336737,
+      "rows_to_slm": 64026,
+      "row_share": 0.19013651603476897,
+      "sessions": 38504,
+      "sessions_with_a_row_to_slm": 19022,
+      "session_share": 0.494026594639518
+    },
+    {
+      "split": "calib",
+      "seed": 1,
+      "rows": 309413,
+      "rows_to_slm": 62023,
+      "row_share": 0.200453762446956,
+      "sessions": 35249,
+      "sessions_with_a_row_to_slm": 17507,
+      "session_share": 0.4966665721013362
+    },
+    {
+      "split": "calib",
+      "seed": 2,
+      "rows": 309413,
+      "rows_to_slm": 62391,
+      "row_share": 0.20164311131077234,
+      "sessions": 35249,
+      "sessions_with_a_row_to_slm": 18035,
+      "session_share": 0.5116457204459701
+    },
+    {
+      "split": "calib",
+      "seed": 3,
+      "rows": 309413,
+      "rows_to_slm": 63158,
+      "row_share": 0.20412199875247647,
+      "sessions": 35249,
+      "sessions_with_a_row_to_slm": 18023,
+      "session_share": 0.5113052852563194
+    },
+    {
+      "split": "test",
+      "seed": 1,
+      "rows": 848137,
+      "rows_to_slm": 180909,
+      "row_share": 0.21330162461960744,
+      "sessions": 95570,
+      "sessions_with_a_row_to_slm": 49386,
+      "session_share": 0.5167521188657529
+    },
+    {
+      "split": "test",
+      "seed": 2,
+      "rows": 848137,
+      "rows_to_slm": 181418,
+      "row_share": 0.21390176351226275,
+      "sessions": 95570,
+      "sessions_with_a_row_to_slm": 50731,
+      "session_share": 0.5308255728785184
+    },
+    {
+      "split": "test",
+      "seed": 3,
+      "rows": 848137,
+      "rows_to_slm": 183990,
+      "row_share": 0.21693429245511042,
+      "sessions": 95570,
+      "sessions_with_a_row_to_slm": 50913,
+      "session_share": 0.532729936172439
+    }
+  ],
+  "date": "2026-11-14T14:18:58"
+}
