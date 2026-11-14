@@ -50,3 +50,24 @@ table3:                              # runbook 7.4 (Comparison 3, test)
   slm_rows_per_second: 116.8         # RTX 4500 Ada, fp16 merged adapter (decisions log 2026-11-10)
   xgb_timing: results/step7/xgb_timing.json
   out: results/step7/table3
+
+abstention:                          # runbook 7.5 (decisions log 2026-11-14)
+  # Session level. Scores on the calibrated logit scale: Platt session fit for single models
+  # (a * margin + b), the hybrid's stored Platt row-fit logit. Any affine logit map (temperature
+  # or Platt) gives the same thresholds and deferral order, so the choice does not change results.
+  threshold_split: valid
+  fpr: 0.05                          # each model/seed's validation session-level 5%-FPR threshold
+  shares: {start: 0.0, stop: 0.5, step: 0.01}
+  operating_point: 0.10
+  extra_points: [0.01, 0.02]         # workable workloads; the P7 capacity share is added after P7
+  exploratory_paired:                # NOT pre-declared; reported as exploratory (decisions log)
+    - {a: slm_text, b: xgb_text, points: [0.0, 0.10],
+       metrics: [system_recall_upper, precision_auto, recall_auto]}
+  seeds: [1, 2, 3]
+  models:
+    - {key: xgb, figure: main, kind: calibrated, folder: "results/step7/calibration/xgb_struct_sessionfit_platt/s{seed}", suffix: ""}
+    - {key: slm, figure: main, kind: calibrated, folder: "results/step7/calibration/slm_struct_sessionfit_platt/s{seed}", suffix: ""}
+    - {key: hybrid, figure: main, kind: logit, folder: "results/step7/hybrid/s{seed}", suffix: ""}
+    - {key: xgb_text, figure: appendix, kind: calibrated, folder: "results/step7/calibration/xgb_text_sessionfit_platt/s{seed}", suffix: "_final"}
+    - {key: slm_text, figure: appendix, kind: calibrated, folder: "results/step7/calibration/slm_text_sessionfit_platt/s{seed}", suffix: "_final"}
+  out: results/step7/abstention

@@ -1,0 +1,2462 @@
+{
+  "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
+  "config": {
+    "threshold_split": "valid",
+    "fpr": 0.05,
+    "shares": {
+      "start": 0.0,
+      "stop": 0.5,
+      "step": 0.01
+    },
+    "operating_point": 0.1,
+    "extra_points": [
+      0.01,
+      0.02
+    ],
+    "exploratory_paired": [
+      {
+        "a": "slm_text",
+        "b": "xgb_text",
+        "points": [
+          0.0,
+          0.1
+        ],
+        "metrics": [
+          "system_recall_upper",
+          "precision_auto",
+          "recall_auto"
+        ]
+      }
+    ],
+    "seeds": [
+      1,
+      2,
+      3
+    ],
+    "models": [
+      {
+        "key": "xgb",
+        "figure": "main",
+        "kind": "calibrated",
+        "folder": "results/step7/calibration/xgb_struct_sessionfit_platt/s{seed}",
+        "suffix": ""
+      },
+      {
+        "key": "slm",
+        "figure": "main",
+        "kind": "calibrated",
+        "folder": "results/step7/calibration/slm_struct_sessionfit_platt/s{seed}",
+        "suffix": ""
+      },
+      {
+        "key": "hybrid",
+        "figure": "main",
+        "kind": "logit",
+        "folder": "results/step7/hybrid/s{seed}",
+        "suffix": ""
+      },
+      {
+        "key": "xgb_text",
+        "figure": "appendix",
+        "kind": "calibrated",
+        "folder": "results/step7/calibration/xgb_text_sessionfit_platt/s{seed}",
+        "suffix": "_final"
+      },
+      {
+        "key": "slm_text",
+        "figure": "appendix",
+        "kind": "calibrated",
+        "folder": "results/step7/calibration/slm_text_sessionfit_platt/s{seed}",
+        "suffix": "_final"
+      }
+    ],
+    "out": "results/step7/abstention"
+  },
+  "models": {
+    "xgb": {
+      "figure": "main",
+      "thresholds_logit_valid": [
+        -5.262320849217327,
+        -5.302459947639723,
+        -5.274864189500647
+      ],
+      "test_sessions": 95570,
+      "test_positive_sessions": 243,
+      "test_days": 137,
+      "points": {
+        "0.00": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.0,
+              "threshold_logit": -5.262320849217327,
+              "precision_auto": 0.029622641509433962,
+              "recall_auto": 0.6460905349794238,
+              "system_recall_upper": 0.6460905349794238,
+              "deferred_units": 0.0,
+              "deferred_positive_share": 0.0,
+              "fpr_auto": 0.05395113661397086,
+              "alerts_auto": 5300.0,
+              "positives_auto": 243.0,
+              "deferred_per_day": 0.0
+            },
+            {
+              "seed": 2,
+              "share": 0.0,
+              "threshold_logit": -5.302459947639723,
+              "precision_auto": 0.027737752161383286,
+              "recall_auto": 0.6337448559670782,
+              "system_recall_upper": 0.6337448559670782,
+              "deferred_units": 0.0,
+              "deferred_positive_share": 0.0,
+              "fpr_auto": 0.05662613949877789,
+              "alerts_auto": 5552.0,
+              "positives_auto": 243.0,
+              "deferred_per_day": 0.0
+            },
+            {
+              "seed": 3,
+              "share": 0.0,
+              "threshold_logit": -5.274864189500647,
+              "precision_auto": 0.02766868975365941,
+              "recall_auto": 0.6378600823045267,
+              "system_recall_upper": 0.6378600823045267,
+              "deferred_units": 0.0,
+              "deferred_positive_share": 0.0,
+              "fpr_auto": 0.057140159660956494,
+              "alerts_auto": 5602.0,
+              "positives_auto": 243.0,
+              "deferred_per_day": 0.0
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.028343027808158883,
+            "recall_auto": 0.6392318244170095,
+            "system_recall_upper": 0.6392318244170095,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.0,
+            "fpr_auto": 0.055905811924568415,
+            "alerts_auto": 5484.666666666667,
+            "positives_auto": 243.0,
+            "deferred_per_day": 0.0
+          },
+          "std": {
+            "precision_auto": 0.0011087158438519446,
+            "recall_auto": 0.006286112064411274,
+            "system_recall_upper": 0.006286112064411274,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.0,
+            "fpr_auto": 0.001712197669422626,
+            "alerts_auto": 161.8682591904087,
+            "positives_auto": 0.0,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.013719845958882862,
+              0.04584081112617712
+            ],
+            "recall_auto": [
+              0.4109353227431561,
+              0.8914198546551486
+            ],
+            "system_recall_upper": [
+              0.4109353227431561,
+              0.8914198546551486
+            ],
+            "deferred_units": [
+              0.0,
+              0.0
+            ],
+            "deferred_positive_share": [
+              0.0,
+              0.0
+            ],
+            "fpr_auto": [
+              0.04505813000324275,
+              0.0692168661687634
+            ],
+            "alerts_auto": [
+              4423.266666666666,
+              6804.191666666667
+            ],
+            "positives_auto": [
+              139.0,
+              350.0
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.01": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.01,
+              "threshold_logit": -5.262320849217327,
+              "precision_auto": 0.031572430870821296,
+              "recall_auto": 0.6566523605150214,
+              "system_recall_upper": 0.6707818930041153,
+              "deferred_units": 956.0,
+              "deferred_positive_share": 0.0411522633744856,
+              "fpr_auto": 0.04972399105752217,
+              "alerts_auto": 4846.0,
+              "positives_auto": 233.0,
+              "deferred_per_day": 6.978102189781022
+            },
+            {
+              "seed": 2,
+              "share": 0.01,
+              "threshold_logit": -5.302459947639723,
+              "precision_auto": 0.02899118511263467,
+              "recall_auto": 0.6491228070175439,
+              "system_recall_upper": 0.6707818930041153,
+              "deferred_units": 956.0,
+              "deferred_positive_share": 0.06172839506172839,
+              "fpr_auto": 0.05251838196342678,
+              "alerts_auto": 5105.0,
+              "positives_auto": 228.0,
+              "deferred_per_day": 6.978102189781022
+            },
+            {
+              "seed": 3,
+              "share": 0.01,
+              "threshold_logit": -5.274864189500647,
+              "precision_auto": 0.02830925419757907,
+              "recall_auto": 0.6387665198237885,
+              "system_recall_upper": 0.6625514403292181,
+              "deferred_units": 956.0,
+              "deferred_positive_share": 0.06584362139917696,
+              "fpr_auto": 0.052729719135050375,
+              "alerts_auto": 5122.0,
+              "positives_auto": 227.0,
+              "deferred_per_day": 6.978102189781022
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.029624290060345015,
+            "recall_auto": 0.6481805624521179,
+            "system_recall_upper": 0.6680384087791497,
+            "deferred_units": 956.0,
+            "deferred_positive_share": 0.056241426611796985,
+            "fpr_auto": 0.05165736405199978,
+            "alerts_auto": 5024.333333333333,
+            "positives_auto": 229.33333333333334,
+            "deferred_per_day": 6.978102189781022
+          },
+          "std": {
+            "precision_auto": 0.0017212486474386941,
+            "recall_auto": 0.008980071988789768,
+            "system_recall_upper": 0.00475185406740437,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.013228601866931353,
+            "fpr_auto": 0.0016776811979213873,
+            "alerts_auto": 154.67492794028817,
+            "positives_auto": 3.2145502536643185,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.014301617975462769,
+              0.0482631080787851
+            ],
+            "recall_auto": [
+              0.4075647270969792,
+              0.9050270750721537
+            ],
+            "system_recall_upper": [
+              0.451978691019787,
+              0.9095077614379085
+            ],
+            "deferred_units": [
+              929.3166666666667,
+              988.0
+            ],
+            "deferred_positive_share": [
+              0.02707829301075269,
+              0.08743682495702813
+            ],
+            "fpr_auto": [
+              0.0408827770338271,
+              0.06504651052191415
+            ],
+            "alerts_auto": [
+              3977.9583333333335,
+              6329.008333333333
+            ],
+            "positives_auto": [
+              130.99166666666667,
+              331.0
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.02": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.02,
+              "threshold_logit": -5.262320849217327,
+              "precision_auto": 0.03262092238470191,
+              "recall_auto": 0.6621004566210046,
+              "system_recall_upper": 0.6954732510288066,
+              "deferred_units": 1912.0,
+              "deferred_positive_share": 0.09876543209876543,
+              "fpr_auto": 0.04601932811780948,
+              "alerts_auto": 4445.0,
+              "positives_auto": 219.0,
+              "deferred_per_day": 13.956204379562044
+            },
+            {
+              "seed": 2,
+              "share": 0.02,
+              "threshold_logit": -5.302459947639723,
+              "precision_auto": 0.03003834682573498,
+              "recall_auto": 0.6380090497737556,
+              "system_recall_upper": 0.6707818930041153,
+              "deferred_units": 1912.0,
+              "deferred_positive_share": 0.09053497942386832,
+              "fpr_auto": 0.04872801994927063,
+              "alerts_auto": 4694.0,
+              "positives_auto": 221.0,
+              "deferred_per_day": 13.956204379562044
+            },
+            {
+              "seed": 3,
+              "share": 0.02,
+              "threshold_logit": -5.274864189500647,
+              "precision_auto": 0.02918781725888325,
+              "recall_auto": 0.6509433962264151,
+              "system_recall_upper": 0.6954732510288066,
+              "deferred_units": 1912.0,
+              "deferred_positive_share": 0.12757201646090535,
+              "fpr_auto": 0.0491192774436573,
+              "alerts_auto": 4728.0,
+              "positives_auto": 212.0,
+              "deferred_per_day": 13.956204379562044
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.030615695489773383,
+            "recall_auto": 0.6503509675403918,
+            "system_recall_upper": 0.6872427983539096,
+            "deferred_units": 1912.0,
+            "deferred_positive_share": 0.1056241426611797,
+            "fpr_auto": 0.047955541836912474,
+            "alerts_auto": 4622.333333333333,
+            "positives_auto": 217.33333333333334,
+            "deferred_per_day": 13.956204379562044
+          },
+          "std": {
+            "precision_auto": 0.0017878901843040552,
+            "recall_auto": 0.012056624725889755,
+            "system_recall_upper": 0.014255562202212982,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.019447800931080693,
+            "fpr_auto": 0.001688183426426289,
+            "alerts_auto": 154.51321410589236,
+            "positives_auto": 4.725815626252609,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.014190431489768203,
+              0.05121676849365019
+            ],
+            "recall_auto": [
+              0.39325758876466904,
+              0.9160160577271145
+            ],
+            "system_recall_upper": [
+              0.47901411788295556,
+              0.9225718725718726
+            ],
+            "deferred_units": [
+              1856.9916666666668,
+              1974.0166666666667
+            ],
+            "deferred_positive_share": [
+              0.05196735663060951,
+              0.15043761638733705
+            ],
+            "fpr_auto": [
+              0.03717066053703794,
+              0.06115613382100422
+            ],
+            "alerts_auto": [
+              3591.9,
+              5918.9
+            ],
+            "positives_auto": [
+              123.99166666666667,
+              315.3666666666666
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.10": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.1,
+              "threshold_logit": -5.262320849217327,
+              "precision_auto": 0.04097714736012608,
+              "recall_auto": 0.7482014388489209,
+              "system_recall_upper": 0.8559670781893004,
+              "deferred_units": 9557.0,
+              "deferred_positive_share": 0.4279835390946502,
+              "fpr_auto": 0.028343852621282344,
+              "alerts_auto": 2538.0,
+              "positives_auto": 139.0,
+              "deferred_per_day": 69.75912408759125
+            },
+            {
+              "seed": 2,
+              "share": 0.1,
+              "threshold_logit": -5.302459947639723,
+              "precision_auto": 0.034532374100719423,
+              "recall_auto": 0.75,
+              "system_recall_upper": 0.8683127572016461,
+              "deferred_units": 9557.0,
+              "deferred_positive_share": 0.4732510288065844,
+              "fpr_auto": 0.03125109157594458,
+              "alerts_auto": 2780.0,
+              "positives_auto": 128.0,
+              "deferred_per_day": 69.75912408759125
+            },
+            {
+              "seed": 3,
+              "share": 0.1,
+              "threshold_logit": -5.274864189500647,
+              "precision_auto": 0.037050759540570584,
+              "recall_auto": 0.7194244604316546,
+              "system_recall_upper": 0.8395061728395061,
+              "deferred_units": 9557.0,
+              "deferred_positive_share": 0.4279835390946502,
+              "fpr_auto": 0.030265272375806413,
+              "alerts_auto": 2699.0,
+              "positives_auto": 139.0,
+              "deferred_per_day": 69.75912408759125
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.03752009366713869,
+            "recall_auto": 0.7392086330935251,
+            "system_recall_upper": 0.8545953360768176,
+            "deferred_units": 9557.0,
+            "deferred_positive_share": 0.4430727023319616,
+            "fpr_auto": 0.029953405524344445,
+            "alerts_auto": 2672.3333333333335,
+            "positives_auto": 135.33333333333334,
+            "deferred_per_day": 69.75912408759125
+          },
+          "std": {
+            "precision_auto": 0.0032479195622831954,
+            "recall_auto": 0.017157179881599764,
+            "system_recall_upper": 0.014452199935326161,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.026135197370723808,
+            "fpr_auto": 0.0014784976444543261,
+            "alerts_auto": 123.18414400130129,
+            "positives_auto": 6.350852961085883,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.013163302148155661,
+              0.07097690818313664
+            ],
+            "recall_auto": [
+              0.4122861544881936,
+              0.9483800004505113
+            ],
+            "system_recall_upper": [
+              0.7291253306878307,
+              0.9650713484046817
+            ],
+            "deferred_units": [
+              9280.983333333334,
+              9864.05
+            ],
+            "deferred_positive_share": [
+              0.22795687607944734,
+              0.6177624621892137
+            ],
+            "fpr_auto": [
+              0.021413677559926684,
+              0.04129756092533761
+            ],
+            "alerts_auto": [
+              1922.6833333333336,
+              3709.491666666667
+            ],
+            "positives_auto": [
+              71.65000000000002,
+              218.67499999999998
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        }
+      }
+    },
+    "slm": {
+      "figure": "main",
+      "thresholds_logit_valid": [
+        -4.3183955882285225,
+        -4.280342800133179,
+        -4.308218343875515
+      ],
+      "test_sessions": 95570,
+      "test_positive_sessions": 243,
+      "test_days": 137,
+      "points": {
+        "0.00": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.0,
+              "threshold_logit": -4.3183955882285225,
+              "precision_auto": 0.024285447412665796,
+              "recall_auto": 0.5349794238683128,
+              "system_recall_upper": 0.5349794238683128,
+              "deferred_units": 0.0,
+              "deferred_positive_share": 0.0,
+              "fpr_auto": 0.05479035320528287,
+              "alerts_auto": 5353.0,
+              "positives_auto": 243.0,
+              "deferred_per_day": 0.0
+            },
+            {
+              "seed": 2,
+              "share": 0.0,
+              "threshold_logit": -4.280342800133179,
+              "precision_auto": 0.016691672918229556,
+              "recall_auto": 0.3662551440329218,
+              "system_recall_upper": 0.3662551440329218,
+              "deferred_units": 0.0,
+              "deferred_positive_share": 0.0,
+              "fpr_auto": 0.05500015735311087,
+              "alerts_auto": 5332.0,
+              "positives_auto": 243.0,
+              "deferred_per_day": 0.0
+            },
+            {
+              "seed": 3,
+              "share": 0.0,
+              "threshold_logit": -4.308218343875515,
+              "precision_auto": 0.016399694889397406,
+              "recall_auto": 0.35390946502057613,
+              "system_recall_upper": 0.35390946502057613,
+              "deferred_units": 0.0,
+              "deferred_positive_share": 0.0,
+              "fpr_auto": 0.05410848972484186,
+              "alerts_auto": 5244.0,
+              "positives_auto": 243.0,
+              "deferred_per_day": 0.0
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.019125605073430918,
+            "recall_auto": 0.4183813443072702,
+            "system_recall_upper": 0.4183813443072702,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.0,
+            "fpr_auto": 0.05463300009441186,
+            "alerts_auto": 5309.666666666667,
+            "positives_auto": 243.0,
+            "deferred_per_day": 0.0
+          },
+          "std": {
+            "precision_auto": 0.004470938661696312,
+            "recall_auto": 0.10116539954728282,
+            "system_recall_upper": 0.10116539954728282,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.0,
+            "fpr_auto": 0.0004661950138636237,
+            "alerts_auto": 57.83021125098311,
+            "positives_auto": 0.0,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.005592138929385385,
+              0.03578744056588912
+            ],
+            "recall_auto": [
+              0.16294369335156217,
+              0.6819675937044686
+            ],
+            "system_recall_upper": [
+              0.16294369335156217,
+              0.6819675937044686
+            ],
+            "deferred_units": [
+              0.0,
+              0.0
+            ],
+            "deferred_positive_share": [
+              0.0,
+              0.0
+            ],
+            "fpr_auto": [
+              0.04184565427782049,
+              0.0712092905799518
+            ],
+            "alerts_auto": [
+              4051.6,
+              6969.541666666666
+            ],
+            "positives_auto": [
+              139.0,
+              350.0
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.01": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.01,
+              "threshold_logit": -4.3183955882285225,
+              "precision_auto": 0.023649337410805302,
+              "recall_auto": 0.5370370370370371,
+              "system_recall_upper": 0.588477366255144,
+              "deferred_units": 956.0,
+              "deferred_positive_share": 0.1111111111111111,
+              "fpr_auto": 0.05073200703404733,
+              "alerts_auto": 4905.0,
+              "positives_auto": 216.0,
+              "deferred_per_day": 6.978102189781022
+            },
+            {
+              "seed": 2,
+              "share": 0.01,
+              "threshold_logit": -4.280342800133179,
+              "precision_auto": 0.018358085808580858,
+              "recall_auto": 0.37083333333333335,
+              "system_recall_upper": 0.3786008230452675,
+              "deferred_units": 956.0,
+              "deferred_positive_share": 0.012345679012345678,
+              "fpr_auto": 0.05042702439231144,
+              "alerts_auto": 4848.0,
+              "positives_auto": 240.0,
+              "deferred_per_day": 6.978102189781022
+            },
+            {
+              "seed": 3,
+              "share": 0.01,
+              "threshold_logit": -4.308218343875515,
+              "precision_auto": 0.017569546120058566,
+              "recall_auto": 0.3514644351464435,
+              "system_recall_upper": 0.36213991769547327,
+              "deferred_units": 956.0,
+              "deferred_positive_share": 0.01646090534979424,
+              "fpr_auto": 0.04976953642384106,
+              "alerts_auto": 4781.0,
+              "positives_auto": 239.0,
+              "deferred_per_day": 6.978102189781022
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.01985898977981491,
+            "recall_auto": 0.4197782685056046,
+            "system_recall_upper": 0.44307270233196155,
+            "deferred_units": 956.0,
+            "deferred_positive_share": 0.04663923182441701,
+            "fpr_auto": 0.05030952261673327,
+            "alerts_auto": 4844.666666666667,
+            "positives_auto": 231.66666666666666,
+            "deferred_per_day": 6.978102189781022
+          },
+          "std": {
+            "precision_auto": 0.0033061306814627846,
+            "recall_auto": 0.1020098164510385,
+            "system_recall_upper": 0.1261928190080321,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.055872186157520716,
+            "fpr_auto": 0.0004918764268855766,
+            "alerts_auto": 62.06716791777544,
+            "positives_auto": 13.576941236277534,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.005280415309026225,
+              0.03848513675281621
+            ],
+            "recall_auto": [
+              0.15178867885495048,
+              0.6894490477025709
+            ],
+            "system_recall_upper": [
+              0.1851812617702448,
+              0.6986728010700614
+            ],
+            "deferred_units": [
+              929.0,
+              987.675
+            ],
+            "deferred_positive_share": [
+              0.02412214648065948,
+              0.07271204112583075
+            ],
+            "fpr_auto": [
+              0.03760076825776275,
+              0.06678730687810273
+            ],
+            "alerts_auto": [
+              3600.2250000000004,
+              6501.091666666666
+            ],
+            "positives_auto": [
+              132.30833333333337,
+              334.34999999999997
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.02": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.02,
+              "threshold_logit": -4.3183955882285225,
+              "precision_auto": 0.022732337864943167,
+              "recall_auto": 0.53125,
+              "system_recall_upper": 0.6296296296296297,
+              "deferred_units": 1912.0,
+              "deferred_positive_share": 0.20987654320987653,
+              "fpr_auto": 0.04691545588770248,
+              "alerts_auto": 4487.0,
+              "positives_auto": 192.0,
+              "deferred_per_day": 13.956204379562044
+            },
+            {
+              "seed": 2,
+              "share": 0.02,
+              "threshold_logit": -4.280342800133179,
+              "precision_auto": 0.01926563916591115,
+              "recall_auto": 0.3617021276595745,
+              "system_recall_upper": 0.38271604938271603,
+              "deferred_units": 1912.0,
+              "deferred_positive_share": 0.03292181069958848,
+              "fpr_auto": 0.04631621763377327,
+              "alerts_auto": 4412.0,
+              "positives_auto": 235.0,
+              "deferred_per_day": 13.956204379562044
+            },
+            {
+              "seed": 3,
+              "share": 0.02,
+              "threshold_logit": -4.308218343875515,
+              "precision_auto": 0.01903233203393717,
+              "recall_auto": 0.35319148936170214,
+              "system_recall_upper": 0.37448559670781895,
+              "deferred_units": 1912.0,
+              "deferred_positive_share": 0.03292181069958848,
+              "fpr_auto": 0.04579172152467808,
+              "alerts_auto": 4361.0,
+              "positives_auto": 235.0,
+              "deferred_per_day": 13.956204379562044
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.020343436354930498,
+            "recall_auto": 0.41538120567375886,
+            "system_recall_upper": 0.46227709190672156,
+            "deferred_units": 1912.0,
+            "deferred_positive_share": 0.09190672153635117,
+            "fpr_auto": 0.04634113168205128,
+            "alerts_auto": 4420.0,
+            "positives_auto": 220.66666666666666,
+            "deferred_per_day": 13.956204379562044
+          },
+          "std": {
+            "precision_auto": 0.0020721355826448943,
+            "recall_auto": 0.10043550599773907,
+            "system_recall_upper": 0.14498996171987724,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.10216486244919303,
+            "fpr_auto": 0.00056228130149567,
+            "alerts_auto": 63.3798075099633,
+            "positives_auto": 24.826061575153908,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.004685435362116522,
+              0.04047953092080389
+            ],
+            "recall_auto": [
+              0.13496284332551128,
+              0.696154423596451
+            ],
+            "system_recall_upper": [
+              0.20525508108769358,
+              0.7217214842926417
+            ],
+            "deferred_units": [
+              1857.0,
+              1973.675
+            ],
+            "deferred_positive_share": [
+              0.046213522722521855,
+              0.14379540582135383
+            ],
+            "fpr_auto": [
+              0.03374072338033932,
+              0.06264496399068194
+            ],
+            "alerts_auto": [
+              3197.4666666666667,
+              6050.916666666667
+            ],
+            "positives_auto": [
+              124.325,
+              319.69166666666666
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.10": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.1,
+              "threshold_logit": -4.3183955882285225,
+              "precision_auto": 0.03512014787430684,
+              "recall_auto": 0.6627906976744186,
+              "system_recall_upper": 0.8806584362139918,
+              "deferred_units": 9557.0,
+              "deferred_positive_share": 0.6460905349794238,
+              "fpr_auto": 0.01822477219034762,
+              "alerts_auto": 1623.0,
+              "positives_auto": 86.0,
+              "deferred_per_day": 69.75912408759125
+            },
+            {
+              "seed": 2,
+              "share": 0.1,
+              "threshold_logit": -4.280342800133179,
+              "precision_auto": 0.04119850187265917,
+              "recall_auto": 0.31976744186046513,
+              "system_recall_upper": 0.5185185185185185,
+              "deferred_units": 9557.0,
+              "deferred_positive_share": 0.29218106995884774,
+              "fpr_auto": 0.014911289477056418,
+              "alerts_auto": 1335.0,
+              "positives_auto": 172.0,
+              "deferred_per_day": 69.75912408759125
+            },
+            {
+              "seed": 3,
+              "share": 0.1,
+              "threshold_logit": -4.308218343875515,
+              "precision_auto": 0.036152356358941255,
+              "recall_auto": 0.35,
+              "system_recall_upper": 0.5720164609053497,
+              "deferred_units": 9557.0,
+              "deferred_positive_share": 0.34156378600823045,
+              "fpr_auto": 0.01739019020884535,
+              "alerts_auto": 1549.0,
+              "positives_auto": 160.0,
+              "deferred_per_day": 69.75912408759125
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.037490335368635753,
+            "recall_auto": 0.4441860465116279,
+            "system_recall_upper": 0.6570644718792866,
+            "deferred_units": 9557.0,
+            "deferred_positive_share": 0.4266117969821674,
+            "fpr_auto": 0.016842083958749796,
+            "alerts_auto": 1502.3333333333333,
+            "positives_auto": 139.33333333333334,
+            "deferred_per_day": 69.75912408759125
+          },
+          "std": {
+            "precision_auto": 0.0032525740122414976,
+            "recall_auto": 0.1899197120506956,
+            "system_recall_upper": 0.19547686084313973,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.19167120411202815,
+            "fpr_auto": 0.0017233999155347735,
+            "alerts_auto": 149.56381023942035,
+            "positives_auto": 46.57610259922284,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.0004520385267974934,
+              0.1000875398861274
+            ],
+            "recall_auto": [
+              0.010571925775826494,
+              0.7635225855255086
+            ],
+            "system_recall_upper": [
+              0.45147838568051335,
+              0.8502709284627092
+            ],
+            "deferred_units": [
+              9280.975,
+              9864.091666666667
+            ],
+            "deferred_positive_share": [
+              0.23206290945824015,
+              0.6561782661782661
+            ],
+            "fpr_auto": [
+              0.009285952091055611,
+              0.02817988132169978
+            ],
+            "alerts_auto": [
+              836.8666666666668,
+              2497.533333333333
+            ],
+            "positives_auto": [
+              62.666666666666664,
+              225.67499999999998
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        }
+      }
+    },
+    "hybrid": {
+      "figure": "main",
+      "thresholds_logit_valid": [
+        -3.7560772303245877,
+        -3.759225451474353,
+        -3.795213207125807
+      ],
+      "test_sessions": 95570,
+      "test_positive_sessions": 243,
+      "test_days": 137,
+      "points": {
+        "0.00": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.0,
+              "threshold_logit": -3.7560772303245877,
+              "precision_auto": 0.028603268945022287,
+              "recall_auto": 0.6337448559670782,
+              "system_recall_upper": 0.6337448559670782,
+              "deferred_units": 0.0,
+              "deferred_positive_share": 0.0,
+              "fpr_auto": 0.05486378465702267,
+              "alerts_auto": 5384.0,
+              "positives_auto": 243.0,
+              "deferred_per_day": 0.0
+            },
+            {
+              "seed": 2,
+              "share": 0.0,
+              "threshold_logit": -3.759225451474353,
+              "precision_auto": 0.02467508005274063,
+              "recall_auto": 0.5390946502057613,
+              "system_recall_upper": 0.5390946502057613,
+              "deferred_units": 0.0,
+              "deferred_positive_share": 0.0,
+              "fpr_auto": 0.054318293872669864,
+              "alerts_auto": 5309.0,
+              "positives_auto": 243.0,
+              "deferred_per_day": 0.0
+            },
+            {
+              "seed": 3,
+              "share": 0.0,
+              "threshold_logit": -3.795213207125807,
+              "precision_auto": 0.024222704266088215,
+              "recall_auto": 0.551440329218107,
+              "system_recall_upper": 0.551440329218107,
+              "deferred_units": 0.0,
+              "deferred_positive_share": 0.0,
+              "fpr_auto": 0.05662613949877789,
+              "alerts_auto": 5532.0,
+              "positives_auto": 243.0,
+              "deferred_per_day": 0.0
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.025833684421283712,
+            "recall_auto": 0.5747599451303155,
+            "system_recall_upper": 0.5747599451303155,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.0,
+            "fpr_auto": 0.055269406009490145,
+            "alerts_auto": 5408.333333333333,
+            "positives_auto": 243.0,
+            "deferred_per_day": 0.0
+          },
+          "std": {
+            "precision_auto": 0.00240917201309631,
+            "recall_auto": 0.051454044810729904,
+            "system_recall_upper": 0.051454044810729904,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.0,
+            "fpr_auto": 0.0012062066032275092,
+            "alerts_auto": 113.47393239565346,
+            "positives_auto": 0.0,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.012095727902495638,
+              0.042390253973627764
+            ],
+            "recall_auto": [
+              0.35071155291384853,
+              0.8125523915187376
+            ],
+            "system_recall_upper": [
+              0.35071155291384853,
+              0.8125523915187376
+            ],
+            "deferred_units": [
+              0.0,
+              0.0
+            ],
+            "deferred_positive_share": [
+              0.0,
+              0.0
+            ],
+            "fpr_auto": [
+              0.04471293834382912,
+              0.067911626845613
+            ],
+            "alerts_auto": [
+              4385.658333333334,
+              6653.708333333334
+            ],
+            "positives_auto": [
+              139.0,
+              350.0
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.01": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.01,
+              "threshold_logit": -3.7560772303245877,
+              "precision_auto": 0.029614604462474645,
+              "recall_auto": 0.6697247706422018,
+              "system_recall_upper": 0.7037037037037037,
+              "deferred_units": 956.0,
+              "deferred_positive_share": 0.102880658436214,
+              "fpr_auto": 0.05068011356413407,
+              "alerts_auto": 4930.0,
+              "positives_auto": 218.0,
+              "deferred_per_day": 6.978102189781022
+            },
+            {
+              "seed": 2,
+              "share": 0.01,
+              "threshold_logit": -3.759225451474353,
+              "precision_auto": 0.025699013157894735,
+              "recall_auto": 0.5506607929515418,
+              "system_recall_upper": 0.5802469135802469,
+              "deferred_units": 956.0,
+              "deferred_positive_share": 0.06584362139917696,
+              "fpr_auto": 0.050208185449267376,
+              "alerts_auto": 4864.0,
+              "positives_auto": 227.0,
+              "deferred_per_day": 6.978102189781022
+            },
+            {
+              "seed": 3,
+              "share": 0.01,
+              "threshold_logit": -3.795213207125807,
+              "precision_auto": 0.02568154879494271,
+              "recall_auto": 0.5627705627705628,
+              "system_recall_upper": 0.5843621399176955,
+              "deferred_units": 956.0,
+              "deferred_positive_share": 0.04938271604938271,
+              "fpr_auto": 0.05225517307142176,
+              "alerts_auto": 5062.0,
+              "positives_auto": 231.0,
+              "deferred_per_day": 6.978102189781022
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.026998388805104027,
+            "recall_auto": 0.5943853754547688,
+            "system_recall_upper": 0.6227709190672154,
+            "deferred_units": 956.0,
+            "deferred_positive_share": 0.07270233196159122,
+            "fpr_auto": 0.0510478240282744,
+            "alerts_auto": 4952.0,
+            "positives_auto": 225.33333333333334,
+            "deferred_per_day": 6.978102189781022
+          },
+          "std": {
+            "precision_auto": 0.0022657260481789713,
+            "recall_auto": 0.06552617783507268,
+            "system_recall_upper": 0.07012004345202776,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.027400527236540715,
+            "fpr_auto": 0.00107188983594026,
+            "alerts_auto": 100.81666528902848,
+            "positives_auto": 6.6583281184793925,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.012471708195545415,
+              0.04508425994516327
+            ],
+            "recall_auto": [
+              0.3583673156418395,
+              0.8379344943616798
+            ],
+            "system_recall_upper": [
+              0.40422178130511477,
+              0.846306229298002
+            ],
+            "deferred_units": [
+              928.9833333333333,
+              988.0
+            ],
+            "deferred_positive_share": [
+              0.03626595770378154,
+              0.11365825364936126
+            ],
+            "fpr_auto": [
+              0.04049744291351488,
+              0.06376045507784157
+            ],
+            "alerts_auto": [
+              3934.3166666666666,
+              6200.366666666667
+            ],
+            "positives_auto": [
+              129.30000000000004,
+              327.675
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.02": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.02,
+              "threshold_logit": -3.7560772303245877,
+              "precision_auto": 0.02949656243069417,
+              "recall_auto": 0.6717171717171717,
+              "system_recall_upper": 0.7325102880658436,
+              "deferred_units": 1912.0,
+              "deferred_positive_share": 0.18518518518518517,
+              "fpr_auto": 0.04682216991226193,
+              "alerts_auto": 4509.0,
+              "positives_auto": 198.0,
+              "deferred_per_day": 13.956204379562044
+            },
+            {
+              "seed": 2,
+              "share": 0.02,
+              "threshold_logit": -3.759225451474353,
+              "precision_auto": 0.026570592208961945,
+              "recall_auto": 0.5514018691588785,
+              "system_recall_upper": 0.6049382716049383,
+              "deferred_units": 1912.0,
+              "deferred_positive_share": 0.11934156378600823,
+              "fpr_auto": 0.04626300243996404,
+              "alerts_auto": 4441.0,
+              "positives_auto": 214.0,
+              "deferred_per_day": 13.956204379562044
+            },
+            {
+              "seed": 3,
+              "share": 0.02,
+              "threshold_logit": -3.795213207125807,
+              "precision_auto": 0.02652005174644243,
+              "recall_auto": 0.5694444444444444,
+              "system_recall_upper": 0.6172839506172839,
+              "deferred_units": 1912.0,
+              "deferred_positive_share": 0.1111111111111111,
+              "fpr_auto": 0.048318743177586096,
+              "alerts_auto": 4638.0,
+              "positives_auto": 216.0,
+              "deferred_per_day": 13.956204379562044
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.02752906879536618,
+            "recall_auto": 0.5975211617734982,
+            "system_recall_upper": 0.6515775034293553,
+            "deferred_units": 1912.0,
+            "deferred_positive_share": 0.13854595336076816,
+            "fpr_auto": 0.047134638509937356,
+            "alerts_auto": 4529.333333333333,
+            "positives_auto": 209.33333333333334,
+            "deferred_per_day": 13.956204379562044
+          },
+          "std": {
+            "precision_auto": 0.0017040868488372369,
+            "recall_auto": 0.06488581932444949,
+            "system_recall_upper": 0.07036114459935341,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.04059985894910491,
+            "fpr_auto": 0.0010628946154156828,
+            "alerts_auto": 100.06164766449398,
+            "positives_auto": 9.865765724632494,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.012798055411528838,
+              0.04722972210490554
+            ],
+            "recall_auto": [
+              0.357059823705145,
+              0.8492155683656247
+            ],
+            "system_recall_upper": [
+              0.4402041871284571,
+              0.8639178617992177
+            ],
+            "deferred_units": [
+              1856.9833333333333,
+              1974.0083333333332
+            ],
+            "deferred_positive_share": [
+              0.06836823734729494,
+              0.20378720678099743
+            ],
+            "fpr_auto": [
+              0.03664203678667501,
+              0.0597778600359619
+            ],
+            "alerts_auto": [
+              3529.3083333333334,
+              5765.091666666666
+            ],
+            "positives_auto": [
+              119.94166666666672,
+              306.7333333333333
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.10": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.1,
+              "threshold_logit": -3.7560772303245877,
+              "precision_auto": 0.04066543438077634,
+              "recall_auto": 0.8,
+              "system_recall_upper": 0.9094650205761317,
+              "deferred_units": 9557.0,
+              "deferred_positive_share": 0.5473251028806584,
+              "fpr_auto": 0.024166792777900657,
+              "alerts_auto": 2164.0,
+              "positives_auto": 110.0,
+              "deferred_per_day": 69.75912408759125
+            },
+            {
+              "seed": 2,
+              "share": 0.1,
+              "threshold_logit": -3.759225451474353,
+              "precision_auto": 0.03387404580152672,
+              "recall_auto": 0.6068376068376068,
+              "system_recall_upper": 0.8106995884773662,
+              "deferred_units": 9557.0,
+              "deferred_positive_share": 0.5185185185185185,
+              "fpr_auto": 0.023575020955574184,
+              "alerts_auto": 2096.0,
+              "positives_auto": 117.0,
+              "deferred_per_day": 69.75912408759125
+            },
+            {
+              "seed": 3,
+              "share": 0.1,
+              "threshold_logit": -3.795213207125807,
+              "precision_auto": 0.03671255736337088,
+              "recall_auto": 0.6666666666666666,
+              "system_recall_upper": 0.8189300411522634,
+              "deferred_units": 9557.0,
+              "deferred_positive_share": 0.4567901234567901,
+              "fpr_auto": 0.026886039985561418,
+              "alerts_auto": 2397.0,
+              "positives_auto": 132.0,
+              "deferred_per_day": 69.75912408759125
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.03708401251522465,
+            "recall_auto": 0.6911680911680911,
+            "system_recall_upper": 0.8463648834019204,
+            "deferred_units": 9557.0,
+            "deferred_positive_share": 0.5075445816186557,
+            "fpr_auto": 0.024875951239678756,
+            "alerts_auto": 2219.0,
+            "positives_auto": 119.66666666666667,
+            "deferred_per_day": 69.75912408759125
+          },
+          "std": {
+            "precision_auto": 0.003410897815234221,
+            "recall_auto": 0.09888461652352706,
+            "system_recall_upper": 0.0548010544730814,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.046254362963202636,
+            "fpr_auto": 0.0017657550926354444,
+            "alerts_auto": 157.85753070411306,
+            "positives_auto": 11.239810200058244,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.009990189259694594,
+              0.07560872540988903
+            ],
+            "recall_auto": [
+              0.32775063518067,
+              0.9247070197977769
+            ],
+            "system_recall_upper": [
+              0.7160185825268288,
+              0.9559222735528706
+            ],
+            "deferred_units": [
+              9281.325,
+              9863.1
+            ],
+            "deferred_positive_share": [
+              0.25152913943355115,
+              0.7023864843335104
+            ],
+            "fpr_auto": [
+              0.01730745639411078,
+              0.03485319264020707
+            ],
+            "alerts_auto": [
+              1565.3750000000002,
+              3119.7833333333333
+            ],
+            "positives_auto": [
+              56.65833333333334,
+              201.04166666666663
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        }
+      }
+    },
+    "xgb_text": {
+      "figure": "appendix",
+      "thresholds_logit_valid": [
+        -5.2315643478476765,
+        -5.1828816241502,
+        -5.20799098413047
+      ],
+      "test_sessions": 95570,
+      "test_positive_sessions": 243,
+      "test_days": 137,
+      "points": {
+        "0.00": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.0,
+              "threshold_logit": -5.2315643478476765,
+              "precision_auto": 0.029372937293729372,
+              "recall_auto": 0.7325102880658436,
+              "system_recall_upper": 0.7325102880658436,
+              "deferred_units": 0.0,
+              "deferred_positive_share": 0.0,
+              "fpr_auto": 0.06170339987621555,
+              "alerts_auto": 6060.0,
+              "positives_auto": 243.0,
+              "deferred_per_day": 0.0
+            },
+            {
+              "seed": 2,
+              "share": 0.0,
+              "threshold_logit": -5.1828816241502,
+              "precision_auto": 0.029360363509262497,
+              "recall_auto": 0.691358024691358,
+              "system_recall_upper": 0.691358024691358,
+              "deferred_units": 0.0,
+              "deferred_positive_share": 0.0,
+              "fpr_auto": 0.05826261185183631,
+              "alerts_auto": 5722.0,
+              "positives_auto": 243.0,
+              "deferred_per_day": 0.0
+            },
+            {
+              "seed": 3,
+              "share": 0.0,
+              "threshold_logit": -5.20799098413047,
+              "precision_auto": 0.03043625295908015,
+              "recall_auto": 0.7407407407407407,
+              "system_recall_upper": 0.7407407407407407,
+              "deferred_units": 0.0,
+              "deferred_positive_share": 0.0,
+              "fpr_auto": 0.060150849182288336,
+              "alerts_auto": 5914.0,
+              "positives_auto": 243.0,
+              "deferred_per_day": 0.0
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.02972318458735734,
+            "recall_auto": 0.7215363511659808,
+            "system_recall_upper": 0.7215363511659808,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.0,
+            "fpr_auto": 0.06003895363678006,
+            "alerts_auto": 5898.666666666667,
+            "positives_auto": 243.0,
+            "deferred_per_day": 0.0
+          },
+          "std": {
+            "precision_auto": 0.0006175673259471545,
+            "recall_auto": 0.02645720373386271,
+            "system_recall_upper": 0.02645720373386271,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.0,
+            "fpr_auto": 0.0017231210105521744,
+            "alerts_auto": 169.52089350087007,
+            "positives_auto": 0.0,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.015693376674242854,
+              0.04619729369731509
+            ],
+            "recall_auto": [
+              0.5684518882056133,
+              0.8795569152154911
+            ],
+            "system_recall_upper": [
+              0.5684518882056133,
+              0.8795569152154911
+            ],
+            "deferred_units": [
+              0.0,
+              0.0
+            ],
+            "deferred_positive_share": [
+              0.0,
+              0.0
+            ],
+            "fpr_auto": [
+              0.04786455047443806,
+              0.07477088386647805
+            ],
+            "alerts_auto": [
+              4684.658333333334,
+              7450.333333333333
+            ],
+            "positives_auto": [
+              139.0,
+              350.0
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.01": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.01,
+              "threshold_logit": -5.2315643478476765,
+              "precision_auto": 0.030654072357868472,
+              "recall_auto": 0.7413793103448276,
+              "system_recall_upper": 0.7530864197530864,
+              "deferred_units": 956.0,
+              "deferred_positive_share": 0.04526748971193416,
+              "fpr_auto": 0.0576275137208366,
+              "alerts_auto": 5611.0,
+              "positives_auto": 232.0,
+              "deferred_per_day": 6.978102189781022
+            },
+            {
+              "seed": 2,
+              "share": 0.01,
+              "threshold_logit": -5.1828816241502,
+              "precision_auto": 0.03132118451025057,
+              "recall_auto": 0.7081545064377682,
+              "system_recall_upper": 0.720164609053498,
+              "deferred_units": 956.0,
+              "deferred_positive_share": 0.0411522633744856,
+              "fpr_auto": 0.05406808573759549,
+              "alerts_auto": 5268.0,
+              "positives_auto": 233.0,
+              "deferred_per_day": 6.978102189781022
+            },
+            {
+              "seed": 3,
+              "share": 0.01,
+              "threshold_logit": -5.20799098413047,
+              "precision_auto": 0.03169078585821579,
+              "recall_auto": 0.7489177489177489,
+              "system_recall_upper": 0.7613168724279835,
+              "deferred_units": 956.0,
+              "deferred_positive_share": 0.04938271604938271,
+              "fpr_auto": 0.05600584851085471,
+              "alerts_auto": 5459.0,
+              "positives_auto": 231.0,
+              "deferred_per_day": 6.978102189781022
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.03122201424211161,
+            "recall_auto": 0.7328171885667816,
+            "system_recall_upper": 0.7448559670781894,
+            "deferred_units": 956.0,
+            "deferred_positive_share": 0.04526748971193415,
+            "fpr_auto": 0.05590048265642893,
+            "alerts_auto": 5446.0,
+            "positives_auto": 232.0,
+            "deferred_per_day": 6.978102189781022
+          },
+          "std": {
+            "precision_auto": 0.0005254234264026129,
+            "recall_auto": 0.021688543781844656,
+            "system_recall_upper": 0.021775730955264083,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.004115226337448558,
+            "fpr_auto": 0.0017820517288869907,
+            "alerts_auto": 171.86913626361192,
+            "positives_auto": 1.0,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.0163836065865678,
+              0.0491498834799874
+            ],
+            "recall_auto": [
+              0.5791949758532773,
+              0.8881930781166084
+            ],
+            "system_recall_upper": [
+              0.6003980766817268,
+              0.890982398112893
+            ],
+            "deferred_units": [
+              928.9833333333333,
+              988.0
+            ],
+            "deferred_positive_share": [
+              0.016589693728731165,
+              0.07114858681309326
+            ],
+            "fpr_auto": [
+              0.043627777861739984,
+              0.0707770809460358
+            ],
+            "alerts_auto": [
+              4238.616666666667,
+              6981.216666666666
+            ],
+            "positives_auto": [
+              132.65,
+              335.0333333333333
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.02": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.02,
+              "threshold_logit": -5.2315643478476765,
+              "precision_auto": 0.031964354901201086,
+              "recall_auto": 0.746606334841629,
+              "system_recall_upper": 0.7695473251028807,
+              "deferred_units": 1912.0,
+              "deferred_positive_share": 0.09053497942386832,
+              "fpr_auto": 0.05347988484219313,
+              "alerts_auto": 5162.0,
+              "positives_auto": 221.0,
+              "deferred_per_day": 13.956204379562044
+            },
+            {
+              "seed": 2,
+              "share": 0.02,
+              "threshold_logit": -5.1828816241502,
+              "precision_auto": 0.032682425488180886,
+              "recall_auto": 0.7162162162162162,
+              "system_recall_upper": 0.7407407407407407,
+              "deferred_units": 1912.0,
+              "deferred_positive_share": 0.08641975308641975,
+              "fpr_auto": 0.05036602594289139,
+              "alerts_auto": 4865.0,
+              "positives_auto": 222.0,
+              "deferred_per_day": 13.956204379562044
+            },
+            {
+              "seed": 3,
+              "share": 0.02,
+              "threshold_logit": -5.20799098413047,
+              "precision_auto": 0.03304313415116739,
+              "recall_auto": 0.755656108597285,
+              "system_recall_upper": 0.7777777777777778,
+              "deferred_units": 1912.0,
+              "deferred_positive_share": 0.09053497942386832,
+              "fpr_auto": 0.052302621017369995,
+              "alerts_auto": 5054.0,
+              "positives_auto": 221.0,
+              "deferred_per_day": 13.956204379562044
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.03256330484684979,
+            "recall_auto": 0.7394928865517101,
+            "system_recall_upper": 0.7626886145404663,
+            "deferred_units": 1912.0,
+            "deferred_positive_share": 0.08916323731138547,
+            "fpr_auto": 0.05204951060081817,
+            "alerts_auto": 5027.0,
+            "positives_auto": 221.33333333333334,
+            "deferred_per_day": 13.956204379562044
+          },
+          "std": {
+            "precision_auto": 0.0005491661523918018,
+            "recall_auto": 0.020659795199555707,
+            "system_recall_upper": 0.01944780093108073,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.002375927033702169,
+            "fpr_auto": 0.0015722843169781477,
+            "alerts_auto": 150.3296377964106,
+            "positives_auto": 0.5773502691896258,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.016996228276572066,
+              0.05197801491848707
+            ],
+            "recall_auto": [
+              0.585295232640423,
+              0.891929552474548
+            ],
+            "system_recall_upper": [
+              0.6294688360881543,
+              0.8960801564027372
+            ],
+            "deferred_units": [
+              1857.0,
+              1974.0083333333332
+            ],
+            "deferred_positive_share": [
+              0.035957557468308136,
+              0.13415154925847456
+            ],
+            "fpr_auto": [
+              0.03982540567315479,
+              0.06684989668947514
+            ],
+            "alerts_auto": [
+              3826.65,
+              6545.708333333333
+            ],
+            "positives_auto": [
+              126.99166666666667,
+              321.3333333333333
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.10": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.1,
+              "threshold_logit": -5.2315643478476765,
+              "precision_auto": 0.04389248043552229,
+              "recall_auto": 0.8716216216216216,
+              "system_recall_upper": 0.9218106995884774,
+              "deferred_units": 9557.0,
+              "deferred_positive_share": 0.39094650205761317,
+              "fpr_auto": 0.032725790485063765,
+              "alerts_auto": 2939.0,
+              "positives_auto": 148.0,
+              "deferred_per_day": 69.75912408759125
+            },
+            {
+              "seed": 2,
+              "share": 0.1,
+              "threshold_logit": -5.1828816241502,
+              "precision_auto": 0.044241316270566725,
+              "recall_auto": 0.8066666666666666,
+              "system_recall_upper": 0.8806584362139918,
+              "deferred_units": 9557.0,
+              "deferred_positive_share": 0.38271604938271603,
+              "fpr_auto": 0.03044384659282811,
+              "alerts_auto": 2735.0,
+              "positives_auto": 150.0,
+              "deferred_per_day": 69.75912408759125
+            },
+            {
+              "seed": 3,
+              "share": 0.1,
+              "threshold_logit": -5.20799098413047,
+              "precision_auto": 0.048898071625344354,
+              "recall_auto": 0.8208092485549133,
+              "system_recall_upper": 0.8724279835390947,
+              "deferred_units": 9557.0,
+              "deferred_positive_share": 0.2880658436213992,
+              "fpr_auto": 0.03217614165890028,
+              "alerts_auto": 2904.0,
+              "positives_auto": 173.0,
+              "deferred_per_day": 69.75912408759125
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.045677289443811116,
+            "recall_auto": 0.8330325122810671,
+            "system_recall_upper": 0.8916323731138546,
+            "deferred_units": 9557.0,
+            "deferred_positive_share": 0.35390946502057613,
+            "fpr_auto": 0.031781926245597385,
+            "alerts_auto": 2859.3333333333335,
+            "positives_auto": 157.0,
+            "deferred_per_day": 69.75912408759125
+          },
+          "std": {
+            "precision_auto": 0.002794727179102507,
+            "recall_auto": 0.03415907895991033,
+            "system_recall_upper": 0.02645720373386271,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.05717055139691276,
+            "fpr_auto": 0.0011909539562435156,
+            "alerts_auto": 109.08864896648659,
+            "positives_auto": 13.892443989449804,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.021076776477473164,
+              0.07947303169128264
+            ],
+            "recall_auto": [
+              0.694235144190421,
+              0.9370160332128357
+            ],
+            "system_recall_upper": [
+              0.8333333333333334,
+              0.9474073288058856
+            ],
+            "deferred_units": [
+              9281.316666666668,
+              9864.058333333332
+            ],
+            "deferred_positive_share": [
+              0.16472626056309825,
+              0.5128264208909371
+            ],
+            "fpr_auto": [
+              0.021618772497044893,
+              0.04539732044037388
+            ],
+            "alerts_auto": [
+              1963.3250000000003,
+              4094.4583333333335
+            ],
+            "positives_auto": [
+              83.6416666666667,
+              243.66666666666666
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        }
+      }
+    },
+    "slm_text": {
+      "figure": "appendix",
+      "thresholds_logit_valid": [
+        -4.800492596569119,
+        -4.656863021790432,
+        -4.594163768277205
+      ],
+      "test_sessions": 95570,
+      "test_positive_sessions": 243,
+      "test_days": 137,
+      "points": {
+        "0.00": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.0,
+              "threshold_logit": -4.800492596569119,
+              "precision_auto": 0.03554175293305728,
+              "recall_auto": 0.8477366255144033,
+              "system_recall_upper": 0.8477366255144033,
+              "deferred_units": 0.0,
+              "deferred_positive_share": 0.0,
+              "fpr_auto": 0.05864025931792671,
+              "alerts_auto": 5796.0,
+              "positives_auto": 243.0,
+              "deferred_per_day": 0.0
+            },
+            {
+              "seed": 2,
+              "share": 0.0,
+              "threshold_logit": -4.656863021790432,
+              "precision_auto": 0.03417918177110305,
+              "recall_auto": 0.8148148148148148,
+              "system_recall_upper": 0.8148148148148148,
+              "deferred_units": 0.0,
+              "deferred_positive_share": 0.0,
+              "fpr_auto": 0.058692710354883715,
+              "alerts_auto": 5793.0,
+              "positives_auto": 243.0,
+              "deferred_per_day": 0.0
+            },
+            {
+              "seed": 3,
+              "share": 0.0,
+              "threshold_logit": -4.594163768277205,
+              "precision_auto": 0.035410282601293835,
+              "recall_auto": 0.8559670781893004,
+              "system_recall_upper": 0.8559670781893004,
+              "deferred_units": 0.0,
+              "deferred_positive_share": 0.0,
+              "fpr_auto": 0.059437515079673126,
+              "alerts_auto": 5874.0,
+              "positives_auto": 243.0,
+              "deferred_per_day": 0.0
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.03504373910181805,
+            "recall_auto": 0.8395061728395062,
+            "system_recall_upper": 0.8395061728395062,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.0,
+            "fpr_auto": 0.05892349491749452,
+            "alerts_auto": 5821.0,
+            "positives_auto": 243.0,
+            "deferred_per_day": 0.0
+          },
+          "std": {
+            "precision_auto": 0.000751608705114095,
+            "recall_auto": 0.02177573095526415,
+            "system_recall_upper": 0.02177573095526415,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.0,
+            "fpr_auto": 0.00044592636518158227,
+            "alerts_auto": 45.92385001282014,
+            "positives_auto": 0.0,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.019585818770238482,
+              0.05372017778279473
+            ],
+            "recall_auto": [
+              0.7396559468199785,
+              0.9324065485118813
+            ],
+            "system_recall_upper": [
+              0.7396559468199785,
+              0.9324065485118813
+            ],
+            "deferred_units": [
+              0.0,
+              0.0
+            ],
+            "deferred_positive_share": [
+              0.0,
+              0.0
+            ],
+            "fpr_auto": [
+              0.04594871486689263,
+              0.0739542026312522
+            ],
+            "alerts_auto": [
+              4547.208333333333,
+              7324.224999999999
+            ],
+            "positives_auto": [
+              139.0,
+              350.0
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.01": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.01,
+              "threshold_logit": -4.800492596569119,
+              "precision_auto": 0.03710609733358195,
+              "recall_auto": 0.8577586206896551,
+              "system_recall_upper": 0.8641975308641975,
+              "deferred_units": 956.0,
+              "deferred_positive_share": 0.04526748971193416,
+              "fpr_auto": 0.05471382255091013,
+              "alerts_auto": 5363.0,
+              "positives_auto": 232.0,
+              "deferred_per_day": 6.978102189781022
+            },
+            {
+              "seed": 2,
+              "share": 0.01,
+              "threshold_logit": -4.656863021790432,
+              "precision_auto": 0.03613335816725647,
+              "recall_auto": 0.8326180257510729,
+              "system_recall_upper": 0.8395061728395061,
+              "deferred_units": 956.0,
+              "deferred_positive_share": 0.0411522633744856,
+              "fpr_auto": 0.05483095114482788,
+              "alerts_auto": 5369.0,
+              "positives_auto": 233.0,
+              "deferred_per_day": 6.978102189781022
+            },
+            {
+              "seed": 3,
+              "share": 0.01,
+              "threshold_logit": -4.594163768277205,
+              "precision_auto": 0.037386637053488804,
+              "recall_auto": 0.8744588744588745,
+              "system_recall_upper": 0.8806584362139918,
+              "deferred_units": 956.0,
+              "deferred_positive_share": 0.04938271604938271,
+              "fpr_auto": 0.0551052626002564,
+              "alerts_auto": 5403.0,
+              "positives_auto": 231.0,
+              "deferred_per_day": 6.978102189781022
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.036875364184775744,
+            "recall_auto": 0.8549451736332009,
+            "system_recall_upper": 0.8614540466392319,
+            "deferred_units": 956.0,
+            "deferred_positive_share": 0.04526748971193415,
+            "fpr_auto": 0.05488334543199813,
+            "alerts_auto": 5378.333333333333,
+            "positives_auto": 232.0,
+            "deferred_per_day": 6.978102189781022
+          },
+          "std": {
+            "precision_auto": 0.0006577273988039888,
+            "recall_auto": 0.02106183202862203,
+            "system_recall_upper": 0.02071285167426819,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.004115226337448558,
+            "fpr_auto": 0.0002009109231826684,
+            "alerts_auto": 21.571586249817916,
+            "positives_auto": 1.0,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.01995056763989981,
+              0.05706585725749308
+            ],
+            "recall_auto": [
+              0.7597316514923144,
+              0.946459226462389
+            ],
+            "system_recall_upper": [
+              0.7729353577179664,
+              0.9481878694257607
+            ],
+            "deferred_units": [
+              928.9916666666667,
+              987.675
+            ],
+            "deferred_positive_share": [
+              0.02304659649517806,
+              0.0810247359963269
+            ],
+            "fpr_auto": [
+              0.04180132901642286,
+              0.06995711057878984
+            ],
+            "alerts_auto": [
+              4109.666666666667,
+              6868.166666666666
+            ],
+            "positives_auto": [
+              131.0,
+              336.0083333333333
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.02": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.02,
+              "threshold_logit": -4.800492596569119,
+              "precision_auto": 0.03894018466479326,
+              "recall_auto": 0.8778280542986425,
+              "system_recall_upper": 0.8888888888888888,
+              "deferred_units": 1912.0,
+              "deferred_positive_share": 0.09053497942386832,
+              "fpr_auto": 0.051243083575029165,
+              "alerts_auto": 4982.0,
+              "positives_auto": 221.0,
+              "deferred_per_day": 13.956204379562044
+            },
+            {
+              "seed": 2,
+              "share": 0.02,
+              "threshold_logit": -4.656863021790432,
+              "precision_auto": 0.03891366031617349,
+              "recall_auto": 0.8767123287671232,
+              "system_recall_upper": 0.8888888888888888,
+              "deferred_units": 1912.0,
+              "deferred_positive_share": 0.09876543209876543,
+              "fpr_auto": 0.05074968696154711,
+              "alerts_auto": 4934.0,
+              "positives_auto": 219.0,
+              "deferred_per_day": 13.956204379562044
+            },
+            {
+              "seed": 3,
+              "share": 0.02,
+              "threshold_logit": -4.594163768277205,
+              "precision_auto": 0.039259560618388936,
+              "recall_auto": 0.8853211009174312,
+              "system_recall_upper": 0.897119341563786,
+              "deferred_units": 1912.0,
+              "deferred_positive_share": 0.102880658436214,
+              "fpr_auto": 0.050545804794520546,
+              "alerts_auto": 4916.0,
+              "positives_auto": 218.0,
+              "deferred_per_day": 13.956204379562044
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.0390378018664519,
+            "recall_auto": 0.8799538279943989,
+            "system_recall_upper": 0.8916323731138546,
+            "deferred_units": 1912.0,
+            "deferred_positive_share": 0.09739368998628258,
+            "fpr_auto": 0.05084619177703228,
+            "alerts_auto": 4944.0,
+            "positives_auto": 219.33333333333334,
+            "deferred_per_day": 13.956204379562044
+          },
+          "std": {
+            "precision_auto": 0.00019250608643087396,
+            "recall_auto": 0.004681551541760182,
+            "system_recall_upper": 0.00475185406740437,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.006286112064411302,
+            "fpr_auto": 0.0003585168182885789,
+            "alerts_auto": 34.11744421846396,
+            "positives_auto": 1.5275252316519465,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.02083418057289872,
+              0.06113474090128721
+            ],
+            "recall_auto": [
+              0.7862583758667953,
+              0.9577370654810513
+            ],
+            "system_recall_upper": [
+              0.8138155624568669,
+              0.9602867256492977
+            ],
+            "deferred_units": [
+              1857.3166666666666,
+              1974.3583333333331
+            ],
+            "deferred_positive_share": [
+              0.05046644460893166,
+              0.15278186274509806
+            ],
+            "fpr_auto": [
+              0.03791799457687359,
+              0.06580492182645967
+            ],
+            "alerts_auto": [
+              3706.483333333334,
+              6407.341666666666
+            ],
+            "positives_auto": [
+              122.99166666666667,
+              320.0083333333333
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.10": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.1,
+              "threshold_logit": -4.800492596569119,
+              "precision_auto": 0.06309420916162489,
+              "recall_auto": 0.948051948051948,
+              "system_recall_upper": 0.9670781893004116,
+              "deferred_units": 9557.0,
+              "deferred_positive_share": 0.3662551440329218,
+              "fpr_auto": 0.025250701731909294,
+              "alerts_auto": 2314.0,
+              "positives_auto": 154.0,
+              "deferred_per_day": 69.75912408759125
+            },
+            {
+              "seed": 2,
+              "share": 0.1,
+              "threshold_logit": -4.656863021790432,
+              "precision_auto": 0.0688800792864222,
+              "recall_auto": 0.9652777777777778,
+              "system_recall_upper": 0.9794238683127572,
+              "deferred_units": 9557.0,
+              "deferred_positive_share": 0.4074074074074074,
+              "fpr_auto": 0.021882169350988134,
+              "alerts_auto": 2018.0,
+              "positives_auto": 144.0,
+              "deferred_per_day": 69.75912408759125
+            },
+            {
+              "seed": 3,
+              "share": 0.1,
+              "threshold_logit": -4.594163768277205,
+              "precision_auto": 0.06601842374616172,
+              "recall_auto": 0.9084507042253521,
+              "system_recall_upper": 0.9465020576131687,
+              "deferred_units": 9557.0,
+              "deferred_positive_share": 0.4156378600823045,
+              "fpr_auto": 0.021252809446728232,
+              "alerts_auto": 1954.0,
+              "positives_auto": 142.0,
+              "deferred_per_day": 69.75912408759125
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.06599757073140294,
+            "recall_auto": 0.9405934766850259,
+            "system_recall_upper": 0.9643347050754457,
+            "deferred_units": 9557.0,
+            "deferred_positive_share": 0.39643347050754457,
+            "fpr_auto": 0.022795226843208557,
+            "alerts_auto": 2095.3333333333335,
+            "positives_auto": 146.66666666666666,
+            "deferred_per_day": 69.75912408759125
+          },
+          "std": {
+            "precision_auto": 0.002892991429545533,
+            "recall_auto": 0.029138474024588114,
+            "system_recall_upper": 0.01663148923591513,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.0264572037338627,
+            "fpr_auto": 0.0021496607102174155,
+            "alerts_auto": 192.05554752032893,
+            "positives_auto": 6.429100507328636,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.034170411526646356,
+              0.1062047062442132
+            ],
+            "recall_auto": [
+              0.8843478764972447,
+              0.9870653212881267
+            ],
+            "system_recall_upper": [
+              0.9365016125972301,
+              0.9920658263305322
+            ],
+            "deferred_units": [
+              9280.991666666667,
+              9864.733333333334
+            ],
+            "deferred_positive_share": [
+              0.2604267026578074,
+              0.542768728588973
+            ],
+            "fpr_auto": [
+              0.014607651938707372,
+              0.03371333941294913
+            ],
+            "alerts_auto": [
+              1367.9916666666668,
+              3050.1666666666665
+            ],
+            "positives_auto": [
+              80.66666666666667,
+              226.04166666666663
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        }
+      }
+    }
+  },
+  "exploratory_paired": {
+    "slm_text_vs_xgb_text": {
+      "a": "slm_text",
+      "b": "xgb_text",
+      "exploratory": true,
+      "points": {
+        "0.00": {
+          "system_recall_upper": {
+            "a": 0.8395061728395062,
+            "b": 0.7215363511659808,
+            "difference": 0.11796982167352543,
+            "ci": [
+              -0.0053391053391052415,
+              0.23653719434223222
+            ],
+            "significant": false,
+            "boot_skipped": 0
+          },
+          "precision_auto": {
+            "a": 0.03504373910181805,
+            "b": 0.02972318458735734,
+            "difference": 0.005320554514460712,
+            "ci": [
+              -0.0013234053608233113,
+              0.013890598587492765
+            ],
+            "significant": false,
+            "boot_skipped": 0
+          },
+          "recall_auto": {
+            "a": 0.8395061728395062,
+            "b": 0.7215363511659808,
+            "difference": 0.11796982167352543,
+            "ci": [
+              -0.0053391053391052415,
+              0.23653719434223222
+            ],
+            "significant": false,
+            "boot_skipped": 0
+          }
+        },
+        "0.10": {
+          "system_recall_upper": {
+            "a": 0.9643347050754457,
+            "b": 0.8916323731138546,
+            "difference": 0.07270233196159115,
+            "ci": [
+              0.02598713119899557,
+              0.12626826298701302
+            ],
+            "significant": true,
+            "boot_skipped": 0
+          },
+          "precision_auto": {
+            "a": 0.06599757073140294,
+            "b": 0.045677289443811116,
+            "difference": 0.020320281287591828,
+            "ci": [
+              0.0007906707772502615,
+              0.04252210050053565
+            ],
+            "significant": true,
+            "boot_skipped": 0
+          },
+          "recall_auto": {
+            "a": 0.9405934766850259,
+            "b": 0.8330325122810671,
+            "difference": 0.10756096440395879,
+            "ci": [
+              0.02586154501765851,
+              0.2299447141358819
+            ],
+            "significant": true,
+            "boot_skipped": 0
+          }
+        }
+      }
+    }
+  },
+  "runtime_seconds": 75.1
+}

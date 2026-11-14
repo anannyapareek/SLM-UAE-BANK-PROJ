@@ -124,6 +124,40 @@ def top_k_per_day(s, w, k):
     return float(precision), float(recall)
 
 
+ABSTENTION_METRICS = ["precision_auto", "recall_auto", "system_recall_upper", "deferred_units",
+                      "deferred_positive_share", "fpr_auto", "alerts_auto", "positives_auto"]
+
+
+def deferral_order(s, threshold, key):
+    """Units by increasing distance |score - threshold| (scores on the logit scale); ties by key."""
+    return np.lexsort((key, np.abs(s.score - threshold)))
+
+
+def abstention(s, w, threshold, order, share):
+    """Defer the units closest to the threshold, up to `share` of the (weighted) units, to analysts.
+
+    A unit is deferred while the weight of the units ahead of it in `order` is below share x
+    total weight (with weights 1: the ceil(share x n) closest units). Alert = score >= threshold
+    on the units kept for automatic decision. precision_auto, recall_auto and fpr_auto are on
+    the kept units; system_recall_upper assumes analysts catch every deferred positive.
+    """
+    ws = w[order]
+    deferred = np.zeros(len(w), bool)
+    deferred[order] = (np.cumsum(ws) - ws) < share * ws.sum()
+    keep, alert, y = ~deferred, s.score >= threshold, s.y
+    tp, fp = float((w * y * (keep & alert)).sum()), float((w * (1 - y) * (keep & alert)).sum())
+    pos_all, pos_keep = float((w * y).sum()), float((w * y * keep).sum())
+    neg_keep = float((w * (1 - y) * keep).sum())
+    nan = float("nan")
+    return {"precision_auto": tp / (tp + fp) if tp + fp else nan,
+            "recall_auto": tp / pos_keep if pos_keep else nan,
+            "system_recall_upper": (tp + pos_all - pos_keep) / pos_all if pos_all else nan,
+            "deferred_units": float((w * deferred).sum()),
+            "deferred_positive_share": (pos_all - pos_keep) / pos_all if pos_all else nan,
+            "fpr_auto": fp / neg_keep if neg_keep else nan,
+            "alerts_auto": tp + fp, "positives_auto": pos_keep}
+
+
 def brier(s, w):
     return float(np.sum(w * (s.score - s.y) ** 2) / w.sum())
 
@@ -272,7 +306,7 @@ def build_units(meta, scores, unit, cfg):
     users, user_index = np.unique(units["user"].to_numpy(), return_inverse=True)
     scored = [Scored(s, units["y"].to_numpy(), day, key) for s in unit_scores]
     return {"units": units, "scored": scored, "users": users, "user_index": user_index,
-            "day": day}
+            "day": day, "key": key}
 
 
 def precision_ceiling(u, k):

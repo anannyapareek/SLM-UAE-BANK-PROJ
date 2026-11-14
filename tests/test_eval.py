@@ -345,3 +345,28 @@ def test_pr_auc_shortcut_equals_scored_path(small):
     score, y, day, key = small
     full = ev.average_precision(scored(score, y, day, key), np.ones(len(score)))
     assert ev.pr_auc(score, y) == full                       # identical, ties included
+
+
+def test_abstention_defers_closest_and_counts_kept_units():
+    from src import eval as ev
+    score = np.array([-4.0, -1.0, -0.2, 0.1, 0.5, 3.0])     # logits; threshold 0
+    y = np.array([0, 1, 0, 1, 0, 1])
+    s = ev.Scored(score, y, np.zeros(6, int), np.arange(6))
+    order = ev.deferral_order(s, 0.0, np.arange(6))
+    assert order[:3].tolist() == [3, 2, 4]                  # |0.1| < |-0.2| < |0.5|
+    w = np.ones(6)
+    none = ev.abstention(s, w, 0.0, order, 0.0)
+    assert none["deferred_units"] == 0 and none["recall_auto"] == 2 / 3
+    half = ev.abstention(s, w, 0.0, order, 0.5)              # defers units 3, 2, 4
+    assert half["deferred_units"] == 3
+    assert half["precision_auto"] == 1.0 and half["recall_auto"] == 0.5     # kept: 0, 1, 5
+    assert half["system_recall_upper"] == 2 / 3 and half["deferred_positive_share"] == 1 / 3
+
+
+def test_abstention_weights_defer_by_mass():
+    from src import eval as ev
+    s = ev.Scored(np.array([0.1, 0.2, 2.0]), np.array([1, 0, 1]), np.zeros(3, int), np.arange(3))
+    order = ev.deferral_order(s, 0.0, np.arange(3))
+    w = np.array([2.0, 0.0, 1.0])                            # unit 1 absent from the resample
+    r = ev.abstention(s, w, 0.0, order, 0.5)
+    assert r["deferred_units"] == 2.0 and r["recall_auto"] == 1.0
