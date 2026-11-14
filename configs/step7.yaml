@@ -34,3 +34,19 @@ rules_slm:                           # runbook 7.3 (decisions log 2026-11-14)
   slm: results/step7/calibration/slm_struct_rowfit_platt/s{seed}   # same scale as the hybrid
   seeds: [1, 2, 3]
   out: results/step7/rules_slm
+
+table3:                              # runbook 7.4 (Comparison 3, test)
+  # XGBoost and SLM: the Platt row-fit files the hybrid is built from (ranking metrics equal
+  # Table 1's within the 1e-6 float32 tolerance of ranking_check.md). Rules: deterministic run.
+  models:
+    xgb: results/step7/calibration/xgb_struct_rowfit_platt/s{seed}
+    slm: results/step7/calibration/slm_struct_rowfit_platt/s{seed}
+    hybrid: results/step7/hybrid/s{seed}
+    rules: results/rules
+    rules_slm: results/step7/rules_slm/s{seed}
+  seeded: [xgb, slm, hybrid, rules_slm]
+  paired: [[hybrid, xgb], [hybrid, slm], [rules_slm, rules]]   # hybrid vs XGBoost = key test
+  session_aggs: [max, final]
+  slm_rows_per_second: 116.8         # RTX 4500 Ada, fp16 merged adapter (decisions log 2026-11-10)
+  xgb_timing: results/step7/xgb_timing.json
+  out: results/step7/table3

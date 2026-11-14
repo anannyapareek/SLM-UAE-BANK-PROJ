@@ -19,7 +19,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.28,
     "date": "2026-11-14T11:15:59",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_struct_sessionfit_platt",
@@ -41,7 +41,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.28,
     "date": "2026-11-14T11:16:00",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_struct_rowfit_temperature",
@@ -63,7 +63,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.3,
     "date": "2026-11-14T11:16:00",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_struct_rowfit_platt",
@@ -85,7 +85,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.44,
     "date": "2026-11-14T11:16:00",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_struct_sessionfit_temperature",
@@ -107,7 +107,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.3,
     "date": "2026-11-14T11:16:01",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_struct_sessionfit_platt",
@@ -129,7 +129,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.44,
     "date": "2026-11-14T11:16:01",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_struct_rowfit_temperature",
@@ -151,7 +151,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.31,
     "date": "2026-11-14T11:16:02",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_struct_rowfit_platt",
@@ -173,7 +173,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.46,
     "date": "2026-11-14T11:16:02",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_struct_sessionfit_temperature",
@@ -195,7 +195,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.27,
     "date": "2026-11-14T11:16:02",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_struct_sessionfit_platt",
@@ -217,7 +217,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.32,
     "date": "2026-11-14T11:16:03",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_struct_rowfit_temperature",
@@ -239,7 +239,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.34,
     "date": "2026-11-14T11:16:03",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_struct_rowfit_platt",
@@ -261,7 +261,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.5,
     "date": "2026-11-14T11:16:04",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_struct_sessionfit_temperature",
@@ -283,7 +283,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.29,
     "date": "2026-11-14T11:16:04",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_struct_sessionfit_platt",
@@ -305,7 +305,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.27,
     "date": "2026-11-14T11:16:04",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_struct_rowfit_temperature",
@@ -327,7 +327,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.35,
     "date": "2026-11-14T11:16:05",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_struct_rowfit_platt",
@@ -349,7 +349,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.38,
     "date": "2026-11-14T11:16:05",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_struct_sessionfit_temperature",
@@ -371,7 +371,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.27,
     "date": "2026-11-14T11:16:05",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_struct_sessionfit_platt",
@@ -393,7 +393,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.28,
     "date": "2026-11-14T11:16:06",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_struct_rowfit_temperature",
@@ -415,7 +415,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.36,
     "date": "2026-11-14T11:16:06",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_struct_rowfit_platt",
@@ -437,7 +437,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.37,
     "date": "2026-11-14T11:16:06",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_struct_sessionfit_temperature",
@@ -459,7 +459,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.28,
     "date": "2026-11-14T11:16:07",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_struct_sessionfit_platt",
@@ -481,7 +481,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.29,
     "date": "2026-11-14T11:16:07",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_struct_rowfit_temperature",
@@ -503,7 +503,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.36,
     "date": "2026-11-14T11:16:07",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_struct_rowfit_platt",
@@ -525,7 +525,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.43,
     "date": "2026-11-14T11:16:08",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_text_sessionfit_temperature",
@@ -547,7 +547,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.05,
     "date": "2026-11-14T11:16:08",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_text_sessionfit_platt",
@@ -569,7 +569,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.07,
     "date": "2026-11-14T11:16:08",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_text_sessionfit_temperature",
@@ -591,7 +591,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.05,
     "date": "2026-11-14T11:16:08",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_text_sessionfit_platt",
@@ -613,7 +613,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.08,
     "date": "2026-11-14T11:16:08",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_text_sessionfit_temperature",
@@ -635,7 +635,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.06,
     "date": "2026-11-14T11:16:08",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "xgb_text_sessionfit_platt",
@@ -657,7 +657,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.07,
     "date": "2026-11-14T11:16:08",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_text_sessionfit_temperature",
@@ -679,7 +679,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.05,
     "date": "2026-11-14T11:16:08",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_text_sessionfit_platt",
@@ -701,7 +701,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.07,
     "date": "2026-11-14T11:16:08",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_text_sessionfit_temperature",
@@ -723,7 +723,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.06,
     "date": "2026-11-14T11:16:08",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_text_sessionfit_platt",
@@ -745,7 +745,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.06,
     "date": "2026-11-14T11:16:09",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_text_sessionfit_temperature",
@@ -767,7 +767,7 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.06,
     "date": "2026-11-14T11:16:09",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   },
   {
     "run_id": "slm_text_sessionfit_platt",
@@ -789,6 +789,6 @@
     "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
     "fit_seconds": 0.06,
     "date": "2026-11-14T11:16:09",
-    "machine": "Anannyas-MacBook-Pro.local (arm64, Darwin)"
+    "machine": "Mac (arm64, Darwin)"
   }
 ]

@@ -183,7 +183,7 @@ def run_log():
                                           "fit_split": CFG["fit_split"],
                                           "params": params.get("params", {})}),
                     "seed": seed,
-                    "machine": params.get("machine", f"{platform.node()} ({platform.machine()})"),
+                    "machine": params.get("machine", f"Mac ({platform.machine()}, {platform.system()})"),
                     "metrics": json.dumps({split: {k: per[split].get(k) for k in
                                                    CAL + BSS + ["mean_predicted", "observed_rate"]}
                                            for split in per}),

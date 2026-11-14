@@ -109,7 +109,7 @@ def main():
                               "source": str(folder), "test_ids_sha256": checksum,
                               "fit_seconds": round(time.perf_counter() - started, 2),
                               "date": datetime.datetime.now().isoformat(timespec="seconds"),
-                              "machine": f"{platform.node()} ({platform.machine()}, {platform.system()})"}
+                              "machine": f"Mac ({platform.machine()}, {platform.system()})"}
                     (out / "params.json").write_text(json.dumps(record, indent=2) + "\n")
                     records.append(record)
                     shown = (f"T = {params['T']:.4f}{' (AT BOUND)' if params['at_bound'] else ''}"
