@@ -11,7 +11,8 @@
     "operating_point": 0.1,
     "extra_points": [
       0.01,
-      0.02
+      0.02,
+      0.03
     ],
     "exploratory_paired": [
       {
@@ -407,6 +408,118 @@
             "positives_auto": [
               123.99166666666667,
               315.3666666666666
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.03": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.03,
+              "threshold_logit": -5.262320849217327,
+              "precision_auto": 0.03481245403285119,
+              "recall_auto": 0.6926829268292682,
+              "system_recall_upper": 0.7407407407407407,
+              "deferred_units": 2868.0,
+              "deferred_positive_share": 0.15637860082304528,
+              "fpr_auto": 0.04256354260138167,
+              "alerts_auto": 4079.0,
+              "positives_auto": 205.0,
+              "deferred_per_day": 20.934306569343065
+            },
+            {
+              "seed": 2,
+              "share": 0.03,
+              "threshold_logit": -5.302459947639723,
+              "precision_auto": 0.03024705610713461,
+              "recall_auto": 0.6421568627450981,
+              "system_recall_upper": 0.6995884773662552,
+              "deferred_units": 2868.0,
+              "deferred_positive_share": 0.16049382716049382,
+              "fpr_auto": 0.0454063871651279,
+              "alerts_auto": 4331.0,
+              "positives_auto": 204.0,
+              "deferred_per_day": 20.934306569343065
+            },
+            {
+              "seed": 3,
+              "share": 0.03,
+              "threshold_logit": -5.274864189500647,
+              "precision_auto": 0.029823353980270705,
+              "recall_auto": 0.65,
+              "system_recall_upper": 0.7119341563786008,
+              "deferred_units": 2868.0,
+              "deferred_positive_share": 0.17695473251028807,
+              "fpr_auto": 0.04571793042312599,
+              "alerts_auto": 4359.0,
+              "positives_auto": 200.0,
+              "deferred_per_day": 20.934306569343065
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.03162762137341884,
+            "recall_auto": 0.6616132631914554,
+            "system_recall_upper": 0.7174211248285323,
+            "deferred_units": 2868.0,
+            "deferred_positive_share": 0.1646090534979424,
+            "fpr_auto": 0.04456262006321185,
+            "alerts_auto": 4256.333333333333,
+            "positives_auto": 203.0,
+            "deferred_per_day": 20.934306569343065
+          },
+          "std": {
+            "precision_auto": 0.002766270083436804,
+            "recall_auto": 0.027191390170878123,
+            "system_recall_upper": 0.021117701396900723,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.010887865477632057,
+            "fpr_auto": 0.0017382456167639457,
+            "alerts_auto": 154.21197532401087,
+            "positives_auto": 2.6457513110645907,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.014273624821814719,
+              0.053591465263374174
+            ],
+            "recall_auto": [
+              0.39944027697866263,
+              0.9194018001941172
+            ],
+            "system_recall_upper": [
+              0.5246213701267448,
+              0.9282624748617396
+            ],
+            "deferred_units": [
+              2784.9833333333336,
+              2960.35
+            ],
+            "deferred_positive_share": [
+              0.07936293436293437,
+              0.23893108854296732
+            ],
+            "fpr_auto": [
+              0.034037955089668476,
+              0.05768007452586997
+            ],
+            "alerts_auto": [
+              3256.3083333333334,
+              5541.1
+            ],
+            "positives_auto": [
+              114.33333333333333,
+              296.34999999999997
             ]
           },
           "boot_skipped": {
@@ -881,6 +994,118 @@
             "positives_auto": 0
           }
         },
+        "0.03": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.03,
+              "threshold_logit": -4.3183955882285225,
+              "precision_auto": 0.0211146575006138,
+              "recall_auto": 0.5477707006369427,
+              "system_recall_upper": 0.7078189300411523,
+              "deferred_units": 2868.0,
+              "deferred_positive_share": 0.35390946502057613,
+              "fpr_auto": 0.04308174401642444,
+              "alerts_auto": 4073.0,
+              "positives_auto": 157.0,
+              "deferred_per_day": 20.934306569343065
+            },
+            {
+              "seed": 2,
+              "share": 0.03,
+              "threshold_logit": -4.280342800133179,
+              "precision_auto": 0.020227560050568902,
+              "recall_auto": 0.3508771929824561,
+              "system_recall_upper": 0.39094650205761317,
+              "deferred_units": 2868.0,
+              "deferred_positive_share": 0.06172839506172839,
+              "fpr_auto": 0.041903670220818826,
+              "alerts_auto": 3955.0,
+              "positives_auto": 228.0,
+              "deferred_per_day": 20.934306569343065
+            },
+            {
+              "seed": 3,
+              "share": 0.03,
+              "threshold_logit": -4.308218343875515,
+              "precision_auto": 0.019842279318239633,
+              "recall_auto": 0.3406113537117904,
+              "system_recall_upper": 0.3786008230452675,
+              "deferred_units": 2868.0,
+              "deferred_positive_share": 0.05761316872427984,
+              "fpr_auto": 0.04166621608469499,
+              "alerts_auto": 3931.0,
+              "positives_auto": 229.0,
+              "deferred_per_day": 20.934306569343065
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.020394832289807444,
+            "recall_auto": 0.41308641577706307,
+            "system_recall_upper": 0.4924554183813443,
+            "deferred_units": 2868.0,
+            "deferred_positive_share": 0.15775034293552812,
+            "fpr_auto": 0.042217210107312754,
+            "alerts_auto": 3986.3333333333335,
+            "positives_auto": 204.66666666666666,
+            "deferred_per_day": 20.934306569343065
+          },
+          "std": {
+            "precision_auto": 0.0006524734180488532,
+            "recall_auto": 0.11675289848712828,
+            "system_recall_upper": 0.18661239391691578,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.16989124360847643,
+            "fpr_auto": 0.000758063504393618,
+            "alerts_auto": 76.00877142365435,
+            "positives_auto": 41.28357219685977,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.00350148478726446,
+              0.04345826044809639
+            ],
+            "recall_auto": [
+              0.10111151816002481,
+              0.7010867185076901
+            ],
+            "system_recall_upper": [
+              0.24110008988186957,
+              0.7351249098124097
+            ],
+            "deferred_units": [
+              2785.0,
+              2960.0
+            ],
+            "deferred_positive_share": [
+              0.07499354970729022,
+              0.22852070834420193
+            ],
+            "fpr_auto": [
+              0.0298120199405381,
+              0.058400828370669136
+            ],
+            "alerts_auto": [
+              2813.8333333333335,
+              5588.8
+            ],
+            "positives_auto": [
+              116.63333333333337,
+              300.34999999999997
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
         "0.10": {
           "per_seed": [
             {
@@ -1329,6 +1554,118 @@
             "positives_auto": [
               119.94166666666672,
               306.7333333333333
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
+        "0.03": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.03,
+              "threshold_logit": -3.7560772303245877,
+              "precision_auto": 0.03070175438596491,
+              "recall_auto": 0.6923076923076923,
+              "system_recall_upper": 0.7695473251028807,
+              "deferred_units": 2868.0,
+              "deferred_positive_share": 0.25102880658436216,
+              "fpr_auto": 0.04299610894941634,
+              "alerts_auto": 4104.0,
+              "positives_auto": 182.0,
+              "deferred_per_day": 20.934306569343065
+            },
+            {
+              "seed": 2,
+              "share": 0.03,
+              "threshold_logit": -3.759225451474353,
+              "precision_auto": 0.027586206896551724,
+              "recall_auto": 0.5743589743589743,
+              "system_recall_upper": 0.6584362139917695,
+              "deferred_units": 2868.0,
+              "deferred_positive_share": 0.19753086419753085,
+              "fpr_auto": 0.04267785140583956,
+              "alerts_auto": 4060.0,
+              "positives_auto": 195.0,
+              "deferred_per_day": 20.934306569343065
+            },
+            {
+              "seed": 3,
+              "share": 0.03,
+              "threshold_logit": -3.795213207125807,
+              "precision_auto": 0.027268453220498354,
+              "recall_auto": 0.5742574257425742,
+              "system_recall_upper": 0.6460905349794238,
+              "deferred_units": 2868.0,
+              "deferred_positive_share": 0.16872427983539096,
+              "fpr_auto": 0.044735135135135135,
+              "alerts_auto": 4254.0,
+              "positives_auto": 202.0,
+              "deferred_per_day": 20.934306569343065
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.02851880483433833,
+            "recall_auto": 0.6136413641364137,
+            "system_recall_upper": 0.691358024691358,
+            "deferred_units": 2868.0,
+            "deferred_positive_share": 0.20576131687242802,
+            "fpr_auto": 0.043469698496797014,
+            "alerts_auto": 4139.333333333333,
+            "positives_auto": 193.0,
+            "deferred_per_day": 20.934306569343065
+          },
+          "std": {
+            "precision_auto": 0.0018971540286364143,
+            "recall_auto": 0.0681270575395258,
+            "system_recall_upper": 0.06799469811464327,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.041764985864577046,
+            "fpr_auto": 0.001107393055896256,
+            "alerts_auto": 101.71201174558162,
+            "positives_auto": 10.14889156509222,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.012691393656023496,
+              0.04947226244045998
+            ],
+            "recall_auto": [
+              0.3501141214683458,
+              0.8670177357742809
+            ],
+            "system_recall_upper": [
+              0.47791705571117343,
+              0.8904679087371394
+            ],
+            "deferred_units": [
+              2785.3083333333334,
+              2960.0333333333333
+            ],
+            "deferred_positive_share": [
+              0.1024922118380063,
+              0.2985083002495938
+            ],
+            "fpr_auto": [
+              0.03315005142655241,
+              0.05597349661352948
+            ],
+            "alerts_auto": [
+              3178.3166666666666,
+              5348.608333333333
+            ],
+            "positives_auto": [
+              111.6416666666667,
+              281.7
             ]
           },
           "boot_skipped": {
@@ -1803,6 +2140,118 @@
             "positives_auto": 0
           }
         },
+        "0.03": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.03,
+              "threshold_logit": -5.2315643478476765,
+              "precision_auto": 0.033618709542702026,
+              "recall_auto": 0.755868544600939,
+              "system_recall_upper": 0.7860082304526749,
+              "deferred_units": 2868.0,
+              "deferred_positive_share": 0.12345679012345678,
+              "fpr_auto": 0.05003838294283645,
+              "alerts_auto": 4789.0,
+              "positives_auto": 213.0,
+              "deferred_per_day": 20.934306569343065
+            },
+            {
+              "seed": 2,
+              "share": 0.03,
+              "threshold_logit": -5.1828816241502,
+              "precision_auto": 0.03469750889679715,
+              "recall_auto": 0.7323943661971831,
+              "system_recall_upper": 0.7654320987654321,
+              "deferred_units": 2868.0,
+              "deferred_positive_share": 0.12345679012345678,
+              "fpr_auto": 0.04692449912962623,
+              "alerts_auto": 4496.0,
+              "positives_auto": 213.0,
+              "deferred_per_day": 20.934306569343065
+            },
+            {
+              "seed": 3,
+              "share": 0.03,
+              "threshold_logit": -5.20799098413047,
+              "precision_auto": 0.03483650352639453,
+              "recall_auto": 0.7616822429906542,
+              "system_recall_upper": 0.7901234567901234,
+              "deferred_units": 2868.0,
+              "deferred_positive_share": 0.11934156378600823,
+              "fpr_auto": 0.04882795605916443,
+              "alerts_auto": 4679.0,
+              "positives_auto": 214.0,
+              "deferred_per_day": 20.934306569343065
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.0343842406552979,
+            "recall_auto": 0.7499817179295921,
+            "system_recall_upper": 0.7805212620027434,
+            "deferred_units": 2868.0,
+            "deferred_positive_share": 0.12208504801097393,
+            "fpr_auto": 0.048596946043875704,
+            "alerts_auto": 4654.666666666667,
+            "positives_auto": 213.33333333333334,
+            "deferred_per_day": 20.934306569343065
+          },
+          "std": {
+            "precision_auto": 0.0006666020477229566,
+            "recall_auto": 0.015505998128506487,
+            "system_recall_upper": 0.013228601866931354,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.0023759270337021608,
+            "fpr_auto": 0.0015697427562871335,
+            "alerts_auto": 148.00788267296215,
+            "positives_auto": 0.5773502691896258,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.017648449435204532,
+              0.055286354091169006
+            ],
+            "recall_auto": [
+              0.5895486331703733,
+              0.8933345176571922
+            ],
+            "system_recall_upper": [
+              0.6614153900751168,
+              0.8996083900784859
+            ],
+            "deferred_units": [
+              2784.991666666667,
+              2960.0166666666664
+            ],
+            "deferred_positive_share": [
+              0.0495823281546528,
+              0.18484471719061304
+            ],
+            "fpr_auto": [
+              0.03656084711525046,
+              0.0634463430512925
+            ],
+            "alerts_auto": [
+              3484.5333333333333,
+              6154.816666666667
+            ],
+            "positives_auto": [
+              120.98333333333335,
+              307.3583333333333
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
         "0.10": {
           "per_seed": [
             {
@@ -2264,6 +2713,118 @@
             "positives_auto": 0
           }
         },
+        "0.03": {
+          "per_seed": [
+            {
+              "seed": 1,
+              "share": 0.03,
+              "threshold_logit": -4.800492596569119,
+              "precision_auto": 0.03998280309544282,
+              "recall_auto": 0.8857142857142857,
+              "system_recall_upper": 0.9012345679012346,
+              "deferred_units": 2868.0,
+              "deferred_positive_share": 0.13580246913580246,
+              "fpr_auto": 0.04828525710331704,
+              "alerts_auto": 4652.0,
+              "positives_auto": 210.0,
+              "deferred_per_day": 20.934306569343065
+            },
+            {
+              "seed": 2,
+              "share": 0.03,
+              "threshold_logit": -4.656863021790432,
+              "precision_auto": 0.04084350721420644,
+              "recall_auto": 0.8846153846153846,
+              "system_recall_upper": 0.9012345679012346,
+              "deferred_units": 2868.0,
+              "deferred_positive_share": 0.1440329218106996,
+              "fpr_auto": 0.04671654377581248,
+              "alerts_auto": 4505.0,
+              "positives_auto": 208.0,
+              "deferred_per_day": 20.934306569343065
+            },
+            {
+              "seed": 3,
+              "share": 0.03,
+              "threshold_logit": -4.594163768277205,
+              "precision_auto": 0.042572463768115944,
+              "recall_auto": 0.8867924528301887,
+              "system_recall_upper": 0.9012345679012346,
+              "deferred_units": 2868.0,
+              "deferred_positive_share": 0.12757201646090535,
+              "fpr_auto": 0.04571305005946589,
+              "alerts_auto": 4416.0,
+              "positives_auto": 212.0,
+              "deferred_per_day": 20.934306569343065
+            }
+          ],
+          "mean": {
+            "precision_auto": 0.0411329246925884,
+            "recall_auto": 0.8857073743866196,
+            "system_recall_upper": 0.9012345679012346,
+            "deferred_units": 2868.0,
+            "deferred_positive_share": 0.1358024691358025,
+            "fpr_auto": 0.04690495031286513,
+            "alerts_auto": 4524.333333333333,
+            "positives_auto": 210.0,
+            "deferred_per_day": 20.934306569343065
+          },
+          "std": {
+            "precision_auto": 0.0013188659740444389,
+            "recall_auto": 0.0010885505628197448,
+            "system_recall_upper": 0.0,
+            "deferred_units": 0.0,
+            "deferred_positive_share": 0.008230452674897124,
+            "fpr_auto": 0.0012964123713203682,
+            "alerts_auto": 119.1819337539601,
+            "positives_auto": 2.0,
+            "deferred_per_day": 0.0
+          },
+          "ci": {
+            "precision_auto": [
+              0.022035878743567272,
+              0.06553163830430193
+            ],
+            "recall_auto": [
+              0.7982405548902252,
+              0.9646117865600925
+            ],
+            "system_recall_upper": [
+              0.8316526977475118,
+              0.967140753014821
+            ],
+            "deferred_units": [
+              2785.3166666666666,
+              2959.6916666666666
+            ],
+            "deferred_positive_share": [
+              0.0735492793591385,
+              0.20029015636105185
+            ],
+            "fpr_auto": [
+              0.0342585828435655,
+              0.06165630724646967
+            ],
+            "alerts_auto": [
+              3330.416666666667,
+              5980.391666666666
+            ],
+            "positives_auto": [
+              116.31666666666668,
+              307.675
+            ]
+          },
+          "boot_skipped": {
+            "precision_auto": 0,
+            "recall_auto": 0,
+            "system_recall_upper": 0,
+            "deferred_units": 0,
+            "deferred_positive_share": 0,
+            "fpr_auto": 0,
+            "alerts_auto": 0,
+            "positives_auto": 0
+          }
+        },
         "0.10": {
           "per_seed": [
             {
@@ -2458,5 +3019,5 @@
       }
     }
   },
-  "runtime_seconds": 75.1
+  "runtime_seconds": 103.8
 }

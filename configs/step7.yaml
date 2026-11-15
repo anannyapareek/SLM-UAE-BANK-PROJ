@@ -59,7 +59,7 @@ abstention:                          # runbook 7.5 (decisions log 2026-11-14)
   fpr: 0.05                          # each model/seed's validation session-level 5%-FPR threshold
   shares: {start: 0.0, stop: 0.5, step: 0.01}
   operating_point: 0.10
-  extra_points: [0.01, 0.02]         # workable workloads; the P7 capacity share is added after P7
+  extra_points: [0.01, 0.02, 0.03]   # workable workloads; 0.03 = grid share closest to the P7 capacity (20/day = 2.87%)
   exploratory_paired:                # NOT pre-declared; reported as exploratory (decisions log)
     - {a: slm_text, b: xgb_text, points: [0.0, 0.10],
        metrics: [system_recall_upper, precision_auto, recall_auto]}
@@ -71,3 +71,23 @@ abstention:                          # runbook 7.5 (decisions log 2026-11-14)
     - {key: xgb_text, figure: appendix, kind: calibrated, folder: "results/step7/calibration/xgb_text_sessionfit_platt/s{seed}", suffix: "_final"}
     - {key: slm_text, figure: appendix, kind: calibrated, folder: "results/step7/calibration/slm_text_sessionfit_platt/s{seed}", suffix: "_final"}
   out: results/step7/abstention
+review_budget:                       # runbook 7.6 (decisions log 2026-11-15)
+  # Capacity = configs/eval.yaml alerts_per_day (1 analyst x 20 per calendar day, D4); not repeated here.
+  # Session level (max over scoring points; C2 logoff rows). Each calendar day alerts on its top k
+  # sessions by score (src/eval.py top_k_per_day, ties by the eval.py hash key). Ranking only, so
+  # rules and rules + SLM are included. Weekday-only variant (sensitivity): weekends get no alerts,
+  # their positives still count as missed.
+  sensitivity: [10, 50]
+  k_max: 100
+  seeds: [1, 2, 3]
+  models:                            # folder has {seed} unless deterministic (rules)
+    - {key: xgb, figure: main, folder: "results/step7/calibration/xgb_struct_rowfit_platt/s{seed}", rows: all}
+    - {key: slm, figure: main, folder: "results/step7/calibration/slm_struct_rowfit_platt/s{seed}", rows: all}
+    - {key: hybrid, figure: main, folder: "results/step7/hybrid/s{seed}", rows: all}
+    - {key: rules, figure: main, folder: "results/rules", rows: all}
+    - {key: rules_slm, figure: main, folder: "results/step7/rules_slm/s{seed}", rows: all}
+    - {key: xgb_text, figure: c2, folder: "results/xgb_text_s{seed}", rows: final}
+    - {key: slm_text, figure: c2, folder: "results/c2_qwen15_r8_lr1e-4_s{seed}", rows: final}
+  paired:                            # pre-declared (runbook 7.6 project decision): at the chosen capacity
+    - {a: slm_text, b: xgb_text}
+  out: results/step7/review_budget

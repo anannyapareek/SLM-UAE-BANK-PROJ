@@ -25,6 +25,8 @@ import matplotlib.pyplot as plt  # noqa: E402
 CFG = yaml.safe_load(pathlib.Path("configs/step7.yaml").read_text())["abstention"]
 D = pathlib.Path(CFG["out"])
 RUN_LOG = pathlib.Path("results/step7/run.csv")
+CAP = yaml.safe_load(pathlib.Path("configs/eval.yaml").read_text())["alerts_per_day"]   # P7 capacity
+CAP_ROW = "0.03"                     # deferral grid share closest to CAP / mean daily test sessions
 LABELS = {"xgb": "XGBoost (structured v3)", "slm": "SLM C1", "hybrid": "Hybrid",
           "xgb_text": "XGBoost text (C2)", "slm_text": "SLM text (C2)"}
 COLOURS = {"xgb": "#0072B2", "slm": "#D55E00", "hybrid": "#009E73",      # Okabe-Ito
@@ -83,7 +85,10 @@ def table(result):
             p = m["points"][q]
             md.append(f"| {float(q):.0%} | {p['mean']['deferred_per_day']:.1f} | {LABELS[key]} | "
                       f"{cell(p, 'deferred_positive_share')} | {cell(p, 'system_recall_upper')} |")
-    md += ["| P7 capacity share: to be filled after P7 (Step 7.6) | – | – | – | – |", ""]
+    md += ["", f"P7 capacity (Step 7.6; decisions log 2026-11-15): 1 analyst × {CAP} alerts/day = "
+           f"{CAP / first['test_sessions'] * first['test_days']:.2%} of test sessions per day on average; the "
+           f"closest deferral row above is {float(CAP_ROW):.0%} "
+           f"({first['points'][CAP_ROW]['mean']['deferred_per_day']:.1f} sessions/day).", ""]
     for name, pair in result.get("exploratory_paired", {}).items():
         md += [f"## Exploratory (not pre-declared): paired {LABELS[pair['a']]} − {LABELS[pair['b']]}", "",
                "Not pre-declared; reported as exploratory (decisions log 2026-11-14). Same user draws for "

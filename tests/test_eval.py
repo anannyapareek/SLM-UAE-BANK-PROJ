@@ -98,6 +98,16 @@ def test_top_k_per_day_counts():
     assert recall == pytest.approx(2 / 3)
 
 
+def test_top_k_per_day_closed_days():
+    s = scored(np.array([0.9, 0.8, 0.7, 0.6, 0.5]), np.array([1, 0, 1, 0, 1]), day=[0, 0, 0, 1, 1])
+    open_unit = np.array([True, True, True, False, False])
+    precision, recall = ev.top_k_per_day(s, np.ones(5), 2, open_unit)
+    # day 1 closed: no alerts there, but its positive stays in the recall denominator
+    assert precision == pytest.approx(1 / 2)
+    assert recall == pytest.approx(1 / 3)
+    assert ev.top_k_per_day(s, np.ones(5), 2, np.ones(5, bool)) == ev.top_k_per_day(s, np.ones(5), 2)
+
+
 def unit_set(seed):
     rng = np.random.default_rng(seed)
     n = 400

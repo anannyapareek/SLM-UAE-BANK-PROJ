@@ -112,12 +112,16 @@ def recall_at_fpr(s, w, level):
     return float(tp[best] / tp[-1]), float(thresholds[best])
 
 
-def top_k_per_day(s, w, k):
-    """Precision and recall when each day alerts on its top k units (by weight)."""
+def top_k_per_day(s, w, k, open_unit=None):
+    """Precision and recall when each day alerts on its top k units (by weight). open_unit
+    (bool per unit, optional): units on days with no review (e.g. weekends) raise no alert but
+    their positives still count in the recall denominator."""
     ws, y = w[s.by_day], s.y[s.by_day]
     cumulative = np.cumsum(ws)
     day_offset = np.maximum.accumulate(np.where(s.day_start, cumulative - ws, 0))
     taken = np.clip(k - (cumulative - day_offset - ws), 0, ws)
+    if open_unit is not None:
+        taken = np.where(np.asarray(open_unit, bool)[s.by_day], taken, 0)
     alerts, hits, positives = taken.sum(), (taken * y).sum(), (ws * y).sum()
     precision = hits / alerts if alerts else np.nan
     recall = hits / positives if positives else np.nan
