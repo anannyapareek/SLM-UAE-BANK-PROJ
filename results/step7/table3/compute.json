@@ -44,15 +44,30 @@
     ]
   },
   "compute": {
-    "slm_rows_per_second": 116.8,
-    "xgb_rows_per_second": 685822.0547321289,
-    "xgb_machine": "Mac (arm64, Darwin), CPU",
+    "slm_rows_per_second": 114.48102021455436,
+    "xgb_rows_per_second": 2455663.004447433,
     "test_rows": 848137,
     "share": 0.2147125601956602,
-    "slm_seconds": 1559.1238584474886,
-    "xgb_seconds": 1.2366720990494666,
-    "implied_rows_per_second": 543.5519441798033,
-    "slm_only_seconds": 7261.446917808219,
-    "speedup_vs_slm_on_all_rows": 4.653698152224344
+    "slm_seconds": 1590.7061827836064,
+    "xgb_seconds": 0.34538004541500417,
+    "implied_rows_per_second": 533.0669475550762,
+    "slm_only_seconds": 7408.538100118831,
+    "speedup_vs_slm_on_all_rows": 4.656378380940613,
+    "machine": "Lab PC (RTX 4500 Ada, Windows 11)",
+    "slm_source": "results/step8/latency_gpu.json#configs/a_score_structured_b16/rows_per_second",
+    "xgb_source": "results/step8/latency_xgb_lab.json#full_batch_tiled/rows_per_second",
+    "superseded_7_4": {
+      "slm_rows_per_second": 116.8,
+      "xgb_rows_per_second": 685822.0547321289,
+      "test_rows": 848137,
+      "share": 0.2147125601956602,
+      "slm_seconds": 1559.1238584474886,
+      "xgb_seconds": 1.2366720990494666,
+      "implied_rows_per_second": 543.5519441798033,
+      "slm_only_seconds": 7261.446917808219,
+      "speedup_vs_slm_on_all_rows": 4.653698152224344,
+      "xgb_machine": "Mac (arm64, Darwin), CPU",
+      "note": "SLM 116.8 rows/s from Step 6 lab timing; XGBoost timed on the Mac CPU (results/step7/xgb_timing.json); superseded 2026-11-22"
+    }
   }
 }

@@ -1,0 +1,76 @@
+{
+  "machine": "Lab PC (RTX 4500 Ada, Windows 11)",
+  "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
+  "model": "xgb_struct_v3 seed 1",
+  "inputs": "data/step8/xgb_features.parquet",
+  "rows": 1000,
+  "features": 44,
+  "check_max_abs_diff": 5.820766091346741e-11,
+  "method": "Booster.inplace_predict (features in memory; loading excluded)",
+  "iteration_range": [
+    0,
+    357
+  ],
+  "boosted_rounds": 557,
+  "batch1": {
+    "n": 1000,
+    "median_ms": 3.345550000062758,
+    "p95_ms": 3.465079999932641,
+    "mean_ms": 3.414819500000249,
+    "min_ms": 3.250900000011825,
+    "max_ms": 58.62679999995635,
+    "warmup_calls": 20
+  },
+  "full_batch": {
+    "rows": 1000,
+    "repeats": 20,
+    "seconds": [
+      0.006314299999985451,
+      0.005208900000070571,
+      0.00519680000002154,
+      0.005682600000000093,
+      0.0051327999999557505,
+      0.005137399999966874,
+      0.0051215000000865984,
+      0.005352700000003097,
+      0.00511770000002798,
+      0.005043699999987439,
+      0.004992500000071232,
+      0.004989300000033836,
+      0.0050980999999410415,
+      0.005022699999926772,
+      0.004980799999884766,
+      0.005009099999824684,
+      0.0049982999998974265,
+      0.004996399999981804,
+      0.004950499999949898,
+      0.005242200000111552
+    ],
+    "median_seconds": 0.005107899999984511,
+    "rows_per_second": 195775.17179330692
+  },
+  "full_batch_tiled": {
+    "rows": 100000,
+    "note": "the 1,000 rows tiled x100: throughput at a large batch, comparable with results/step7/xgb_timing.json (336,737 rows)",
+    "repeats": 5,
+    "seconds": [
+      0.04072220000011839,
+      0.04049259999987953,
+      0.04196760000013455,
+      0.0407786999999189,
+      0.04023270000016055
+    ],
+    "median_seconds": 0.04072220000011839,
+    "rows_per_second": 2455663.004447433
+  },
+  "environment": {
+    "xgboost": "3.4.1",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "python": "3.12.16",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cpu": "AMD64 Family 25 Model 24 Stepping 1, AuthenticAMD",
+    "cpu_count": 192,
+    "nthread": "0"
+  }
+}

@@ -54,16 +54,39 @@ def routing():
             "per_seed": t.to_dict("records")}
 
 
-def compute_line(r):
-    xgb = json.loads(pathlib.Path(CFG["xgb_timing"]).read_text())
-    slm_rps, xgb_rps, n = CFG["slm_rows_per_second"], xgb["rows_per_second_median"], r["rows"]
-    share = r["row_share"][0]
+def lookup(spec):
+    """[json path, key, key, ...] -> (value, the JSON's machine field)."""
+    data = json.loads(pathlib.Path(spec[0]).read_text())
+    value = data
+    for k in spec[1:]:
+        value = value[k]
+    return value, data["machine"]
+
+
+def line(r, slm_rps, xgb_rps):
+    n, share = r["rows"], r["row_share"][0]
     slm_s, xgb_s = share * n / slm_rps, n / xgb_rps
     implied = n / (slm_s + xgb_s)
-    return {"slm_rows_per_second": slm_rps, "xgb_rows_per_second": xgb_rps, "xgb_machine": xgb["machine"],
+    return {"slm_rows_per_second": slm_rps, "xgb_rows_per_second": xgb_rps,
             "test_rows": n, "share": share, "slm_seconds": slm_s, "xgb_seconds": xgb_s,
             "implied_rows_per_second": implied, "slm_only_seconds": n / slm_rps,
             "speedup_vs_slm_on_all_rows": implied / slm_rps}
+
+
+def compute_line(r):
+    """Step 8.1 single-machine line (decisions log 2026-11-22) + the superseded 7.4 line as a note."""
+    (slm_rps, slm_machine), (xgb_rps, xgb_machine) = lookup(CFG["compute"]["slm"]), lookup(CFG["compute"]["xgb"])
+    if slm_machine != xgb_machine:
+        raise SystemExit(f"compute line mixes machines: {slm_machine} vs {xgb_machine}")
+    c = line(r, slm_rps, xgb_rps)
+    c.update({"machine": slm_machine, "slm_source": CFG["compute"]["slm"][0] + "#" + "/".join(CFG["compute"]["slm"][1:]),
+              "xgb_source": CFG["compute"]["xgb"][0] + "#" + "/".join(CFG["compute"]["xgb"][1:])})
+    old = CFG["compute_7_4"]
+    old_xgb = json.loads(pathlib.Path(old["xgb_timing"]).read_text())
+    c["superseded_7_4"] = line(r, old["slm_rows_per_second"], old_xgb["rows_per_second_median"]) | {
+        "xgb_machine": old_xgb["machine"], "note": "SLM 116.8 rows/s from Step 6 lab timing; XGBoost timed on "
+        "the Mac CPU (results/step7/xgb_timing.json); superseded 2026-11-22"}
+    return c
 
 
 def table3():
@@ -108,14 +131,19 @@ def table3():
            "validation (19.0% there), from the validation-to-test shift in the XGBoost score "
            "distribution; reported as-is, band not changed (decisions log 2026-11-14). Test "
            f"sessions with at least one SLM row: {pct(r['session_share'])}.", "",
-           f"Compute line: the SLM scores {c['share']:.1%} of {c['test_rows']:,} test rows at "
-           f"{c['slm_rows_per_second']} rows/s (RTX 4500 Ada, fp16 merged adapter) = "
-           f"{c['slm_seconds']:,.0f} s; XGBoost scores all rows at {c['xgb_rows_per_second']:,.0f} "
-           f"rows/s ({c['xgb_machine']}, results/step7/xgb_timing.json) = {c['xgb_seconds']:.1f} s. "
-           f"Implied hybrid throughput {c['implied_rows_per_second']:,.0f} rows/s, "
+           f"Compute line (Step 8.1 lab measurements, one machine and one protocol: {c['machine']}; "
+           "results/step8/operations.md): the SLM scores "
+           f"{c['share']:.1%} of {c['test_rows']:,} test rows at {c['slm_rows_per_second']:.1f} rows/s "
+           f"(GPU, fp16 merged C1 seed-1 adapter, batch 16) = {c['slm_seconds']:,.0f} s; XGBoost scores all "
+           f"rows at {c['xgb_rows_per_second']:,.0f} rows/s (same PC's CPU, 100,000-row batch) = "
+           f"{c['xgb_seconds']:.1f} s. Implied hybrid throughput {c['implied_rows_per_second']:,.0f} rows/s, "
            f"{c['speedup_vs_slm_on_all_rows']:.2f}× the SLM scoring every row "
-           f"({c['slm_only_seconds']:,.0f} s for the test split). XGBoost was timed on a different "
-           "machine (CPU) from the SLM (GPU); its share of the time is negligible either way.", ""]
+           f"({c['slm_only_seconds']:,.0f} s for the test split).", "",
+           "Superseded 7.4 line (note; decisions log 2026-11-22): SLM at "
+           f"{c['superseded_7_4']['slm_rows_per_second']} rows/s and XGBoost at "
+           f"{c['superseded_7_4']['xgb_rows_per_second']:,.0f} rows/s ({c['superseded_7_4']['xgb_machine']}, "
+           f"results/step7/xgb_timing.json) gave {c['superseded_7_4']['implied_rows_per_second']:,.0f} rows/s, "
+           f"{c['superseded_7_4']['speedup_vs_slm_on_all_rows']:.2f}×; it mixed machines. No metric changes.", ""]
     (D / "table3.md").write_text("\n".join(md))
     pd.DataFrame(rows).to_csv(D / "table3.csv", index=False, float_format="%.6f")
     (D / "compute.json").write_text(json.dumps({"routing": r, "compute": c}, indent=2, default=float) + "\n")

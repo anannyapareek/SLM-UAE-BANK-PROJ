@@ -47,8 +47,13 @@ table3:                              # runbook 7.4 (Comparison 3, test)
   seeded: [xgb, slm, hybrid, rules_slm]
   paired: [[hybrid, xgb], [hybrid, slm], [rules_slm, rules]]   # hybrid vs XGBoost = key test
   session_aggs: [max, final]
-  slm_rows_per_second: 116.8         # RTX 4500 Ada, fp16 merged adapter (decisions log 2026-11-10)
-  xgb_timing: results/step7/xgb_timing.json
+  # Compute line (decisions log 2026-11-22): both throughputs from the Step 8.1 lab session, same
+  # machine and protocol: SLM structured C1 s1 batch 16; XGBoost v3 s1 on the 100,000 tiled rows.
+  compute:
+    slm: [results/step8/latency_gpu.json, configs, a_score_structured_b16, rows_per_second]
+    xgb: [results/step8/latency_xgb_lab.json, full_batch_tiled, rows_per_second]
+  # Superseded 7.4 line (kept as a note in table3.md and compute.json)
+  compute_7_4: {slm_rows_per_second: 116.8, xgb_timing: results/step7/xgb_timing.json}
   out: results/step7/table3
 
 abstention:                          # runbook 7.5 (decisions log 2026-11-14)

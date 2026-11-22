@@ -1,0 +1,131 @@
+{
+  "machine": "Lab PC (RTX 4500 Ada, Windows 11)",
+  "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51",
+  "device": "cuda",
+  "inputs": "data/step8/latency_sample.parquet",
+  "rows": 1000,
+  "protocol": {
+    "warmup_calls": 20,
+    "batch": 1,
+    "synchronize": "before and after each call",
+    "adapter": "merged into the base (score.load_for_scoring)",
+    "rationale_max_new_tokens": 48,
+    "decoding": "greedy",
+    "throughput_batch_size": 16
+  },
+  "adapters": {
+    "c1": "runs\\grid_qwen15_r8_lr1e-4\\adapter",
+    "c2": "runs\\c2_qwen15_r8_lr1e-4_s1\\adapter"
+  },
+  "configs": {
+    "a_score_structured_b1": {
+      "latency": {
+        "n": 1000,
+        "median_ms": 33.437400000025264,
+        "p95_ms": 34.118339999969294,
+        "mean_ms": 33.43628280000223,
+        "min_ms": 32.16789999999037,
+        "max_ms": 38.39260000006561
+      },
+      "model": "c1",
+      "kind": "score",
+      "prompt_tokens_mean": 198.596,
+      "prompt_tokens_max": 207,
+      "memory": {
+        "rss_gb": 5.02,
+        "peak_working_set_gb": 5.02,
+        "gpu_max_memory_allocated_gb": 3.12,
+        "gpu_max_memory_reserved_gb": 3.337
+      }
+    },
+    "c_score_rationale_structured_b1": {
+      "latency": {
+        "n": 150,
+        "median_ms": 501.9877499999552,
+        "p95_ms": 598.1460700000127,
+        "mean_ms": 517.5381366666609,
+        "min_ms": 497.5663999999824,
+        "max_ms": 752.0432999999684
+      },
+      "model": "c1",
+      "kind": "rationale",
+      "prompt_tokens_mean": 198.57333333333332,
+      "prompt_tokens_max": 205,
+      "memory": {
+        "rss_gb": 4.718,
+        "peak_working_set_gb": 5.186,
+        "gpu_max_memory_allocated_gb": 3.12,
+        "gpu_max_memory_reserved_gb": 3.337
+      },
+      "new_tokens_mean_first20": 17.45
+    },
+    "a_score_structured_b16": {
+      "rows": 1000,
+      "batch_size": 16,
+      "seconds": 8.735072400000035,
+      "rows_per_second": 114.48102021455436,
+      "model": "c1",
+      "kind": "throughput",
+      "prompt_tokens_mean": 198.596,
+      "prompt_tokens_max": 207,
+      "memory": {
+        "rss_gb": 4.778,
+        "peak_working_set_gb": 5.186,
+        "gpu_max_memory_allocated_gb": 3.434,
+        "gpu_max_memory_reserved_gb": 3.813
+      }
+    },
+    "b_score_text_b1": {
+      "latency": {
+        "n": 1000,
+        "median_ms": 33.88525000013942,
+        "p95_ms": 34.673885000063365,
+        "mean_ms": 33.91332830000033,
+        "min_ms": 32.22579999987829,
+        "max_ms": 43.021800000133226
+      },
+      "model": "c2",
+      "kind": "score",
+      "prompt_tokens_mean": 408.555,
+      "prompt_tokens_max": 461,
+      "memory": {
+        "rss_gb": 4.931,
+        "peak_working_set_gb": 5.855,
+        "gpu_max_memory_allocated_gb": 3.156,
+        "gpu_max_memory_reserved_gb": 3.334
+      }
+    },
+    "b_score_text_b16": {
+      "rows": 1000,
+      "batch_size": 16,
+      "seconds": 19.035041599999886,
+      "rows_per_second": 52.53468949602958,
+      "model": "c2",
+      "kind": "throughput",
+      "prompt_tokens_mean": 408.555,
+      "prompt_tokens_max": 461,
+      "memory": {
+        "rss_gb": 4.985,
+        "peak_working_set_gb": 5.855,
+        "gpu_max_memory_allocated_gb": 3.83,
+        "gpu_max_memory_reserved_gb": 4.536
+      }
+    }
+  },
+  "environment": {
+    "torch": "2.11.0+cu128",
+    "torch_cuda": "12.8",
+    "transformers": "5.22.2",
+    "peft": "0.21.2",
+    "python": "3.12.16",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "dtype": "torch.float16",
+    "SLM_SCORE_DTYPE": "fp16",
+    "cpu": "AMD64 Family 25 Model 24 Stepping 1, AuthenticAMD",
+    "cpu_count": 192,
+    "gpu_name": "NVIDIA RTX 4500 Ada Generation",
+    "cudnn": 91900,
+    "driver": "581.80"
+  },
+  "runtime_seconds": 227.9
+}

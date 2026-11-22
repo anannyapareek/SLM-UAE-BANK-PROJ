@@ -43,7 +43,10 @@ probability in [0, 1). 33.6% of validation positive sessions fire no rule.
 session PR-AUC: XGBoost 0.183, SLM 0.082, hybrid 0.181, rules 0.008, rules + SLM 0.022. Key
 test hybrid − XGBoost: −0.0022 [−0.0068, +0.0015], not significant (final point: −0.0098
 [−0.0259, −0.0017], significant). Hybrid − SLM and rules + SLM − rules: significant gains. The
-hybrid routes 21.5% of test rows (52.7% of sessions) to the SLM.
+hybrid routes 21.5% of test rows (52.7% of sessions) to the SLM. Compute line (recomputed 2026-11-22 from the Step 8.1 lab
+measurements, one machine: SLM 114.5 rows/s at batch 16, XGBoost 2,455,663 rows/s on the same
+PC's CPU): implied hybrid throughput 533 rows/s, 4.66× the SLM on every row. Superseded 7.4 line
+(116.8 rows/s SLM, XGBoost on the Mac CPU): 544 rows/s, 4.65×. No metric changes.
 
 **7.5 Abstention** (`abstention/abstention.md`, `abstention_main.png`, `abstention_appendix.png`).
 At 10% deferred (69.8 sessions/day) system recall (upper bound): XGBoost 0.855, SLM 0.657,
@@ -72,8 +75,8 @@ paired SLM text − XGBoost text at 20/day: recall +0.096 [−0.069, +0.244], pr
 
 - Calibrated probabilities after Platt still over-predict on test (mean 0.31–0.34% vs 0.25%):
   residual calib → test base-rate shift.
-- Hybrid compute line mixes machines (SLM on the lab GPU, XGBoost on the Mac CPU); XGBoost to be
-  re-timed on the lab PC in Step 8.1.
+- Hybrid compute line mixed machines (SLM on the lab GPU, XGBoost on the Mac CPU). Resolved
+  2026-11-22: recomputed from the Step 8.1 lab measurements (`results/step8/operations.md`).
 - Calendar-day top-k (D4) gives weekends 20 alerts for ~52 sessions; weekday-only reported as
   sensitivity.
 - Abstention system recall assumes analysts catch every deferred positive (upper bound).

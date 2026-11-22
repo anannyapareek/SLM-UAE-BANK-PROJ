@@ -55,8 +55,8 @@ One log line per configuration (a b1, c b1, a b16, b b1, b b16) → `results\ste
 python -m src.slm.xgb_latency 2>&1 | Tee-Object logs\xgb_latency_lab.log
 ```
 
-Expected first line: `check: max |inplace_predict - stored test score| = 0.00e+00` (it stops
-if not) → `results\step8\latency_xgb_lab.json`.
+Expected first line: `check: max |inplace_predict - stored test score| ≤ 1e-6` (expect
+~1e-10; 17 Nov: 5.82e-11; it stops above 1e-6) → `results\step8\latency_xgb_lab.json`.
 
 ## 5. Rationales (about 15–30 minutes; stop and restart freely)
 
@@ -76,3 +76,14 @@ Compress-Archive -Force -Path results\step8, logs\latency_*.log, logs\rationales
 ```
 
 Bring back `step8_results.zip` and its hash.
+
+## Carried to the 24 Nov lab session (decisions log 2026-11-22)
+
+The 17 Nov `step8_results.zip` hash was not recorded and the lab logs were not copied; the outputs
+were verified instead by row-ID match with the bundle and the protocol checks in
+`src/slm/step8_report.py`. On 24 Nov also collect:
+
+- `logs\xgb_latency_lab.log` (from section 4 above)
+- `requirements-gpu.txt` as installed: `pip freeze > requirements-gpu.lab.txt`
+- the rationale-path diagnostic `results\step8\rationale_diag.json` (`src/slm/rationale_diag.py`;
+  run after the final-compute scoring; commands go in `docs/final_compute_lab.md`)

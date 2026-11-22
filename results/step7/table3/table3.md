@@ -42,4 +42,6 @@ Mean ± std over seeds (XGBoost, SLM, hybrid, rules + SLM: 3 seeds, seed i of th
 
 Test rows sent to the SLM: 21.5% ± 0.2% (per seed 21.3%, 21.4%, 21.7%); above the 20% cap set on validation (19.0% there), from the validation-to-test shift in the XGBoost score distribution; reported as-is, band not changed (decisions log 2026-11-14). Test sessions with at least one SLM row: 52.7% ± 0.9%.
 
-Compute line: the SLM scores 21.5% of 848,137 test rows at 116.8 rows/s (RTX 4500 Ada, fp16 merged adapter) = 1,559 s; XGBoost scores all rows at 685,822 rows/s (Mac (arm64, Darwin), CPU, results/step7/xgb_timing.json) = 1.2 s. Implied hybrid throughput 544 rows/s, 4.65× the SLM scoring every row (7,261 s for the test split). XGBoost was timed on a different machine (CPU) from the SLM (GPU); its share of the time is negligible either way.
+Compute line (Step 8.1 lab measurements, one machine and one protocol: Lab PC (RTX 4500 Ada, Windows 11); results/step8/operations.md): the SLM scores 21.5% of 848,137 test rows at 114.5 rows/s (GPU, fp16 merged C1 seed-1 adapter, batch 16) = 1,591 s; XGBoost scores all rows at 2,455,663 rows/s (same PC's CPU, 100,000-row batch) = 0.3 s. Implied hybrid throughput 533 rows/s, 4.66× the SLM scoring every row (7,409 s for the test split).
+
+Superseded 7.4 line (note; decisions log 2026-11-22): SLM at 116.8 rows/s and XGBoost at 685,822 rows/s (Mac (arm64, Darwin), CPU, results/step7/xgb_timing.json) gave 544 rows/s, 4.65×; it mixed machines. No metric changes.

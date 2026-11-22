@@ -21,11 +21,14 @@ from src.slm import common, serialise
 from src.splits import verify_test_checksum
 
 
-def score_texts(model, tok, texts, device_name, batch_size, yes_id, no_id, log=None):
-    """p_yes and margin for each text, in input order. Texts are batched by length."""
+def score_texts(model, tok, texts, device_name, batch_size, yes_id, no_id, log=None, return_logits=False):
+    """p_yes and margin for each text, in input order. Texts are batched by length.
+    return_logits=True also returns the fp32 (" yes", " no") logit pair per text, shape (n, 2)
+    (src.slm.rationale_diag); the scores are computed exactly as without it."""
     import torch
     order = np.argsort([len(t) for t in texts], kind="stable")
     p_yes, margin = np.empty(len(texts)), np.empty(len(texts))
+    logits = np.empty((len(texts), 2))
     model.eval()
     head = model.get_output_embeddings()
     weight = head.weight[[yes_id, no_id]].detach().float()
@@ -47,11 +50,12 @@ def score_texts(model, tok, texts, device_name, batch_size, yes_id, no_id, log=N
                 pair = pair + bias
             p_yes[idx] = torch.softmax(pair, dim=-1)[:, 0].cpu().numpy()
             margin[idx] = (pair[:, 0] - pair[:, 1]).cpu().numpy()
+            logits[idx] = pair.cpu().numpy()
             if log and (b // batch_size) % 50 == 0:
                 log.info("scored %d / %d rows (%.1f s)", min(b + batch_size, len(texts)),
                          len(texts), time.time() - start)
     hook.remove()
-    return p_yes, margin
+    return (p_yes, margin, logits) if return_logits else (p_yes, margin)
 
 
 def load_for_scoring(args, log):
