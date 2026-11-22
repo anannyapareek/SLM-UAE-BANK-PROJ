@@ -46,6 +46,8 @@ def setup_logging(name, path=None):
         log.addHandler(handler)
     log.info("log file %s; python %s; %s; argv %s", path, platform.python_version(),
              platform.platform(), " ".join(sys.argv))
+    log.info("HF_HUB_OFFLINE=%s TRANSFORMERS_OFFLINE=%s", os.environ.get("HF_HUB_OFFLINE"),
+             os.environ.get("TRANSFORMERS_OFFLINE"))
     return log
 
 

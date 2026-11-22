@@ -64,3 +64,31 @@ def test_compute_line_arithmetic():
     assert c["slm_seconds"] == pytest.approx(2.0) and c["xgb_seconds"] == pytest.approx(0.1)
     assert c["implied_rows_per_second"] == pytest.approx(1000 / 2.1)
     assert c["speedup_vs_slm_on_all_rows"] == pytest.approx(1000 / 2.1 / 100)
+
+
+def test_diag_controls_disjoint_from_mismatches():
+    from src.slm.rationale_diag import CONTROL_ROWS, DIAG_ROWS
+    assert len(set(CONTROL_ROWS)) == 7 and not set(CONTROL_ROWS) & set(DIAG_ROWS)
+
+
+def test_generate_kwargs():
+    from src.slm.rationales import GEN_KWARGS, GEN_KWARGS_17NOV
+    assert GEN_KWARGS_17NOV == {"do_sample": False, "num_beams": 1, "temperature": None, "top_p": None, "top_k": None}
+    assert "repetition_penalty" not in GEN_KWARGS_17NOV   # inherited 1.1 on 17 Nov (decisions log 2026-11-23)
+    assert GEN_KWARGS == {**GEN_KWARGS_17NOV, "repetition_penalty": 1.0}
+
+
+def test_rationales_refuses_17nov_file(monkeypatch):
+    import sys
+    from src.slm import rationales
+    monkeypatch.setattr(sys, "argv", ["rationales", "--device", "cpu", "--out", str(rationales.V1)])
+    with pytest.raises(SystemExit, match="refusing"):
+        rationales.main()
+
+
+def test_poisson_interval():
+    pytest.importorskip("scipy")
+    from src.slm.rationale_penalty_check import poisson_ci
+    lo, hi = poisson_ci(10)
+    assert lo == pytest.approx(4.795, abs=1e-3) and hi == pytest.approx(18.390, abs=1e-3)
+    assert poisson_ci(0)[0] == 0.0

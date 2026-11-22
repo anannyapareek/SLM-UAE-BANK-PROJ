@@ -31,7 +31,10 @@ MAC = "Mac (arm64, Darwin)"
 STORED = {"c1": ROOT / "results/c1_qwen15_r8_lr1e-4_s1/preds_test.parquet",
           "c2": ROOT / "results/c2_qwen15_r8_lr1e-4_s1/preds_test_final.parquet"}
 STORED_TOL = 0.02               # |lab p_yes - stored score|: fp16 lab scoring vs the stored run
-NEAR_HALF = (0.45, 0.55)        # mismatches inside this band are read as fp16 noise
+NEAR_HALF = (0.45, 0.55)        # v1: mismatches inside this band are read as fp16 noise
+V2_NOISE = 0.01                 # v2: every mismatch must have |p_yes - 0.5| < 0.01 (decisions log 2026-11-23)
+FILES = {"v1": ("rationales.parquet", "17 Nov, repetition_penalty 1.1 inherited from the model's generation config"),
+         "v2": ("rationales_v2.parquet", "24 Nov, greedy with repetition_penalty 1.0 (logged protocol)")}
 CONFIGS = ["a_score_structured_b1", "b_score_text_b1", "c_score_rationale_structured_b1",
            "a_score_structured_b16", "b_score_text_b16"]
 WEEKDAY_SESSIONS = 963.9        # results/step7/review_budget/capacity_facts.md (test, per weekday)
@@ -68,8 +71,13 @@ def check_protocol(gpu, xgb, checksum):
         raise SystemExit("protocol check failed: " + "; ".join(bad))
 
 
-def check_rationales(rat):
-    """Row-ID match with the bundle sample; lab p_yes vs stored scores; mismatch set = DIAG_ROWS."""
+def mismatches(rat):
+    return rat[(rat["label_text"] == "yes") != (rat["p_yes"] > 0.5)]
+
+
+def check_rationales(rat, version="v1"):
+    """Row-ID match with the bundle sample; lab p_yes vs stored scores. v1 (17 Nov): mismatch set =
+    DIAG_ROWS. v2 (24 Nov, no penalty): every mismatch within fp16 noise, |p_yes - 0.5| < V2_NOISE."""
     sample = pd.read_parquet(ROOT / "data/step8/rationale_sample.parquet")
     keys = ["session_id", "row_id", "model", "y_true"]
     merged = rat[keys].merge(sample[keys], how="outer", indicator=True)
@@ -84,10 +92,16 @@ def check_rationales(rat):
         diffs[key] = float((x["p_yes"] - x["score"]).abs().max())
         if diffs[key] > STORED_TOL:
             raise SystemExit(f"{key}: lab p_yes differs from stored test scores by {diffs[key]:.4f}")
-    mism = rat[(rat["label_text"] == "yes") != (rat["p_yes"] > 0.5)]
-    found = set(zip(mism["model"], mism["session_id"], mism["row_id"]))
-    if found != set(DIAG_ROWS):
-        raise SystemExit("label/score mismatch set differs from src.slm.rationale_diag.DIAG_ROWS")
+    mism = mismatches(rat)
+    if version == "v1":
+        found = set(zip(mism["model"], mism["session_id"], mism["row_id"]))
+        if found != set(DIAG_ROWS):
+            raise SystemExit("label/score mismatch set differs from src.slm.rationale_diag.DIAG_ROWS")
+    else:
+        far = mism[(mism["p_yes"] - 0.5).abs() >= V2_NOISE]
+        if len(far):
+            raise SystemExit(f"{version}: {len(far)} label/score mismatches outside fp16 noise "
+                             f"(|p_yes - 0.5| >= {V2_NOISE}): {far[['model', 'session_id', 'p_yes']].to_dict('records')}")
     return diffs, mism
 
 
@@ -173,30 +187,56 @@ def write_operations(ops, v, gpu):
     (D / "operations.md").write_text("\n".join(md))
 
 
-def write_rationales(rat, diffs, mism):
-    md = ["# Step 8.1 rationales: counts", "",
-          "Sample (decisions log 2026-11-15): all 243 positive test sessions + 100 negative (numpy "
-          "default_rng(0)); C1 = each session's max-score row under the C1 seed-1 test scores, C2 = its "
-          "logoff row; greedy generation, max 64 new tokens, from the scoring prompt; batch 1 on the lab GPU "
-          "(fp16, merged seed-1 adapter). `rationales.parquet` (untracked). Examples and the faithfulness "
-          "check follow in S8-2.", "",
-          "## Counts", "", "| Model | Sessions | Positive | Negative | Generated \"yes\" | Generated \"no\" | Other label | Empty reason |",
+def agreement(runs):
+    """Label/score agreement per file and model (counts, not a metric)."""
+    md = ["## Label/score agreement", "",
+          "Generated label equal to the score's side of 0.5 (p_yes > 0.5 ↔ \"yes\"); the decision in every "
+          "reported result is the score.", "",
+          "| File | Model | Rows | Agree | Disagree | Disagree with \\|p_yes − 0.5\\| ≥ 0.01 | Max \\|lab p_yes − stored score\\| |",
+          "|---|---|---|---|---|---|---|"]
+    for version, (rat, diffs, mism) in runs.items():
+        for key, g in rat.groupby("model"):
+            m = mism[mism.model == key]
+            md.append(f"| {FILES[version][0]} ({version}: {FILES[version][1]}) | {key.upper()} | {len(g)} | {len(g) - len(m)} | "
+                      f"{len(m)} | {int(((m.p_yes - 0.5).abs() >= V2_NOISE).sum())} | {diffs[key]:.4f} |")
+    if "v2" not in runs:
+        md += ["", "`rationales_v2.parquet`: not yet generated (24 Nov lab session, `docs/final_compute_lab.md`).",
+               "When present, it must show 0 disagreements outside fp16 noise (|p_yes − 0.5| < 0.01) or this report stops."]
+    return md + [""]
+
+
+def counts(rat):
+    md = ["| Model | Sessions | Positive | Negative | Generated \"yes\" | Generated \"no\" | Other label | Empty reason |",
           "|---|---|---|---|---|---|---|---|"]
     for key, g in rat.groupby("model"):
         md.append(f"| {key.upper()} | {len(g)} | {(g.y_true == 1).sum()} | {(g.y_true == 0).sum()} | "
                   f"{(g.label_text == 'yes').sum()} | {(g.label_text == 'no').sum()} | "
                   f"{(~g.label_text.isin(['yes', 'no'])).sum()} | {(g.reason_text == '').sum()} |")
-    md += ["", "## Generated tokens and time per row", "",
-           "| Model | New tokens mean | Median | Min | Max | Seconds per row (median, scoring + generation) |",
+    md += ["", "| Model | New tokens mean | Median | Min | Max | Seconds per row (median, scoring + generation) |",
            "|---|---|---|---|---|---|"]
     for key, g in rat.groupby("model"):
         t = g.n_tokens
         md.append(f"| {key.upper()} | {t.mean():.1f} | {t.median():.0f} | {t.min()} | {t.max()} | {g.seconds.median():.3f} |")
+    return md
+
+
+def write_rationales(runs):
+    rat, diffs, mism = runs["v1"]
+    md = ["# Step 8.1 rationales: counts", "",
+          "Sample (decisions log 2026-11-15): all 243 positive test sessions + 100 negative (numpy "
+          "default_rng(0)); C1 = each session's max-score row under the C1 seed-1 test scores, C2 = its "
+          "logoff row; greedy generation, max 64 new tokens, from the scoring prompt; batch 1 on the lab GPU "
+          "(fp16, merged seed-1 adapter). `rationales.parquet` (untracked). Examples and the faithfulness "
+          "check follow in S8-2 on `rationales_v2.parquet` (decisions log 2026-11-23).", ""]
+    md += agreement(runs)
+    if "v2" in runs:
+        md += [f"## {FILES['v2'][0]} ({FILES['v2'][1]})", ""] + counts(runs["v2"][0]) + [""]
+    md += [f"## {FILES['v1'][0]} ({FILES['v1'][1]}; kept for the bug log)", ""] + counts(rat)
     lo, hi = NEAR_HALF
     near = mism[(mism.p_yes >= lo) & (mism.p_yes <= hi)]
     per = mism.groupby("model").size().reindex(["c1", "c2"], fill_value=0)
     n = rat.groupby("model").size()
-    md += ["", "## Generated label vs score", "",
+    md += ["", "## Generated label vs score (v1, 17 Nov)", "",
            f"In {len(mism)} of {len(rat)} rows the generated label is on the other side of 0.5 from the score "
            f"p_yes: C1 {per['c1']}/{n['c1']}, C2 {per['c2']}/{n['c2']}.", "",
            "| Model | Session | y_true | p_yes (rationale run) | Stored test score | Generated label |", "|---|---|---|---|---|---|"]
@@ -213,10 +253,62 @@ def write_rationales(rat, diffs, mism):
            f"- {len(far)} rows disagree outside [{lo}, {hi}] ("
            + ", ".join(f"{m.upper()} {k}" for m, k in far.groupby("model").size().items())
            + f"; p_yes {far.p_yes.min():.3f}–{far.p_yes.max():.3f}). Scoring and generation use the same "
-           "prompt string; the cause is under investigation (24 Nov lab diagnostic, `src/slm/rationale_diag.py`).",
+           "prompt string.",
            "- In all reported results the decision is the score (p_yes), never the generated label. The "
            "rationale sample is not regenerated whatever the diagnostic finds (decisions log 2026-11-22).", ""]
+    md += penalty_section()
     (D / "rationales.md").write_text("\n".join(md))
+
+
+def penalty_section():
+    """Cause analysis (decisions log 2026-11-23) from results/step8/rationale_penalty_check.json."""
+    pc = json.loads((D / "rationale_penalty_check.json").read_text())
+    c1, c2 = pc["models"]["c1"], pc["models"]["c2"]
+    no, yes = c2["groups"]["no_only"], c2["groups"]["yes_only"]
+    fmt_ci = lambda m: f"{m['observed_flips']} (Poisson 95% {m['poisson_95'][0]:.1f}–{m['poisson_95'][1]:.1f})"
+    return [
+        "## Likely cause: repetition penalty from the model's generation config (consistency check, not a metric)", "",
+        "`rationales.py` called `generate()` with `do_sample=False, num_beams=1, temperature=None, top_p=None, "
+        "top_k=None` (and pad/eos ids); no seed is needed or set, since decoding is greedy. Everything else came from "
+        "Qwen2.5-1.5B-Instruct's `generation_config.json` at the pinned revision (`do_sample: true, temperature 0.7, "
+        f"top_p 0.8, top_k 20, repetition_penalty {pc['repetition_penalty']}`). The merged config is greedy, so "
+        "sampling predicts **0** flips; but `repetition_penalty 1.1` is not overridden and stays active "
+        "(`RepetitionPenaltyLogitsProcessor` is the only logits processor). It divides the positive logit of every "
+        "token already in the input by 1.1, so the label flips deterministically when exactly one of \" yes\" "
+        f"(id {pc['answer_ids']['yes']}) / \" no\" (id {pc['answer_ids']['no']}) appears in the prompt and the margin is small.", "",
+        "| Model | Rows | Observed flips | Prompts with \" no\" only | with \" yes\" only | with neither | Flips on the penalised side |",
+        "|---|---|---|---|---|---|---|",
+        f"| C1 | {c1['rows']} | {fmt_ci(c1)} | {c1['groups'].get('no_only', {}).get('rows', 0)} | "
+        f"{c1['groups'].get('yes_only', {}).get('rows', 0)} | {c1['groups'].get('neither', {}).get('rows', 0)} | "
+        f"{c1['flips_explained_by_penalty']} |",
+        f"| C2 | {c2['rows']} | {fmt_ci(c2)} | {no['rows']} | {yes['rows']} | {c2['groups']['neither']['rows']} | "
+        f"{c2['flips_explained_by_penalty']} |", "",
+        f"- C2, \" no\" in the prompt and p_yes < 0.5 ({no['score_no_rows']} rows): the {no['flips']} flips are exactly "
+        f"the rows with margin ≥ {no['flipped_margin_min']:.2f}; every row at ≤ {no['kept_margin_max']:.2f} kept \"no\" "
+        f"(one threshold separates them). That implies a \" no\" logit of {no['implied_no_logit_range'][0]:.1f}–"
+        f"{no['implied_no_logit_range'][1]:.1f}, to be measured on 24 Nov.",
+        f"- C2, \" yes\" in the prompt and p_yes > 0.5: {yes['score_yes_rows']} row, flipped to \"no\" (margin "
+        f"{yes['flipped_margin_max']:.2f}).",
+        "- No flip on a row where the penalty cannot act (C2: 0 of "
+        f"{c2['groups']['neither']['rows']} neither-token rows). C1 prompts contain neither token; its one flip (p_yes "
+        "0.501) is fp16 noise.",
+        "- Observed C2 flips are inconsistent with greedy decoding without a penalty (expected 0, observed 10) and "
+        "consistent with the penalty in every group. Confirmation: 24 Nov diagnostic step (f) (`src/slm/rationale_diag.py`).",
+        "",
+        "## Interpretation (decisions log 2026-11-23)", "",
+        "- Padding (cause 3) is ruled out for the 17 Nov rows: they were generated at batch 1 without padding; "
+        "diagnostic step (e) stays as a check only.",
+        "- Cause accepted (2026-11-23): greedy decoding with repetition_penalty 1.1 inherited from Qwen's "
+        "generation config, not plain greedy as logged on 15 Nov. The penalty acts on every generated token, not "
+        "only the label: reasons cite feature names and values that are in the prompt, so all 686 v1 reason texts "
+        "(C1 and C2) were generated under it. Scores are unaffected (score_texts does not use generate()).",
+        "- Fix: the rationale sample is regenerated on 24 Nov with the logged protocol (greedy, repetition_penalty=1.0 "
+        "passed explicitly) to `rationales_v2.parquet`; the 17 Nov file is kept for the bug log. No reported metric "
+        "changes. The v2 file must show 0 label/score disagreements outside fp16 noise (|p_yes − 0.5| < 0.01).",
+        "- Diagnostic step (f) still runs on 24 Nov to confirm the cause in the lab: (f-i) the 17 Nov arguments, 20 "
+        "repeats, should reproduce the 17 Nov labels every time; (f-ii) the corrected arguments should agree with the "
+        "scoring pass. If (f-i) varied across repeats, the labels would have been sampled instead.",
+        "- S8-2 (examples, faithfulness check) runs on `rationales_v2.parquet`.", ""]
 
 
 def write_note(ops, v, share, sess, compute):
@@ -272,7 +364,7 @@ def write_note(ops, v, share, sess, compute):
 
 def run_log(gpu, xgb, rat, ops):
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True).stdout.strip()
-    lab = {"date": "2026-11-17", "git_commit": "not recorded", "seed": 1, "machine": LAB}
+    lab = {"date": "2026-11-17", "git_commit": "6514afb (pulled on lab PC 17 Nov; not captured in outputs)", "seed": 1, "machine": LAB}
     rows = [
         lab | {"run_id": "latency_gpu", "step": "8.1 latency", "model": "slm c1/c2",
                "config": json.dumps(gpu["protocol"] | {"configs": CONFIGS}),
@@ -308,14 +400,20 @@ def main():
     print(f"test_ids.csv SHA-256 {checksum}")
     gpu, xgb = load("latency_gpu.json"), load("latency_xgb_lab.json")
     check_protocol(gpu, xgb, checksum)
-    rat = pd.read_parquet(D / "rationales.parquet")
-    diffs, mism = check_rationales(rat)
+    runs = {}
+    for version, (name, _) in FILES.items():
+        if (D / name).exists():
+            r = pd.read_parquet(D / name)
+            runs[version] = (r, *check_rationales(r, version))
+    if "v1" not in runs:
+        raise SystemExit("results/step8/rationales.parquet (17 Nov) is required")
+    rat, diffs, mism = runs["v1"]
     compute = json.loads((ROOT / "results/step7/table3/compute.json").read_text())
     if compute["compute"].get("machine") != LAB:
         raise SystemExit("Table 3 compute line is not the Step 8.1 single-machine line; run scripts.step7_table3 first")
     ops, v, share, sess = operations(gpu, xgb, compute)
     write_operations(ops, v, gpu)
-    write_rationales(rat, diffs, mism)
+    write_rationales(runs)
     write_note(ops, v, share, sess, compute)
     run_log(gpu, xgb, rat, ops)
     print(f"protocol OK; rationales match the bundle; stored-score max diff C1 {diffs['c1']:.4f}, C2 {diffs['c2']:.4f}; "

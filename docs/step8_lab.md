@@ -79,11 +79,22 @@ Bring back `step8_results.zip` and its hash.
 
 ## Carried to the 24 Nov lab session (decisions log 2026-11-22)
 
+Environment for every 24 Nov run (final compute and the diagnostic), in addition to section 1
+(decisions log 2026-11-23: Hugging Face offline mode, to support "fully local inference"):
+
+```powershell
+$env:HF_HUB_OFFLINE = "1"; $env:TRANSFORMERS_OFFLINE = "1"
+```
+
+Every script's log records both values (`src/slm/common.setup_logging`); `rationale_diag.py` also
+writes them into its JSON and refuses to run on CUDA without them.
+
 The 17 Nov `step8_results.zip` hash was not recorded and the lab logs were not copied; the outputs
 were verified instead by row-ID match with the bundle and the protocol checks in
 `src/slm/step8_report.py`. On 24 Nov also collect:
 
 - `logs\xgb_latency_lab.log` (from section 4 above)
 - `requirements-gpu.txt` as installed: `pip freeze > requirements-gpu.lab.txt`
+- the regenerated rationale sample `results\step8\rationales_v2.parquet` + `.json` and its log
 - the rationale-path diagnostic `results\step8\rationale_diag.json` (`src/slm/rationale_diag.py`;
   run after the final-compute scoring; commands go in `docs/final_compute_lab.md`)
