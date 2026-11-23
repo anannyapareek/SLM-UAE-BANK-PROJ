@@ -73,7 +73,7 @@ that come with torch are under NVIDIA's own licence and are not redistributed he
 
 ## What could be shared, and which clause bears on it
 
-There is no licence file for this project's own code yet; choosing one is a project decision.
+There is no licence file for this project's own code yet (TODO: MIT or Apache-2.0, see Release decisions).
 
 | Item | What it contains | Clause that allows or blocks it |
 |---|---|---|
@@ -87,9 +87,14 @@ There is no licence file for this project's own code yet; choosing one is a proj
 | Processed features (`data/processed/*.parquet`, `slm_text_blocks.parquet`) | Per-row features, event text, user and PC IDs | CERT (a): portions and derivative works of the Licensed Products; not covered by (c) |
 | Raw CERT r4.2 | The dataset | CERT (a); back-up copies only |
 
-## Before any public release: open item
+## Release decisions (decisions log 2026-11-23)
 
-Commit 410fef2 (pushed 14 Nov) recorded the machine hostname in results metadata. It was fixed
-forward in 5deb353 and 4a78b28, and the history was not rewritten (bug log #3). The hostname is
-still in the git history. This matters only if the GitHub repository itself is made public; a
-`git archive` of the frozen tag contains no history.
+- The public archive is a `git archive` of `release-2026-11-24`. It excludes
+  `data/processed/test_ids.csv` and every `*.parquet` (`export-ignore`); their SHA-256 values are
+  in `results/freeze/MANIFEST.sha256`, and README gives the commands to regenerate them from your
+  own CERT r4.2 copy.
+- The GitHub repository stays private. Its history holds `test_ids.csv` and commit 410fef2 (the
+  machine hostname in results metadata, fixed forward in 5deb353 and 4a78b28; bug log #3). The
+  archive has no history, so no history rewrite is needed.
+- Licence for the project's own code: TODO (MIT or Apache-2.0, to be confirmed with the
+  co-author).

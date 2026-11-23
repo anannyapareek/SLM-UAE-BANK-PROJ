@@ -10,3 +10,8 @@ docs/serialisation.md text eol=lf
 *.tar binary
 MANIFEST.sha256 -text
 *.sha256 -text
+# Public archive (git archive of release-2026-11-24; decisions log 2026-11-23): the frozen test IDs
+# and every prediction/feature file stay in the repo but out of the archive. Their SHA-256 are in
+# results/freeze/MANIFEST.sha256; README "Public archive" gives the commands to regenerate them.
+data/processed/test_ids.csv export-ignore
+*.parquet export-ignore

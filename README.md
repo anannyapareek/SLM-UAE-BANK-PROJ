@@ -214,3 +214,81 @@ are written by the Step 7/8 scripts above.
   revisions) and the LoRA adapters (lab PC only).
 - Windows: `data/processed/test_ids.csv` must not be line-ending converted (`.gitattributes`,
   decisions log 2026-11-11/12). Apple MPS is not used (CPU only on the Mac).
+
+## Public archive (planned: release-2026-11-24, built after the final-check PASS)
+
+Not built yet. Decisions log 2026-11-23.
+
+- **What it is:** `git archive` of the annotated tag `release-2026-11-24`. The tag goes on main
+  after `python -m src.final_check` reports PASS on the 24 Nov final compute. It is not the bare
+  freeze tag.
+- **Statements the release carries:**
+  - every reported number is identical to `frozen-2026-11-23` (`f94c5c5`);
+  - `results/freeze/MANIFEST.sha256` is unchanged since the freeze;
+  - the final-compute PASS report (`results/final_compute/final_check.md` and `.json`) is included.
+- **Excluded from the archive** (`export-ignore` in [`.gitattributes`](.gitattributes); the repo
+  itself keeps them):
+  - `data/processed/test_ids.csv` (the frozen test IDs; tracked);
+  - every `*.parquet`. Prediction, feature and processed-data files are not tracked anyway;
+    the rule guards against a force-added one.
+- **Their SHA-256 values:** all in `results/freeze/MANIFEST.sha256`, which is in the archive:
+  233 parquet files, plus `test_ids.csv` (`5ace66c2…818e51`), `heldout_users.csv` and the other
+  data/processed and data/step8 files. List them with:
+
+  ```bash
+  grep -E "  data/|\.parquet$" results/freeze/MANIFEST.sha256
+  ```
+
+### Regenerating the excluded files from your own CERT r4.2 copy
+
+Obtain CERT r4.2 under its own licence and put it in `data/raw/r4.2/` and `data/raw/answers/`.
+Then, on the Mac side (see "Run order" above for times):
+
+```bash
+python run.py all                      # processed data, features, labels, splits, test_ids.csv, leakage, text features, XGBoost v3 fit, rules, validation evals
+python run.py xgb --score --splits valid calib test --allow-test
+python run.py rules --score --splits valid calib test --allow-test
+python run.py xgb --variant text --fit # text XGBoost (C2) seeds 1-3 from configs/xgb_text_best.yaml (no new search)
+python run.py xgb --variant text --score --splits valid calib test --allow-test
+python -m src.slm.text_blocks --allow-test
+python -m scripts.freeze_manifest verify
+```
+
+`run.py all` must reproduce `test_ids.csv` with SHA-256 `5ace66c2…818e51`; if it doesn't, stop.
+Gate 1 rebuilt the processed data, splits, test IDs, XGBoost v3 and rules predictions from raw
+byte for byte (`results/gate1_report.md`). `freeze_manifest verify` then reports every
+regenerated file that differs from the original.
+
+The SLM predictions need GPU training and scoring (step 2 above; [`docs/gpu_setup.md`](docs/gpu_setup.md),
+`scripts/run_queue.ps1`, `scripts/run_night2.ps1`), then `python scripts/make_final_copies.py`.
+The LoRA adapters are not distributed. Retrained adapters are not expected to reproduce the
+original SLM scores byte for byte (GPU kernels, fp16 scoring). Check them against the manifest
+hashes only as a reference, or by rank agreement as in `src/final_check.py`.
+
+### Contents and expected size
+
+Measured with the current main and the export-ignore list: **344 files, 8.2 MB tar, 3.8 MB
+tar.gz**. The frozen tag without exclusions is 36.2 MB, 28.0 MB of which is `test_ids.csv`.
+
+| Part | Files |
+|---|---|
+| Code: `src/`, `scripts/`, `run.py`, `Makefile`, `pytest.ini`, `tests/` (synthetic fixture) | 48 + 22 + 3 + 21 |
+| Configs (`configs/`) | 13 |
+| Docs: `docs/`, `README.md`, `decisions_log.md` | 17 + 2 |
+| Environment: `requirements-mac.txt`, `requirements-gpu.txt`, `requirements-gpu.in`, `python-version.txt` | 4 |
+| Results, aggregates only (eval JSONs, tables, curves, calibration parameters, `results/freeze/`) | 178 |
+| Paper figures (PDF + PNG + captions) and tables (md + tex + provenance) | 34 |
+| `.gitattributes`, `.gitignore` | 2 |
+
+At release time this grows by the final-compute report: `final_check.md` and `.json`, its
+eval JSON, and the lab's `rationale_diag.json` / `rationales_v2.json`. The re-scored parquet is
+excluded. Expect about 350 files and about 8.3 MB (3.9 MB gzipped).
+
+## Repository access and licence
+
+- **This GitHub repository stays private.** Its history contains `test_ids.csv` and commit
+  410fef2 (machine hostname in metadata; bug log #3). The public archive has no history, so no
+  history rewrite is needed (decisions log 2026-11-23).
+- **Licence for this project's code: TODO.** MIT or Apache-2.0, to be confirmed with the
+  co-author. There is no LICENSE file until then. Third-party licences:
+  [`docs/licence_facts.md`](docs/licence_facts.md).
