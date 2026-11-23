@@ -267,7 +267,7 @@ hashes only as a reference, or by rank agreement as in `src/final_check.py`.
 
 ### Contents and expected size
 
-Measured with the current main and the export-ignore list: **344 files, 8.2 MB tar, 3.8 MB
+Measured with the current main and the export-ignore list: **368 files, 8.6 MB tar, 3.9 MB
 tar.gz**. The frozen tag without exclusions is 36.2 MB, 28.0 MB of which is `test_ids.csv`.
 
 | Part | Files |
@@ -276,13 +276,13 @@ tar.gz**. The frozen tag without exclusions is 36.2 MB, 28.0 MB of which is `tes
 | Configs (`configs/`) | 13 |
 | Docs: `docs/`, `README.md`, `decisions_log.md` | 17 + 2 |
 | Environment: `requirements-mac.txt`, `requirements-gpu.txt`, `requirements-gpu.in`, `python-version.txt` | 4 |
-| Results, aggregates only (eval JSONs, tables, curves, calibration parameters, `results/freeze/`) | 178 |
+| Results, aggregates only (eval JSONs incl. the Table 1 sources in `results/comparison1/eval/`, time to detection, validation and granularity evals; tables, curves, calibration parameters, `results/freeze/`) | 202 |
 | Paper figures (PDF + PNG + captions) and tables (md + tex + provenance) | 34 |
 | `.gitattributes`, `.gitignore` | 2 |
 
 At release time this grows by the final-compute report: `final_check.md` and `.json`, its
 eval JSON, and the lab's `rationale_diag.json` / `rationales_v2.json`. The re-scored parquet is
-excluded. Expect about 350 files and about 8.3 MB (3.9 MB gzipped).
+excluded. Expect about 375 files and about 8.7 MB (3.9 MB gzipped).
 
 ## Repository access and licence
 

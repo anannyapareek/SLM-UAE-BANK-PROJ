@@ -2,7 +2,7 @@
 
 All code runs from the frozen tag `frozen-2026-11-23` (decisions log 2026-11-23: freeze; after it
 only the final compute, the rationale diagnostic and the v2 regeneration run). PowerShell, from the
-repo root. Order: setup → final compute (about 40 min) → diagnostic → v2 regeneration → collect.
+repo root. Order: setup → final compute, about 30 min (27.7 min on 13 Nov) → diagnostic → v2 regeneration → collect.
 Nothing here changes a reported number.
 
 ## 1. Setup and checks
@@ -30,7 +30,7 @@ files that are present must match); `True` twice. Any mismatch: stop. Offline mo
 2026-11-23) is recorded in every script's log; `rationale_diag.py` and `rationales.py` refuse to
 run on CUDA without it and write it into their JSON outputs.
 
-## 2. Final compute: re-score SLM text, C2 seed 1, test logoff rows (about 40 minutes)
+## 2. Final compute: re-score SLM text, C2 seed 1, test logoff rows, about 30 min (27.7 min on 13 Nov)
 
 Same command as the 13 Nov scoring run (`scripts/run_night2.ps1`, score_c2: batch 8, logoff rows,
 text prompts, fp16, merged seed-1 adapter), into a new folder so the frozen predictions are never

@@ -1,0 +1,182 @@
+{
+  "name": "rules",
+  "split": "valid",
+  "primary_unit": "session",
+  "preds": [
+    "results/rules/preds_valid.parquet"
+  ],
+  "config": {
+    "unit": "session",
+    "fpr_levels": [
+      0.01,
+      0.05
+    ],
+    "scenario_fpr": 0.05,
+    "alerts_per_day": 20,
+    "tie_break_seed": 0,
+    "ece_bins": 15,
+    "bootstrap": {
+      "resamples": 1000,
+      "seed": 0,
+      "ci": 0.95
+    },
+    "session_agg": "final"
+  },
+  "session": {
+    "counts": {
+      "n_units": 38504,
+      "n_pos": 244,
+      "n_users": 779,
+      "n_pos_users": 29,
+      "positive_rate": 0.0063370039476418035,
+      "n_days": 61
+    },
+    "mean": {
+      "pr_auc": 0.02114760839802062,
+      "recall_at_fpr_0.01": 0.10655737704918032,
+      "recall_at_fpr_0.05": 0.14754098360655737,
+      "precision_at_k": 0.028688524590163935,
+      "recall_at_k": 0.14344262295081966
+    },
+    "std": {
+      "pr_auc": null,
+      "recall_at_fpr_0.01": null,
+      "recall_at_fpr_0.05": null,
+      "precision_at_k": null,
+      "recall_at_k": null
+    },
+    "ci": {
+      "pr_auc": [
+        0.008961390835408076,
+        0.056024245278492646
+      ],
+      "recall_at_fpr_0.01": [
+        0.027931500983006636,
+        0.2239028481445981
+      ],
+      "recall_at_fpr_0.05": [
+        0.052796478873239454,
+        0.27570945945945946
+      ],
+      "precision_at_k": [
+        0.010655737704918032,
+        0.05491803278688524
+      ],
+      "recall_at_k": [
+        0.06363275613275612,
+        0.26069209039548025
+      ]
+    },
+    "precision_at_k_ceiling": 0.2,
+    "recall_by_scenario": {
+      "1": 0.0,
+      "2": 0.1674641148325359,
+      "3": 0.125
+    },
+    "boot_skipped": {
+      "pr_auc": 0,
+      "recall_at_fpr_0.01": 0,
+      "recall_at_fpr_0.05": 0,
+      "precision_at_k": 0,
+      "recall_at_k": 0
+    },
+    "per_seed": [
+      {
+        "pr_auc": 0.02114760839802062,
+        "recall_at_fpr_0.01": 0.10655737704918032,
+        "recall_at_fpr_0.05": 0.14754098360655737,
+        "precision_at_k": 0.028688524590163935,
+        "recall_at_k": 0.14344262295081966,
+        "thresholds": {
+          "fpr_0.01": 2.0039074411187365,
+          "fpr_0.05": 1.0099073460890844
+        },
+        "recall_by_scenario": {
+          "1": 0.0,
+          "2": 0.1674641148325359,
+          "3": 0.125
+        }
+      }
+    ]
+  },
+  "row": {
+    "counts": {
+      "n_units": 336737,
+      "n_pos": 1777,
+      "n_users": 779,
+      "n_pos_users": 29,
+      "positive_rate": 0.005277115374906827,
+      "n_days": 61
+    },
+    "mean": {
+      "pr_auc": 0.015239487493207884,
+      "recall_at_fpr_0.01": 0.07822172200337647,
+      "recall_at_fpr_0.05": 0.17501406865503658,
+      "precision_at_k": 0.05327868852459016,
+      "recall_at_k": 0.03657850309510411
+    },
+    "std": {
+      "pr_auc": null,
+      "recall_at_fpr_0.01": null,
+      "recall_at_fpr_0.05": null,
+      "precision_at_k": null,
+      "recall_at_k": null
+    },
+    "ci": {
+      "pr_auc": [
+        0.00567477964590641,
+        0.038567078099609325
+      ],
+      "recall_at_fpr_0.01": [
+        0.01812327560022682,
+        0.15896906561646446
+      ],
+      "recall_at_fpr_0.05": [
+        0.0740304668196699,
+        0.2829192445457505
+      ],
+      "precision_at_k": [
+        0.004918032786885246,
+        0.10655737704918032
+      ],
+      "recall_at_k": [
+        0.003843728867766262,
+        0.07873557250688924
+      ]
+    },
+    "precision_at_k_ceiling": 0.6991803278688524,
+    "recall_by_scenario": {
+      "1": 0.0,
+      "2": 0.18547418967587034,
+      "3": 0.09090909090909091
+    },
+    "boot_skipped": {
+      "pr_auc": 0,
+      "recall_at_fpr_0.01": 0,
+      "recall_at_fpr_0.05": 0,
+      "precision_at_k": 0,
+      "recall_at_k": 0
+    },
+    "per_seed": [
+      {
+        "pr_auc": 0.015239487493207884,
+        "recall_at_fpr_0.01": 0.07822172200337647,
+        "recall_at_fpr_0.05": 0.17501406865503658,
+        "precision_at_k": 0.05327868852459016,
+        "recall_at_k": 0.03657850309510411,
+        "thresholds": {
+          "fpr_0.01": 1.0098988231171508,
+          "fpr_0.05": 1.008315153962885
+        },
+        "recall_by_scenario": {
+          "1": 0.0,
+          "2": 0.18547418967587034,
+          "3": 0.09090909090909091
+        }
+      }
+    ]
+  },
+  "boot_skipped": 0,
+  "runtime_seconds": 5.8,
+  "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51"
+}

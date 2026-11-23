@@ -1,0 +1,149 @@
+{
+  "name_a": "xgb_struct_v3",
+  "name_b": "rules",
+  "split": "valid",
+  "primary_unit": "session",
+  "preds_a": [
+    "results/xgb_struct_v3_s1/preds_valid.parquet",
+    "results/xgb_struct_v3_s2/preds_valid.parquet",
+    "results/xgb_struct_v3_s3/preds_valid.parquet"
+  ],
+  "preds_b": [
+    "results/rules/preds_valid.parquet"
+  ],
+  "config": {
+    "unit": "session",
+    "fpr_levels": [
+      0.01,
+      0.05
+    ],
+    "scenario_fpr": 0.05,
+    "alerts_per_day": 20,
+    "tie_break_seed": 0,
+    "ece_bins": 15,
+    "bootstrap": {
+      "resamples": 1000,
+      "seed": 0,
+      "ci": 0.95
+    }
+  },
+  "session": {
+    "pr_auc": {
+      "a": 0.41619597209177117,
+      "b": 0.022648547087469342,
+      "difference": 0.39354742500430184,
+      "ci": [
+        0.18012601538744646,
+        0.6231607308460627
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "recall_at_fpr_0.01": {
+      "a": 0.5068306010928961,
+      "b": 0.11885245901639344,
+      "difference": 0.3879781420765027,
+      "ci": [
+        0.13495025164762378,
+        0.6959440470107306
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "recall_at_fpr_0.05": {
+      "a": 0.6215846994535519,
+      "b": 0.1721311475409836,
+      "difference": 0.4494535519125683,
+      "ci": [
+        0.1853645833333334,
+        0.7558457210044511
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "precision_at_k": {
+      "a": 0.11256830601092897,
+      "b": 0.03278688524590164,
+      "difference": 0.07978142076502734,
+      "ci": [
+        0.0289549180327869,
+        0.13388661202185795
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "recall_at_k": {
+      "a": 0.5628415300546449,
+      "b": 0.16393442622950818,
+      "difference": 0.3989071038251367,
+      "ci": [
+        0.13672301737987447,
+        0.679050925925926
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "precision_at_k_ceiling": 0.2
+  },
+  "row": {
+    "pr_auc": {
+      "a": 0.3613748127575289,
+      "b": 0.015239487493207884,
+      "difference": 0.34613532526432106,
+      "ci": [
+        0.12768442787165965,
+        0.6155080529915272
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "recall_at_fpr_0.01": {
+      "a": 0.4603263927968486,
+      "b": 0.07822172200337647,
+      "difference": 0.38210467079347216,
+      "ci": [
+        0.14138317329675362,
+        0.7192595422218541
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "recall_at_fpr_0.05": {
+      "a": 0.5604952166572875,
+      "b": 0.17501406865503658,
+      "difference": 0.385481148002251,
+      "ci": [
+        0.12057169593425969,
+        0.7568566550421388
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "precision_at_k": {
+      "a": 0.403551912568306,
+      "b": 0.05327868852459016,
+      "difference": 0.35027322404371586,
+      "ci": [
+        0.10625683060109291,
+        0.5174931693989071
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "recall_at_k": {
+      "a": 0.2770587131870193,
+      "b": 0.03657850309510411,
+      "difference": 0.2404802100919152,
+      "ci": [
+        0.07849113944378891,
+        0.42023091979891525
+      ],
+      "significant": true,
+      "boot_skipped": 0
+    },
+    "precision_at_k_ceiling": 0.6991803278688524
+  },
+  "boot_skipped": 0,
+  "runtime_seconds": 37.2,
+  "test_ids_sha256": "5ace66c27da40b2bf3d9d5eb9706322340cd16f2b83fb5ceeb8fe58571818e51"
+}
