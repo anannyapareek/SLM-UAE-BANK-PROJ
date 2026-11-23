@@ -160,7 +160,7 @@ def fmt(v, spec):
 
 
 def write_operations(ops, v, gpu):
-    ops.to_csv(D / "operations.csv", index=False, float_format="%.6g")
+    ops.to_csv(D / "operations.csv", index=False)
     md = ["# Step 8.1 operations table", "",
           f"All timings from one lab session on 17 Nov 2026 ({LAB}), protocol fixed before the session "
           "(decisions log 2026-11-15): batch 1 = 20 warm-up calls then one call per row, device synchronised "

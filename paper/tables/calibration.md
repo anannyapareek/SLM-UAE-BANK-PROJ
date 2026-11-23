@@ -1,0 +1,22 @@
+# Calibration on the test split (session level)
+
+| Model / method | ECE (equal-mass, 15 bins) | Brier | BSS (calib base rate) |
+|---|---|---|---|
+| **XGBoost (C1)** | | | |
+| Uncalibrated | 0.0051 ± 0.0002 [0.0030, 0.0078] | 0.0051 ± 0.0001 [0.0034, 0.0071] | -0.7592 ± 0.0507 [-1.4464, -0.1751] |
+| Temperature (primary) | 0.0060 ± 0.0002 [0.0038, 0.0089] | 0.0050 ± 0.0001 [0.0034, 0.0069] | -0.7370 ± 0.0480 [-1.3914, -0.1733] |
+| Platt (sensitivity) | 0.0016 ± 0.0001 [0.0007, 0.0029] | 0.0025 ± 0.0000 [0.0015, 0.0037] | 0.1206 ± 0.0078 [-0.2738, 0.4902] |
+| **SLM (C1)** | | | |
+| Uncalibrated | 0.0525 ± 0.0021 [0.0425, 0.0648] | 0.0312 ± 0.0009 [0.0242, 0.0401] | -9.7985 ± 0.3013 [-12.9068, -7.3781] |
+| Temperature (primary) | 0.0529 ± 0.0018 [0.0430, 0.0651] | 0.0311 ± 0.0007 [0.0241, 0.0400] | -9.7636 ± 0.2338 [-12.8567, -7.3544] |
+| Platt (sensitivity) | 0.0020 ± 0.0007 [0.0010, 0.0035] | 0.0025 ± 0.0000 [0.0014, 0.0036] | 0.1370 ± 0.0024 [-0.2378, 0.5024] |
+| **XGBoost text (C2)** | | | |
+| Uncalibrated | 0.0007 ± 0.0000 [0.0004, 0.0023] | 0.0027 ± 0.0001 [0.0015, 0.0040] | 0.0645 ± 0.0226 [-0.3798, 0.4746] |
+| Temperature (primary) | 0.0018 ± 0.0000 [0.0007, 0.0037] | 0.0027 ± 0.0000 [0.0015, 0.0039] | 0.0661 ± 0.0137 [-0.3584, 0.4704] |
+| Platt (sensitivity) | 0.0011 ± 0.0001 [0.0006, 0.0026] | 0.0024 ± 0.0000 [0.0014, 0.0035] | 0.1649 ± 0.0068 [-0.2098, 0.5273] |
+| **SLM text (C2)** | | | |
+| Uncalibrated | 0.0423 ± 0.0007 [0.0341, 0.0515] | 0.0240 ± 0.0005 [0.0187, 0.0298] | -7.3158 ± 0.1898 [-9.3451, -5.4962] |
+| Temperature (primary) | 0.0422 ± 0.0006 [0.0340, 0.0514] | 0.0240 ± 0.0006 [0.0188, 0.0299] | -7.3223 ± 0.1959 [-9.3538, -5.5000] |
+| Platt (sensitivity) | 0.0005 ± 0.0001 [0.0004, 0.0017] | 0.0024 ± 0.0000 [0.0014, 0.0034] | 0.1651 ± 0.0057 [-0.1875, 0.5118] |
+
+Mean ± std over seeds 1–3 (rules: deterministic, one run, no std) and 95% user-level bootstrap CI (1,000 stratified resamples, seed 0), src/eval.py. Test split (frozen). Unit = session (C1: max over scoring points; C2: logoff row). Temperature (pre-declared primary) and Platt (sensitivity) fitted on calib at the session level. BSS = 1 − Brier / (p(1 − p)), p = calib session positive rate.

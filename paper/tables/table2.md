@@ -1,0 +1,10 @@
+# Table 2: Comparison 2 on the test split (text added; logoff rows, session = logoff row)
+
+| Model | PR-AUC | Recall @ 1% FPR | Recall @ 5% FPR | Precision @ k (20/day) |
+|---|---|---|---|---|
+| SLM text (C2) | 0.093 ± 0.009 [0.037, 0.247] | 0.350 ± 0.042 [0.195, 0.556] | 0.794 ± 0.004 [0.670, 0.916] | 0.048 ± 0.001 [0.025, 0.073] |
+| XGBoost text (C2) | 0.203 ± 0.005 [0.030, 0.486] | 0.346 ± 0.050 [0.119, 0.663] | 0.671 ± 0.011 [0.487, 0.850] | 0.040 ± 0.006 [0.017, 0.067] |
+| Rules (reference) | 0.008 [0.003, 0.020] | 0.086 [0.012, 0.180] | 0.173 [0.035, 0.334] | 0.008 [0.002, 0.018] |
+| SLM text − XGBoost text | -0.110 [-0.276, +0.016] | +0.004 [-0.139, +0.141] | +0.123 [-0.019, +0.251] | +0.009 [-0.005, +0.023] |
+
+Mean ± std over seeds 1–3 (rules: deterministic, one run, no std) and 95% user-level bootstrap CI (1,000 stratified resamples, seed 0), src/eval.py. Test split (frozen). Paired rows: SLM text − XGBoost text, same user draws; * = 95% CI excludes 0.
