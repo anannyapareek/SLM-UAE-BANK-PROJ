@@ -33,6 +33,7 @@ FIGURE_STYLE = {
     "marker_size": 3.5,
     "grid_colour": "#dddddd",
     "reference_colour": "#444444",
+    "sparse_colour": "#aaaaaa",  # abstention precision where < MIN_ALERTS alerts remain
 }
 # One colour and one marker per model, the same in every figure (Okabe-Ito; yellow left out for contrast).
 MODELS = {
@@ -48,6 +49,7 @@ CALIBRATION_RUNS = {"xgb": "xgb_struct", "slm": "slm_struct", "xgb_text": "xgb_t
 METHODS = [("uncalibrated", "Uncalibrated", ":", "none"), ("sessionfit_temperature", "Temperature", "--", "none"),
            ("sessionfit_platt", "Platt", "-", "full")]
 FLOOR = 1e-5
+MIN_ALERTS = 20               # abstention precision drawn grey below this many auto-decided alerts
 ABSTENTION_POINTS = [(0.03, "3%"), (0.10, "10%")]
 ABSTENTION_PANELS = [("system_recall_upper", "System recall (upper bound)"),
                      ("precision_auto", "Precision, auto-decided"), ("recall_auto", "Recall, auto-decided")]
@@ -107,11 +109,20 @@ def abstention_figure(curves, keys, out, name):
         for key in keys:
             label, colour, marker = MODELS[key]
             c = curves[curves["model"] == key]
+            thin = metric == "precision_auto"           # precision is unstable once few alerts remain
             for _, g in c.groupby("seed"):
-                ax.plot(g["share"] * 100, g[metric], color=colour, lw=s["seed_line_width"], alpha=s["seed_alpha"])
+                y = g[metric].where(~thin | (g["alerts_auto"] >= MIN_ALERTS)) if thin else g[metric]
+                ax.plot(g["share"] * 100, y, color=colour, lw=s["seed_line_width"], alpha=s["seed_alpha"])
+                if thin:
+                    ax.plot(g["share"] * 100, g[metric].where(g["alerts_auto"] < MIN_ALERTS), color=s["sparse_colour"],
+                            lw=s["seed_line_width"], alpha=0.6)
             mean = c.groupby("share")[metric].mean()
-            ax.plot(mean.index * 100, mean.to_numpy(), color=colour, lw=s["line_width"], marker=marker,
+            ok = c.groupby("share")["alerts_auto"].min() >= MIN_ALERTS if thin else mean.notna()
+            ax.plot(mean.index * 100, mean.where(ok).to_numpy(), color=colour, lw=s["line_width"], marker=marker,
                     ms=s["marker_size"], markevery=5, label=label)
+            if thin and (~ok).any():
+                grey = ~ok | (~ok).shift(-1, fill_value=False)     # include the last coloured point to join up
+                ax.plot(mean.index * 100, mean.where(grey).to_numpy(), color=s["sparse_colour"], lw=s["line_width"])
         for share, text in ABSTENTION_POINTS:
             ax.axvline(share * 100, color=s["reference_colour"], lw=0.8, ls="-" if share == 0.03 else "--")
             ax.text(share * 100, 1.01, text, transform=ax.get_xaxis_transform(), va="bottom",
@@ -190,9 +201,10 @@ def captions(out, cal_counts, ab, rb, groups):
           + names(["xgb_text", "slm_text"]) + f". Vertical lines: 3% deferred (≈ {day3:.1f} sessions/day, close "
           f"to the capacity of {rb['capacity']} alerts/day; solid line) and 10% (operating point, {day10:.1f} "
           "sessions/day; dashed). System recall assumes analysts catch every deferred positive (upper bound). "
-          "Precision and recall on auto-decided sessions become unstable once few alerts or positives remain "
-          "(e.g. the SLM beyond ~25% deferred, where its kept alerts run out; counts per point and seed in "
-          "results/step7/abstention/curves.csv). "
+          f"Precision on auto-decided sessions is drawn grey where fewer than {MIN_ALERTS} alerts remain among them "
+          "(any seed, for the mean line; that seed, for the thin lines): it becomes unstable as the kept alerts run "
+          "out (the SLM beyond ~25% deferred). Recall on auto-decided sessions is likewise noisy once few positives "
+          "remain; counts per point and seed are in results/step7/abstention/curves.csv. "
           "Curves: 0–50% in steps of 1%; no CIs drawn (abstention table: 2%, 3%, 10% with 95% CIs).", "",
           "## review_budget_main / review_budget_c2", "",
           f"Recall vs alerts per analyst-day on the test split, unit = session, n = {n['n_units']:,} "

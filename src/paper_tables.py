@@ -24,6 +24,8 @@ UNITS = [("max", "session", "Session, max over scoring points (primary)"),
          ("max", "row", "Row (secondary)")]
 LABELS = {"xgb": "XGBoost (C1)", "slm": "SLM (C1)", "hybrid": "Hybrid (C1)", "rules": "Rules",
           "rules_slm": "Rules + SLM", "xgb_text": "XGBoost text (C2)", "slm_text": "SLM text (C2)"}
+FAIR_MIN_SESSIONS = 200        # runbook fairness size rule: FPR shown for groups with >= 200 test sessions
+FAIR_MIN_POSITIVES = 5         # recall shown for groups with >= 5 positive sessions
 CI_NOTE = ("Mean ± std over seeds 1–3 (rules: deterministic, one run, no std) and 95% user-level bootstrap CI "
            "(1,000 stratified resamples, seed 0), src/eval.py. Test split (frozen).")
 
@@ -242,20 +244,23 @@ def fairness(b, name, title, pairs):
     t = b.table = Table(name, title, ["Attribute / group", "Sessions", "Positives", f"FPR {LABELS[ka]}", f"FPR {LABELS[kb]}",
                                       f"Recall {LABELS[ka]}", f"Recall {LABELS[kb]}"],
                         "Test split, session level; alert at each seed's validation 5%-FPR threshold; mean ± std over "
-                        "3 seeds. Groups with at least 5 positive sessions (recall defined), as in the fairness reports; "
-                        "the full lists are in results/comparison*/fairness_*_test.csv.")
+                        f"3 seeds. FPR for groups with ≥ {FAIR_MIN_SESSIONS} sessions; recall for groups with ≥ "
+                        f"{FAIR_MIN_POSITIVES} positive sessions. – = fewer positive sessions. Runbook size rule; full lists in "
+                        "results/comparison*/fairness_*_test.csv.")
     rows = sorted(b.src.load(fa), key=lambda r: r["attribute"] != "all")        # "all" first, file order otherwise
     for r in rows:
-        if r["recall_mean"] == "":
+        if int(r["sessions"]) < FAIR_MIN_SESSIONS:
             continue
         key = {"attribute": r["attribute"], "group": r["group"]}
         label = f"{r['attribute']} / {r['group']}"
+        recall_ok = int(r["positives"]) >= FAIR_MIN_POSITIVES
+        recall = lambda f, col: (b.cell(label, col, "ms", 3, [(f, [key, "recall_mean"]), (f, [key, "recall_std"])])
+                                 if recall_ok else "–")
         t.row(label, [b.cell(label, "Sessions", "int", 0, [(fa, [key, "sessions"])]),
                       b.cell(label, "Positives", "int", 0, [(fa, [key, "positives"])]),
                       b.cell(label, "FPR a", "ms", 4, [(fa, [key, "fpr_mean"]), (fa, [key, "fpr_std"])]),
                       b.cell(label, "FPR b", "ms", 4, [(fb, [key, "fpr_mean"]), (fb, [key, "fpr_std"])]),
-                      b.cell(label, "Recall a", "ms", 3, [(fa, [key, "recall_mean"]), (fa, [key, "recall_std"])]),
-                      b.cell(label, "Recall b", "ms", 3, [(fb, [key, "recall_mean"]), (fb, [key, "recall_std"])])])
+                      recall(fa, "Recall a"), recall(fb, "Recall b")])
     return t
 
 

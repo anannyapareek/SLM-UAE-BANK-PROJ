@@ -14669,6 +14669,642 @@
  },
  {
   "table": "fairness_c1",
+  "row": "role / Accountant",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "292",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Accountant"
+     },
+     "sessions"
+    ],
+    "value": 292.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Accountant",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Accountant"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Accountant",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Accountant"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Accountant"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Accountant",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Accountant"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Accountant"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / AdministrativeAssistant",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "3,207",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AdministrativeAssistant"
+     },
+     "sessions"
+    ],
+    "value": 3207.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / AdministrativeAssistant",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "1",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AdministrativeAssistant"
+     },
+     "positives"
+    ],
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / AdministrativeAssistant",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0001 \u00b1 0.0002",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AdministrativeAssistant"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0001
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AdministrativeAssistant"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0002
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / AdministrativeAssistant",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0045 \u00b1 0.0042",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AdministrativeAssistant"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0045
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AdministrativeAssistant"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0042
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / AssemblySupervisor",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "596",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AssemblySupervisor"
+     },
+     "sessions"
+    ],
+    "value": 596.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / AssemblySupervisor",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AssemblySupervisor"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / AssemblySupervisor",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0028 \u00b1 0.0010",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AssemblySupervisor"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0028
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AssemblySupervisor"
+     },
+     "fpr_std"
+    ],
+    "value": 0.001
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / AssemblySupervisor",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0280 \u00b1 0.0010",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AssemblySupervisor"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.028
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AssemblySupervisor"
+     },
+     "fpr_std"
+    ],
+    "value": 0.001
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Attorney",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "330",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Attorney"
+     },
+     "sessions"
+    ],
+    "value": 330.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Attorney",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Attorney"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Attorney",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0010 \u00b1 0.0017",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Attorney"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.001
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Attorney"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0017
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Attorney",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0697 \u00b1 0.0259",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Attorney"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0697
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Attorney"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0259
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ChiefEngineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "727",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ChiefEngineer"
+     },
+     "sessions"
+    ],
+    "value": 727.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ChiefEngineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ChiefEngineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ChiefEngineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0005 \u00b1 0.0008",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ChiefEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0005
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ChiefEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0008
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ChiefEngineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ChiefEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ChiefEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ComputerProgrammer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "2,136",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerProgrammer"
+     },
+     "sessions"
+    ],
+    "value": 2136.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ComputerProgrammer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerProgrammer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ComputerProgrammer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1261 \u00b1 0.0019",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerProgrammer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1261
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerProgrammer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0019
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ComputerProgrammer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1573 \u00b1 0.0089",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerProgrammer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1573
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerProgrammer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0089
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
   "row": "role / ComputerScientist",
   "column": "Sessions",
   "kind": "int",
@@ -14834,6 +15470,536 @@
      "recall_std"
     ],
     "value": 0.3553
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ComputerTrainer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "230",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerTrainer"
+     },
+     "sessions"
+    ],
+    "value": 230.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ComputerTrainer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerTrainer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ComputerTrainer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerTrainer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerTrainer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ComputerTrainer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0594 \u00b1 0.0955",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerTrainer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0594
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerTrainer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0955
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Director",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "1,262",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Director"
+     },
+     "sessions"
+    ],
+    "value": 1262.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Director",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Director"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Director",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0013 \u00b1 0.0005",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Director"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0013
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Director"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0005
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Director",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0127 \u00b1 0.0114",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Director"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0127
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Director"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0114
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ElectricalEngineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "2,590",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ElectricalEngineer"
+     },
+     "sessions"
+    ],
+    "value": 2590.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ElectricalEngineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ElectricalEngineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ElectricalEngineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0936 \u00b1 0.0016",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ElectricalEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0936
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ElectricalEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0016
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / ElectricalEngineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1254 \u00b1 0.0076",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ElectricalEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1254
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ElectricalEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0076
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Engineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "213",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Engineer"
+     },
+     "sessions"
+    ],
+    "value": 213.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Engineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Engineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Engineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Engineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Engineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Engineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Engineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Engineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / FieldServiceEngineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "669",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "FieldServiceEngineer"
+     },
+     "sessions"
+    ],
+    "value": 669.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / FieldServiceEngineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "FieldServiceEngineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / FieldServiceEngineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0015 \u00b1 0.0015",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "FieldServiceEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0015
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "FieldServiceEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0015
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / FieldServiceEngineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0309 \u00b1 0.0199",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "FieldServiceEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0309
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "FieldServiceEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0199
    }
   ]
  },
@@ -15009,6 +16175,218 @@
  },
  {
   "table": "fairness_c1",
+  "row": "role / HealthSafetyEngineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "322",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HealthSafetyEngineer"
+     },
+     "sessions"
+    ],
+    "value": 322.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / HealthSafetyEngineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HealthSafetyEngineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / HealthSafetyEngineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HealthSafetyEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HealthSafetyEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / HealthSafetyEngineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HealthSafetyEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HealthSafetyEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / HumanResourceSpecialist",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "1,192",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HumanResourceSpecialist"
+     },
+     "sessions"
+    ],
+    "value": 1192.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / HumanResourceSpecialist",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HumanResourceSpecialist"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / HumanResourceSpecialist",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HumanResourceSpecialist"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HumanResourceSpecialist"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / HumanResourceSpecialist",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0006 \u00b1 0.0010",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HumanResourceSpecialist"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0006
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HumanResourceSpecialist"
+     },
+     "fpr_std"
+    ],
+    "value": 0.001
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
   "row": "role / ITAdmin",
   "column": "Sessions",
   "kind": "int",
@@ -15174,6 +16552,854 @@
      "recall_std"
     ],
     "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / IndustrialEngineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "596",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "IndustrialEngineer"
+     },
+     "sessions"
+    ],
+    "value": 596.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / IndustrialEngineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "IndustrialEngineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / IndustrialEngineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1488 \u00b1 0.0079",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "IndustrialEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1488
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "IndustrialEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0079
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / IndustrialEngineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1980 \u00b1 0.0501",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "IndustrialEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.198
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "IndustrialEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0501
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / LabManager",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "570",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "LabManager"
+     },
+     "sessions"
+    ],
+    "value": 570.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / LabManager",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "LabManager"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / LabManager",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "LabManager"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "LabManager"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / LabManager",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "LabManager"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "LabManager"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Manager",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "2,491",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Manager"
+     },
+     "sessions"
+    ],
+    "value": 2491.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Manager",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "2",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Manager"
+     },
+     "positives"
+    ],
+    "value": 2.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Manager",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0992 \u00b1 0.0022",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Manager"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0992
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Manager"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0022
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Manager",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0524 \u00b1 0.0103",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Manager"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0524
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Manager"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0103
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / MaterialsEngineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "582",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MaterialsEngineer"
+     },
+     "sessions"
+    ],
+    "value": 582.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / MaterialsEngineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MaterialsEngineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / MaterialsEngineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0006 \u00b1 0.0010",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MaterialsEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0006
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MaterialsEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.001
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / MaterialsEngineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0172 \u00b1 0.0241",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MaterialsEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0172
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MaterialsEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0241
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Mathematician",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "2,462",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Mathematician"
+     },
+     "sessions"
+    ],
+    "value": 2462.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Mathematician",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Mathematician"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Mathematician",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1118 \u00b1 0.0022",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Mathematician"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1118
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Mathematician"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0022
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Mathematician",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1010 \u00b1 0.0121",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Mathematician"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.101
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Mathematician"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0121
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / MechanicalEngineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "2,453",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MechanicalEngineer"
+     },
+     "sessions"
+    ],
+    "value": 2453.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / MechanicalEngineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MechanicalEngineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / MechanicalEngineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0035 \u00b1 0.0012",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MechanicalEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0035
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MechanicalEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0012
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / MechanicalEngineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0276 \u00b1 0.0264",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MechanicalEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0276
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MechanicalEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0264
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / NursePractitioner",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "305",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "NursePractitioner"
+     },
+     "sessions"
+    ],
+    "value": 305.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / NursePractitioner",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "NursePractitioner"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / NursePractitioner",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "NursePractitioner"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "NursePractitioner"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / NursePractitioner",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "NursePractitioner"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "NursePractitioner"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Physicist",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "1,784",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Physicist"
+     },
+     "sessions"
+    ],
+    "value": 1784.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Physicist",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Physicist"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Physicist",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0062 \u00b1 0.0015",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Physicist"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0062
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Physicist"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0015
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Physicist",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0817 \u00b1 0.0122",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Physicist"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0817
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Physicist"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0122
    }
   ]
  },
@@ -15349,6 +17575,112 @@
  },
  {
   "table": "fairness_c1",
+  "row": "role / PurchasingClerk",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "481",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "PurchasingClerk"
+     },
+     "sessions"
+    ],
+    "value": 481.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / PurchasingClerk",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "PurchasingClerk"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / PurchasingClerk",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0007 \u00b1 0.0012",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "PurchasingClerk"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0007
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "PurchasingClerk"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0012
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / PurchasingClerk",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0922 \u00b1 0.0428",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "PurchasingClerk"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0922
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "PurchasingClerk"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0428
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
   "row": "role / Salesman",
   "column": "Sessions",
   "kind": "int",
@@ -15519,6 +17851,218 @@
  },
  {
   "table": "fairness_c1",
+  "row": "role / Scientist",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "3,761",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Scientist"
+     },
+     "sessions"
+    ],
+    "value": 3761.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Scientist",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Scientist"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Scientist",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0195 \u00b1 0.0047",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Scientist"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0195
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Scientist"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0047
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Scientist",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0176 \u00b1 0.0105",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Scientist"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0176
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Scientist"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0105
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / SecurityGuard",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "1,558",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "SecurityGuard"
+     },
+     "sessions"
+    ],
+    "value": 1558.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / SecurityGuard",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "2",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "SecurityGuard"
+     },
+     "positives"
+    ],
+    "value": 2.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / SecurityGuard",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0062 \u00b1 0.0021",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "SecurityGuard"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0062
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "SecurityGuard"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0021
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / SecurityGuard",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0163 \u00b1 0.0127",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "SecurityGuard"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0163
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "SecurityGuard"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0127
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
   "row": "role / SoftwareEngineer",
   "column": "Sessions",
   "kind": "int",
@@ -15684,6 +18228,112 @@
      "recall_std"
     ],
     "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Statistician",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "372",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Statistician"
+     },
+     "sessions"
+    ],
+    "value": 372.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Statistician",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Statistician"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Statistician",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Statistician"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Statistician"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / Statistician",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0896 \u00b1 0.0056",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Statistician"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0896
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Statistician"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0056
    }
   ]
  },
@@ -16199,6 +18849,1172 @@
  },
  {
   "table": "fairness_c1",
+  "row": "role / VicePresident",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "627",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "VicePresident"
+     },
+     "sessions"
+    ],
+    "value": 627.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / VicePresident",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "VicePresident"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / VicePresident",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0011 \u00b1 0.0018",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "VicePresident"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0011
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "VicePresident"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0018
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "role / VicePresident",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0048 \u00b1 0.0058",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "VicePresident"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0048
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "VicePresident"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0058
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Accounting",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "380",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Accounting"
+     },
+     "sessions"
+    ],
+    "value": 380.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Accounting",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Accounting"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Accounting",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Accounting"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Accounting"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Accounting",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Accounting"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Accounting"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - IndustrialEngineering",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "702",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - IndustrialEngineering"
+     },
+     "sessions"
+    ],
+    "value": 702.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - IndustrialEngineering",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - IndustrialEngineering"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - IndustrialEngineering",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1263 \u00b1 0.0067",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - IndustrialEngineering"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1263
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - IndustrialEngineering"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0067
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - IndustrialEngineering",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1681 \u00b1 0.0425",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - IndustrialEngineering"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1681
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - IndustrialEngineering"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0425
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - MarketAnalysis",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "280",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - MarketAnalysis"
+     },
+     "sessions"
+    ],
+    "value": 280.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - MarketAnalysis",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "1",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - MarketAnalysis"
+     },
+     "positives"
+    ],
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - MarketAnalysis",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - MarketAnalysis"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - MarketAnalysis"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - MarketAnalysis",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0084 \u00b1 0.0075",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - MarketAnalysis"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0084
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - MarketAnalysis"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0075
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Personnel",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "992",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Personnel"
+     },
+     "sessions"
+    ],
+    "value": 992.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Personnel",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Personnel"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Personnel",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Personnel"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Personnel"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Personnel",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0017 \u00b1 0.0029",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Personnel"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0017
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Personnel"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0029
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Purchasing",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "584",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Purchasing"
+     },
+     "sessions"
+    ],
+    "value": 584.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Purchasing",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Purchasing"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Purchasing",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0017 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Purchasing"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0017
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Purchasing"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Purchasing",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0759 \u00b1 0.0353",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Purchasing"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0759
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Purchasing"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0353
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Research",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "8,767",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Research"
+     },
+     "sessions"
+    ],
+    "value": 8767.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Research",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Research"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Research",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0410 \u00b1 0.0018",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Research"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.041
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Research"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0018
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 1 - Research",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0525 \u00b1 0.0021",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Research"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0525
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Research"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0021
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - EmployeeRelations",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "595",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - EmployeeRelations"
+     },
+     "sessions"
+    ],
+    "value": 595.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - EmployeeRelations",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - EmployeeRelations"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - EmployeeRelations",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - EmployeeRelations"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - EmployeeRelations"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - EmployeeRelations",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0095 \u00b1 0.0093",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - EmployeeRelations"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0095
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - EmployeeRelations"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0093
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - ManufacturingEngineering",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "952",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - ManufacturingEngineering"
+     },
+     "sessions"
+    ],
+    "value": 952.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - ManufacturingEngineering",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - ManufacturingEngineering"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - ManufacturingEngineering",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1001 \u00b1 0.0034",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - ManufacturingEngineering"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1001
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - ManufacturingEngineering"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0034
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - ManufacturingEngineering",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1019 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - ManufacturingEngineering"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1019
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - ManufacturingEngineering"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - Payroll",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "292",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Payroll"
+     },
+     "sessions"
+    ],
+    "value": 292.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - Payroll",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Payroll"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - Payroll",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Payroll"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Payroll"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - Payroll",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Payroll"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Payroll"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - Pricing",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "381",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Pricing"
+     },
+     "sessions"
+    ],
+    "value": 381.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - Pricing",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Pricing"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - Pricing",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0026 \u00b1 0.0045",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Pricing"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0026
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Pricing"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0045
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 2 - Pricing",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0875 \u00b1 0.0055",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Pricing"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0875
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Pricing"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0055
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
   "row": "department / 2 - Sales",
   "column": "Sessions",
   "kind": "int",
@@ -16709,6 +20525,112 @@
  },
  {
   "table": "fairness_c1",
+  "row": "department / 3 - Contracts",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "540",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Contracts"
+     },
+     "sessions"
+    ],
+    "value": 540.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 3 - Contracts",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Contracts"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 3 - Contracts",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0006 \u00b1 0.0011",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Contracts"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0006
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Contracts"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0011
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 3 - Contracts",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0494 \u00b1 0.0204",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Contracts"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0494
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Contracts"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0204
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
   "row": "department / 3 - Engineering",
   "column": "Sessions",
   "kind": "int",
@@ -17049,6 +20971,536 @@
  },
  {
   "table": "fairness_c1",
+  "row": "department / 3 - FinancialPlanning",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "489",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - FinancialPlanning"
+     },
+     "sessions"
+    ],
+    "value": 489.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 3 - FinancialPlanning",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - FinancialPlanning"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 3 - FinancialPlanning",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0041 \u00b1 0.0020",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - FinancialPlanning"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0041
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - FinancialPlanning"
+     },
+     "fpr_std"
+    ],
+    "value": 0.002
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 3 - FinancialPlanning",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0368 \u00b1 0.0106",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - FinancialPlanning"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0368
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - FinancialPlanning"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0106
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 3 - Training",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "805",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Training"
+     },
+     "sessions"
+    ],
+    "value": 805.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 3 - Training",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Training"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 3 - Training",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Training"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Training"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 3 - Training",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0327 \u00b1 0.0253",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Training"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0327
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Training"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0253
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 4 - QualityControl",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "422",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - QualityControl"
+     },
+     "sessions"
+    ],
+    "value": 422.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 4 - QualityControl",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - QualityControl"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 4 - QualityControl",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - QualityControl"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - QualityControl"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 4 - QualityControl",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - QualityControl"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - QualityControl"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 4 - Safety",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "432",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - Safety"
+     },
+     "sessions"
+    ],
+    "value": 432.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 4 - Safety",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - Safety"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 4 - Safety",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - Safety"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - Safety"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 4 - Safety",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - Safety"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - Safety"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 5 - Medical",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "495",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "5 - Medical"
+     },
+     "sessions"
+    ],
+    "value": 495.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 5 - Medical",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "5 - Medical"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 5 - Medical",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "5 - Medical"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "5 - Medical"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / 5 - Medical",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "5 - Medical"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "5 - Medical"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
   "row": "department / 6 - Security",
   "column": "Sessions",
   "kind": "int",
@@ -17214,6 +21666,112 @@
      "recall_std"
     ],
     "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / unknown",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "1,387",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "unknown"
+     },
+     "sessions"
+    ],
+    "value": 1387.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / unknown",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "unknown"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / unknown",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0005 \u00b1 0.0008",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "unknown"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0005
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "unknown"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0008
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "department / unknown",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0022 \u00b1 0.0026",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "unknown"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0022
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "unknown"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0026
    }
   ]
  },
@@ -17729,6 +22287,112 @@
  },
  {
   "table": "fairness_c1",
+  "row": "functional_unit / 4 - Finance",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "1,357",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "4 - Finance"
+     },
+     "sessions"
+    ],
+    "value": 1357.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "functional_unit / 4 - Finance",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "4 - Finance"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "functional_unit / 4 - Finance",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0015 \u00b1 0.0007",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "4 - Finance"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0015
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "4 - Finance"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0007
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "functional_unit / 4 - Finance",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0133 \u00b1 0.0038",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "4 - Finance"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0133
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "4 - Finance"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0038
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
   "row": "functional_unit / 5 - SalesAndMarketing",
   "column": "Sessions",
   "kind": "int",
@@ -17894,6 +22558,112 @@
      "recall_std"
     ],
     "value": 0.0239
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "functional_unit / 6 - PurchasingAndContracts",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "1,721",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "6 - PurchasingAndContracts"
+     },
+     "sessions"
+    ],
+    "value": 1721.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "functional_unit / 6 - PurchasingAndContracts",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "6 - PurchasingAndContracts"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "functional_unit / 6 - PurchasingAndContracts",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0014 \u00b1 0.0009",
+  "sources": [
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "6 - PurchasingAndContracts"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0014
+   },
+   {
+    "file": "comparison1/fairness_xgb_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "6 - PurchasingAndContracts"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0009
+   }
+  ]
+ },
+ {
+  "table": "fairness_c1",
+  "row": "functional_unit / 6 - PurchasingAndContracts",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0606 \u00b1 0.0092",
+  "sources": [
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "6 - PurchasingAndContracts"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0606
+   },
+   {
+    "file": "comparison1/fairness_slm_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "6 - PurchasingAndContracts"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0092
    }
   ]
  },
@@ -18069,6 +22839,642 @@
  },
  {
   "table": "fairness_c2",
+  "row": "role / Accountant",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "292",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Accountant"
+     },
+     "sessions"
+    ],
+    "value": 292.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Accountant",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Accountant"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Accountant",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Accountant"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Accountant"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Accountant",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Accountant"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Accountant"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / AdministrativeAssistant",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "3,207",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AdministrativeAssistant"
+     },
+     "sessions"
+    ],
+    "value": 3207.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / AdministrativeAssistant",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "1",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AdministrativeAssistant"
+     },
+     "positives"
+    ],
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / AdministrativeAssistant",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0020 \u00b1 0.0005",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AdministrativeAssistant"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.002
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AdministrativeAssistant"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0005
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / AdministrativeAssistant",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0183 \u00b1 0.0067",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AdministrativeAssistant"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0183
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AdministrativeAssistant"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0067
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / AssemblySupervisor",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "596",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AssemblySupervisor"
+     },
+     "sessions"
+    ],
+    "value": 596.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / AssemblySupervisor",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AssemblySupervisor"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / AssemblySupervisor",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AssemblySupervisor"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AssemblySupervisor"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / AssemblySupervisor",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0291 \u00b1 0.0042",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AssemblySupervisor"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0291
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "AssemblySupervisor"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0042
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Attorney",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "330",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Attorney"
+     },
+     "sessions"
+    ],
+    "value": 330.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Attorney",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Attorney"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Attorney",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0313 \u00b1 0.0070",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Attorney"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0313
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Attorney"
+     },
+     "fpr_std"
+    ],
+    "value": 0.007
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Attorney",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0091 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Attorney"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0091
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Attorney"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ChiefEngineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "727",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ChiefEngineer"
+     },
+     "sessions"
+    ],
+    "value": 727.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ChiefEngineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ChiefEngineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ChiefEngineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0083 \u00b1 0.0060",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ChiefEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0083
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ChiefEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.006
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ChiefEngineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0830 \u00b1 0.0147",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ChiefEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.083
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ChiefEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0147
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ComputerProgrammer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "2,136",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerProgrammer"
+     },
+     "sessions"
+    ],
+    "value": 2136.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ComputerProgrammer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerProgrammer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ComputerProgrammer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0757 \u00b1 0.0143",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerProgrammer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0757
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerProgrammer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0143
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ComputerProgrammer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0999 \u00b1 0.0027",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerProgrammer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0999
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerProgrammer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0027
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
   "row": "role / ComputerScientist",
   "column": "Sessions",
   "kind": "int",
@@ -18234,6 +23640,536 @@
      "recall_std"
     ],
     "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ComputerTrainer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "230",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerTrainer"
+     },
+     "sessions"
+    ],
+    "value": 230.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ComputerTrainer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerTrainer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ComputerTrainer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0072 \u00b1 0.0066",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerTrainer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0072
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerTrainer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0066
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ComputerTrainer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1754 \u00b1 0.0100",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerTrainer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1754
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ComputerTrainer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.01
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Director",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "1,262",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Director"
+     },
+     "sessions"
+    ],
+    "value": 1262.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Director",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Director"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Director",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0005 \u00b1 0.0005",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Director"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0005
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Director"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0005
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Director",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Director"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Director"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ElectricalEngineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "2,590",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ElectricalEngineer"
+     },
+     "sessions"
+    ],
+    "value": 2590.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ElectricalEngineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ElectricalEngineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ElectricalEngineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1106 \u00b1 0.0040",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ElectricalEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1106
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ElectricalEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.004
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / ElectricalEngineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0356 \u00b1 0.0054",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ElectricalEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0356
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "ElectricalEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0054
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Engineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "213",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Engineer"
+     },
+     "sessions"
+    ],
+    "value": 213.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Engineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Engineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Engineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Engineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Engineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Engineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Engineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Engineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / FieldServiceEngineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "669",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "FieldServiceEngineer"
+     },
+     "sessions"
+    ],
+    "value": 669.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / FieldServiceEngineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "FieldServiceEngineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / FieldServiceEngineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0055 \u00b1 0.0023",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "FieldServiceEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0055
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "FieldServiceEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0023
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / FieldServiceEngineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0538 \u00b1 0.0068",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "FieldServiceEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0538
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "FieldServiceEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0068
    }
   ]
  },
@@ -18409,6 +24345,218 @@
  },
  {
   "table": "fairness_c2",
+  "row": "role / HealthSafetyEngineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "322",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HealthSafetyEngineer"
+     },
+     "sessions"
+    ],
+    "value": 322.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / HealthSafetyEngineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HealthSafetyEngineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / HealthSafetyEngineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HealthSafetyEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HealthSafetyEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / HealthSafetyEngineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HealthSafetyEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HealthSafetyEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / HumanResourceSpecialist",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "1,192",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HumanResourceSpecialist"
+     },
+     "sessions"
+    ],
+    "value": 1192.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / HumanResourceSpecialist",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HumanResourceSpecialist"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / HumanResourceSpecialist",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0025 \u00b1 0.0008",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HumanResourceSpecialist"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0025
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HumanResourceSpecialist"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0008
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / HumanResourceSpecialist",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0333 \u00b1 0.0049",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HumanResourceSpecialist"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0333
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "HumanResourceSpecialist"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0049
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
   "row": "role / ITAdmin",
   "column": "Sessions",
   "kind": "int",
@@ -18574,6 +24722,854 @@
      "recall_std"
     ],
     "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / IndustrialEngineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "596",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "IndustrialEngineer"
+     },
+     "sessions"
+    ],
+    "value": 596.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / IndustrialEngineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "IndustrialEngineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / IndustrialEngineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1091 \u00b1 0.0191",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "IndustrialEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1091
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "IndustrialEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0191
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / IndustrialEngineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1186 \u00b1 0.0137",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "IndustrialEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1186
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "IndustrialEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0137
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / LabManager",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "570",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "LabManager"
+     },
+     "sessions"
+    ],
+    "value": 570.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / LabManager",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "LabManager"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / LabManager",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "LabManager"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "LabManager"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / LabManager",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "LabManager"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "LabManager"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Manager",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "2,491",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Manager"
+     },
+     "sessions"
+    ],
+    "value": 2491.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Manager",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "2",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Manager"
+     },
+     "positives"
+    ],
+    "value": 2.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Manager",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0832 \u00b1 0.0011",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Manager"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0832
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Manager"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0011
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Manager",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0940 \u00b1 0.0123",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Manager"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.094
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Manager"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0123
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / MaterialsEngineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "582",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MaterialsEngineer"
+     },
+     "sessions"
+    ],
+    "value": 582.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / MaterialsEngineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MaterialsEngineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / MaterialsEngineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0023 \u00b1 0.0040",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MaterialsEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0023
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MaterialsEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.004
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / MaterialsEngineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0624 \u00b1 0.0114",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MaterialsEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0624
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MaterialsEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0114
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Mathematician",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "2,462",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Mathematician"
+     },
+     "sessions"
+    ],
+    "value": 2462.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Mathematician",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Mathematician"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Mathematician",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1060 \u00b1 0.0134",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Mathematician"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.106
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Mathematician"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0134
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Mathematician",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0988 \u00b1 0.0038",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Mathematician"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0988
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Mathematician"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0038
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / MechanicalEngineer",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "2,453",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MechanicalEngineer"
+     },
+     "sessions"
+    ],
+    "value": 2453.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / MechanicalEngineer",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MechanicalEngineer"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / MechanicalEngineer",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0117 \u00b1 0.0017",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MechanicalEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0117
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MechanicalEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0017
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / MechanicalEngineer",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0737 \u00b1 0.0015",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MechanicalEngineer"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0737
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "MechanicalEngineer"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0015
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / NursePractitioner",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "305",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "NursePractitioner"
+     },
+     "sessions"
+    ],
+    "value": 305.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / NursePractitioner",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "NursePractitioner"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / NursePractitioner",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0011 \u00b1 0.0019",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "NursePractitioner"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0011
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "NursePractitioner"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0019
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / NursePractitioner",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "NursePractitioner"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "NursePractitioner"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Physicist",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "1,784",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Physicist"
+     },
+     "sessions"
+    ],
+    "value": 1784.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Physicist",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Physicist"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Physicist",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0125 \u00b1 0.0044",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Physicist"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0125
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Physicist"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0044
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Physicist",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1362 \u00b1 0.0037",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Physicist"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1362
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Physicist"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0037
    }
   ]
  },
@@ -18749,6 +25745,112 @@
  },
  {
   "table": "fairness_c2",
+  "row": "role / PurchasingClerk",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "481",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "PurchasingClerk"
+     },
+     "sessions"
+    ],
+    "value": 481.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / PurchasingClerk",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "PurchasingClerk"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / PurchasingClerk",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0014 \u00b1 0.0012",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "PurchasingClerk"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0014
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "PurchasingClerk"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0012
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / PurchasingClerk",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1275 \u00b1 0.0295",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "PurchasingClerk"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1275
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "PurchasingClerk"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0295
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
   "row": "role / Salesman",
   "column": "Sessions",
   "kind": "int",
@@ -18919,6 +26021,218 @@
  },
  {
   "table": "fairness_c2",
+  "row": "role / Scientist",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "3,761",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Scientist"
+     },
+     "sessions"
+    ],
+    "value": 3761.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Scientist",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Scientist"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Scientist",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0256 \u00b1 0.0078",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Scientist"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0256
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Scientist"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0078
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Scientist",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0653 \u00b1 0.0027",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Scientist"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0653
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Scientist"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0027
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / SecurityGuard",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "1,558",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "SecurityGuard"
+     },
+     "sessions"
+    ],
+    "value": 1558.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / SecurityGuard",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "2",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "SecurityGuard"
+     },
+     "positives"
+    ],
+    "value": 2.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / SecurityGuard",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0216 \u00b1 0.0035",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "SecurityGuard"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0216
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "SecurityGuard"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0035
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / SecurityGuard",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0718 \u00b1 0.0077",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "SecurityGuard"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0718
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "SecurityGuard"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0077
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
   "row": "role / SoftwareEngineer",
   "column": "Sessions",
   "kind": "int",
@@ -19084,6 +26398,112 @@
      "recall_std"
     ],
     "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Statistician",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "372",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Statistician"
+     },
+     "sessions"
+    ],
+    "value": 372.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Statistician",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Statistician"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Statistician",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0197 \u00b1 0.0138",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Statistician"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0197
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Statistician"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0138
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / Statistician",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1613 \u00b1 0.0027",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Statistician"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1613
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "Statistician"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0027
    }
   ]
  },
@@ -19599,6 +27019,1172 @@
  },
  {
   "table": "fairness_c2",
+  "row": "role / VicePresident",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "627",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "VicePresident"
+     },
+     "sessions"
+    ],
+    "value": 627.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / VicePresident",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "VicePresident"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / VicePresident",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0165 \u00b1 0.0056",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "VicePresident"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0165
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "VicePresident"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0056
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "role / VicePresident",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0579 \u00b1 0.0120",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "VicePresident"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0579
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "role",
+      "group": "VicePresident"
+     },
+     "fpr_std"
+    ],
+    "value": 0.012
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Accounting",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "380",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Accounting"
+     },
+     "sessions"
+    ],
+    "value": 380.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Accounting",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Accounting"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Accounting",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0009 \u00b1 0.0015",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Accounting"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0009
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Accounting"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0015
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Accounting",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Accounting"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Accounting"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - IndustrialEngineering",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "702",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - IndustrialEngineering"
+     },
+     "sessions"
+    ],
+    "value": 702.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - IndustrialEngineering",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - IndustrialEngineering"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - IndustrialEngineering",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0926 \u00b1 0.0162",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - IndustrialEngineering"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0926
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - IndustrialEngineering"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0162
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - IndustrialEngineering",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1007 \u00b1 0.0116",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - IndustrialEngineering"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1007
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - IndustrialEngineering"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0116
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - MarketAnalysis",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "280",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - MarketAnalysis"
+     },
+     "sessions"
+    ],
+    "value": 280.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - MarketAnalysis",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "1",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - MarketAnalysis"
+     },
+     "positives"
+    ],
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - MarketAnalysis",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0072 \u00b1 0.0072",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - MarketAnalysis"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0072
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - MarketAnalysis"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0072
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - MarketAnalysis",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0119 \u00b1 0.0041",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - MarketAnalysis"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0119
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - MarketAnalysis"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0041
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Personnel",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "992",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Personnel"
+     },
+     "sessions"
+    ],
+    "value": 992.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Personnel",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Personnel"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Personnel",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0030 \u00b1 0.0010",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Personnel"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.003
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Personnel"
+     },
+     "fpr_std"
+    ],
+    "value": 0.001
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Personnel",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0528 \u00b1 0.0150",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Personnel"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0528
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Personnel"
+     },
+     "fpr_std"
+    ],
+    "value": 0.015
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Purchasing",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "584",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Purchasing"
+     },
+     "sessions"
+    ],
+    "value": 584.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Purchasing",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Purchasing"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Purchasing",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0023 \u00b1 0.0010",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Purchasing"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0023
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Purchasing"
+     },
+     "fpr_std"
+    ],
+    "value": 0.001
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Purchasing",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1050 \u00b1 0.0243",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Purchasing"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.105
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Purchasing"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0243
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Research",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "8,767",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Research"
+     },
+     "sessions"
+    ],
+    "value": 8767.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Research",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Research"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Research",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0433 \u00b1 0.0074",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Research"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0433
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Research"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0074
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 1 - Research",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0835 \u00b1 0.0013",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Research"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0835
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "1 - Research"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0013
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - EmployeeRelations",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "595",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - EmployeeRelations"
+     },
+     "sessions"
+    ],
+    "value": 595.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - EmployeeRelations",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - EmployeeRelations"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - EmployeeRelations",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0006 \u00b1 0.0010",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - EmployeeRelations"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0006
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - EmployeeRelations"
+     },
+     "fpr_std"
+    ],
+    "value": 0.001
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - EmployeeRelations",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0151 \u00b1 0.0133",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - EmployeeRelations"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0151
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - EmployeeRelations"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0133
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - ManufacturingEngineering",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "952",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - ManufacturingEngineering"
+     },
+     "sessions"
+    ],
+    "value": 952.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - ManufacturingEngineering",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - ManufacturingEngineering"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - ManufacturingEngineering",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0875 \u00b1 0.0082",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - ManufacturingEngineering"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0875
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - ManufacturingEngineering"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0082
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - ManufacturingEngineering",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0287 \u00b1 0.0112",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - ManufacturingEngineering"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0287
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - ManufacturingEngineering"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0112
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - Payroll",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "292",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Payroll"
+     },
+     "sessions"
+    ],
+    "value": 292.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - Payroll",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Payroll"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - Payroll",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Payroll"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Payroll"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - Payroll",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Payroll"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Payroll"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - Pricing",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "381",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Pricing"
+     },
+     "sessions"
+    ],
+    "value": 381.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - Pricing",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Pricing"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - Pricing",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0219 \u00b1 0.0084",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Pricing"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0219
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Pricing"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0084
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 2 - Pricing",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1575 \u00b1 0.0026",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Pricing"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1575
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "2 - Pricing"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0026
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
   "row": "department / 2 - Sales",
   "column": "Sessions",
   "kind": "int",
@@ -20109,6 +28695,112 @@
  },
  {
   "table": "fairness_c2",
+  "row": "department / 3 - Contracts",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "540",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Contracts"
+     },
+     "sessions"
+    ],
+    "value": 540.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 3 - Contracts",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Contracts"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 3 - Contracts",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0278 \u00b1 0.0111",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Contracts"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0278
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Contracts"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0111
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 3 - Contracts",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0056 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Contracts"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0056
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Contracts"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
   "row": "department / 3 - Engineering",
   "column": "Sessions",
   "kind": "int",
@@ -20449,6 +29141,536 @@
  },
  {
   "table": "fairness_c2",
+  "row": "department / 3 - FinancialPlanning",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "489",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - FinancialPlanning"
+     },
+     "sessions"
+    ],
+    "value": 489.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 3 - FinancialPlanning",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - FinancialPlanning"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 3 - FinancialPlanning",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0136 \u00b1 0.0031",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - FinancialPlanning"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0136
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - FinancialPlanning"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0031
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 3 - FinancialPlanning",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0136 \u00b1 0.0077",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - FinancialPlanning"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0136
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - FinancialPlanning"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0077
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 3 - Training",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "805",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Training"
+     },
+     "sessions"
+    ],
+    "value": 805.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 3 - Training",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Training"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 3 - Training",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0112 \u00b1 0.0022",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Training"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0112
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Training"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0022
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 3 - Training",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.1023 \u00b1 0.0026",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Training"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.1023
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "3 - Training"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0026
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 4 - QualityControl",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "422",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - QualityControl"
+     },
+     "sessions"
+    ],
+    "value": 422.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 4 - QualityControl",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - QualityControl"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 4 - QualityControl",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - QualityControl"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - QualityControl"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 4 - QualityControl",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - QualityControl"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - QualityControl"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 4 - Safety",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "432",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - Safety"
+     },
+     "sessions"
+    ],
+    "value": 432.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 4 - Safety",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - Safety"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 4 - Safety",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - Safety"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - Safety"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 4 - Safety",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - Safety"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "4 - Safety"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 5 - Medical",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "495",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "5 - Medical"
+     },
+     "sessions"
+    ],
+    "value": 495.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 5 - Medical",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "5 - Medical"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 5 - Medical",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0007 \u00b1 0.0012",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "5 - Medical"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0007
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "5 - Medical"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0012
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / 5 - Medical",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0000 \u00b1 0.0000",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "5 - Medical"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "5 - Medical"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
   "row": "department / 6 - Security",
   "column": "Sessions",
   "kind": "int",
@@ -20614,6 +29836,112 @@
      "recall_std"
     ],
     "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / unknown",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "1,387",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "unknown"
+     },
+     "sessions"
+    ],
+    "value": 1387.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / unknown",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "unknown"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / unknown",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0075 \u00b1 0.0025",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "unknown"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0075
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "unknown"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0025
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "department / unknown",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0262 \u00b1 0.0054",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "unknown"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0262
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "department",
+      "group": "unknown"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0054
    }
   ]
  },
@@ -21129,6 +30457,112 @@
  },
  {
   "table": "fairness_c2",
+  "row": "functional_unit / 4 - Finance",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "1,357",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "4 - Finance"
+     },
+     "sessions"
+    ],
+    "value": 1357.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "functional_unit / 4 - Finance",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "4 - Finance"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "functional_unit / 4 - Finance",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0052 \u00b1 0.0007",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "4 - Finance"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0052
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "4 - Finance"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0007
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "functional_unit / 4 - Finance",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0049 \u00b1 0.0028",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "4 - Finance"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0049
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "4 - Finance"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0028
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
   "row": "functional_unit / 5 - SalesAndMarketing",
   "column": "Sessions",
   "kind": "int",
@@ -21294,6 +30728,112 @@
      "recall_std"
     ],
     "value": 0.0393
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "functional_unit / 6 - PurchasingAndContracts",
+  "column": "Sessions",
+  "kind": "int",
+  "dp": 0,
+  "text": "1,721",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "6 - PurchasingAndContracts"
+     },
+     "sessions"
+    ],
+    "value": 1721.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "functional_unit / 6 - PurchasingAndContracts",
+  "column": "Positives",
+  "kind": "int",
+  "dp": 0,
+  "text": "0",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "6 - PurchasingAndContracts"
+     },
+     "positives"
+    ],
+    "value": 0.0
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "functional_unit / 6 - PurchasingAndContracts",
+  "column": "FPR a",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0143 \u00b1 0.0048",
+  "sources": [
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "6 - PurchasingAndContracts"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0143
+   },
+   {
+    "file": "comparison2/fairness_xgb_text_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "6 - PurchasingAndContracts"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0048
+   }
+  ]
+ },
+ {
+  "table": "fairness_c2",
+  "row": "functional_unit / 6 - PurchasingAndContracts",
+  "column": "FPR b",
+  "kind": "ms",
+  "dp": 4,
+  "text": "0.0722 \u00b1 0.0085",
+  "sources": [
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "6 - PurchasingAndContracts"
+     },
+     "fpr_mean"
+    ],
+    "value": 0.0722
+   },
+   {
+    "file": "comparison2/fairness_slm_text_test.csv",
+    "path": [
+     {
+      "attribute": "functional_unit",
+      "group": "6 - PurchasingAndContracts"
+     },
+     "fpr_std"
+    ],
+    "value": 0.0085
    }
   ]
  },
