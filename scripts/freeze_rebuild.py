@@ -33,7 +33,7 @@ ROOT = pathlib.Path.cwd()
 PY = sys.executable
 TOL = 1e-6
 VOLATILE = {"runtime_seconds", "timestamp", "date", "git_commit", "started", "finished", "runtime", "log",
-            "elapsed_seconds", "seconds"}
+            "elapsed_seconds", "seconds", "fit_seconds"}
 EVAL_DIRS = ["results/comparison1/eval", "results/comparison2", "results/eval", "results/granularity"]
 
 
@@ -90,7 +90,9 @@ def jobs():
     did = json.loads((ROOT / "results/comparison2/text_gain_did.json").read_text())
     j["text_gain"] = ([PY, "-m", "src.text_gain", "--split", "test", "--allow-test",
                        *sum(([f"--{m.replace('_', '-')}", *p] for m, p in did["preds"].items()), []),
-                       "--out", "results/comparison2/text_gain_did.json"], [])
+                       "--check", *(f"{pair}={path}" for pair, path in did.get("draws_checked_against", {}).items()),
+                       "--out", "results/comparison2/text_gain_did.json"],
+                      [e for e in evals if "comparison2/paired_" in e])
     after_evals = list(evals)
     test = lambda f: json.loads((ROOT / f).read_text())["preds"]
     for name, csv, valid, test_json, rows in (

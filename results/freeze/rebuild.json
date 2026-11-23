@@ -1,0 +1,2063 @@
+{
+ "reference_commit": "d94eea5ae9d40ae06304a79adff47e7b2aec6395",
+ "tolerance": 1e-06,
+ "counts": {
+  "within 1e-6": 122,
+  "identical": 205,
+  "run log": 3,
+  "DIFF": 2,
+  "pdf metadata only": 6
+ },
+ "files": [
+  {
+   "file": "results/comparison1/eval/paired_slm_vs_xgb_test_final.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/eval/paired_slm_vs_xgb_test_max.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/eval/rules_test_final.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/eval/rules_test_max.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/eval/rules_valid_final.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/eval/rules_valid_max.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/eval/slm_test_final.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/eval/slm_test_max.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/eval/slm_valid_final.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/eval/slm_valid_max.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/eval/xgb_test_final.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/eval/xgb_test_max.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/eval/xgb_valid_final.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/eval/xgb_valid_max.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/fairness.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/fairness_slm_test.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/fairness_xgb_test.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/paired_slm_vs_xgb.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/paired_slm_vs_xgb.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/table1.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/table1.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/time_to_detection.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/ttd_slm_test.json",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison1/ttd_xgb_test.json",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/fairness.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/fairness_slm_text_test.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/fairness_xgb_text_test.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/paired_slm_text_vs_slm_struct.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/paired_slm_text_vs_xgb_text.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/paired_xgb_text_vs_xgb_struct.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/rules_test_final.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/run.csv",
+   "tracked": true,
+   "status": "run log",
+   "detail": "not compared (dates, commits, runtimes)"
+  },
+  {
+   "file": "results/comparison2/slm_struct_test_final.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/slm_text_test_final.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/slm_text_valid_final.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/table2.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/table2.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/text_gain.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/text_gain.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/text_gain_did.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/xgb_struct_test_final.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/xgb_text_test_final.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/comparison2/xgb_text_valid_final.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/eval/rules_valid.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/eval/slm_qwen15_r8_lr1e-4_valid.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/eval/xgb_struct_v3_valid.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/eval/xgb_struct_v3_vs_rules_valid.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/eval/xgb_text_valid.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/granularity/xgb_struct_v3_hourly_valid.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/granularity/xgb_struct_v3_logoff_valid.json",
+   "tracked": false,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/granularity/xgb_struct_v3_time_to_detection.json",
+   "tracked": false,
+   "status": "DIFF",
+   "detail": "$: keys ['thresholds_from']"
+  },
+  {
+   "file": "results/step7/abstention/abstention.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/abstention/abstention.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/abstention/abstention_appendix.pdf",
+   "tracked": true,
+   "status": "pdf metadata only",
+   "detail": "PNG twin pixel-identical"
+  },
+  {
+   "file": "results/step7/abstention/abstention_appendix.png",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/abstention/abstention_main.pdf",
+   "tracked": true,
+   "status": "pdf metadata only",
+   "detail": "PNG twin pixel-identical"
+  },
+  {
+   "file": "results/step7/abstention/abstention_main.png",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/abstention/curves.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/fits.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/ranking_check.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/reliability_test.pdf",
+   "tracked": true,
+   "status": "pdf metadata only",
+   "detail": "PNG twin pixel-identical"
+  },
+  {
+   "file": "results/step7/calibration/reliability_test.png",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_platt/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_platt/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_platt/s1/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_platt/s1/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_platt/s1/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_platt/s1/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_platt/s2/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_platt/s2/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_platt/s2/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_platt/s2/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_platt/s3/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_platt/s3/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_platt/s3/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_platt/s3/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_temperature/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_temperature/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_temperature/s1/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_temperature/s1/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_temperature/s1/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_temperature/s1/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_temperature/s2/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_temperature/s2/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_temperature/s2/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_temperature/s2/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_temperature/s3/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_temperature/s3/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_temperature/s3/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_rowfit_temperature/s3/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_platt/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_platt/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_platt/s1/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_platt/s1/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_platt/s1/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_platt/s1/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_platt/s2/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_platt/s2/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_platt/s2/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_platt/s2/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_platt/s3/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_platt/s3/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_platt/s3/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_platt/s3/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_temperature/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_temperature/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_temperature/s1/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_temperature/s1/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_temperature/s1/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_temperature/s1/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_temperature/s2/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_temperature/s2/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_temperature/s2/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_temperature/s2/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_temperature/s3/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_temperature/s3/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_temperature/s3/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_sessionfit_temperature/s3/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_uncalibrated/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_struct_uncalibrated/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_platt/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_platt/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_platt/s1/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_platt/s1/preds_calib_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_platt/s1/preds_test_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_platt/s1/preds_valid_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_platt/s2/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_platt/s2/preds_calib_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_platt/s2/preds_test_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_platt/s2/preds_valid_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_platt/s3/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_platt/s3/preds_calib_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_platt/s3/preds_test_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_platt/s3/preds_valid_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_temperature/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_temperature/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_temperature/s1/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_temperature/s1/preds_calib_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_temperature/s1/preds_test_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_temperature/s1/preds_valid_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_temperature/s2/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_temperature/s2/preds_calib_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_temperature/s2/preds_test_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_temperature/s2/preds_valid_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_temperature/s3/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_temperature/s3/preds_calib_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_temperature/s3/preds_test_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_sessionfit_temperature/s3/preds_valid_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_uncalibrated/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/slm_text_uncalibrated/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/table_calibration.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/table_calibration.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_platt/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_platt/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_platt/s1/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_platt/s1/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_platt/s1/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_platt/s1/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_platt/s2/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_platt/s2/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_platt/s2/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_platt/s2/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_platt/s3/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_platt/s3/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_platt/s3/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_platt/s3/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_temperature/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_temperature/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_temperature/s1/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_temperature/s1/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_temperature/s1/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_temperature/s1/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_temperature/s2/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_temperature/s2/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_temperature/s2/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_temperature/s2/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_temperature/s3/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_temperature/s3/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_temperature/s3/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_rowfit_temperature/s3/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_platt/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_platt/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_platt/s1/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_platt/s1/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_platt/s1/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_platt/s1/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_platt/s2/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_platt/s2/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_platt/s2/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_platt/s2/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_platt/s3/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_platt/s3/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_platt/s3/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_platt/s3/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_temperature/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_temperature/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_temperature/s1/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_temperature/s1/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_temperature/s1/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_temperature/s1/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_temperature/s2/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_temperature/s2/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_temperature/s2/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_temperature/s2/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_temperature/s3/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_temperature/s3/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_temperature/s3/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_sessionfit_temperature/s3/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_uncalibrated/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_struct_uncalibrated/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_platt/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_platt/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_platt/s1/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_platt/s1/preds_calib_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_platt/s1/preds_test_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_platt/s1/preds_valid_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_platt/s2/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_platt/s2/preds_calib_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_platt/s2/preds_test_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_platt/s2/preds_valid_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_platt/s3/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_platt/s3/preds_calib_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_platt/s3/preds_test_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_platt/s3/preds_valid_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_temperature/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_temperature/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_temperature/s1/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_temperature/s1/preds_calib_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_temperature/s1/preds_test_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_temperature/s1/preds_valid_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_temperature/s2/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_temperature/s2/preds_calib_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_temperature/s2/preds_test_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_temperature/s2/preds_valid_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_temperature/s3/params.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_temperature/s3/preds_calib_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_temperature/s3/preds_test_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_sessionfit_temperature/s3/preds_valid_final.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_uncalibrated/metrics_calib.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/calibration/xgb_text_uncalibrated/metrics_test.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/hybrid/band_selection.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/hybrid/band_selection.json",
+   "tracked": true,
+   "status": "DIFF",
+   "detail": "$.config: keys ['build_splits', 'sensitivity_caps']"
+  },
+  {
+   "file": "results/step7/hybrid/band_selection.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/hybrid/band_sensitivity.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/hybrid/band_sensitivity.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/hybrid/band_sensitivity.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/hybrid/build.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/hybrid/s1/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/hybrid/s1/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/hybrid/s1/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/hybrid/s2/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/hybrid/s2/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/hybrid/s2/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/hybrid/s3/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/hybrid/s3/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/hybrid/s3/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/review_budget/curves.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/review_budget/review_budget.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/review_budget/review_budget.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/review_budget/review_budget_c2.pdf",
+   "tracked": true,
+   "status": "pdf metadata only",
+   "detail": "PNG twin pixel-identical"
+  },
+  {
+   "file": "results/step7/review_budget/review_budget_c2.png",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/review_budget/review_budget_main.pdf",
+   "tracked": true,
+   "status": "pdf metadata only",
+   "detail": "PNG twin pixel-identical"
+  },
+  {
+   "file": "results/step7/review_budget/review_budget_main.png",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/review_budget/review_budget_weekday.pdf",
+   "tracked": true,
+   "status": "pdf metadata only",
+   "detail": "PNG twin pixel-identical"
+  },
+  {
+   "file": "results/step7/review_budget/review_budget_weekday.png",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/rules_slm/report_valid.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/rules_slm/report_valid.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/rules_slm/s1/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/rules_slm/s1/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/rules_slm/s1/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/rules_slm/s2/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/rules_slm/s2/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/rules_slm/s2/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/rules_slm/s3/preds_calib.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/rules_slm/s3/preds_test.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/rules_slm/s3/preds_valid.parquet",
+   "tracked": false,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/run.csv",
+   "tracked": true,
+   "status": "run log",
+   "detail": "not compared (dates, commits, runtimes)"
+  },
+  {
+   "file": "results/step7/table3/compute.json",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/hybrid_test_final.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/hybrid_test_max.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/paired_hybrid_vs_slm_test_final.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/paired_hybrid_vs_slm_test_max.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/paired_hybrid_vs_xgb_test_final.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/paired_hybrid_vs_xgb_test_max.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/paired_rules_slm_vs_rules_test_final.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/paired_rules_slm_vs_rules_test_max.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/rules_slm_test_final.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/rules_slm_test_max.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/rules_test_final.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/rules_test_max.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/slm_test_final.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/slm_test_max.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/xgb_test_final.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/eval/xgb_test_max.json",
+   "tracked": true,
+   "status": "within 1e-6",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/paired.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/paired.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/table1_check.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/table3.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step7/table3/table3.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step8/operations.csv",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step8/operations.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step8/operations_for_L.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step8/rationales.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "results/step8/run.csv",
+   "tracked": true,
+   "status": "run log",
+   "detail": "not compared (dates, commits, runtimes)"
+  },
+  {
+   "file": "paper/figures/abstention_appendix.pdf",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/figures/abstention_appendix.png",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/figures/abstention_main.pdf",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/figures/abstention_main.png",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/figures/captions.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/figures/reliability_test.pdf",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/figures/reliability_test.png",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/figures/review_budget_c2.pdf",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/figures/review_budget_c2.png",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/figures/review_budget_main.pdf",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/figures/review_budget_main.png",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/figures/review_budget_weekday.pdf",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/figures/review_budget_weekday.png",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/abstention.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/abstention.tex",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/calibration.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/calibration.tex",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/fairness_c1.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/fairness_c1.tex",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/fairness_c2.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/fairness_c2.tex",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/operations.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/operations.tex",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/provenance.json",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/review_budget.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/review_budget.tex",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/table1.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/table1.tex",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/table2.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/table2.tex",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/table3.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/table3.tex",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/text_gain.md",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  },
+  {
+   "file": "paper/tables/text_gain.tex",
+   "tracked": true,
+   "status": "identical",
+   "detail": ""
+  }
+ ],
+ "tracked_not_regenerated": [
+  "results/.gitkeep",
+  "results/gate1_report.md",
+  "results/gpu_env.json",
+  "results/gpu_timing.json",
+  "results/granularity/summary.md",
+  "results/labels_report.md",
+  "results/leakage_report.md",
+  "results/rules/rules_methods.md",
+  "results/run.csv",
+  "results/stage2_summary.md",
+  "results/step3_audit.md",
+  "results/step7/inventory.md",
+  "results/step7/review_budget/capacity_facts.md",
+  "results/step7/summary.md",
+  "results/step7/xgb_timing.json",
+  "results/step8/latency_gpu.json",
+  "results/step8/latency_xgb_lab.json",
+  "results/step8/rationale_penalty_check.json",
+  "results/token_check.json",
+  "results/token_check_text.json"
+ ]
+}
